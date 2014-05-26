@@ -1,0 +1,39 @@
+---
+- hosts: all
+
+  vars:
+
+    jdk_rpm: "jdk-8u5-linux-i586.rpm"
+    jdk_url: "http://download.oracle.com/otn-pub/java/jdk/8u5-b13/{{ jdk_rpm }}"
+
+    gradle_version: "1.12"
+    gradle_zip: "gradle-{{ gradle_version }}-bin.zip"
+    gradle_url: "https://services.gradle.org/distributions/{{ gradle_zip }}"
+
+  tasks:
+
+    - name: Install 32-bit C library support
+      yum: name=glibc.i686 state=latest
+
+    - name: Install 32-bit C++ library support
+      yum: name=libstdc++.i686 state=latest
+
+    - name: Install GCC shared support
+      yum: name=libgcc_s.so.1 state=latest
+
+    - name: Install unzip
+      yum: name=unzip state=latest
+
+    - name: Download Oracle Java 8
+      command: 'wget -O {{ jdk_rpm }} --no-check-certificate -c --header "Cookie: oraclelicense=accept-securebackup-cookie" {{ jdk_url }}'
+
+    - name: Install Oracle Java 8
+      yum: name={{ jdk_rpm }} state=present
+
+    - name: Install Gradle {{ gradle_version }}
+      get_url: url={{ gradle_url }} dest=/tmp/{{ gradle_zip }}
+    - command: creates=/opt/gradle unzip /tmp/{{ gradle_zip }} -d /opt/
+    - file: src=/opt/gradle-{{ gradle_version }} path=/opt/gradle state=link
+    - shell: update-alternatives --install /usr/bin/gradle gradle /opt/gradle/bin/gradle 1
+    - file: path=/tmp/{{ gradle_zip }} state=absent
+
