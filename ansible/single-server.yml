@@ -1,0 +1,11 @@
+---
+
+# This playbook installs all roles on a single server
+
+- hosts: webserver
+  sudo: true
+  vars_files:
+    - "vars/common.yml"
+  roles:
+    - base
+    - gradle

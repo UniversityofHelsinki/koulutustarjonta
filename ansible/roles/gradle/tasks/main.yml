@@ -1,0 +1,31 @@
+---
+
+    - name: Create cache folder
+      file: path="{{ cache_path }}" owner="root" group="root" mode="0755" state="directory"
+      tags:
+        - gradle
+
+    - name: Install unzip
+      yum: name="unzip" state=latest
+      tags:
+        - gradle
+
+    - name: Download Gradle {{ gradle_version }}
+      get_url: url="{{ gradle_url }}" dest="{{ cache_path }}/{{ gradle_zip }}"
+      tags:
+        - gradle
+
+    - name: Unzip Gradle
+      command: creates="/opt/gradle-{{ gradle_version }}" unzip "{{ cache_path }}/{{ gradle_zip }}" -d /opt/
+      tags:
+        - gradle
+
+    - name: Create link for Gradle
+      file: src=/opt/gradle-{{ gradle_version }} path=/opt/gradle state=link
+      tags:
+        - gradle
+
+    - name: Update alternatives for Gradle
+      shell: update-alternatives --install /usr/bin/gradle gradle /opt/gradle/bin/gradle 1
+      tags:
+        - gradle

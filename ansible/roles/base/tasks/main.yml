@@ -1,0 +1,25 @@
+---
+
+    - name: Install base libs
+      yum: name="{{ item }}" state=latest
+      with_items:
+      - glibc.i686
+      - libstdc++.i686
+      - libgcc_s.so.1
+      tags:
+        - base
+
+    - name: Create cache folder
+      file: path="{{ cache_path }}" owner="root" group="root" mode="0755" state="directory"
+      tags:
+        - base
+
+    - name: Download Oracle Java 8
+      command: 'wget -O {{ cache_path }}/{{ jdk_rpm }} --no-check-certificate -c --header "Cookie: oraclelicense=accept-securebackup-cookie" {{ jdk_url }} creates="{{ cache_path }}/{{ jdk_rpm }}"'
+      tags:
+        - base
+
+    - name: Install Oracle Java 8
+      yum: name={{ cache_path }}/{{ jdk_rpm }} state=present
+      tags:
+        - base

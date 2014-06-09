@@ -1,0 +1,5 @@
+---
+
+    gradle_version: "1.12"
+    gradle_zip: "gradle-{{ gradle_version }}-bin.zip"
+    gradle_url: "https://services.gradle.org/distributions/{{ gradle_zip }}"
