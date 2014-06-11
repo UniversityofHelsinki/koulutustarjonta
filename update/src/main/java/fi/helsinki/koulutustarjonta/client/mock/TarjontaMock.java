@@ -3,6 +3,8 @@ package fi.helsinki.koulutustarjonta.client.mock;
 import com.google.common.collect.Lists;
 import fi.helsinki.koulutustarjonta.core.domain.*;
 
+import java.util.ArrayList;
+
 /**
  * @author Hannu Lyytikainen
  */
@@ -52,8 +54,8 @@ public class TarjontaMock {
         ao.setAdditionalInfo(loremFi());
         ao.setSelectionCriteria(loremFi());
         ao.setSora(loremFi());
-        ao.setExams(Lists.newArrayList());
-        ao.setAttachments(Lists.newArrayList());
+        ao.setExams(new ArrayList<Exam>());
+        ao.setAttachments(new ArrayList<Attachment>());
         ao.setApplicationSystem(buildApplicationSystem());
         return ao;
     }
