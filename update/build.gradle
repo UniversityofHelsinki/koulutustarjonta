@@ -1,6 +1,6 @@
 apply plugin: 'application'
 
-mainClassName = 'fi.helsinki.koulutustarjonta.Main'
+mainClassName = 'fi.helsinki.koulutustarjonta.KotaUpdateApplication'
 
 jar {
     manifest {
@@ -8,6 +8,7 @@ jar {
                 "Main-Class": mainClassName)
     }
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    exclude 'META-INF/*.RSA', 'META-INF/*.SF','META-INF/*.DSA'
 }
 
 repositories {
@@ -16,6 +17,13 @@ repositories {
 
 dependencies {
     compile 'org.slf4j:slf4j-api:1.7.5'
-    compile 'org.slf4j:slf4j-simple:1.7.5'
+    compile 'io.dropwizard:dropwizard-core:0.7.0'
+    compile 'io.dropwizard:dropwizard-client:0.7.0'
     testCompile 'junit:junit:4.11'
+    testCompile 'org.mockito:mockito-core:1.9.5'
+}
+
+run {
+    args 'update', 'update-config.yml'
+
 }
