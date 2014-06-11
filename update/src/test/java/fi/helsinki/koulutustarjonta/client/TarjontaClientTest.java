@@ -27,9 +27,11 @@ public class TarjontaClientTest {
     public void init() {
         Map<String, Object> result = Maps.newHashMap();
         result.put("result", "degree");
+
         WebResource koulutusResource = mock(WebResource.class);
         when(koulutusResource.path(anyString())).thenReturn(koulutusResource);
         when(koulutusResource.get((GenericType<Object>) any())).thenReturn(result);
+
 
         client = new TarjontaClient(koulutusResource);
 

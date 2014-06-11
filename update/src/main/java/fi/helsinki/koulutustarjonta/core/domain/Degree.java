@@ -31,6 +31,8 @@ public class Degree {
     private I18N internationalization;//kansainvalistyminen
     private I18N cooperation;//yhteistyo muiden toimijoiden kanssa
     private I18N research;//tutkimuksen painopisteet
+    private List<ApplicationOption> applicationOptions;//hakukohteet
+    private Organization provider;//tarjoaja
 
     public String getOid() {
         return oid;
@@ -221,6 +223,23 @@ public class Degree {
     }
 
     public void setResearch(I18N research) {
+
         this.research = research;
+    }
+
+    public List<ApplicationOption> getApplicationOptions() {
+        return applicationOptions;
+    }
+
+    public void setApplicationOptions(List<ApplicationOption> applicationOptions) {
+        this.applicationOptions = applicationOptions;
+    }
+
+    public Organization getProvider() {
+        return provider;
+    }
+
+    public void setProvider(Organization provider) {
+        this.provider = provider;
     }
 }
