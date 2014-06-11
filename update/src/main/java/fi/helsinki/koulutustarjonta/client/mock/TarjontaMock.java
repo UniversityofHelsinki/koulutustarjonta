@@ -8,38 +8,38 @@ import fi.helsinki.koulutustarjonta.core.domain.*;
  */
 public class TarjontaMock {
 
-    public Degree getDegree() {
-        return buildDegree();
+    public LearningOpportunity getDegree() {
+        return buildLearningOpportunity();
     }
 
-    private Degree buildDegree() {
-        Degree degree = new Degree();
-        degree.setOid("1.2.246.562.17.17939899864");
-        degree.setDegreeProgram(new I18N("Filosofian maisteri", null, null));
-        degree.setEducationalField(new I18N("Kemia", null, null));
-        degree.setStartYear("2015");
-        degree.setStartSeason(new I18N("Kevät", null, null));
-        degree.setPlannedDurationUnit(new I18N("vuotta", null, null));
-        degree.setPlannedDurationValue("3");
-        degree.setCreditValue("120");
-        degree.setCreditUnit(new I18N("op", null, null));
-        degree.setTeachingLanguages(Lists.newArrayList(new I18N("suomi", null, null)));
-        degree.setTranslations(Lists.newArrayList("fi"));
-        degree.setGoals(loremFi());
-        degree.setLanguageInfo(loremFi());
-        degree.setSelectingMajorSubject(loremFi());
-        degree.setWorkLifePlacement(loremFi());
-        degree.setCompetency(loremFi());
-        degree.setPostgraduateStudies(loremFi());
-        degree.setContents(loremFi());
-        degree.setStructure(loremFi());
-        degree.setThesis(loremFi());
-        degree.setInternationalization(loremFi());
-        degree.setCooperation(loremFi());
-        degree.setResearch(loremFi());
-        degree.setApplicationOptions(Lists.newArrayList(buildApplicationOption()));
-        degree.setProvider(buildOrganization());
-        return degree;
+    private LearningOpportunity buildLearningOpportunity() {
+        LearningOpportunity learningOpportunity = new LearningOpportunity();
+        learningOpportunity.setOid("1.2.246.562.17.17939899864");
+        learningOpportunity.setDegreeProgram(new I18N("Filosofian maisteri", null, null));
+        learningOpportunity.setEducationalField(new I18N("Kemia", null, null));
+        learningOpportunity.setStartYear("2015");
+        learningOpportunity.setStartSeason(new I18N("Kevät", null, null));
+        learningOpportunity.setPlannedDurationUnit(new I18N("vuotta", null, null));
+        learningOpportunity.setPlannedDurationValue("3");
+        learningOpportunity.setCreditValue("120");
+        learningOpportunity.setCreditUnit(new I18N("op", null, null));
+        learningOpportunity.setTeachingLanguages(Lists.newArrayList(new I18N("suomi", null, null)));
+        learningOpportunity.setTranslations(Lists.newArrayList("fi"));
+        learningOpportunity.setGoals(loremFi());
+        learningOpportunity.setLanguageInfo(loremFi());
+        learningOpportunity.setSelectingMajorSubject(loremFi());
+        learningOpportunity.setWorkLifePlacement(loremFi());
+        learningOpportunity.setCompetency(loremFi());
+        learningOpportunity.setPostgraduateStudies(loremFi());
+        learningOpportunity.setContents(loremFi());
+        learningOpportunity.setStructure(loremFi());
+        learningOpportunity.setThesis(loremFi());
+        learningOpportunity.setInternationalization(loremFi());
+        learningOpportunity.setCooperation(loremFi());
+        learningOpportunity.setResearch(loremFi());
+        learningOpportunity.setApplicationOptions(Lists.newArrayList(buildApplicationOption()));
+        learningOpportunity.setProvider(buildOrganization());
+        return learningOpportunity;
     }
 
     private ApplicationOption buildApplicationOption() {

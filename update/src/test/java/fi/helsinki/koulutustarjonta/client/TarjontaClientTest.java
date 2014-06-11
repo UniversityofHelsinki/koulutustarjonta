@@ -40,7 +40,7 @@ public class TarjontaClientTest {
 
     @Test
     public void testGetDegree() {
-        client.getDegree("1.2.3");
+        client.getLearningOpportunity("1.2.3");
     }
 }
 

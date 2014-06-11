@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * @author Hannu Lyytikainen
  */
-public class Degree {
+public class LearningOpportunity {
 
     private String oid;
     private I18N qualification;//tutkintonimike

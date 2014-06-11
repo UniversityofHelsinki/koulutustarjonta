@@ -1,6 +1,6 @@
 package fi.helsinki.koulutustarjonta.client.converter;
 
-import fi.helsinki.koulutustarjonta.core.domain.Degree;
+import fi.helsinki.koulutustarjonta.core.domain.LearningOpportunity;
 import fi.helsinki.koulutustarjonta.core.domain.I18N;
 
 import java.util.Map;
@@ -8,11 +8,11 @@ import java.util.Map;
 /**
  * @author Hannu Lyytikainen
  */
-public class DegreeConverter extends BaseConverter {
+public class LearningOpportunityConverter extends BaseConverter {
 
-    public Degree convert(Map<String, Object> apiCallResult) {
+    public LearningOpportunity convert(Map<String, Object> apiCallResult) {
 
-        Degree degree = new Degree();
+        LearningOpportunity learningOpportunity = new LearningOpportunity();
         Map<String, Object> resutlContent = getObjectMap(apiCallResult, "result");
         Map<String, String> goals = getStringMap(
                 getObjectMap(
@@ -20,9 +20,9 @@ public class DegreeConverter extends BaseConverter {
                         "TAVOITTEET"),
                 "tekstis"
         );
-        degree.setGoals(new I18N(goals.get("kieli_fi"), null, null));
+        learningOpportunity.setGoals(new I18N(goals.get("kieli_fi"), null, null));
 
-        return degree;
+        return learningOpportunity;
     }
 
 

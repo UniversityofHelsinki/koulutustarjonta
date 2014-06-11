@@ -27,6 +27,6 @@ public class UpdaterTest {
     @Test
     public void testUpdate() {
         updater.update();
-        verify(client, times(1)).getDegree(anyString());
+        verify(client, times(1)).getLearningOpportunity(anyString());
     }
 }

@@ -14,6 +14,6 @@ public class Updater {
     }
 
     public void update() {
-        tarjontaClient.getDegree("1.2.246.562.17.17939899864");
+        tarjontaClient.getLearningOpportunity("1.2.246.562.17.17939899864");
     }
 }
