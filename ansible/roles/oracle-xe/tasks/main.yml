@@ -1,0 +1,28 @@
+---
+  - name: Install required packages
+    yum: name="{{ item }}" state=latest
+    with_items:
+      - libaio
+      - bc
+      - flex
+      - unzip
+
+  - name: Unzip Oracle rpm
+    command: /usr/bin/unzip -q /src/oracle/{{ oracle_zip }} -d /src/oracle creates=/src/oracle/Disk1
+
+  - name: Install Oracle XE
+    shell: /bin/rpm -ivh /src/oracle/Disk1/{{ oracle_rpm }} creates=/u01
+
+  - name: Configure Oracle
+    shell: /etc/init.d/oracle-xe configure responseFile=/src/oracle/xe.rsp
+    ignore_errors: True
+
+  - name: Setup Oracle Environment
+    shell: /bin/echo 'source /u01/app/oracle/product/11.2.0/xe/bin/oracle_env.sh' >> /home/vagrant/.bash_profile
+
+  - name: set oracle listener
+    sudo: False
+    shell: ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe /u01/app/oracle/product/11.2.0/xe/bin/sqlplus
+           system/manager@localhost < /src/oracle/set_listener.sql
+
+

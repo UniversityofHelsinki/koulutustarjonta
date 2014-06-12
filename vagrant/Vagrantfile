@@ -24,7 +24,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Ansible provisioning
   koulutustarjonta.vm.provision "ansible" do |ansible|
-    ansible.playbook = "../ansible/single-server.yml"
+    ansible.playbook = "../ansible/dev-local-server.yml"
     ansible.inventory_path = "vagrant-inventory"
     ansible.limit = 'all'
   end
