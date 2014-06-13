@@ -1,0 +1,10 @@
+---
+
+# This playbook installs runtime dependencies
+
+- hosts: webserver
+  sudo: true
+  vars_files:
+    - "vars/common.yml"
+  roles:
+    - base
