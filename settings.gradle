@@ -1,3 +1,4 @@
 rootProject.name = 'koulutustarjonta'
 include 'koulutustarjonta-update'
 include 'koulutustarjonta-dao'
+include 'koulutustarjonta-query'
