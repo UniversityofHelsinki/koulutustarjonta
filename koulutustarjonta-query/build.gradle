@@ -1,0 +1,27 @@
+apply plugin: 'application'
+
+mainClassName = 'fi.helsinki.koulutustarjonta.KotaQueryApplication'
+
+jar {
+    manifest {
+        attributes("Implementation-Title": "Koulutustarjonta - Query", "Implementation-Version": version,
+                "Main-Class": mainClassName)
+    }
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    exclude 'META-INF/*.RSA', 'META-INF/*.SF','META-INF/*.DSA'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.slf4j:slf4j-api:1.7.5'
+    compile 'io.dropwizard:dropwizard-core:0.7.0'
+    testCompile 'junit:junit:4.11'
+    testCompile 'org.mockito:mockito-core:1.9.5'
+}
+
+run {
+    args 'server'//, 'query-config.yml'
+}
