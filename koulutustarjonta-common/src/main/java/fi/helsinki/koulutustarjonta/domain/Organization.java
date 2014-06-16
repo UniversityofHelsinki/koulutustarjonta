@@ -1,4 +1,4 @@
-package fi.helsinki.koulutustarjonta.core.domain;
+package fi.helsinki.koulutustarjonta.domain;
 
 /**
  * @author Hannu Lyytikainen

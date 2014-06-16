@@ -1,7 +1,8 @@
 package fi.helsinki.koulutustarjonta.client.converter;
 
-import fi.helsinki.koulutustarjonta.core.domain.LearningOpportunity;
-import fi.helsinki.koulutustarjonta.core.domain.I18N;
+
+import fi.helsinki.koulutustarjonta.domain.I18N;
+import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
 
 import java.util.Map;
 

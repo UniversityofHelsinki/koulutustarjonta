@@ -1,2 +1,2 @@
 rootProject.name = 'koulutustarjonta-update'
-include 'koulutustarjonta-dao'
+include 'koulutustarjonta-common'

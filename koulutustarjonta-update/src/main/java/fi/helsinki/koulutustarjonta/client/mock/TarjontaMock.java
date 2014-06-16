@@ -1,7 +1,7 @@
 package fi.helsinki.koulutustarjonta.client.mock;
 
 import com.google.common.collect.Lists;
-import fi.helsinki.koulutustarjonta.core.domain.*;
+import fi.helsinki.koulutustarjonta.domain.*;
 
 import java.util.ArrayList;
 

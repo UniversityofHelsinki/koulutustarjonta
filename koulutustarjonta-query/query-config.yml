@@ -8,14 +8,8 @@ logging:
   loggers:
     "fi.helsinki.koulutustarjonta": DEBUG
 
-
   #appenders:
   #  - type: console
-
-
-tarjontaClient:
-  baseUrl: https://od.helsinki.fi/tarjonta-service/rest/v1/
-
 
 database:
   # the name of your JDBC driver
@@ -28,7 +22,7 @@ database:
   password: koultarj
 
   # the JDBC URL
-  url: jdbc:oracle:thin:@localhost:1521:XE
+  url: jdbc:oracle:thin:@10.10.10.10:1521:XE
 
   # any properties specific to your JDBC driver:
   properties:
@@ -57,4 +51,3 @@ database:
 
   # the minimum amount of time an connection must sit idle in the pool before it is eligible for eviction
   minIdleTime: 1 minute
-
