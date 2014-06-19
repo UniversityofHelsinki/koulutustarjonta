@@ -23,10 +23,11 @@ buildscript {
 dependencies {
     compile 'org.slf4j:slf4j-api:1.7.5'
     compile 'io.dropwizard:dropwizard-core:0.7.0'
+    compile 'org.modelmapper:modelmapper:0.7.1'
     compile project(':koulutustarjonta-common')
+    compile files('../lib/ojdbc7.jar')
     testCompile 'junit:junit:4.11'
     testCompile 'org.mockito:mockito-core:1.9.5'
-    compile files('../lib/ojdbc7.jar')
 }
 
 run {

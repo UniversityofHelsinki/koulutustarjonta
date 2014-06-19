@@ -33,6 +33,6 @@ dependencies {
 }
 
 run {
-    args 'update', 'update-config.yml'
+    args 'server', 'update-config.yml'
 
 }

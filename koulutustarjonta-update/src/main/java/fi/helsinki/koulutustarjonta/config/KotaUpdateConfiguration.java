@@ -13,7 +13,6 @@ import javax.validation.constraints.NotNull;
  */
 public class KotaUpdateConfiguration extends Configuration {
 
-
     @Valid
     @NotNull
     private TarjontaClientFactory tarjontaClientFactory = new TarjontaClientFactory();

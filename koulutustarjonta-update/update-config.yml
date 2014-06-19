@@ -1,3 +1,13 @@
+server:
+  adminMinThreads: 1
+  adminMaxThreads: 64
+  applicationConnectors:
+    - type: http
+      port: 9090
+  adminConnectors:
+    - type: http
+      port: 9091
+
 # Logging settings.
 logging:
 
@@ -7,6 +17,8 @@ logging:
   # specific log levels
   loggers:
     "fi.helsinki.koulutustarjonta": DEBUG
+    "org.skife.jdbi": DEBUG
+    "oracle.jdbc": DEBUG
 
 
   #appenders:
@@ -28,7 +40,7 @@ database:
   password: koultarj
 
   # the JDBC URL
-  url: jdbc:oracle:thin:@localhost:1521:XE
+  url: jdbc:oracle:thin:@10.10.10.10:1521:XE
 
   # any properties specific to your JDBC driver:
   properties:

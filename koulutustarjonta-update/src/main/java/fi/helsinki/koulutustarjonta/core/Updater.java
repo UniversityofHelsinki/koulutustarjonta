@@ -23,10 +23,13 @@ public class Updater {
 
     public void update() {
         LOG.debug("Update data");
-        LOG.debug("Invoke tarjonta client");
         LearningOpportunity learningOpportunity = tarjontaClient.getLearningOpportunity("1.2.246.562.17.17939899864");
-        LOG.debug("Invoke DAO");
-        dao.insert(learningOpportunity);
+
+        int affected = dao.update(learningOpportunity);
+        if (affected == 0) {
+            dao.insert(learningOpportunity);
+        }
+
         LOG.debug("Update finished");
     }
 }

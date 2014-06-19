@@ -9,9 +9,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class I18NDTO {
 
-    private final String fi;
-    private final String sv;
-    private final String en;
+    private String fi;
+    private String sv;
+    private String en;
+
+    public I18NDTO() {
+    }
 
     public I18NDTO(String fi, String sv, String en) {
         this.fi = fi;
@@ -32,5 +35,17 @@ public class I18NDTO {
     @JsonProperty("en")
     public String getEn() {
         return en;
+    }
+
+    public void setFi(String fi) {
+        this.fi = fi;
+    }
+
+    public void setSv(String sv) {
+        this.sv = sv;
+    }
+
+    public void setEn(String en) {
+        this.en = en;
     }
 }
