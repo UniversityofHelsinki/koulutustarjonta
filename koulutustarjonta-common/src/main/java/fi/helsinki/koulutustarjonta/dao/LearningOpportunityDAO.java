@@ -15,19 +15,19 @@ import java.util.List;
  */
 public interface LearningOpportunityDAO {
 
-    @SqlUpdate("insert into KOULUTUS_POC (id, tavoitteet_fi) values (:id, :tavoitteet_fi)")
+    @SqlUpdate("insert into KOULUTUS (id, tavoitteet_fi) values (:id, :tavoitteet_fi)")
     void insert(@BindLearningOpportunity LearningOpportunity learningOpportunity);
 
-    @SqlUpdate("update KOULUTUS_POC " +
+    @SqlUpdate("update KOULUTUS " +
             "set tavoitteet_fi = :tavoitteet_fi " +
             "where id = :id")
     int update(@BindLearningOpportunity LearningOpportunity learningOpportunity);
 
-    @SqlQuery("select * from KOULUTUS_POC")
+    @SqlQuery("select * from KOULUTUS")
     @Mapper(LearningOpportunityMapper.class)
     List<LearningOpportunity> findAll();
 
-    @SqlQuery("select * from KOULUTUS_POC " +
+    @SqlQuery("select * from KOULUTUS " +
             "where id = :id")
     @Mapper(LearningOpportunityMapper.class)
     LearningOpportunity findById(@Bind("id") String id);
