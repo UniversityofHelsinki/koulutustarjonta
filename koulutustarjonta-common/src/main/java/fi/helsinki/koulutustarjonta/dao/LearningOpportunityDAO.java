@@ -15,6 +15,9 @@ import java.util.List;
  */
 public interface LearningOpportunityDAO {
 
+    @SqlUpdate("MERGE INTO KOULUTUS USING dual ON ( id=:id ) WHEN MATCHED THEN UPDATE SET tavoitteet_fi=:tavoitteet_fi WHEN NOT MATCHED THEN INSERT (id, tavoitteet_fi) VALUES (:id, :tavoitteet_fi)")
+    void upsert(@BindLearningOpportunity LearningOpportunity learningOpportunity);
+
     @SqlUpdate("insert into KOULUTUS (id, tavoitteet_fi) values (:id, :tavoitteet_fi)")
     void insert(@BindLearningOpportunity LearningOpportunity learningOpportunity);
 
