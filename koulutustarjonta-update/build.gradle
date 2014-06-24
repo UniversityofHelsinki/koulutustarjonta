@@ -29,7 +29,7 @@ dependencies {
     compile project(':koulutustarjonta-common')
     testCompile 'junit:junit:4.11'
     testCompile 'org.mockito:mockito-core:1.9.5'
-    compile files('../lib/ojdbc7.jar')
+    compile files('../lib/ojdbc6.jar')
 }
 
 run {
