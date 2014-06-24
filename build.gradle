@@ -3,5 +3,15 @@ subprojects {
     sourceCompatibility = '1.8'
     group = 'fi.helsinki.koulutustarjonta'
     version = '1.0-SNAPSHOT'
+    
+    test {
+        testLogging {
+            afterSuite { desc, result ->
+                if (!desc.parent) { // will match the outermost suite
+                    println "Results: ${result.resultType} (${result.testCount} tests, ${result.successfulTestCount} successes, ${result.failedTestCount} failures, ${result.skippedTestCount} skipped)"
+                }
+            }
+        }
+    }
 }
 
