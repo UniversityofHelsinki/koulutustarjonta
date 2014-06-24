@@ -1,7 +1,20 @@
 apply plugin: 'java'
 
+test {
+    systemProperty 'db.url', project.hasProperty('db_url') ? project.getProperty('db_url') : 'jdbc:oracle:thin:@10.10.10.10:1521:XE'
+    systemProperty 'db.user', project.hasProperty('db_user') ? project.getProperty('db_user') : 'koultarj'
+    systemProperty 'db.passwd', project.hasProperty('db_passwd') ? project.getProperty('db_passwd') : 'koultarj'
+}
+
+
+
 repositories {
     mavenCentral()
+}
+
+buildscript {
+    dependencies {
+    }
 }
 
 dependencies {
@@ -10,4 +23,7 @@ dependencies {
     testCompile 'junit:junit:4.11'
     testCompile 'org.mockito:mockito-core:1.9.5'
     testCompile 'com.h2database:h2:1.4.178'
+    testCompile 'io.dropwizard:dropwizard-testing:0.7.0'
+    testCompile 'io.dropwizard:dropwizard-core:0.7.0'
+    compile files('../lib/ojdbc7.jar')
 }
