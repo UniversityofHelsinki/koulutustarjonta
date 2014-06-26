@@ -1,0 +1,22 @@
+{
+    "meta": {
+        "kieli_sv": {
+            "kieliUri": "kieli_sv",
+            "kieliVersio": 1,
+            "kieliArvo": "SV"
+        },
+        "kieli_en": {
+            "kieliUri": "kieli_en",
+            "kieliVersio": 1,
+            "kieliArvo": "EN"
+        },
+        "kieli_fi": {
+            "kieliUri": "kieli_fi",
+            "kieliVersio": 1,
+            "kieliArvo": "FI"
+        }
+    }, "tekstis": {
+    "kieli_sv": "description sv",
+    "kieli_en": "description en",
+    "kieli_fi": "description fi"
+}}

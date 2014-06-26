@@ -29,8 +29,9 @@ public class UpdateResource {
             updater.update();
             status.put("status", "ok");
         } catch (Exception e) {
+            e.printStackTrace();
             status.put("status", "error");
-            status.put("cause", e.getMessage());
+            status.put("cause", String.format("%s - %s", e.getClass().getName(), e.getMessage()));
         }
         return status;
     }

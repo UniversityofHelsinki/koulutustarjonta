@@ -1,5 +1,9 @@
 package fi.helsinki.koulutustarjonta.domain;
 
+import com.google.common.collect.Lists;
+
+import java.util.List;
+
 /**
  * @author Hannu Lyytikainen
  */
@@ -25,5 +29,19 @@ public class I18N {
 
     public String getEn() {
         return en;
+    }
+
+    public List<String> availableTranslations() {
+        List<String> translations = Lists.newArrayList();
+        if (fi != null) {
+            translations.add("fi");
+        }
+        if (sv != null) {
+            translations.add("sv");
+        }
+        if (en != null) {
+            translations.add("en");
+        }
+        return translations;
     }
 }

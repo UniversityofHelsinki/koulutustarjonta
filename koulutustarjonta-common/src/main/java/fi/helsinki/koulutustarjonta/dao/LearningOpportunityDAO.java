@@ -1,38 +1,52 @@
 package fi.helsinki.koulutustarjonta.dao;
 
-import fi.helsinki.koulutustarjonta.dao.binder.BindLearningOpportunity;
-import fi.helsinki.koulutustarjonta.dao.mapper.LearningOpportunityMapper;
+import fi.helsinki.koulutustarjonta.dao.mapper.LearningOpportunityObjectGraphBuilder;
 import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
-import org.skife.jdbi.v2.sqlobject.Bind;
-import org.skife.jdbi.v2.sqlobject.SqlQuery;
-import org.skife.jdbi.v2.sqlobject.SqlUpdate;
-import org.skife.jdbi.v2.sqlobject.customizers.Mapper;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author Hannu Lyytikainen
  */
-public interface LearningOpportunityDAO {
+public class LearningOpportunityDAO {
 
-    @SqlUpdate("MERGE INTO KOULUTUS USING dual ON ( id=:id ) WHEN MATCHED THEN UPDATE SET tavoitteet_fi=:tavoitteet_fi WHEN NOT MATCHED THEN INSERT (id, tavoitteet_fi) VALUES (:id, :tavoitteet_fi)")
-    void upsert(@BindLearningOpportunity LearningOpportunity learningOpportunity);
+    final LearningOpportunityJDBI jdbi;
 
-    @SqlUpdate("insert into KOULUTUS (id, tavoitteet_fi) values (:id, :tavoitteet_fi)")
-    void insert(@BindLearningOpportunity LearningOpportunity learningOpportunity);
+    public LearningOpportunityDAO(LearningOpportunityJDBI jdbi) {
+        this.jdbi = jdbi;
+    }
 
-    @SqlUpdate("update KOULUTUS " +
-            "set tavoitteet_fi = :tavoitteet_fi " +
-            "where id = :id")
-    int update(@BindLearningOpportunity LearningOpportunity learningOpportunity);
+    public void save(LearningOpportunity learningOpportunity) {
+        int affected = jdbi.update(learningOpportunity);
+        if (affected == 0) {
+            insert(learningOpportunity);
+        }
+        else {
+            jdbi.removeTeachingLanguagesFromLearningOpportunity(learningOpportunity.getOid());
+            jdbi.addTeachingLanguagesToLearningOpportunity(learningOpportunity.getOid(),
+            learningOpportunity.getTeachingLanguages()
+                    .stream()
+                    .map(x -> x.getLang())
+                    .collect(Collectors.toList()));
+        }
+    }
 
-    @SqlQuery("select * from KOULUTUS")
-    @Mapper(LearningOpportunityMapper.class)
-    List<LearningOpportunity> findAll();
+    private void insert(LearningOpportunity learningOpportunity) {
+        jdbi.insert(learningOpportunity);
+        jdbi.insertTeachingLanguages(learningOpportunity.getTeachingLanguages());
+        jdbi.addTeachingLanguagesToLearningOpportunity(learningOpportunity.getOid(),
+                learningOpportunity.getTeachingLanguages()
+                        .stream()
+                        .map(x -> x.getLang())
+                        .collect(Collectors.toList()));
+    }
 
-    @SqlQuery("select * from KOULUTUS " +
-            "where id = :id")
-    @Mapper(LearningOpportunityMapper.class)
-    LearningOpportunity findById(@Bind("id") String id);
+    public List<LearningOpportunity> findAll() {
+        return LearningOpportunityObjectGraphBuilder.build(jdbi.findAllJoinRows());
+    }
 
+    public LearningOpportunity findById(String id) {
+        return LearningOpportunityObjectGraphBuilder.build(jdbi.findJoinRowsById(id)).get(0);
+    }
 }

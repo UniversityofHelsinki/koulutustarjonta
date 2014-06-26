@@ -13,6 +13,9 @@ jar {
 
 repositories {
     mavenCentral()
+    //  maven {
+    //      url "http://repo.typesafe.com/typesafe/releases/"
+    //    }
 }
 
 
@@ -26,10 +29,12 @@ dependencies {
     compile 'io.dropwizard:dropwizard-core:0.7.0'
     compile 'io.dropwizard:dropwizard-client:0.7.0'
     compile 'io.dropwizard:dropwizard-jdbi:0.7.0'
+    //compile 'com.typesafe.play:play-java-ws_2.11:2.3.0'
+    compile files('../lib/ojdbc6_4.jar')
     compile project(':koulutustarjonta-common')
     testCompile 'junit:junit:4.11'
     testCompile 'org.mockito:mockito-core:1.9.5'
-    compile files('../lib/ojdbc6.jar')
+    testCompile 'io.dropwizard:dropwizard-testing:0.7.0'
 }
 
 run {

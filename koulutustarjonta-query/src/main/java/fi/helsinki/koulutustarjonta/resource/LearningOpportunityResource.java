@@ -3,6 +3,7 @@ package fi.helsinki.koulutustarjonta.resource;
 import fi.helsinki.koulutustarjonta.dao.LearningOpportunityDAO;
 import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
 import fi.helsinki.koulutustarjonta.dto.LearningOpportunityDTO;
+import fi.helsinki.koulutustarjonta.mapping.LearningOpportunityMap;
 import org.modelmapper.ModelMapper;
 
 import javax.ws.rs.GET;
@@ -26,14 +27,15 @@ public class LearningOpportunityResource {
     public LearningOpportunityResource(LearningOpportunityDAO learningOpportunityDAO) {
         this.learningOpportunityDAO = learningOpportunityDAO;
         this.modelMapper = new ModelMapper();
+        this.modelMapper.addMappings(new LearningOpportunityMap());
     }
 
     @GET
     public List<LearningOpportunityDTO> getLearningOpportunities() {
         List<LearningOpportunity> learningOpportunities = learningOpportunityDAO.findAll();
-        return learningOpportunities.stream().map(lo -> {
-            return modelMapper.map(lo, LearningOpportunityDTO.class);
-        }).collect(Collectors.toList());
+        return learningOpportunities.stream().map(lo ->
+                        modelMapper.map(lo, LearningOpportunityDTO.class)
+        ).collect(Collectors.toList());
 
     }
 

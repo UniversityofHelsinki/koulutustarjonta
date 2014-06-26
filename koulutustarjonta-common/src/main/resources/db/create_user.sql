@@ -8,8 +8,6 @@ CREATE USER koultarj
   QUOTA 200M ON users;
 
 GRANT CREATE SESSION TO koultarj;
-
 GRANT CREATE TABLE to koultarj;
-
-
-
+GRANT CREATE SEQUENCE TO koultarj;
+GRANT CREATE TRIGGER TO koultarj;

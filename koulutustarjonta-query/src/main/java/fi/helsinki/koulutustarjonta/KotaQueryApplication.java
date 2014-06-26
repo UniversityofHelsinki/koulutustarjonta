@@ -2,6 +2,7 @@ package fi.helsinki.koulutustarjonta;
 
 import fi.helsinki.koulutustarjonta.config.KotaQueryConfig;
 import fi.helsinki.koulutustarjonta.dao.LearningOpportunityDAO;
+import fi.helsinki.koulutustarjonta.dao.LearningOpportunityJDBI;
 import fi.helsinki.koulutustarjonta.resource.LearningOpportunityResource;
 import io.dropwizard.Application;
 import io.dropwizard.jdbi.DBIFactory;
@@ -32,8 +33,9 @@ public class KotaQueryApplication extends Application<KotaQueryConfig> {
         TimeZone.setDefault(tz);
 
         final DBIFactory factory = new DBIFactory();
-        final DBI jdbi = factory.build(environment, configuration.getDataSourceFactory(), "oracle");
-        final LearningOpportunityDAO dao = jdbi.onDemand(LearningOpportunityDAO.class);
+        final DBI dbi = factory.build(environment, configuration.getDataSourceFactory(), "oracle");
+        final LearningOpportunityJDBI jdbi = dbi.onDemand(LearningOpportunityJDBI.class);
+        final LearningOpportunityDAO dao = new LearningOpportunityDAO(jdbi);
         final LearningOpportunityResource lor = new LearningOpportunityResource(dao);
         environment.jersey().register(lor);
     }

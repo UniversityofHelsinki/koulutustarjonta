@@ -1,6 +1,8 @@
 package fi.helsinki.koulutustarjonta.dao.mapper;
 
+import fi.helsinki.koulutustarjonta.dao.util.LearningOpportunityJoinRow;
 import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
+import fi.helsinki.koulutustarjonta.domain.TeachingLanguage;
 import org.skife.jdbi.v2.StatementContext;
 import org.skife.jdbi.v2.tweak.ResultSetMapper;
 
@@ -12,9 +14,10 @@ import static fi.helsinki.koulutustarjonta.dao.mapper.MapperUtil.resolveI18N;
 /**
  * @author Hannu Lyytikainen
  */
-public class LearningOpportunityMapper implements ResultSetMapper<LearningOpportunity> {
+public class LearningOpportunityJoinRowMapper implements ResultSetMapper<LearningOpportunityJoinRow> {
     @Override
-    public LearningOpportunity map(int index, ResultSet r, StatementContext ctx) throws SQLException {
+    public LearningOpportunityJoinRow map(int index, ResultSet r, StatementContext ctx) throws SQLException {
+        TeachingLanguage teachingLanguage = TeachingLanguageMapper.map(r);
         LearningOpportunity lo = new LearningOpportunity(
                 r.getString("id"), resolveI18N(r, "tutkintonimike"), resolveI18N(r, "opintoala"),
                 resolveI18N(r, "tutkintoohjelma"), r.getInt("alkamisvuosi"), resolveI18N(r, "alkamiskausi"),
@@ -26,6 +29,8 @@ public class LearningOpportunityMapper implements ResultSetMapper<LearningOpport
                 resolveI18N(r, "sijtyo"), resolveI18N(r, "sisalto"), resolveI18N(r, "tutkpaino"),
                 resolveI18N(r, "opinnaytetyo"), null, null
         );
-        return lo;
+        return new LearningOpportunityJoinRow(lo, teachingLanguage);
     }
+
 }
+

@@ -1,30 +1,109 @@
 package fi.helsinki.koulutustarjonta.client.converter;
 
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.google.common.collect.Lists;
 import fi.helsinki.koulutustarjonta.domain.I18N;
 import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
+import fi.helsinki.koulutustarjonta.domain.TeachingLanguage;
 
-import java.util.Map;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author Hannu Lyytikainen
  */
 public class LearningOpportunityConverter extends BaseConverter {
 
-    public LearningOpportunity convert(Map<String, Object> apiCallResult) {
+    final I18NConverter i18n;
 
-        LearningOpportunity learningOpportunity = new LearningOpportunity();
-        Map<String, Object> resutlContent = getObjectMap(apiCallResult, "result");
-        Map<String, String> goals = getStringMap(
-                getObjectMap(
-                        getObjectMap(resutlContent, "kuvausKomo"),
-                        "TAVOITTEET"),
-                "tekstis"
-        );
-        learningOpportunity.setGoals(new I18N(goals.get("kieli_fi"), null, null));
-
-        return learningOpportunity;
+    public LearningOpportunityConverter() {
+        this.i18n = new I18NConverter();
     }
 
+    public LearningOpportunity convert(JsonNode apiCallResult) {
+        LearningOpportunity lo = new LearningOpportunity();
+        JsonNode content = apiCallResult.get("result");
+
+        lo.setOid(content.get("oid").textValue());
+        lo.setQualification(resolveQualification(content.get("tutkintonimikes")));
+        lo.setEducationalField(resolveMetaLangName(content.get("opintoala")));
+        lo.setDegreeProgram(resolveDegreeProgram(content.get("koulutusohjelma")));
+        lo.setStartYear(content.get("koulutuksenAlkamisvuosi").intValue());
+        lo.setStartSeason(resolveMetaLangName(content.get("koulutuksenAlkamiskausi")));
+        lo.setPlannedDurationValue(content.get("suunniteltuKestoArvo").asInt());
+        lo.setPlannedDurationUnit(resolveMetaLangName(content.get("suunniteltuKestoTyyppi")));
+        lo.setCreditValue(content.get("opintojenLaajuusarvo").get("arvo").asInt());
+        lo.setCreditUnit(resolveMetaLangName(content.get("opintojenLaajuusyksikko")));
+        lo.setTeachingLanguages(resolveTeachingLanguages(content.get("opetuskielis")));
+
+        //komo info
+        JsonNode komoInfo = content.get("kuvausKomo");
+        lo.setGoals(i18n.convert(komoInfo.get("TAVOITTEET")));
+        lo.setStructure(i18n.convert(komoInfo.get("KOULUTUKSEN_RAKENNE")));
+        lo.setPostgraduateStudies(i18n.convert(komoInfo.get("JATKOOPINTO_MAHDOLLISUUDET")));
+        lo.setCompetency(i18n.convert(komoInfo.get("PATEVYYS")));
+
+        lo.setTranslations(resolveTranslations(komoInfo.get("TAVOITTEET")));
+
+        //komoto info
+        JsonNode komotoInfo = content.get("kuvausKomoto");
+        lo.setLanguageInfo(i18n.convert(komotoInfo.get("LISATIETOA_OPETUSKIELISTA")));
+        lo.setCooperation(i18n.convert(komotoInfo.get("YHTEISTYO_MUIDEN_TOIMIJOIDEN_KANSSA")));
+        lo.setSelectingMajorSubject(i18n.convert(komotoInfo.get("PAAAINEEN_VALINTA")));
+        lo.setInternationalization(i18n.convert(komotoInfo.get("KANSAINVALISTYMINEN")));
+        lo.setWorkLifePlacement(i18n.convert(komotoInfo.get("SIJOITTUMINEN_TYOELAMAAN")));
+        lo.setContents(i18n.convert(komotoInfo.get("SISALTO")));
+        lo.setResearch(i18n.convert(komotoInfo.get("TUTKIMUKSEN_PAINOPISTEET")));
+        lo.setThesis(i18n.convert(komotoInfo.get("LOPPUKOEVAATIMUKSET")));
+
+        return lo;
+    }
+
+    private List<String> resolveTranslations(JsonNode goals) {
+        return Lists.newArrayList(goals.get("meta")).parallelStream()
+                .map(elem -> elem.get("kieliArvo").textValue().toLowerCase())
+                .collect(Collectors.toList());
+    }
+
+    private List<TeachingLanguage> resolveTeachingLanguages(JsonNode node) {
+        return Lists.newArrayList(node.get("meta")).parallelStream()
+                .map(elem -> resolveTeachingLanguage(elem))
+                .collect(Collectors.toList());
+    }
+
+    private TeachingLanguage resolveTeachingLanguage(JsonNode langNode) {
+        return new TeachingLanguage(langNode.get("arvo").textValue().toLowerCase(),
+                new I18N(langNode.get("meta").get("kieli_fi").get("nimi").textValue(),
+                        langNode.get("meta").get("kieli_sv").get("nimi").textValue(),
+                        langNode.get("meta").get("kieli_en").get("nimi").textValue()));
+    }
+
+    private I18N resolveDegreeProgram(JsonNode node) {
+        JsonNode texts = node.get("tekstis");
+        return new I18N(
+                texts.get("kieli_fi").textValue(),
+                texts.get("kieli_sv").textValue(),
+                texts.get("kieli_en").textValue()
+        );
+    }
+
+    private I18N resolveMetaLangName(JsonNode node) {
+        JsonNode texts = node.get("meta");
+        return new I18N(
+                texts.get("kieli_fi").get("nimi").textValue(),
+                texts.get("kieli_sv").get("nimi").textValue(),
+                texts.get("kieli_en").get("nimi").textValue()
+        );
+    }
+
+    private I18N resolveQualification(JsonNode node) {
+        JsonNode texts = node.get("meta").elements().next().get("meta");
+        return new I18N(
+                texts.get("kieli_fi").get("nimi").textValue(),
+                texts.get("kieli_sv").get("nimi").textValue(),
+                texts.get("kieli_en").get("nimi").textValue()
+        );
+    }
 
 }

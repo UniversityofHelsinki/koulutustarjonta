@@ -19,13 +19,13 @@ public class TarjontaMock {
         learningOpportunity.setOid("1.2.246.562.17.17939899864");
         learningOpportunity.setDegreeProgram(new I18N("Filosofian maisteri", null, null));
         learningOpportunity.setEducationalField(new I18N("Kemia", null, null));
-        learningOpportunity.setStartYear("2015");
+        learningOpportunity.setStartYear(2015);
         learningOpportunity.setStartSeason(new I18N("Kevät", null, null));
         learningOpportunity.setPlannedDurationUnit(new I18N("vuotta", null, null));
-        learningOpportunity.setPlannedDurationValue("3");
-        learningOpportunity.setCreditValue("120");
+        learningOpportunity.setPlannedDurationValue(3);
+        learningOpportunity.setCreditValue(120);
         learningOpportunity.setCreditUnit(new I18N("op", null, null));
-        learningOpportunity.setTeachingLanguages(Lists.newArrayList(new I18N("suomi", null, null)));
+        learningOpportunity.setTeachingLanguages(Lists.newArrayList(new TeachingLanguage("fi", new I18N("suomi", null, null))));
         learningOpportunity.setTranslations(Lists.newArrayList("fi"));
         learningOpportunity.setGoals(loremFi());
         learningOpportunity.setLanguageInfo(loremFi());

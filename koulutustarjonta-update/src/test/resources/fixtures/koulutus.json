@@ -1,0 +1,918 @@
+{
+  "result" : {
+    "koulutusasteTyyppi" : "KORKEAKOULUTUS",
+    "modified" : 1403764232678,
+    "modifiedBy" : "1.2.246.562.24.73488592963",
+    "oid" : "1.2.246.562.17.17939899864",
+    "version" : 23,
+    "koulutuskoodi" : {
+      "uri" : "koulutus_742401",
+      "versio" : 1,
+      "arvo" : "742401",
+      "nimi" : "Fil. maist., kemia",
+      "meta" : {
+        "kieli_sv" : {
+          "kieliUri" : "kieli_sv",
+          "kieliVersio" : 1,
+          "kieliArvo" : "SV",
+          "nimi" : "Fil. mag., kemi"
+        },
+        "kieli_en" : {
+          "kieliUri" : "kieli_en",
+          "kieliVersio" : 1,
+          "kieliArvo" : "EN",
+          "nimi" : "MSc, Chemistry"
+        },
+        "kieli_fi" : {
+          "kieliUri" : "kieli_fi",
+          "kieliVersio" : 1,
+          "kieliArvo" : "FI",
+          "nimi" : "Fil. maist., kemia"
+        }
+      }
+    },
+    "koulutusaste" : {
+      "uri" : "koulutusasteoph2002_72",
+      "versio" : 1,
+      "arvo" : "72",
+      "nimi" : "Ylempi korkeakoulututkinto",
+      "meta" : {
+        "kieli_sv" : {
+          "kieliUri" : "kieli_sv",
+          "kieliVersio" : 1,
+          "kieliArvo" : "SV",
+          "nimi" : "Högre högskoleexamen"
+        },
+        "kieli_fi" : {
+          "kieliUri" : "kieli_fi",
+          "kieliVersio" : 1,
+          "kieliArvo" : "FI",
+          "nimi" : "Ylempi korkeakoulututkinto"
+        }
+      }
+    },
+    "koulutusala" : {
+      "uri" : "koulutusalaoph2002_4",
+      "versio" : 1,
+      "arvo" : "4",
+      "nimi" : "Luonnontieteiden ala",
+      "meta" : {
+        "kieli_sv" : {
+          "kieliUri" : "kieli_sv",
+          "kieliVersio" : 1,
+          "kieliArvo" : "SV",
+          "nimi" : "Det naturvetenskapliga området"
+        },
+        "kieli_en" : {
+          "kieliUri" : "kieli_en",
+          "kieliVersio" : 1,
+          "kieliArvo" : "EN",
+          "nimi" : "Natural Sciences"
+        },
+        "kieli_fi" : {
+          "kieliUri" : "kieli_fi",
+          "kieliVersio" : 1,
+          "kieliArvo" : "FI",
+          "nimi" : "Luonnontieteiden ala"
+        }
+      }
+    },
+    "opintoala" : {
+      "uri" : "opintoalaoph2002_405",
+      "versio" : 1,
+      "arvo" : "405",
+      "nimi" : "Kemia",
+      "meta" : {
+        "kieli_sv" : {
+          "kieliUri" : "kieli_sv",
+          "kieliVersio" : 1,
+          "kieliArvo" : "SV",
+          "nimi" : "Kemi"
+        },
+        "kieli_en" : {
+          "kieliUri" : "kieli_en",
+          "kieliVersio" : 1,
+          "kieliArvo" : "EN",
+          "nimi" : "Chemistry"
+        },
+        "kieli_fi" : {
+          "kieliUri" : "kieli_fi",
+          "kieliVersio" : 1,
+          "kieliArvo" : "FI",
+          "nimi" : "Kemia"
+        }
+      }
+    },
+    "tutkinto" : {
+      "uri" : "tutkinto_702",
+      "versio" : 1,
+      "arvo" : "702",
+      "nimi" : "Filosofian maisteri",
+      "meta" : {
+        "kieli_sv" : {
+          "kieliUri" : "kieli_sv",
+          "kieliVersio" : 1,
+          "kieliArvo" : "SV",
+          "nimi" : "Filosofie magister"
+        },
+        "kieli_en" : {
+          "kieliUri" : "kieli_en",
+          "kieliVersio" : 1,
+          "kieliArvo" : "EN",
+          "nimi" : "Master of Science"
+        },
+        "kieli_fi" : {
+          "kieliUri" : "kieli_fi",
+          "kieliVersio" : 1,
+          "kieliArvo" : "FI",
+          "nimi" : "Filosofian maisteri"
+        }
+      }
+    },
+    "eqf" : {
+      "uri" : "eqf_7",
+      "versio" : 1,
+      "arvo" : "7",
+      "nimi" : "Taso 7",
+      "meta" : {
+        "kieli_sv" : {
+          "kieliUri" : "kieli_sv",
+          "kieliVersio" : 1,
+          "kieliArvo" : "SV",
+          "nimi" : "Nivå 7"
+        },
+        "kieli_en" : {
+          "kieliUri" : "kieli_en",
+          "kieliVersio" : 1,
+          "kieliArvo" : "EN",
+          "nimi" : "Level 7"
+        },
+        "kieli_fi" : {
+          "kieliUri" : "kieli_fi",
+          "kieliVersio" : 1,
+          "kieliArvo" : "FI",
+          "nimi" : "Taso 7"
+        }
+      }
+    },
+    "nqf" : {
+      "uri" : "",
+      "versio" : -1,
+      "arvo" : "",
+      "nimi" : ""
+    },
+    "opintojenLaajuusyksikko" : {
+      "uri" : "opintojenlaajuusyksikko_2",
+      "versio" : 1,
+      "arvo" : "2",
+      "nimi" : "opintopistettä",
+      "meta" : {
+        "kieli_sv" : {
+          "kieliUri" : "kieli_sv",
+          "kieliVersio" : 1,
+          "kieliArvo" : "SV",
+          "nimi" : "poäng"
+        },
+        "kieli_en" : {
+          "kieliUri" : "kieli_en",
+          "kieliVersio" : 1,
+          "kieliArvo" : "EN",
+          "nimi" : "ECTS cr"
+        },
+        "kieli_fi" : {
+          "kieliUri" : "kieli_fi",
+          "kieliVersio" : 1,
+          "kieliArvo" : "FI",
+          "nimi" : "opintopistettä"
+        }
+      }
+    },
+    "komoOid" : "1.2.246.562.13.43905744116",
+    "komotoOid" : "1.2.246.562.17.17939899864",
+    "organisaatio" : {
+      "oid" : "1.2.246.562.10.94639300915",
+      "nimi" : "Helsingin yliopisto, Matemaattis-luonnontieteellinen tiedekunta",
+      "nimet" : [ ]
+    },
+    "koulutusohjelma" : {
+      "meta" : {
+        "kieli_sv" : {
+          "uri" : "kieli_sv",
+          "versio" : 1,
+          "arvo" : "SV",
+          "nimi" : "ruotsi",
+          "meta" : {
+            "kieli_sv" : {
+              "kieliUri" : "kieli_sv",
+              "kieliVersio" : 1,
+              "kieliArvo" : "SV",
+              "nimi" : "svenska"
+            },
+            "kieli_en" : {
+              "kieliUri" : "kieli_en",
+              "kieliVersio" : 1,
+              "kieliArvo" : "EN",
+              "nimi" : "Swedish"
+            },
+            "kieli_fi" : {
+              "kieliUri" : "kieli_fi",
+              "kieliVersio" : 1,
+              "kieliArvo" : "FI",
+              "nimi" : "ruotsi"
+            }
+          }
+        },
+        "kieli_en" : {
+          "uri" : "kieli_en",
+          "versio" : 1,
+          "arvo" : "EN",
+          "nimi" : "englanti",
+          "meta" : {
+            "kieli_sv" : {
+              "kieliUri" : "kieli_sv",
+              "kieliVersio" : 1,
+              "kieliArvo" : "SV",
+              "nimi" : "engelska"
+            },
+            "kieli_en" : {
+              "kieliUri" : "kieli_en",
+              "kieliVersio" : 1,
+              "kieliArvo" : "EN",
+              "nimi" : "English"
+            },
+            "kieli_fi" : {
+              "kieliUri" : "kieli_fi",
+              "kieliVersio" : 1,
+              "kieliArvo" : "FI",
+              "nimi" : "englanti"
+            }
+          }
+        },
+        "kieli_fi" : {
+          "uri" : "kieli_fi",
+          "versio" : 1,
+          "arvo" : "FI",
+          "nimi" : "suomi",
+          "meta" : {
+            "kieli_sv" : {
+              "kieliUri" : "kieli_sv",
+              "kieliVersio" : 1,
+              "kieliArvo" : "SV",
+              "nimi" : "finska"
+            },
+            "kieli_en" : {
+              "kieliUri" : "kieli_en",
+              "kieliVersio" : 1,
+              "kieliArvo" : "EN",
+              "nimi" : "Finnish"
+            },
+            "kieli_fi" : {
+              "kieliUri" : "kieli_fi",
+              "kieliVersio" : 1,
+              "kieliArvo" : "FI",
+              "nimi" : "suomi"
+            }
+          }
+        }
+      },
+      "tekstis" : {
+        "kieli_sv" : "Kemi, filosofie magister",
+        "kieli_en" : "Chemistry, Master of Science",
+        "kieli_fi" : "Kemia, filosofian maisteri"
+      }
+    },
+    "tunniste" : "",
+    "tila" : "JULKAISTU",
+    "koulutusmoduuliTyyppi" : "TUTKINTO",
+    "kuvausKomo" : {
+      "JATKOOPINTO_MAHDOLLISUUDET" : {
+        "meta" : {
+          "kieli_sv" : {
+            "kieliUri" : "kieli_sv",
+            "kieliVersio" : 1,
+            "kieliArvo" : "SV"
+          },
+          "kieli_en" : {
+            "kieliUri" : "kieli_en",
+            "kieliVersio" : 1,
+            "kieliArvo" : "EN"
+          },
+          "kieli_fi" : {
+            "kieliUri" : "kieli_fi",
+            "kieliVersio" : 1,
+            "kieliArvo" : "FI"
+          }
+        },
+        "tekstis" : {
+          "kieli_sv" : "<p>En magisterexamen i kemi med goda vitsord ger dig utmärkta möjligheter att fortsätta med påbyggnadsstudier som siktar på doktorsexamen. Doktorsexamen avläggs i en forskarskola eller ett doktorandprogram. Helsingfors universitet har flera doktorandprogram vid Kemiska institutionen.</p>",
+          "kieli_en" : "<p>For students planning an academic career, the MSc degree from the Department of Chemistry forms an excellent basis for PhD studies. The very best Master’s degree students are often recruited as PhD students in the department.</p>",
+          "kieli_fi" : "<p>Hyvin suoritettu kemian maisterin tutkinto antaa erinomaiset edellytykset tieteellisen jatkotutkinnon, eli tohtorin tutkinnon suorittamiseen. Tohtorin tutkinto suoritetaan jossain tutkijakoulussa tai tohtoriohjelmassa, joita toimii useita myös Helsingin yliopiston kemian laitoksessa.</p>"
+        }
+      },
+        "PATEVYYS" : {
+            "meta" : {
+                "kieli_sv" : {
+                    "kieliUri" : "kieli_sv",
+                    "kieliVersio" : 1,
+                    "kieliArvo" : "SV"
+                },
+                "kieli_en" : {
+                    "kieliUri" : "kieli_en",
+                    "kieliVersio" : 1,
+                    "kieliArvo" : "EN"
+                },
+                "kieli_fi" : {
+                    "kieliUri" : "kieli_fi",
+                    "kieliVersio" : 1,
+                    "kieliArvo" : "FI"
+                }
+            },
+            "tekstis" : {
+                "kieli_sv" : "<p>Studerande i kemi kan avlägga filosofie magisterexamen efter två års studier.<br /><br />Magisterexamen omfattar 120 studiepoäng och består av följande studiehelheter:<br />• fördjupade studier i huvudämnet, minst 80 sp (minst 40 sp föreläsnings- och laboratoriekurser och slutarbetet, dvs. pro gradu-avhandlingen på 40 sp)<br />• övriga studier i den utsträckning att examens minimiomfattning (180 sp) uppnås.<br /><br />De övriga studierna innehåller en individuell studieplan och andra valfria studier, som du angett i din individuella studieplan.</p>",
+                "kieli_en" : "<p>As a student of chemistry, you can qualify for a Master of Science (MSc) after two years of studies (120 credits). <br /><br />A Master of Science degree consists of the following study blocks:<br /> <br />• at least 80 credits of advanced studies in your specialization area (at least 40 credits of lecture and laboratory courses and a 40-credit thesis) <br />• other studies so that the total amount of credits will be at least 120.</p> <p><br />Other studies include a personal study plan and other optional studies determined in the personal study plan.</p>",
+                "kieli_fi" : "<p>Kemian opiskelijana voit valmistua filosofian maisteriksi kahden lukuvuoden opintojen jälkeen.</p> <p>Maisterin tutkinnon 120 opintopisteen opinnot koostuvat seuraavista opintokokonaisuuksista:</p> <ul> <li>pääaineen syventävät opinnot vähintään 80 op (luento- ja laboratoriokursseja vähintään 40 op sekä lopputyö, eli pro gradu -tutkielma 40 op)</li> <li>muita opintoja niin, että vähintään 120 op tulee täyteen.</li> </ul> <p>Muut opinnot sisältävät henkilökohtaisen opintosuunnitelman ja muita valinnaisia opintoja, jotka on määritelty henkilökohtaisessa opintosuunnitelmassa.</p>"
+            }
+        },
+      "KOULUTUKSEN_RAKENNE" : {
+        "meta" : {
+          "kieli_sv" : {
+            "kieliUri" : "kieli_sv",
+            "kieliVersio" : 1,
+            "kieliArvo" : "SV"
+          },
+          "kieli_en" : {
+            "kieliUri" : "kieli_en",
+            "kieliVersio" : 1,
+            "kieliArvo" : "EN"
+          },
+          "kieli_fi" : {
+            "kieliUri" : "kieli_fi",
+            "kieliVersio" : 1,
+            "kieliArvo" : "FI"
+          }
+        },
+        "tekstis" : {
+          "kieli_sv" : "<p>Studerande i kemi kan avlägga filosofie magisterexamen efter två års studier.<br /><br />Magisterexamen omfattar 120 studiepoäng och består av följande studiehelheter:<br />• fördjupade studier i huvudämnet, minst 80 sp (minst 40 sp föreläsnings- och laboratoriekurser och slutarbetet, dvs. pro gradu-avhandlingen på 40 sp)<br />• övriga studier i den utsträckning att examens minimiomfattning (180 sp) uppnås.<br /><br />De övriga studierna innehåller en individuell studieplan och andra valfria studier, som du angett i din individuella studieplan.</p>",
+          "kieli_en" : "<p>As a student of chemistry, you can qualify for a Master of Science (MSc) after two years of studies (120 credits). <br /><br />A Master of Science degree consists of the following study blocks:<br /> <br />• at least 80 credits of advanced studies in your specialization area (at least 40 credits of lecture and laboratory courses and a 40-credit thesis) <br />• other studies so that the total amount of credits will be at least 120.</p> <p><br />Other studies include a personal study plan and other optional studies determined in the personal study plan.</p>",
+          "kieli_fi" : "<p>Kemian opiskelijana voit valmistua filosofian maisteriksi kahden lukuvuoden opintojen jälkeen.</p> <p>Maisterin tutkinnon 120 opintopisteen opinnot koostuvat seuraavista opintokokonaisuuksista:</p> <ul> <li>pääaineen syventävät opinnot vähintään 80 op (luento- ja laboratoriokursseja vähintään 40 op sekä lopputyö, eli pro gradu -tutkielma 40 op)</li> <li>muita opintoja niin, että vähintään 120 op tulee täyteen.</li> </ul> <p>Muut opinnot sisältävät henkilökohtaisen opintosuunnitelman ja muita valinnaisia opintoja, jotka on määritelty henkilökohtaisessa opintosuunnitelmassa.</p>"
+        }
+      },
+      "TAVOITTEET" : {
+        "meta" : {
+          "kieli_sv" : {
+            "kieliUri" : "kieli_sv",
+            "kieliVersio" : 1,
+            "kieliArvo" : "SV"
+          },
+          "kieli_en" : {
+            "kieliUri" : "kieli_en",
+            "kieliVersio" : 1,
+            "kieliArvo" : "EN"
+          },
+          "kieli_fi" : {
+            "kieliUri" : "kieli_fi",
+            "kieliVersio" : 1,
+            "kieliArvo" : "FI"
+          }
+        },
+        "tekstis" : {
+          "kieli_sv" : "<p>Universitetsstudier i kemi ger en utmärkt kunskapsgrund för experter i kemi. Kemister arbetar med intressanta och utmanande uppgifter vid universitet, forskningsinstitut och företag. Kemiska institutionen utbildar experter för industrin, forskning och undervisning, som också är redo att tackla utmaningar i anknytning till sitt område till exempel inom miljövetenskap, tekniska vetenskaper, medicin och biovetenskap.<br />Kemister arbetar ofta som forskare, experter eller forskningsledare. Kemister som är anställda vid ett företag kan också arbeta med produktutveckling, kvalitetsövervakning, utbildning och kommersiella uppgifter. Analys av prover hör till kemistens uppgifter särskilt vid sjukhus, tull- och polisväsendet samt inom miljöövervakningen. Många kemister arbetar med att utveckla nya ämnen och material. Kemisk forskning erbjuder intressanta utmaningar, aktivt internationellt samarbete och besök till forskningsinstitut och företag. Som kemist kan du lösa olika kemiska problem på mångsidiga sätt både i teorin och i praktiken. Du får vara med och utveckla något helt nytt och arbeta som expert på ditt område.</p>",
+          "kieli_en" : "<p><span style=\"color: rgb(0,0,0);\">Studies in chemistry at the University of Helsinki provide an excellent basis for expertise in chemistry. Our graduates place in challenging and interesting positions at universities, research institutions and private companies. Experts graduating from the Department of Chemistry are ready to meet the challenges in environmental sciences, technical sciences, medicine and biosciences.</span><br /><br /><span style=\"color: rgb(0,0,0);\">Chemists often work as researchers, experts or research directors. They may be involved in product development, quality control, education or commercial tasks. Development of new materials and substances forms the main part of the work of many chemists. Chemistry research offers interesting challenges and plenty of international cooperation. As a chemist you will be able to solve problems both in theory and in practice.</span></p>",
+          "kieli_fi" : "<p>Yliopistossa suoritetut kemian opinnot luovat erinomaisen pohjan kemian osaamiselle. Kemistit sijoittuvat haasteellisiin ja mielenkiintoisiin tehtäviin yliopistoihin, tutkimuslaitoksiin ja yrityksiin. Kemian laitokselta valmistuu kemian teollisuuden, tutkimuksen ja opetuksen asiantuntijoita, jotka ovat valmiita vastaamaan alansa haasteisiin myös esimerkiksi ympäristötieteissä, teknisissä tieteissä, lääketieteessä ja biotieteissä.</p> <p>Kemistit ovat usein tutkijoita, erikoisasiantuntijoita tai tutkimusjohtajia. Yrityksissä kemistien työtehtäviä ovat myös tuotekehitys, laadunvalvonta, koulutus sekä kaupalliset tehtävät. Näytteiden analysointi kuuluu erityisesti sairaala-, tulli- ja rikoskemistien sekä ympäristönvalvonnassa työskentelevien kemistien tehtäviin. Uusien aineiden ja materiaalien kehittäminen on osa monen kemistin työnkuvaa. Kemian tutkimus tarjoaa mielenkiintoisia haasteita, runsaasti kansainvälistä yhteistyötä sekä vierailuja tutkimuslaitoksiin ja yrityksiin. Kemistinä osaat ratkaista monipuolisesti erilaisia kemiaan liittyviä ongelmia sekä teoriassa että käytännössä. Kemistin työssä saat olla mukana kehittämässä jotain aivan uutta ja olla oman alasi asiantuntija.</p>"
+        }
+      }
+    },
+    "kuvausKomoto" : {
+      "LISATIETOA_OPETUSKIELISTA" : {
+        "meta" : {
+          "kieli_sv" : {
+            "kieliUri" : "kieli_sv",
+            "kieliVersio" : 1,
+            "kieliArvo" : "SV"
+          },
+          "kieli_en" : {
+            "kieliUri" : "kieli_en",
+            "kieliVersio" : 1,
+            "kieliArvo" : "EN"
+          },
+          "kieli_fi" : {
+            "kieliUri" : "kieli_fi",
+            "kieliVersio" : 1,
+            "kieliArvo" : "FI"
+          }
+        },
+        "tekstis" : {
+          "kieli_sv" : "<p>Undervisningsspråken är i regel finska och engelska.<br /><br />Du har rätt att använda finska eller svenska i dina studieprestationer oberoende av undervisningsspråket, ifall en studieprestation inte uttryckligen ska genomföras på engelska.<br /><br />Magisterexamen avläggs i regel på finska eller svenska. Om du skriver din pro gradu-avhandling och genomför minst 50 studiepoäng av examen på engelska, får du ett engelskspråkigt examensbevis.</p>",
+          "kieli_en" : "<p><span style=\"color: rgb(0,0,0);\">The languages of instruction at the Department of Chemistry are Finnish, Swedish and English. However, you can complete your Master’s studies entirely in English.</span></p>",
+          "kieli_fi" : "<p>Opetuskielinä ovat pääsääntöisesti suomi ja englanti.<br /><br />Opetuskielestä riippumatta sinulla on oikeus käyttää opintosuorituksissasi suomen tai ruotsin kieltä, ellei suorituskieleksi ole erikseen määrätty englannin kieltä.<br /><br />Maisterin tutkinto suoritetaan yleensä suomen- tai ruotsinkielisenä. Jos suoritat opinnoistasi pro gradu -tutkielman lisäksi vähintään 50 opintopistettä englannin kielellä, saat englanninkielisen tutkintotodistuksen.</p>"
+        }
+      },
+      "YHTEISTYO_MUIDEN_TOIMIJOIDEN_KANSSA" : {
+        "meta" : {
+          "kieli_sv" : {
+            "kieliUri" : "kieli_sv",
+            "kieliVersio" : 1,
+            "kieliArvo" : "SV"
+          },
+          "kieli_en" : {
+            "kieliUri" : "kieli_en",
+            "kieliVersio" : 1,
+            "kieliArvo" : "EN"
+          },
+          "kieli_fi" : {
+            "kieliUri" : "kieli_fi",
+            "kieliVersio" : 1,
+            "kieliArvo" : "FI"
+          }
+        },
+        "tekstis" : {
+          "kieli_sv" : "<p>Institutionen för kemi samarbetar aktivt med andra ämnen, fakulteter och universitet både i Finland och utomlands. Övriga samarbetspartner är forskningsinstitut utanför universitetsvärlden samt många inhemska och utländska företag. Samarbetet med olika branschorganisationer är kontinuerligt och aktivt.</p>",
+          "kieli_en" : "<p>The Department of Chemistry has a lot of cooperation with other departments, faculties and universities both in Finland and abroad. Other research institutions and many domestic and foreign companies also serve as partners in the research cooperation.</p>",
+          "kieli_fi" : "<p>Kemian laitos tekee paljon yhteistyötä muiden oppiaineiden, tiedekuntien ja yliopistojen kanssa sekä Suomessa että ulkomailla. Yhteistyökumppaneina toimivat myös muut kuin yliopistolliset tutkimuslaitokset sekä monet kotimaiset ja ulkomaiset yritykset. Myös yhteistyö kemian alan järjestöjen kanssa on jatkuvaa ja vilkasta.</p>"
+        }
+      },
+      "PAAAINEEN_VALINTA" : {
+        "meta" : {
+          "kieli_sv" : {
+            "kieliUri" : "kieli_sv",
+            "kieliVersio" : 1,
+            "kieliArvo" : "SV"
+          },
+          "kieli_en" : {
+            "kieliUri" : "kieli_en",
+            "kieliVersio" : 1,
+            "kieliArvo" : "EN"
+          },
+          "kieli_fi" : {
+            "kieliUri" : "kieli_fi",
+            "kieliVersio" : 1,
+            "kieliArvo" : "FI"
+          }
+        },
+        "tekstis" : {
+          "kieli_sv" : "<p>I magisterskedet väljer du din specialiseringsinriktning (analytisk, oorganisk, fysikalisk, organisk, polymer- eller radiokemi) och fördjupar dig i det viktigaste stoffet inom det valda området. Du behöver inte söka in till en specialiseringslinje, utan kan välja din inriktning fritt enligt eget intresse. Om du däremot vill bli ämneslärare i kemi ska du delta i ett lämplighetstest.</p>",
+          "kieli_en" : "<p><span style=\"color: rgb(0,0,0);\"><span>After being admitted into the </span><span>Master’s Degree Programme </span><span>in Chemistry</span><span>, you </span><span>may </span><span>choose freely your own specialization area (Analytical, Inorganic, Physical, Organic, Polymer or Radiochemistry) and become an expert in that field.</span></span></p>",
+          "kieli_fi" : "<p>Maisterivaiheessa valitset oman erikoistumislinjasi (analyyttinen, epäorgaaninen, fysikaalinen, orgaaninen, polymeeri- tai radiokemia) ja syvennyt erityisesti kyseisen alan tärkeimpiin sisältöihin. Erikoistumislinjoille ei tarvitse pyrkiä erikseen, vaan voit valita linjan oman kiinnostuksesi mukaan. Sen sijaan kemian aineenopettajankoulutukseen hakeudutaan soveltuvuuskokeen kautta.</p>"
+        }
+      },
+      "KANSAINVALISTYMINEN" : {
+        "meta" : {
+          "kieli_sv" : {
+            "kieliUri" : "kieli_sv",
+            "kieliVersio" : 1,
+            "kieliArvo" : "SV"
+          },
+          "kieli_en" : {
+            "kieliUri" : "kieli_en",
+            "kieliVersio" : 1,
+            "kieliArvo" : "EN"
+          },
+          "kieli_fi" : {
+            "kieliUri" : "kieli_fi",
+            "kieliVersio" : 1,
+            "kieliArvo" : "FI"
+          }
+        },
+        "tekstis" : {
+          "kieli_sv" : "<p>Många utländska utbytesstuderande kommer för att studera vid Kemiska institutionen och bland personalen finns också utländska lärare och forskare. Institutionen har utbytesavtal med många universitet i Europa och du kan åka på utbyte i kandidat- eller magisterskedet. Kemin är till sin natur ett internationellt ämne och alla forskningsgrupper har internationella kontakter.</p>",
+          "kieli_en" : "<p>The Department of Chemistry is a popular target for many international exchange students. The department has Erasmus+ agreements with several European universities and all research groups have international connections.</p>",
+          "kieli_fi" : "<p>Kemian laitos on suosittu kohde monelle kansainväliselle vaihto-opiskelijalle ja myös henkilökunnassa on ulkomailta tulleita opettajia ja tutkijoita. Kemian laitoksella on opiskelijavaihtosopimuksia useiden eurooppalaisten yliopistojen kanssa ja voit lähteä opiskelijavaihtoon sekä kandidaatti- että maisteriopintojen aikana. Luonnontieteellisenä alana kemia on jo lähtökohtaisesti kansainvälistä ja kaikilla tutkimusryhmillä on kansainvälisiä yhteyksiä.</p>"
+        }
+      },
+      "LOPPUKOEVAATIMUKSET" : {
+        "meta" : {
+          "kieli_sv" : {
+            "kieliUri" : "kieli_sv",
+            "kieliVersio" : 1,
+            "kieliArvo" : "SV"
+          },
+          "kieli_en" : {
+            "kieliUri" : "kieli_en",
+            "kieliVersio" : 1,
+            "kieliArvo" : "EN"
+          },
+          "kieli_fi" : {
+            "kieliUri" : "kieli_fi",
+            "kieliVersio" : 1,
+            "kieliArvo" : "FI"
+          }
+        },
+        "tekstis" : {
+          "kieli_sv" : "<p>Studierna avslutas med ett slutarbete, en pro gradu-avhandling som omfattar 40 studiepoäng. Utöver en litteraturbaserad del innehåller avhandlingen också en experimentell del, som omfattar cirka hälften av hela arbetet. Den experimentella delen görs oftast som en del av ett forskningsprojekt vid universitetet, men den kan också göras utanför universitetet vid ett forskningsinstitut eller industriföretag eller i utbyte vid ett universitet utomlands. I den experimentella delen ska du kunna visa en klart avgränsad individuell del och avhandlingen ska skrivas självständigt.</p>",
+          "kieli_en" : "<p><span style=\"color: rgb(0,0,0);\">The culmination of your studies is a Master’s thesis that is worth 40 study credits. In addition to a literature review, it includes an experimental research portion which accounts for approximately half of the total amount of work. The experimental work is usually done as a part of a research project at the university, but can also be done outside the university at some other research institution or private company or during student exchange at a foreign university.</span></p>",
+          "kieli_fi" : "<p>Opintojesi lopputyönä teet pro gradu -tutkielman, jonka laajuus on 40 opintopistettä. Kirjallisuuskatsauksen ohella siihen sisältyy myös kokeellinen tutkimustyö, jonka osuus tutkielman kokonaislaajuudesta on noin puolet. Kokeellinen osa suoritetaan useimmiten osana yliopiston tutkimusprojektia, mutta se voidaan tehdä myös yliopiston ulkopuolella jossain muussa tutkimuslaitoksessa tai teollisuusyrityksessä tai opiskelijavaihdossa ulkomaisessa yliopistossa. Kokeellisessa osassa sinulla on oltava selkeästi osoitettava itsenäinen osuus ja tutkielman kirjoitat täysin itsenäisesti.</p>"
+        }
+      },
+      "SIJOITTUMINEN_TYOELAMAAN" : {
+        "meta" : {
+          "kieli_sv" : {
+            "kieliUri" : "kieli_sv",
+            "kieliVersio" : 1,
+            "kieliArvo" : "SV"
+          },
+          "kieli_en" : {
+            "kieliUri" : "kieli_en",
+            "kieliVersio" : 1,
+            "kieliArvo" : "EN"
+          },
+          "kieli_fi" : {
+            "kieliUri" : "kieli_fi",
+            "kieliVersio" : 1,
+            "kieliArvo" : "FI"
+          }
+        },
+        "tekstis" : {
+          "kieli_sv" : "<p>Kemiindustrin hör till de största arbetsgivarna i Finland. Kemister arbetar vanligtvis som experter, forskare och produktutvecklare eller med kommersiella uppgifter inom t.ex. den tekniska, medicinska eller biovetenskapliga branschen. En del hittar arbete inom forskning och utbildning samt vid myndigheter och övervakande organisationer. Arbetspraktiken under studietiden hjälper dig att hitta din egen bransch och det finns också möjligheter att arbeta utomlands.</p>",
+          "kieli_en" : "<p>The chemical industry is one of the biggest employers in many countries. Chemists are typically employed in research, development, production and commercial tasks within the industry, but also in the technical, medical and bioscience sectors. There are employment opportunities in research and education as well. Practical training during your studies helps in finding your own field.</p>",
+          "kieli_fi" : "<p>Kemianteollisuus on yksi Suomen suurimmista työnantajista. Tyypillisesti kemistit työllistyvät asiantuntija-, tutkimus- ja tuotekehitys- sekä kaupallisiin tehtäviin esimerkiksi tekniikan, lääketieteen ja biotieteiden alalle. Työtehtäviä on myös tutkimus- ja koulutuslaitoksissa sekä viranomais- ja valvontaorganisaatioissa. Opiskeluaikainen työharjoittelu auttaa oman alan löytämisessä ja mahdollisuuksia löytyy myös ulkomailta.</p>"
+        }
+      },
+      "TUTKIMUKSEN_PAINOPISTEET" : {
+        "meta" : {
+          "kieli_sv" : {
+            "kieliUri" : "kieli_sv",
+            "kieliVersio" : 1,
+            "kieliArvo" : "SV"
+          },
+          "kieli_en" : {
+            "kieliUri" : "kieli_en",
+            "kieliVersio" : 1,
+            "kieliArvo" : "EN"
+          },
+          "kieli_fi" : {
+            "kieliUri" : "kieli_fi",
+            "kieliVersio" : 1,
+            "kieliArvo" : "FI"
+          }
+        },
+        "tekstis" : {
+          "kieli_sv" : "<p>Matematisk-naturvetenskapliga fakulteten har ett flertal mångvetenskapliga forskningsprojekt som genomförs i aktivt samarbete med forskningsinstituten på campus och andra fakulteter, universitet och företag.</p> <p>Kemiska institutionens fokusområden inom forskningen är materialkemi och hållbar kemi. Dessa specialområden behandlas mångsidigt genom att tillämpa olika forskningsmetoder.</p>",
+          "kieli_en" : "<p>There are many ongoing interdisciplinary research projects at the Faculty of Science. These projects are actively realised in cooperation with research institutes at the Kumpula Science Campus, as well as with other faculties, universities, and the corporate life.</p> <p>The focus of research at the Department of Chemistry lies on material chemistry and sustainable chemistry. These areas of research are dealt with by utilising diverse methods from different specialties.</p>",
+          "kieli_fi" : "<p>Matemaattis-luonnontieteellisessä tiedekunnassa on käynnissä lukuisia monitieteellisiä tutkimushankkeita, joita toteutetaan aktiivisessa yhteistyössä tiedekampuksella sijaitsevien tutkimuslaitosten sekä muiden tiedekuntien, yliopistojen ja yritysmaailman kanssa.</p> <p>Kemian laitoksen tutkimuksen painopistealueet ovat materiaalikemia ja kestävä kemia. Niitä käsitellään monipuolisesti erikoistumisalojen erilaisia menetelmiä soveltaen.</p>"
+        }
+      },
+      "SISALTO" : {
+        "meta" : {
+          "kieli_sv" : {
+            "kieliUri" : "kieli_sv",
+            "kieliVersio" : 1,
+            "kieliArvo" : "SV"
+          },
+          "kieli_en" : {
+            "kieliUri" : "kieli_en",
+            "kieliVersio" : 1,
+            "kieliArvo" : "EN"
+          },
+          "kieli_fi" : {
+            "kieliUri" : "kieli_fi",
+            "kieliVersio" : 1,
+            "kieliArvo" : "FI"
+          }
+        },
+        "tekstis" : {
+          "kieli_sv" : "<p>I magisterexamen fördjupar du de färdigheter som du fått i kandidatexamen och bekantar dig närmare med ett valfritt specialområde. Du lär dig grunderna inom ditt specialområde och de viktigaste forskningsmetoderna, bekantar dig med den nyaste vetenskapliga kunskapen och utvecklas till en expert inom ditt område. Studieprestationerna är föreläsningskurser med tillhörande tentamina och övningsuppgifter samt laboratoriekurser. I kurserna ingår ofta också studiematerial på webben och datorstödda övningar. Magisterstudierna kulminerar i en omfattande pro gradu-avhandling, som inkluderar ett praktiskt forskningsprojekt som utförs under 3–4 månader. Närmare uppgifter om magisterexamen hittar du i <a href=\"http://www.helsinki.fi/ml/opinto-opas/index.html\">studiehandboken</a> och <a href=\"https://weboodi.helsinki.fi/hy/\">WebOodi</a>.<br /><br />Specialiseringslinjerna i kemi anges nedan och mer information hittar du på de olika enheternas webbplatser:<br />• Analytisk kemi<br />• Oorganisk kemi<br />• Fysikalisk kemi<br />• Organisk kemi<br />• Polymerkemi<br />• Radiokemi.<br /><br />Du behöver inte söka in till en specialiseringslinje, utan kan välja din inriktning fritt enligt eget intresse. Du måste ha en lämplig kandidatexamen för att få avlägga magisterexamen vid en specialiseringslinje. Du kan också få studierätt för magisterexamen i en separat antagning, om du har avlagt lägre högskoleexamen vid ett annat universitet. Studenter som antas till magisterprogrammen i en separat antagning kan förutsättas avlägga studier som kompletterar grundutbildningen (högst 60 studiepoäng).</p>",
+          "kieli_en" : "<p>In the Master's Degree Programme, you will deepen skills acquired in your Bachelor's studies and study more profoundly the area of specialization you have chosen. You will get to know the most important research methods, become acquainted with the newest information and develop into an expert in your own field.</p> <p>Studies in chemistry consist of lecture courses, examinations, exercises and laboratory courses. The Master's degree studies culminate in a Master’s thesis, which includes 3 - 4 months of practical research work.</p> <p>The specialization areas are:</p> <ul> <li><a href=\"http://www.helsinki.fi/kemia/analyyttinen/\" rel=\"nofollow\">Analytical Chemistry</a></li> <li><a href=\"http://www.helsinki.fi/kemia/epaorgaaninen/\" rel=\"nofollow\">Inorganic Chemistry</a></li> <li><a href=\"http://www.helsinki.fi/kemia/fysikaalinen/\" rel=\"nofollow\">Physical Chemistry</a></li> <li><a href=\"http://www.helsinki.fi/kemia/orgaaninen/\" rel=\"nofollow\">Organic Chemistry</a></li> <li><a href=\"http://www.helsinki.fi/polymeerikemia/english/index.html\" rel=\"nofollow\">Polymer Chemistry</a></li> <li><a href=\"http://www.helsinki.fi/kemia/radiokemia/english/\" rel=\"nofollow\">Radiochemistry</a>.</li> </ul> <p>You do not need to apply separately to the specialization areas. Instead, you can choose your area according to your own interests. A suitable Bachelor's degree is, however, a precondition for the Master's degree in all the specialization areas.</p>",
+          "kieli_fi" : "<p>Maisterin tutkinnossa syvennät kandidaatin tutkinnossa hankittuja taitoja ja perehdyt valitsemaasi erikoistumisalaan syvällisemmin. Opit tuntemaan erikoistumisalasi perusteet ja tärkeimmät tutkimusmenetelmät, tutustut alasi uusimpaan tietoon ja kehityt oman alasi asiantuntijaksi. Opintojen suoritusmuotoja ovat luentokurssit ja niihin liittyvät tentit ja harjoitustehtävät sekä laboratoriokurssit. Kursseihin liittyy usein myös verkkomateriaaleja ja tietokoneavusteisia harjoituksia. Maisterin tutkinto huipentuu laajaan pro gradu -tutkielmaan, johon sisältyy 3–4 kk mittainen käytännön tutkimustyö. Tarkemmat tiedot maisterin tutkinnon opinnoista löydät <a href=\"http://www.helsinki.fi/ml/opinto-opas/index.html\" rel=\"nofollow\">opinto-oppaasta</a> ja <a href=\"https://weboodi.helsinki.fi/hy/\" rel=\"nofollow\">WebOodista</a><span style=\"text-decoration: underline;\">.</span></p> <p>Kemian alan erikoistumislinjat on lueteltu alla ja lisätietoja niistä saat verkkosivuilta:</p> <ul> <li><a href=\"http://www.helsinki.fi/kemia/analyyttinen/\" rel=\"nofollow\">Analyyttinen kemia</a></li> <li><a href=\"http://www.helsinki.fi/kemia/epaorgaaninen/\" rel=\"nofollow\">Epäorgaaninen kemia</a></li> <li><a href=\"http://www.helsinki.fi/kemia/fysikaalinen/\" rel=\"nofollow\">Fysikaalinen kemia</a></li> <li><a href=\"http://www.helsinki.fi/kemia/orgaaninen/\" rel=\"nofollow\">Orgaaninen kemia</a></li> <li><a href=\"http://www.helsinki.fi/polymeerikemia/\" rel=\"nofollow\">Polymeerikemia</a></li> <li><a href=\"http://www.helsinki.fi/kemia/radiokemia/\" rel=\"nofollow\">Radiokemia</a>.</li> </ul> <p>Erikoistumislinjoille ei tarvitse pyrkiä erikseen, vaan voit valita linjasi oman kiinnostuksesi mukaan. Kaikilla erikoistumislinjoilla maisterin tutkinnon edellytyksenä on kuitenkin soveltuva kandidaatin tutkinto. Kemian maisteriopintoja voi tulla opiskelemaan myös erillisvalinnan kautta, jos alempi tutkinto on suoritettu muualla. Erillisvalintamenettelyssä opiskelijalta voidaan edellyttää pohjakoulutusta täydentäviä opintoja enintään 60 opintopistettä.</p>"
+        }
+      }
+    },
+    "suunniteltuKestoArvo" : "2",
+    "suunniteltuKestoTyyppi" : {
+      "uri" : "suunniteltukesto_01",
+      "versio" : 1,
+      "arvo" : "01",
+      "nimi" : "vuotta",
+      "meta" : {
+        "kieli_sv" : {
+          "kieliUri" : "kieli_sv",
+          "kieliVersio" : 1,
+          "kieliArvo" : "SV",
+          "nimi" : "år"
+        },
+        "kieli_en" : {
+          "kieliUri" : "kieli_en",
+          "kieliVersio" : 1,
+          "kieliArvo" : "EN",
+          "nimi" : "years"
+        },
+        "kieli_fi" : {
+          "kieliUri" : "kieli_fi",
+          "kieliVersio" : 1,
+          "kieliArvo" : "FI",
+          "nimi" : "vuotta"
+        }
+      }
+    },
+    "koulutuksenAlkamiskausi" : {
+      "uri" : "kausi_k",
+      "versio" : 1,
+      "arvo" : "K",
+      "nimi" : "Kevät",
+      "meta" : {
+        "kieli_sv" : {
+          "kieliUri" : "kieli_sv",
+          "kieliVersio" : 1,
+          "kieliArvo" : "SV",
+          "nimi" : "Vår"
+        },
+        "kieli_en" : {
+          "kieliUri" : "kieli_en",
+          "kieliVersio" : 1,
+          "kieliArvo" : "EN",
+          "nimi" : "Spring"
+        },
+        "kieli_fi" : {
+          "kieliUri" : "kieli_fi",
+          "kieliVersio" : 1,
+          "kieliArvo" : "FI",
+          "nimi" : "Kevät"
+        }
+      }
+    },
+    "koulutuksenAlkamisvuosi" : 2015,
+    "koulutuksenAlkamisPvms" : [ ],
+    "opetuskielis" : {
+      "meta" : {
+        "kieli_sv" : {
+          "uri" : "kieli_sv",
+          "versio" : 1,
+          "arvo" : "SV",
+          "nimi" : "ruotsi",
+          "meta" : {
+            "kieli_sv" : {
+              "kieliUri" : "kieli_sv",
+              "kieliVersio" : 1,
+              "kieliArvo" : "SV",
+              "nimi" : "svenska"
+            },
+            "kieli_en" : {
+              "kieliUri" : "kieli_en",
+              "kieliVersio" : 1,
+              "kieliArvo" : "EN",
+              "nimi" : "Swedish"
+            },
+            "kieli_fi" : {
+              "kieliUri" : "kieli_fi",
+              "kieliVersio" : 1,
+              "kieliArvo" : "FI",
+              "nimi" : "ruotsi"
+            }
+          }
+        },
+        "kieli_en" : {
+          "uri" : "kieli_en",
+          "versio" : 1,
+          "arvo" : "EN",
+          "nimi" : "englanti",
+          "meta" : {
+            "kieli_sv" : {
+              "kieliUri" : "kieli_sv",
+              "kieliVersio" : 1,
+              "kieliArvo" : "SV",
+              "nimi" : "engelska"
+            },
+            "kieli_en" : {
+              "kieliUri" : "kieli_en",
+              "kieliVersio" : 1,
+              "kieliArvo" : "EN",
+              "nimi" : "English"
+            },
+            "kieli_fi" : {
+              "kieliUri" : "kieli_fi",
+              "kieliVersio" : 1,
+              "kieliArvo" : "FI",
+              "nimi" : "englanti"
+            }
+          }
+        },
+        "kieli_fi" : {
+          "uri" : "kieli_fi",
+          "versio" : 1,
+          "arvo" : "FI",
+          "nimi" : "suomi",
+          "meta" : {
+            "kieli_sv" : {
+              "kieliUri" : "kieli_sv",
+              "kieliVersio" : 1,
+              "kieliArvo" : "SV",
+              "nimi" : "finska"
+            },
+            "kieli_en" : {
+              "kieliUri" : "kieli_en",
+              "kieliVersio" : 1,
+              "kieliArvo" : "EN",
+              "nimi" : "Finnish"
+            },
+            "kieli_fi" : {
+              "kieliUri" : "kieli_fi",
+              "kieliVersio" : 1,
+              "kieliArvo" : "FI",
+              "nimi" : "suomi"
+            }
+          }
+        }
+      },
+      "uris" : {
+        "kieli_sv" : 1,
+        "kieli_en" : 1,
+        "kieli_fi" : 1
+      }
+    },
+    "opetusmuodos" : {
+      "meta" : {
+        "opetusmuotokk_1" : {
+          "uri" : "opetusmuotokk_1",
+          "versio" : 1,
+          "arvo" : "1",
+          "nimi" : "Ohjattu opiskelu",
+          "meta" : {
+            "kieli_sv" : {
+              "kieliUri" : "kieli_sv",
+              "kieliVersio" : 1,
+              "kieliArvo" : "SV",
+              "nimi" : "Handledda studier"
+            },
+            "kieli_en" : {
+              "kieliUri" : "kieli_en",
+              "kieliVersio" : 1,
+              "kieliArvo" : "EN",
+              "nimi" : "Supervised learning"
+            },
+            "kieli_fi" : {
+              "kieliUri" : "kieli_fi",
+              "kieliVersio" : 1,
+              "kieliArvo" : "FI",
+              "nimi" : "Ohjattu opiskelu"
+            }
+          }
+        }
+      },
+      "uris" : {
+        "opetusmuotokk_1" : 1
+      }
+    },
+    "opetusAikas" : {
+      "meta" : {
+        "opetusaikakk_1" : {
+          "uri" : "opetusaikakk_1",
+          "versio" : 1,
+          "arvo" : "1",
+          "nimi" : "Päiväopetus",
+          "meta" : {
+            "kieli_sv" : {
+              "kieliUri" : "kieli_sv",
+              "kieliVersio" : 1,
+              "kieliArvo" : "SV",
+              "nimi" : "Dagundervisning"
+            },
+            "kieli_en" : {
+              "kieliUri" : "kieli_en",
+              "kieliVersio" : 1,
+              "kieliArvo" : "EN",
+              "nimi" : "Day time teaching"
+            },
+            "kieli_fi" : {
+              "kieliUri" : "kieli_fi",
+              "kieliVersio" : 1,
+              "kieliArvo" : "FI",
+              "nimi" : "Päiväopetus"
+            }
+          }
+        }
+      },
+      "uris" : {
+        "opetusaikakk_1" : 1
+      }
+    },
+    "opetusPaikkas" : {
+      "meta" : {
+        "opetuspaikkakk_1" : {
+          "uri" : "opetuspaikkakk_1",
+          "versio" : 1,
+          "arvo" : "1",
+          "nimi" : "Lähiopetus",
+          "meta" : {
+            "kieli_sv" : {
+              "kieliUri" : "kieli_sv",
+              "kieliVersio" : 1,
+              "kieliArvo" : "SV",
+              "nimi" : "Närundervisning"
+            },
+            "kieli_en" : {
+              "kieliUri" : "kieli_en",
+              "kieliVersio" : 1,
+              "kieliArvo" : "EN",
+              "nimi" : "Contact teaching"
+            },
+            "kieli_fi" : {
+              "kieliUri" : "kieli_fi",
+              "kieliVersio" : 1,
+              "kieliArvo" : "FI",
+              "nimi" : "Lähiopetus"
+            }
+          }
+        }
+      },
+      "uris" : {
+        "opetuspaikkakk_1" : 1
+      }
+    },
+    "opintojenLaajuusarvo" : {
+      "uri" : "opintojenlaajuus_120",
+      "versio" : 1,
+      "arvo" : "120",
+      "nimi" : "120",
+      "meta" : {
+        "kieli_fi" : {
+          "kieliUri" : "kieli_fi",
+          "kieliVersio" : 1,
+          "kieliArvo" : "FI",
+          "nimi" : "120"
+        }
+      }
+    },
+    "koulutustyyppi" : {
+      "uri" : "",
+      "versio" : -1,
+      "arvo" : "",
+      "nimi" : ""
+    },
+    "yhteyshenkilos" : [ ],
+    "pohjakoulutusvaatimukset" : {
+      "uris" : { }
+    },
+    "aihees" : {
+      "meta" : {
+        "aiheet_47" : {
+          "uri" : "aiheet_47",
+          "versio" : 1,
+          "arvo" : " 47",
+          "nimi" : "Kemia",
+          "meta" : {
+            "kieli_sv" : {
+              "kieliUri" : "kieli_sv",
+              "kieliVersio" : 1,
+              "kieliArvo" : "SV",
+              "nimi" : "Kemi"
+            },
+            "kieli_en" : {
+              "kieliUri" : "kieli_en",
+              "kieliVersio" : 1,
+              "kieliArvo" : "EN",
+              "nimi" : "Chemistry"
+            },
+            "kieli_fi" : {
+              "kieliUri" : "kieli_fi",
+              "kieliVersio" : 1,
+              "kieliArvo" : "FI",
+              "nimi" : "Kemia"
+            }
+          }
+        }
+      },
+      "uris" : {
+        "aiheet_47" : 1
+      }
+    },
+    "ammattinimikkeet" : {
+      "uris" : { }
+    },
+    "opintojenMaksullisuus" : false,
+    "tutkintonimikes" : {
+      "meta" : {
+        "tutkintonimikekk_702" : {
+          "uri" : "tutkintonimikekk_702",
+          "versio" : 1,
+          "arvo" : "702",
+          "nimi" : "Filosofian maisteri",
+          "meta" : {
+            "kieli_sv" : {
+              "kieliUri" : "kieli_sv",
+              "kieliVersio" : 1,
+              "kieliArvo" : "SV",
+              "nimi" : "Filosofie magister"
+            },
+            "kieli_en" : {
+              "kieliUri" : "kieli_en",
+              "kieliVersio" : 1,
+              "kieliArvo" : "EN",
+              "nimi" : "Master of Science"
+            },
+            "kieli_fi" : {
+              "kieliUri" : "kieli_fi",
+              "kieliVersio" : 1,
+              "kieliArvo" : "FI",
+              "nimi" : "Filosofian maisteri"
+            }
+          }
+        }
+      },
+      "uris" : {
+        "tutkintonimikekk_702" : 1
+      }
+    },
+    "opintojenRakenneKuvas" : { }
+  },
+  "status" : "OK",
+  "accessRights" : { }
+}

@@ -10,29 +10,69 @@ public class LearningOpportunity {
     private String oid;
     private I18N qualification;//tutkintonimike
     private I18N educationalField;//opintoala
-    private I18N degreeProgram;//tutkintoOhjelma;
-    private String startYear;//alkamiskausi
-    private I18N startSeason;//alkamisvuosi
-    private String plannedDurationValue;//suunniteltu kesto yksikko
-    private I18N plannedDurationUnit;//suunniteltu kesto arvo
-    private String creditValue;//laajuus arvo
+    private I18N degreeProgram;//tutkintoOhjelma
+    private Integer startYear;//alkamisvuosi
+    private I18N startSeason;//alkamiskausi
+    private Integer plannedDurationValue;//suunniteltu kesto arvo
+    private I18N plannedDurationUnit;//suunniteltu kesto yksikko
+    private Integer creditValue;//laajuus arvo
     private I18N creditUnit;//laajuus yksikko
-    private List<I18N> teachingLanguages;//opetuskielet
+    private List<TeachingLanguage> teachingLanguages;//opetuskielet
     private List<String> translations;//kuvauskielet
     private I18N goals;//tavoitteet
-    private I18N languageInfo;//lisaa tietoa opetuskielista
-    private I18N selectingMajorSubject;//paaaineen valinta
-    private I18N workLifePlacement;//sijoittuminen tyoelamaan
-    private I18N competency;//patevyys
-    private I18N postgraduateStudies;//jatko-opinnot
-    private I18N contents;//sisalto
     private I18N structure;//rakenne
-    private I18N thesis;//opinnaytetyo
-    private I18N internationalization;//kansainvalistyminen
+    private I18N postgraduateStudies;//jatko-opinnot
+    private I18N competency;//patevyys
+    private I18N languageInfo;//lisaa tietoa opetuskielista
     private I18N cooperation;//yhteistyo muiden toimijoiden kanssa
+    private I18N selectingMajorSubject;//paaaineen valinta
+    private I18N internationalization;//kansainvalistyminen
+    private I18N workLifePlacement;//sijoittuminen tyoelamaan
+    private I18N contents;//sisalto
     private I18N research;//tutkimuksen painopisteet
+    private I18N thesis;//opinnaytetyo
     private List<ApplicationOption> applicationOptions;//hakukohteet
     private Organization provider;//tarjoaja
+
+    public LearningOpportunity() {
+    }
+
+    public LearningOpportunity(String oid, I18N qualification, I18N educationalField, I18N degreeProgram,
+                               Integer startYear, I18N startSeason, Integer plannedDurationValue,
+                               I18N plannedDurationUnit, Integer creditValue, I18N creditUnit,
+                               List<TeachingLanguage> teachingLanguages, List<String> translations, I18N goals,
+                               I18N structure, I18N postgraduateStudies, I18N competency,
+                               I18N languageInfo, I18N cooperation, I18N selectingMajorSubject,
+                               I18N internationalization, I18N workLifePlacement, I18N contents,
+                               I18N research, I18N thesis, List<ApplicationOption> applicationOptions,
+                               Organization provider) {
+        this.oid = oid;
+        this.qualification = qualification;
+        this.educationalField = educationalField;
+        this.degreeProgram = degreeProgram;
+        this.startYear = startYear;
+        this.startSeason = startSeason;
+        this.plannedDurationValue = plannedDurationValue;
+        this.plannedDurationUnit = plannedDurationUnit;
+        this.creditValue = creditValue;
+        this.creditUnit = creditUnit;
+        this.teachingLanguages = teachingLanguages;
+        this.translations = translations;
+        this.goals = goals;
+        this.structure = structure;
+        this.postgraduateStudies = postgraduateStudies;
+        this.competency = competency;
+        this.languageInfo = languageInfo;
+        this.cooperation = cooperation;
+        this.selectingMajorSubject = selectingMajorSubject;
+        this.internationalization = internationalization;
+        this.workLifePlacement = workLifePlacement;
+        this.contents = contents;
+        this.research = research;
+        this.thesis = thesis;
+        this.applicationOptions = applicationOptions;
+        this.provider = provider;
+    }
 
     public String getOid() {
         return oid;
@@ -66,11 +106,11 @@ public class LearningOpportunity {
         this.degreeProgram = degreeProgram;
     }
 
-    public String getStartYear() {
+    public Integer getStartYear() {
         return startYear;
     }
 
-    public void setStartYear(String startYear) {
+    public void setStartYear(Integer startYear) {
         this.startYear = startYear;
     }
 
@@ -82,11 +122,11 @@ public class LearningOpportunity {
         this.startSeason = startSeason;
     }
 
-    public String getPlannedDurationValue() {
+    public Integer getPlannedDurationValue() {
         return plannedDurationValue;
     }
 
-    public void setPlannedDurationValue(String plannedDurationValue) {
+    public void setPlannedDurationValue(Integer plannedDurationValue) {
         this.plannedDurationValue = plannedDurationValue;
     }
 
@@ -98,11 +138,11 @@ public class LearningOpportunity {
         this.plannedDurationUnit = plannedDurationUnit;
     }
 
-    public String getCreditValue() {
+    public Integer getCreditValue() {
         return creditValue;
     }
 
-    public void setCreditValue(String creditValue) {
+    public void setCreditValue(Integer creditValue) {
         this.creditValue = creditValue;
     }
 
@@ -114,11 +154,11 @@ public class LearningOpportunity {
         this.creditUnit = creditUnit;
     }
 
-    public List<I18N> getTeachingLanguages() {
+    public List<TeachingLanguage> getTeachingLanguages() {
         return teachingLanguages;
     }
 
-    public void setTeachingLanguages(List<I18N> teachingLanguages) {
+    public void setTeachingLanguages(List<TeachingLanguage> teachingLanguages) {
         this.teachingLanguages = teachingLanguages;
     }
 

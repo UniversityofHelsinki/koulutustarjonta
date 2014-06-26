@@ -25,5 +25,5 @@ dependencies {
     testCompile 'com.h2database:h2:1.4.178'
     testCompile 'io.dropwizard:dropwizard-testing:0.7.0'
     testCompile 'io.dropwizard:dropwizard-core:0.7.0'
-    compile files('../lib/ojdbc6.jar')
+    compile files('../lib/ojdbc6_4.jar')
 }
