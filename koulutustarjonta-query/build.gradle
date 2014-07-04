@@ -28,6 +28,8 @@ dependencies {
     compile files('../lib/ojdbc6_4.jar')
     testCompile 'junit:junit:4.11'
     testCompile 'org.mockito:mockito-core:1.9.5'
+    testCompile 'io.dropwizard:dropwizard-testing:0.7.0'
+    testCompile 'org.easytesting:fest-assert:1.4'
 }
 
 run {

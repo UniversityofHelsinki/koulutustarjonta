@@ -7,6 +7,7 @@ import com.google.common.io.Resources;
 import fi.helsinki.koulutustarjonta.domain.I18N;
 import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
 import fi.helsinki.koulutustarjonta.domain.TeachingLanguage;
+import fi.helsinki.koulutustarjonta.test.Fixture;
 import oracle.jdbc.pool.OracleDataSource;
 import org.junit.After;
 import org.junit.Before;
@@ -136,87 +137,57 @@ public class LearningOpportunityDAOTest {
 
     @Test
     public void testInsert() {
-        LearningOpportunity lo = fixture(oid2);
+        LearningOpportunity lo = Fixture.learningOpportunity(oid2);
         dao.save(lo);
-
         LearningOpportunity fetched = dao.findById(oid2);
         assertNotNull(fetched);
-        checkEquals(lo, fetched);
+        learningOpportunitiesEqual(lo, fetched);
     }
 
     @Test
     public void testUpdate() {
-        LearningOpportunity lo = fixture(oid1);
+        LearningOpportunity lo = Fixture.learningOpportunity(oid1);
         dao.save(lo);
-
         LearningOpportunity fetched = dao.findById(oid1);
         assertNotNull(fetched);
-        checkEquals(lo, fetched);
+        learningOpportunitiesEqual(lo, fetched);
     }
 
-    private LearningOpportunity fixture(String oid) {
-        LearningOpportunity lo = new LearningOpportunity();
-        lo.setOid(oid);
-        lo.setQualification(new I18N("qualification fi new", "qualification sv new", "qualification en new"));
-        lo.setEducationalField(new I18N("field fi new", "field sv new", "field en new"));
-        lo.setDegreeProgram(new I18N("degree fi new", "degree sv new", "degree en new"));
-        lo.setStartYear(3015);
-        lo.setStartSeason(new I18N("season fi new", "season sv new", "season en new"));
-        lo.setPlannedDurationValue(5);
-        lo.setPlannedDurationUnit(new I18N("duration fi new", "duration sv new", "duration en new"));
-        lo.setCreditValue(200);
-        lo.setCreditUnit(new I18N("credits fi new", "credits sv new", "credits en new"));
-        lo.setStructure(new I18N("structure fi new", "struckture sv new", "structure en new"));
-        lo.setGoals(new I18N("goald fi new", "goals sv new", "goald en new"));
-        lo.setPostgraduateStudies(new I18N("postgraduate fi new", "postgraduate sv new", "postgraduate en new"));
-        lo.setCompetency(new I18N("comp fi new", "comp sv new", "comp en new"));
-        lo.setLanguageInfo(new I18N("lang info fi new", "lang info sv new", "lang info en new"));
-        lo.setCooperation(new I18N("cooop fi new", "cooop sv new", "cooop en new"));
-        lo.setSelectingMajorSubject(new I18N("major fi new", "major sv new", "major en new"));
-        lo.setInternationalization(new I18N("internationalization fi new", "internationalization sv new", "internationalization en new"));
-        lo.setWorkLifePlacement(new I18N("working fi new", "working sv new", "working en new"));
-        lo.setContents(new I18N("content fi new", "content sv new", "content en new"));
-        lo.setResearch(new I18N("research fi new", "research sv new", "research en new"));
-        lo.setThesis(new I18N("thesis fi new", "thesis sv new", "thesis en new"));
-        TeachingLanguage teachingLanguage1 = new TeachingLanguage("fi", new I18N("suomi", "finska", "Finnish"));
-        TeachingLanguage teachingLanguage2 = new TeachingLanguage("en", new I18N("englanti", "engelska", "English"));
-        lo.setTeachingLanguages(Lists.newArrayList(teachingLanguage1, teachingLanguage2));
-        return lo;
-    }
+    private void learningOpportunitiesEqual(LearningOpportunity expected, LearningOpportunity actual) {
 
-    private void checkEquals(LearningOpportunity expected, LearningOpportunity actual) {
         assertEquals(expected.getOid(), actual.getOid());
-        checkEquals(expected.getQualification(), actual.getQualification());
-        checkEquals(expected.getEducationalField(), actual.getEducationalField());
-        checkEquals(expected.getDegreeProgram(), actual.getDegreeProgram());
+        i18NEquals(expected.getQualification(), actual.getQualification());
+        i18NEquals(expected.getEducationalField(), actual.getEducationalField());
+        i18NEquals(expected.getDegreeProgram(), actual.getDegreeProgram());
         assertEquals(expected.getStartYear(), actual.getStartYear());
-        checkEquals(expected.getStartSeason(), actual.getStartSeason());
+        i18NEquals(expected.getStartSeason(), actual.getStartSeason());
         assertEquals(expected.getPlannedDurationValue(), actual.getPlannedDurationValue());
-        checkEquals(expected.getPlannedDurationUnit(), actual.getPlannedDurationUnit());
+        i18NEquals(expected.getPlannedDurationUnit(), actual.getPlannedDurationUnit());
         assertEquals(expected.getCreditValue(), actual.getCreditValue());
-        checkEquals(expected.getCreditUnit(), actual.getCreditUnit());
-        checkEquals(expected.getStructure(), actual.getStructure());
-        checkEquals(expected.getGoals(), actual.getGoals());
-        checkEquals(expected.getPostgraduateStudies(), actual.getPostgraduateStudies());
-        checkEquals(expected.getCompetency(), actual.getCompetency());
-        checkEquals(expected.getLanguageInfo(), actual.getLanguageInfo());
-        checkEquals(expected.getCooperation(), actual.getCooperation());
-        checkEquals(expected.getSelectingMajorSubject(), actual.getSelectingMajorSubject());
-        checkEquals(expected.getInternationalization(), actual.getInternationalization());
-        checkEquals(expected.getWorkLifePlacement(), actual.getWorkLifePlacement());
-        checkEquals(expected.getContents(), actual.getContents());
-        checkEquals(expected.getResearch(), actual.getResearch());
-        checkEquals(expected.getThesis(), actual.getThesis());
+        i18NEquals(expected.getCreditUnit(), actual.getCreditUnit());
+        i18NEquals(expected.getStructure(), actual.getStructure());
+        i18NEquals(expected.getGoals(), actual.getGoals());
+        i18NEquals(expected.getPostgraduateStudies(), actual.getPostgraduateStudies());
+        i18NEquals(expected.getCompetency(), actual.getCompetency());
+        i18NEquals(expected.getLanguageInfo(), actual.getLanguageInfo());
+        i18NEquals(expected.getCooperation(), actual.getCooperation());
+        i18NEquals(expected.getSelectingMajorSubject(), actual.getSelectingMajorSubject());
+        i18NEquals(expected.getInternationalization(), actual.getInternationalization());
+        i18NEquals(expected.getWorkLifePlacement(), actual.getWorkLifePlacement());
+        i18NEquals(expected.getContents(), actual.getContents());
+        i18NEquals(expected.getResearch(), actual.getResearch());
+        i18NEquals(expected.getThesis(), actual.getThesis());
         assertEquals(expected.getTeachingLanguages().size(), actual.getTeachingLanguages().size());
 
         for (TeachingLanguage expectedLang : expected.getTeachingLanguages()) {
             TeachingLanguage actualLang = actual.getTeachingLanguages().stream()
                     .filter(x -> x.getLang().equals(expectedLang.getLang())).findFirst().get();
-            checkEquals(expectedLang.getName(), actualLang.getName());
+            i18NEquals(expectedLang.getName(), actualLang.getName());
         }
+
     }
 
-    private void checkEquals(I18N expected, I18N actual) {
+    private void i18NEquals(I18N expected, I18N actual) {
         assertEquals(expected.getFi(), actual.getFi());
         assertEquals(expected.getSv(), actual.getSv());
         assertEquals(expected.getEn(), actual.getEn());
