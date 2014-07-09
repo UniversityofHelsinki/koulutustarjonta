@@ -6,8 +6,6 @@ test {
     systemProperty 'db.passwd', project.hasProperty('db_passwd') ? project.getProperty('db_passwd') : 'koultarj'
 }
 
-
-
 repositories {
     mavenCentral()
 }

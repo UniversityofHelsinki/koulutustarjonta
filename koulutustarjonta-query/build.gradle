@@ -1,4 +1,7 @@
+import java.text.SimpleDateFormat
+
 apply plugin: 'application'
+apply plugin: 'rpm'
 
 mainClassName = 'fi.helsinki.koulutustarjonta.KotaQueryApplication'
 
@@ -16,8 +19,17 @@ repositories {
 }
 
 buildscript {
-    dependencies {
+    repositories {
+        mavenCentral()
+        jcenter()
     }
+    dependencies {
+        classpath 'com.netflix.nebula:gradle-ospackage-plugin:1.9.1'
+    }
+}
+
+ext {
+    release = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date())
 }
 
 dependencies {
@@ -34,4 +46,45 @@ dependencies {
 
 run {
     args 'server', 'query-config.yml'
+}
+
+task rpm(type: Rpm, dependsOn: 'jar') {
+    packageName = 'koulutustarjonta-query'
+    release = project.ext.release
+    arch = NOARCH
+    os = LINUX
+    summary = "Koulutustarjonta Query"
+    description ''
+    user = "koultarj"
+
+    preInstall= file('src/deploy/rpm/pre_install')
+    postInstall = file('src/deploy/rpm/post_install')
+    preUninstall = file('src/deploy/rpm/pre_uninstall')
+
+    into '/opt/koulutustarjonta-query'
+
+    //application executable
+    from("build/libs") {
+        include "koulutustarjonta-query-" + version + ".jar"
+        //remove version from file to avoid having to redo config files on every release
+        rename { String fileName ->
+            fileName.replace("-$version", '')
+        }
+    }
+
+    //configuration file
+    from('src/deploy/config') {
+        fileType = CONFIG
+        into '/'
+        // insert db configuration parameters
+        expand(db_url: project.getProperty('db_url'),
+                db_user: project.getProperty('db_user'),
+                db_passwd: project.getProperty('db_passwd'))
+    }
+
+    // Upstart file for RHEL
+    from('src/deploy/upstart') {
+        fileType = CONFIG
+        into '/'
+    }
 }

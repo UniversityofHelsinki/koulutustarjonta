@@ -1,0 +1,7 @@
+#!/bin/bash
+
+echo "Stopping Koulutustarjonta Query..."
+
+stop koulutustarjonta-query
+
+exit 0

@@ -1,4 +1,7 @@
+import java.text.SimpleDateFormat
+
 apply plugin: 'application'
+apply plugin: 'rpm'
 
 mainClassName = 'fi.helsinki.koulutustarjonta.KotaUpdateApplication'
 
@@ -13,14 +16,15 @@ jar {
 
 repositories {
     mavenCentral()
-    //  maven {
-    //      url "http://repo.typesafe.com/typesafe/releases/"
-    //    }
 }
 
-
 buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
     dependencies {
+        classpath 'com.netflix.nebula:gradle-ospackage-plugin:1.9.1'
     }
 }
 
@@ -29,7 +33,6 @@ dependencies {
     compile 'io.dropwizard:dropwizard-core:0.7.0'
     compile 'io.dropwizard:dropwizard-client:0.7.0'
     compile 'io.dropwizard:dropwizard-jdbi:0.7.0'
-    //compile 'com.typesafe.play:play-java-ws_2.11:2.3.0'
     compile files('../lib/ojdbc6_4.jar')
     compile project(':koulutustarjonta-common')
     testCompile 'junit:junit:4.11'
@@ -39,5 +42,49 @@ dependencies {
 
 run {
     args 'server', 'update-config.yml'
+}
 
+ext {
+    release = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date())
+}
+
+task rpm(type: Rpm, dependsOn: 'jar') {
+    packageName = 'koulutustarjonta-update'
+    release = project.ext.release
+    arch = NOARCH
+    os = LINUX
+    summary = "Koulutustarjonta Update"
+    description ''
+    user = "koultarj"
+
+    preInstall= file('src/deploy/rpm/pre_install')
+    postInstall = file('src/deploy/rpm/post_install')
+    preUninstall = file('src/deploy/rpm/pre_uninstall')
+
+    into '/opt/koulutustarjonta-update'
+
+    //application executable
+    from("build/libs") {
+        include "koulutustarjonta-update-" + version + ".jar"
+        //remove version from file to avoid having to redo config files on every release
+        rename { String fileName ->
+            fileName.replace("-$version", '')
+        }
+    }
+
+    //configuration file
+    from('src/deploy/config') {
+        fileType = CONFIG
+        into '/'
+        // insert db configuration parameters
+        expand(db_url: project.getProperty('db_url'),
+                db_user: project.getProperty('db_user'),
+                db_passwd: project.getProperty('db_passwd'))
+    }
+
+    // Upstart file for RHEL
+    from('src/deploy/upstart') {
+        fileType = CONFIG
+        into '/'
+    }
 }
