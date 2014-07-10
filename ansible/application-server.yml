@@ -1,10 +1,18 @@
 ---
 
-# This playbook installs runtime dependencies
+# This playbook installs runtime dependencies and applications
 
-- hosts: webserver
-  sudo: true
+- hosts: application-server
+  #sudo: true
   vars_files:
     - "vars/common.yml"
   roles:
     - base
+
+- hosts: query-server
+  #sudo: true
+  vars_files:
+    - "vars/common.yml"
+  roles:
+    - query
+

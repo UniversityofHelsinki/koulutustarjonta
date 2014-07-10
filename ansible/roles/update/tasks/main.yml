@@ -1,0 +1,3 @@
+---
+  - name: Copy rpm to remote machine
+    file: path={{ rpm_path }} state=directory

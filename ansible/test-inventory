@@ -1,2 +1,8 @@
-[webserver]
+[application-server]
+koultarj1.it.helsinki.fi
+
+[update-server]
+koultarj1.it.helsinki.fi
+
+[query-server]
 koultarj1.it.helsinki.fi

@@ -1,8 +1,8 @@
 ---
 
-# This playbook installs all roles on a single server
+# This playbook installs dependencies in local dev environment
 
-- hosts: webserver
+- hosts: application-server
   sudo: true
   vars_files:
     - "vars/common.yml"

@@ -1,0 +1,9 @@
+---
+
+  - name: Create rpm directory
+    file: path={{ rpm_path }} state=directory
+
+  - name: Copy rpm to remote machine
+    copy: src={{ item }} dest={{ rpm_path }} owner=koultarj group=koultarj mode=0644
+    with_fileglob:
+      - ../../../../koulutustarjonta-query/build/distributions/*
