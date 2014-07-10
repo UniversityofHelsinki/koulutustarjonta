@@ -12,8 +12,11 @@
     shell: ls {{ rpm_path }}/{{ app_name }}-*.rpm
     register: rpm_file
 
-  - name: Install Koulutustarjonta Query
+  - name: Uninstall old {{ app_name }} version
+    yum: name={{ app_name }} state=absent
+
+  - name: Install {{ app_name }}
     yum: name={{ rpm_file.stdout }} state=present
 
-  - name: Remove rpm file
+  - name: Remove {{ app_name }} rpm file
     file: path={{ rpm_file.stdout }} state=absent
