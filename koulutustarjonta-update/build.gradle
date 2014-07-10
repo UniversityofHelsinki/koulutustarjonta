@@ -44,13 +44,9 @@ run {
     args 'server', 'update-config.yml'
 }
 
-ext {
-    release = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date())
-}
-
 task rpm(type: Rpm, dependsOn: 'jar') {
     packageName = 'koulutustarjonta-update'
-    release = project.ext.release
+    release = commitHash()
     arch = NOARCH
     os = LINUX
     summary = "Koulutustarjonta Update"

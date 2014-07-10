@@ -1,0 +1,19 @@
+---
+
+  - name: Create rpm directory
+    file: path={{ rpm_path }} state=directory
+
+  - name: Copy rpm to remote machine
+    copy: src={{ item }} dest={{ rpm_path }} owner=koultarj group=koultarj mode=0644
+    with_fileglob:
+      - ../../../{{ app_name }}/build/distributions/*
+
+  - name: Register rpm filename for yum
+    shell: ls {{ rpm_path }}/{{ app_name }}-*.rpm
+    register: rpm_file
+
+  - name: Install Koulutustarjonta Query
+    yum: name={{ rpm_file.stdout }} state=present
+
+  - name: Remove rpm file
+    file: path={{ rpm_file.stdout }} state=absent

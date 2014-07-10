@@ -28,10 +28,6 @@ buildscript {
     }
 }
 
-ext {
-    release = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date())
-}
-
 dependencies {
     compile 'org.slf4j:slf4j-api:1.7.5'
     compile 'io.dropwizard:dropwizard-core:0.7.0'
@@ -49,27 +45,7 @@ run {
 }
 
 
-def commitHash() {
-    def env = System.getenv()
-    def hash = env['GIT_COMMIT']
-    println("Jenkins git commit hash environment variable: " + hash)
-    if (hash == null) {
-        println("git commit jenkins variable not found, resolving commit from git")
-        def cmd = "git rev-parse --short HEAD"
-        def proc = cmd.execute()
-        hash = proc.text.trim()
-    }
-    else {
-        println("Jenkins git commit hash: " + hash)
-        println("slicing to short form")
-        hash = hash[0..6]
-        println("short form: " + hash)
-    }
-    hash
-}
-
 task rpm(type: Rpm, dependsOn: 'jar') {
-    println("BUallILD : " + commitHash())
     packageName = 'koulutustarjonta-query'
     release = commitHash()
     arch = NOARCH
