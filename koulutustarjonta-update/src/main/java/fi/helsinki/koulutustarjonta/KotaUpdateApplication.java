@@ -1,5 +1,6 @@
 package fi.helsinki.koulutustarjonta;
 
+import fi.helsinki.koulutustarjonta.client.KoodistoClient;
 import fi.helsinki.koulutustarjonta.client.TarjontaClient;
 import fi.helsinki.koulutustarjonta.config.KotaUpdateConfiguration;
 import fi.helsinki.koulutustarjonta.core.Updater;
@@ -38,6 +39,7 @@ public class KotaUpdateApplication extends Application<KotaUpdateConfiguration> 
         final LearningOpportunityJDBI jdbi = dbi.onDemand(LearningOpportunityJDBI.class);
         final LearningOpportunityDAO learningOpportunityDAO = new LearningOpportunityDAO(jdbi);
         final TarjontaClient tarjontaClient = configuration.getTarjontaClientFactory().build(environment);
+        final KoodistoClient koodistoClient = configuration.getKoodistoClientFactory().build(environment);
         final Updater updater = new Updater(tarjontaClient, learningOpportunityDAO);
         final UpdateResource updateResource = new UpdateResource(updater);
         environment.jersey().register(updateResource);

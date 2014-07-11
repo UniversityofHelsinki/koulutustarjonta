@@ -1,6 +1,7 @@
 package fi.helsinki.koulutustarjonta.config;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import fi.helsinki.koulutustarjonta.client.KoodistoClientFactory;
 import fi.helsinki.koulutustarjonta.client.TarjontaClientFactory;
 import io.dropwizard.Configuration;
 import io.dropwizard.db.DataSourceFactory;
@@ -27,6 +28,19 @@ public class KotaUpdateConfiguration extends Configuration {
         this.tarjontaClientFactory = tarjontaClientFactory;
     }
 
+    @Valid
+    @NotNull
+    private KoodistoClientFactory koodistoClientFactory = new KoodistoClientFactory();
+
+    @JsonProperty("koodistoClient")
+    public KoodistoClientFactory getKoodistoClientFactory() {
+        return koodistoClientFactory;
+    }
+
+    @JsonProperty("koodistoClient")
+    public void setKoodistoClientFactory(KoodistoClientFactory koodistoClientFactory) {
+        this.koodistoClientFactory = koodistoClientFactory;
+    }
     @Valid
     @NotNull
     @JsonProperty

@@ -28,6 +28,8 @@ logging:
 tarjontaClient:
   baseUrl: https://od.helsinki.fi/tarjonta-service/rest/v1/
 
+koodistoClient:
+  baseUrl: https://od.helsinki.fi/koodisto-service/rest/json/
 
 database:
   # the name of your JDBC driver

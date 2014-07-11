@@ -14,7 +14,7 @@ public class I18NConverter {
      * @param parentNode
      * @return
      */
-    public I18N convert(JsonNode parentNode) {
+    public I18N convertI18N(JsonNode parentNode) {
         if (parentNode == null) {
             return null;
         }

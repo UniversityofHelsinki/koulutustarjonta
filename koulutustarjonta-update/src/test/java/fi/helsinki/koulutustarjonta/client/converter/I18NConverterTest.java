@@ -25,7 +25,7 @@ public class I18NConverterTest extends AbstractClientConverterTest {
 
     @Test
     public void testConvert() {
-        I18N i18n = i18nConverter.convert(description);
+        I18N i18n = i18nConverter.convertI18N(description);
         assertNotNull(i18n);
         assertEquals("description fi", i18n.getFi());
         assertEquals("description sv", i18n.getSv());
@@ -34,7 +34,7 @@ public class I18NConverterTest extends AbstractClientConverterTest {
 
     @Test
     public void testConvertNull() {
-        assertNull(i18nConverter.convert(null));
+        assertNull(i18nConverter.convertI18N(null));
     }
 
 }
