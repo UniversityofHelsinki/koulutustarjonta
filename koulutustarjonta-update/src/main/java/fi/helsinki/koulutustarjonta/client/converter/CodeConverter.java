@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 /**
  * @author Hannu Lyytikainen
  */
-public class CodeConverter extends BaseConverter {
+public class CodeConverter {
 
     public Code convert(JsonNode json) {
         Code code = new Code();

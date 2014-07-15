@@ -1,0 +1,17 @@
+{
+    "oid" : "333282",
+    "version" : 0,
+    "kieliUri" : "kieli_fi",
+    "kieliNimi" : "suomi",
+    "liitteenNimi" : "Opintosuoritusote",
+    "liitteenKuvaukset" : {
+        "kieli_fi" : "liitteen kuvaus fi"
+    },
+    "toimitettavaMennessa" : 1411372327561,
+    "liitteenToimitusOsoite" : {
+        "version" : 0,
+        "osoiterivi1" : "Matemaattis-luonnontieteellinen tiedekunta, PL 44 (Jyrängöntie 2)",
+        "postinumero" : "posti_00014",
+        "postitoimipaikka" : "HELSINGIN YLIOPISTO"
+    }
+}

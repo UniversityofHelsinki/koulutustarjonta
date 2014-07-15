@@ -1,0 +1,38 @@
+{
+    "oid" : "333300",
+    "version" : 0,
+    "kieliUri" : "kieli_en",
+    "kieliNimi" : "englanti",
+    "valintakoeNimi" : "soveltuvuuskoe en",
+    "valintakokeenKuvaus" : {
+        "uri" : "kieli_en",
+        "nimi" : "englanti",
+        "monikielisetNimet" : [ {
+            "kieli" : "EN",
+            "nimi" : "English"
+        }, {
+            "kieli" : "SV",
+            "nimi" : "engelska"
+        }, {
+            "kieli" : "FI",
+            "nimi" : "englanti"
+        } ],
+        "arvo" : "EN",
+        "versio" : 1,
+        "teksti" : "soveltuvuus kuvaus en"
+    },
+    "valintakoeAjankohtas" : [ {
+        "oid" : "333301",
+        "version" : 0,
+        "lisatiedot" : "lisatiedot",
+        "osoite" : {
+            "version" : 0,
+            "osoiterivi1" : "soveltuvuustie",
+            "postinumero" : "posti_00100",
+            "postinumeroArvo" : "00100",
+            "postitoimipaikka" : "HELSINKI"
+        },
+        "alkaa" : 1406115803849,
+        "loppuu" : 1406123013232
+    } ]
+}

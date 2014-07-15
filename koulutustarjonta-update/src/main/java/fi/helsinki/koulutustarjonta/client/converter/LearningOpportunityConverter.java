@@ -15,12 +15,6 @@ import java.util.stream.Collectors;
  */
 public class LearningOpportunityConverter extends BaseConverter {
 
-    final I18NConverter i18n;
-
-    public LearningOpportunityConverter() {
-        this.i18n = new I18NConverter();
-    }
-
     public LearningOpportunity convert(JsonNode apiCallResult) {
         LearningOpportunity lo = new LearningOpportunity();
         JsonNode content = apiCallResult.get("result");
@@ -39,23 +33,23 @@ public class LearningOpportunityConverter extends BaseConverter {
 
         //komo info
         JsonNode komoInfo = content.get("kuvausKomo");
-        lo.setGoals(i18n.convert(komoInfo.get("TAVOITTEET")));
-        lo.setStructure(i18n.convert(komoInfo.get("KOULUTUKSEN_RAKENNE")));
-        lo.setPostgraduateStudies(i18n.convert(komoInfo.get("JATKOOPINTO_MAHDOLLISUUDET")));
-        lo.setCompetency(i18n.convert(komoInfo.get("PATEVYYS")));
+        lo.setGoals(convertMetaTextsToI18N(komoInfo.get("TAVOITTEET")));
+        lo.setStructure(convertMetaTextsToI18N(komoInfo.get("KOULUTUKSEN_RAKENNE")));
+        lo.setPostgraduateStudies(convertMetaTextsToI18N(komoInfo.get("JATKOOPINTO_MAHDOLLISUUDET")));
+        lo.setCompetency(convertMetaTextsToI18N(komoInfo.get("PATEVYYS")));
 
         lo.setTranslations(resolveTranslations(komoInfo.get("TAVOITTEET")));
 
         //komoto info
         JsonNode komotoInfo = content.get("kuvausKomoto");
-        lo.setLanguageInfo(i18n.convert(komotoInfo.get("LISATIETOA_OPETUSKIELISTA")));
-        lo.setCooperation(i18n.convert(komotoInfo.get("YHTEISTYO_MUIDEN_TOIMIJOIDEN_KANSSA")));
-        lo.setSelectingMajorSubject(i18n.convert(komotoInfo.get("PAAAINEEN_VALINTA")));
-        lo.setInternationalization(i18n.convert(komotoInfo.get("KANSAINVALISTYMINEN")));
-        lo.setWorkLifePlacement(i18n.convert(komotoInfo.get("SIJOITTUMINEN_TYOELAMAAN")));
-        lo.setContents(i18n.convert(komotoInfo.get("SISALTO")));
-        lo.setResearch(i18n.convert(komotoInfo.get("TUTKIMUKSEN_PAINOPISTEET")));
-        lo.setThesis(i18n.convert(komotoInfo.get("LOPPUKOEVAATIMUKSET")));
+        lo.setLanguageInfo(convertMetaTextsToI18N(komotoInfo.get("LISATIETOA_OPETUSKIELISTA")));
+        lo.setCooperation(convertMetaTextsToI18N(komotoInfo.get("YHTEISTYO_MUIDEN_TOIMIJOIDEN_KANSSA")));
+        lo.setSelectingMajorSubject(convertMetaTextsToI18N(komotoInfo.get("PAAAINEEN_VALINTA")));
+        lo.setInternationalization(convertMetaTextsToI18N(komotoInfo.get("KANSAINVALISTYMINEN")));
+        lo.setWorkLifePlacement(convertMetaTextsToI18N(komotoInfo.get("SIJOITTUMINEN_TYOELAMAAN")));
+        lo.setContents(convertMetaTextsToI18N(komotoInfo.get("SISALTO")));
+        lo.setResearch(convertMetaTextsToI18N(komotoInfo.get("TUTKIMUKSEN_PAINOPISTEET")));
+        lo.setThesis(convertMetaTextsToI18N(komotoInfo.get("LOPPUKOEVAATIMUKSET")));
 
         return lo;
     }

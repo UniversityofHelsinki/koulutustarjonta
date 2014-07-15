@@ -1,0 +1,249 @@
+{
+  "result" : {
+    "modified" : 1405079028570,
+    "modifiedBy" : "1.2.246.562.24.00000000001",
+    "oid" : "1.2.246.562.20.92573201339",
+    "version" : 21,
+    "hakukohteenNimet" : {
+      "kieli_sv" : "Kemi, kandidat i naturvetenskaper och filosofie magister",
+      "kieli_en" : "",
+      "kieli_fi" : "Kemia, luonnontieteiden kandidaatti ja filosofian maisteri"
+    },
+    "tarjoajaNimet" : {
+      "fi" : "Helsingin yliopisto, Matemaattis-luonnontieteellinen tiedekunta",
+      "sv" : "Helsingfors universitet, Matematisk-naturvetenskapliga fakulteten",
+      "en" : "University of Helsinki, Faculty of Science"
+    },
+    "tarjoajaOids" : [ "1.2.246.562.10.94639300915" ],
+    "hakuOid" : "1.2.246.562.29.31035368682",
+    "hakukelpoisuusvaatimusUris" : [ "pohjakoulutusvaatimuskorkeakoulut_118" ],
+    "hakukohdeKoulutusOids" : [ "1.2.246.562.17.17939899864", "1.2.246.562.17.72077239134" ],
+    "alinHyvaksyttavaKeskiarvo" : 0.0,
+    "alinValintaPistemaara" : 0,
+    "ylinValintapistemaara" : 0,
+    "aloituspaikatLkm" : 8,
+    "edellisenVuodenHakijatLkm" : 0,
+    "valintojenAloituspaikatLkm" : 0,
+    "tila" : "JULKAISTU",
+    "koulutusAsteTyyppi" : "KORKEAKOULUTUS",
+    "lisatiedot" : {
+      "kieli_sv" : "lisatiedot sv",
+      "kieli_en" : "lisatiedot en",
+      "kieli_fi" : "lisatiedot fi"
+    },
+    "valintaperusteKuvaukset" : {
+      "kieli_sv" : "valintaperustekuvaus sv",
+      "kieli_fi" : "valintaperustekuvaus fi",
+      "kieli_en" : "valintaperustekuvaus en"
+    },
+    "soraKuvaukset" : {
+      "kieli_sv" : "<p>sora sv</p>",
+      "kieli_fi" : "<p>sora fi</p>",
+      "kieli_en" : "<p>sora en</p>"
+    },
+    "hakukelpoisuusVaatimusKuvaukset" : {
+      "kieli_sv" : "hakukelpoisuus sv",
+      "kieli_en" : "hakukelpoisuus en",
+      "kieli_fi" : "hakukelpoisuus fi"
+    },
+    "kaytetaanJarjestelmanValintaPalvelua" : false,
+    "kaytetaanHaunPaattymisenAikaa" : false,
+    "kaytetaanHakukohdekohtaistaHakuaikaa" : false,
+    "hakukohteenLiitteet" : [ {
+      "oid" : "333282",
+      "version" : 0,
+      "kieliUri" : "kieli_fi",
+      "kieliNimi" : "suomi",
+      "liitteenNimi" : "Opintosuoritusote",
+      "liitteenKuvaukset" : {
+        "kieli_fi" : "<p>Hakemukseen tulee liitt&auml;&auml; virallinen opintosuoritusote, mik&auml;li opintoja on suoritettu muualla kuin Helsingin yliopiston avoimessa yliopistossa. Helsingin yliopiston avoimessa yliopistossa suoritetuista opinnoista ei tarvitse liitt&auml;&auml; opintosuoritusotetta.</p>"
+      },
+      "toimitettavaMennessa" : 1411372327561,
+      "liitteenToimitusOsoite" : {
+        "version" : 0,
+        "osoiterivi1" : "Matemaattis-luonnontieteellinen tiedekunta, PL 44 (Jyrängöntie 2)",
+        "postinumero" : "posti_00014",
+        "postitoimipaikka" : "HELSINGIN YLIOPISTO"
+      }
+    }, {
+      "oid" : "333285",
+      "version" : 0,
+      "kieliUri" : "kieli_sv",
+      "kieliNimi" : "ruotsi",
+      "liitteenNimi" : "Studieprestationsutdrag",
+      "liitteenKuvaukset" : {
+        "kieli_sv" : "<p>Bifoga officiellt studieprestationsutdrag ifall studierna &auml;r genomf&ouml;rda vid ett annat &ouml;ppet universitet &auml;n vid Helsingfors universitet. Studier avlagda vid &ouml;ppna universitetet vid Helsingfors universitet kr&auml;ver inte ett bifogat studieprestationsutdrag.</p>"
+      },
+      "toimitettavaMennessa" : 1411387251028,
+      "liitteenToimitusOsoite" : {
+        "version" : 0,
+        "osoiterivi1" : "Matematisk-naturvetenskapliga fakulteten, PB 44 (Jyränkövägen 2)",
+        "postinumero" : "posti_00014",
+        "postitoimipaikka" : "HELSINGIN YLIOPISTO"
+      }
+    }, {
+      "oid" : "333279",
+      "version" : 0,
+      "kieliUri" : "kieli_fi",
+      "kieliNimi" : "suomi",
+      "liitteenNimi" : "Opintosuunnitelma",
+      "liitteenKuvaukset" : {
+        "kieli_fi" : "<p>Hakemukseen tulee liitt&auml;&auml; opintosuunnitelma, johon tulee sis&auml;llytt&auml;&auml;:</p>\n<ul>\n<li>arvioitu opiskeluaika</li>\n<li>aiottu tutkinnon rakenne: koulutusohjelma/p&auml;&auml;aine, erikoistumislinja sek&auml; sivuaineet ja muut opinnot ja n&auml;iden laajuus aineittain,</li>\n<li>aiemmat opinnot ja/tai ty&ouml;kokemus, jotka tukevat opiskelua valitussa p&auml;&auml;aineessa,</li>\n<li>perustelut hakemukselle.</li>\n</ul>\n<p>Opintosuunnitelman tekemisess&auml; k&auml;ytet&auml;&auml;n apuna matemaattis-luonnontieteellisen tiedekunnan&nbsp;<a href=\"http://www.helsinki.fi/ml/opinto-opas/index.html\" target=\"_blank\">opinto-opasta</a> ja haettavan koulutusohjelman <a href=\"http://www.helsinki.fi/ml/opinto-opas/index.html\" target=\"_blank\">opetusohjelmaa</a>.</p>"
+      },
+      "toimitettavaMennessa" : 1411387205504,
+      "liitteenToimitusOsoite" : {
+        "version" : 0,
+        "osoiterivi1" : "Matemaattis-luonnontieteellinen tiedekunta, PL 44 (Jyrängöntie 2)",
+        "postinumero" : "posti_00014",
+        "postitoimipaikka" : "HELSINGIN YLIOPISTO"
+      }
+    }, {
+      "oid" : "333276",
+      "version" : 0,
+      "kieliUri" : "kieli_sv",
+      "kieliNimi" : "ruotsi",
+      "liitteenNimi" : "Studieplan",
+      "liitteenKuvaukset" : {
+        "kieli_sv" : "<p>I ans&ouml;kan b&ouml;r det bifogas en studieplan som skall best&aring; av:</p>\n<ul>\n<li>den ber&auml;knade studietiden,</li>\n<li>den planerade examensstruktur: utbildningsprogram/huvud&auml;mne, specialiseringslinje samt bi&auml;mnen och &ouml;vriga studier och deras omfattning &auml;mnesvis,</li>\n<li>tidigare studier och/eller arbetserfarenhet som st&ouml;djer studierna i det valda huvud&auml;mnet,</li>\n<li>en motivering till ans&ouml;kan.</li>\n</ul>\n<p>Som hj&auml;lp till utarbetandet av studieplanen anv&auml;nds matematisk-naturvetenskapliga fakultetens&nbsp;<a href=\"http://www.helsinki.fi/ml/opinto-opas/index.html\" target=\"_blank\">studiehandbok</a> och&nbsp;<a href=\"http://www.helsinki.fi/ml/opinto-opas/index.html\" target=\"_blank\">undervisningsprogrammet</a> f&ouml;r det utbildningsprogram inom vilket studier&auml;tt s&ouml;kes.</p>"
+      },
+      "toimitettavaMennessa" : 1411387202110,
+      "liitteenToimitusOsoite" : {
+        "version" : 0,
+        "osoiterivi1" : "Matematisk-naturvetenskapliga fakulteten, PB 44 (Jyränkövägen 2)",
+        "postinumero" : "posti_00014",
+        "postitoimipaikka" : "HELSINGIN YLIOPISTO"
+      }
+    } ],
+    "valintakokeet" : [ {
+      "oid" : "333300",
+      "version" : 0,
+      "kieliUri" : "kieli_en",
+      "kieliNimi" : "englanti",
+      "valintakoeNimi" : "soveltuvuuskoe en",
+      "valintakokeenKuvaus" : {
+        "uri" : "kieli_en",
+        "nimi" : "englanti",
+        "monikielisetNimet" : [ {
+          "kieli" : "EN",
+          "nimi" : "English"
+        }, {
+          "kieli" : "SV",
+          "nimi" : "engelska"
+        }, {
+          "kieli" : "FI",
+          "nimi" : "englanti"
+        } ],
+        "arvo" : "EN",
+        "versio" : 1,
+        "teksti" : "<p>soveltuvuus kuvaus en</p>"
+      },
+      "valintakoeAjankohtas" : [ {
+        "oid" : "333301",
+        "version" : 0,
+        "lisatiedot" : "lksjdflkdjflkdjflkdjf",
+        "osoite" : {
+          "version" : 0,
+          "osoiterivi1" : "soveltuvuustie",
+          "postinumero" : "posti_00100",
+          "postinumeroArvo" : "00100",
+          "postitoimipaikka" : "HELSINKI"
+        },
+        "alkaa" : 1406115803849,
+        "loppuu" : 1406123013232
+      } ]
+    }, {
+      "oid" : "333295",
+      "version" : 0,
+      "kieliUri" : "kieli_en",
+      "kieliNimi" : "englanti",
+      "valintakoeNimi" : "pääsykoe en",
+      "valintakokeenKuvaus" : {
+        "uri" : "kieli_en",
+        "nimi" : "englanti",
+        "monikielisetNimet" : [ {
+          "kieli" : "EN",
+          "nimi" : "English"
+        }, {
+          "kieli" : "SV",
+          "nimi" : "engelska"
+        }, {
+          "kieli" : "FI",
+          "nimi" : "englanti"
+        } ],
+        "arvo" : "EN",
+        "versio" : 1,
+        "teksti" : "<p>p&auml;&auml;sykokeen kuvaus en</p>"
+      },
+      "valintakoeAjankohtas" : [ {
+        "oid" : "333296",
+        "version" : 0,
+        "lisatiedot" : "kdkdkdkdkd",
+        "osoite" : {
+          "version" : 0,
+          "osoiterivi1" : "asdf",
+          "postinumero" : "posti_00100",
+          "postinumeroArvo" : "00100",
+          "postitoimipaikka" : "HELSINKI"
+        },
+        "alkaa" : 1410954141039,
+        "loppuu" : 1410957755266
+      }, {
+        "oid" : "333297",
+        "version" : 0,
+        "lisatiedot" : "lisätietoja en",
+        "osoite" : {
+          "version" : 0,
+          "osoiterivi1" : "kautosoite en",
+          "postinumero" : "posti_00100",
+          "postinumeroArvo" : "00100",
+          "postitoimipaikka" : "HELSINKI"
+        },
+        "alkaa" : 1406806301633,
+        "loppuu" : 1406813512632
+      } ]
+    }, {
+      "oid" : "333304",
+      "version" : 0,
+      "kieliUri" : "kieli_fi",
+      "kieliNimi" : "suomi",
+      "valintakoeNimi" : "pääsykoe",
+      "valintakokeenKuvaus" : {
+        "uri" : "kieli_fi",
+        "nimi" : "suomi",
+        "monikielisetNimet" : [ {
+          "kieli" : "EN",
+          "nimi" : "Finnish"
+        }, {
+          "kieli" : "FI",
+          "nimi" : "suomi"
+        }, {
+          "kieli" : "SV",
+          "nimi" : "finska"
+        } ],
+        "arvo" : "FI",
+        "versio" : 1,
+        "teksti" : "<p>p&auml;&auml;sykoe kuvaus</p>"
+      },
+      "valintakoeAjankohtas" : [ {
+        "oid" : "333305",
+        "version" : 0,
+        "lisatiedot" : "lisätietoja",
+        "osoite" : {
+          "version" : 0,
+          "osoiterivi1" : "katuosoite",
+          "postinumero" : "posti_00100",
+          "postinumeroArvo" : "00100",
+          "postitoimipaikka" : "HELSINKI"
+        },
+        "alkaa" : 1406719856074,
+        "loppuu" : 1406723407833
+      } ]
+    } ],
+    "kaksoisTutkinto" : false,
+    "opetusKielet" : [ "kieli_en", "kieli_fi", "kieli_sv" ],
+    "valintaPerusteKuvausKielet" : [ ],
+    "soraKuvausKielet" : [ ]
+  },
+  "status" : "OK",
+  "accessRights" : { }
+}

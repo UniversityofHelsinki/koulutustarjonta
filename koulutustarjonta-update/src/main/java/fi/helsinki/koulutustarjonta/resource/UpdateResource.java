@@ -35,4 +35,20 @@ public class UpdateResource {
         }
         return status;
     }
+
+
+    @GET
+    @Path("applicationOption")
+    public Map<String, String> updateApplicationOptins() {
+        Map<String, String> status = Maps.newHashMap();
+        try {
+            updater.updateApplicationOptions();
+            status.put("status", "ok");
+        } catch (Exception e) {
+            e.printStackTrace();
+            status.put("status", "error");
+            status.put("cause", String.format("%s - %s", e.getClass().getName(), e.getMessage()));
+        }
+        return status;
+    }
 }

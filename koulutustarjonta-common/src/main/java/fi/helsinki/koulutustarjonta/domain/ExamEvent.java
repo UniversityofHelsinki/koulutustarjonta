@@ -3,18 +3,18 @@ package fi.helsinki.koulutustarjonta.domain;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
+import java.util.Date;
 
 /**
  * @author Hannu Lyytikainen
  */
 @Getter
 @Setter
-public class Exam {
+public class ExamEvent {
 
     private String oid;
-    private String lang;
-    private String type;
-    private String description;
-    private List<ExamEvent> events;
+    private Address address;
+    private Date starts;
+    private Date ends;
+    private String info;
 }

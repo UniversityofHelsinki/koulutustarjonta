@@ -8,6 +8,7 @@ import fi.helsinki.koulutustarjonta.domain.I18N;
  */
 public abstract class BaseConverter {
 
+
     /**
      * Converts a json object that contains text and meta information into
      * a I18N object.
@@ -39,4 +40,21 @@ public abstract class BaseConverter {
         );
     }
 
+    /**
+     * Resolve lang code by language's koodisto uri.
+     *
+     * @param langUri koodisto uri
+     * @return language code
+     */
+    public String resolveLang(String langUri) {
+        if (langUri.equals("kieli_en")) {
+            return "en";
+        }
+        else if (langUri.equals("kieli_sv")) {
+            return "sv";
+        }
+        else {
+            return "fi";
+        }
+    }
 }

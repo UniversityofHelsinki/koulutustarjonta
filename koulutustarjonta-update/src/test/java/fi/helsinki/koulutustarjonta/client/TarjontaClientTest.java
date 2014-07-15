@@ -24,7 +24,6 @@ public class TarjontaClientTest {
     TarjontaClient client;
 
 
-
     @Before
     public void init() {
 
@@ -35,8 +34,7 @@ public class TarjontaClientTest {
         when(koulutusResource.path(anyString())).thenReturn(koulutusResource);
         when(koulutusResource.get((GenericType<Object>) any())).thenReturn(result);
 
-
-        client = new TarjontaClient(koulutusResource);
+        client = new TarjontaClient(koulutusResource, null, null);
 
     }
 

@@ -3,6 +3,14 @@ subprojects {
     sourceCompatibility = '1.8'
     group = 'fi.helsinki.koulutustarjonta'
     version = '1.0-SNAPSHOT'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compile "org.projectlombok:lombok:1.14.4"
+    }
     
     test {
         testLogging {

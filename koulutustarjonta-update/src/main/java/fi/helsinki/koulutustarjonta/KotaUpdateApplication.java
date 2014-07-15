@@ -38,8 +38,8 @@ public class KotaUpdateApplication extends Application<KotaUpdateConfiguration> 
         dbi.setStatementBuilderFactory(new OracleStatementBuilderFactory());
         final LearningOpportunityJDBI jdbi = dbi.onDemand(LearningOpportunityJDBI.class);
         final LearningOpportunityDAO learningOpportunityDAO = new LearningOpportunityDAO(jdbi);
-        final TarjontaClient tarjontaClient = configuration.getTarjontaClientFactory().build(environment);
         final KoodistoClient koodistoClient = configuration.getKoodistoClientFactory().build(environment);
+        final TarjontaClient tarjontaClient = configuration.getTarjontaClientFactory().build(environment, koodistoClient);
         final Updater updater = new Updater(tarjontaClient, learningOpportunityDAO);
         final UpdateResource updateResource = new UpdateResource(updater);
         environment.jersey().register(updateResource);

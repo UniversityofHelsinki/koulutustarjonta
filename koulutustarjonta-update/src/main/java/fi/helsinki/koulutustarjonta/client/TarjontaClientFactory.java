@@ -16,7 +16,8 @@ import javax.validation.constraints.NotNull;
  */
 public class TarjontaClientFactory {
 
-    private static final String KOULUTUS_PATH = "koulutus/";
+    private static final String LEARNING_OPPORTUNITY_PATH = "koulutus/";
+    private static final String APPLICATION_OPTION_PATH = "hakukohde/";
 
     @Valid
     @NotNull
@@ -36,14 +37,15 @@ public class TarjontaClientFactory {
         this.baseUrl = baseUrl;
     }
 
-    public TarjontaClient build(Environment environment) {
+    public TarjontaClient build(Environment environment, KoodistoClient koodistoClient) {
 
         final Client client = new JerseyClientBuilder(environment)
                 .using(httpClient)
                 .build(this.getClass().toString());
-        WebResource koulutusResource = client.resource(String.format("%s%s", baseUrl, KOULUTUS_PATH));
+        WebResource learningOpportunityResource = client.resource(String.format("%s%s", baseUrl, LEARNING_OPPORTUNITY_PATH));
+        WebResource applicationOptionResource = client.resource(String.format("%s%s", baseUrl, APPLICATION_OPTION_PATH));
 
-        return new TarjontaClient(koulutusResource);
+        return new TarjontaClient(learningOpportunityResource, applicationOptionResource, koodistoClient);
 
     }
 }
