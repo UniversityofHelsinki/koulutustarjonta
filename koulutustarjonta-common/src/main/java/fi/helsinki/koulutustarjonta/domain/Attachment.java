@@ -16,7 +16,7 @@ public class Attachment {
     private String lang;
     private String name;
     private String description;
-    private Date deadline;
+    private Date due;
     private Address address;
 }
 

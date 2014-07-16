@@ -31,7 +31,7 @@ public class ApplicationOptionConverter extends KoodistoAwareConverter {
                 Lists.newArrayList(content.get("hakukelpoisuusvaatimusUris")).stream()
                         .map(uri -> getCode(uri.textValue()).getName()).collect(Collectors.toList())
         );
-        ao.setApplicationSuitabilityrequirementDescription(convertToI18N(content.get("hakukelpoisuusVaatimusKuvaukset")));
+        ao.setApplicationSuitabilityRequirementDescription(convertToI18N(content.get("hakukelpoisuusVaatimusKuvaukset")));
         ao.setAdditionalInfo(convertToI18N(content.get("lisatiedot")));
         ao.setSelectionCriteria(convertToI18N(content.get("valintaperusteKuvaukset")));
         ao.setSora(convertToI18N(content.get("soraKuvaukset")));

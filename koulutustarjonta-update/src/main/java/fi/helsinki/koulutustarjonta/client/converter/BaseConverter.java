@@ -33,11 +33,16 @@ public abstract class BaseConverter {
      * @return I18N object
      */
     public I18N convertToI18N(JsonNode node) {
-        return new I18N(
-                node.get("kieli_fi") == null ? null : node.get("kieli_fi").textValue(),
-                node.get("kieli_sv") == null ? null : node.get("kieli_sv").textValue(),
-                node.get("kieli_en") == null ? null : node.get("kieli_en").textValue()
-        );
+        if (node == null) {
+            return null;
+        }
+        else {
+            return new I18N(
+                    node.get("kieli_fi") == null ? null : node.get("kieli_fi").textValue(),
+                    node.get("kieli_sv") == null ? null : node.get("kieli_sv").textValue(),
+                    node.get("kieli_en") == null ? null : node.get("kieli_en").textValue()
+            );
+        }
     }
 
     /**

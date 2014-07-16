@@ -24,7 +24,7 @@ public class AttachmentConverter extends KoodistoAwareConverter {
         attachment.setLang(resolveLang(attachmentNode.get("kieliUri").textValue()));
         attachment.setName(attachmentNode.get("liitteenNimi").textValue());
         attachment.setDescription(attachmentNode.get("liitteenKuvaukset").elements().next().textValue());
-        attachment.setDeadline(new Date(attachmentNode.get("toimitettavaMennessa").longValue()));
+        attachment.setDue(new Date(attachmentNode.get("toimitettavaMennessa").longValue()));
         attachment.setAddress(addressConverter.convert(attachmentNode.get("liitteenToimitusOsoite")));
         return attachment;
     }

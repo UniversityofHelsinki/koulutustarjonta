@@ -2,7 +2,7 @@ package fi.helsinki.koulutustarjonta.core;
 
 import fi.helsinki.koulutustarjonta.dao.LearningOpportunityDAO;
 import fi.helsinki.koulutustarjonta.client.TarjontaClient;
-import fi.helsinki.koulutustarjonta.dao.LearningOpportunityJDBI;
+import fi.helsinki.koulutustarjonta.dao.jdbi.LearningOpportunityJDBI;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -25,7 +25,7 @@ public class UpdaterTest {
         client = mock(TarjontaClient.class);
         LearningOpportunityJDBI dao = mock(LearningOpportunityJDBI.class);
         LearningOpportunityDAO loService = new LearningOpportunityDAO(dao);
-        updater = new Updater(client, loService);
+        updater = new Updater(client, loService, null);
     }
 
     @Test

@@ -50,7 +50,7 @@ public class TarjontaMock {
         ao.setName(new I18N("Kemia, luonnontieteiden kandidaatti ja filosofian maisteri", null, null));
         ao.setStartingQuota(10);
         ao.setApplicationSuitabilityRequirements(Lists.newArrayList(loremFi()));
-        ao.setApplicationSuitabilityrequirementDescription(loremFi());
+        ao.setApplicationSuitabilityRequirementDescription(loremFi());
         ao.setAdditionalInfo(loremFi());
         ao.setSelectionCriteria(loremFi());
         ao.setSora(loremFi());

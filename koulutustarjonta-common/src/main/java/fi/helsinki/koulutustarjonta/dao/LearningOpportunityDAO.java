@@ -1,5 +1,6 @@
 package fi.helsinki.koulutustarjonta.dao;
 
+import fi.helsinki.koulutustarjonta.dao.jdbi.LearningOpportunityJDBI;
 import fi.helsinki.koulutustarjonta.dao.mapper.LearningOpportunityObjectGraphBuilder;
 import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
 

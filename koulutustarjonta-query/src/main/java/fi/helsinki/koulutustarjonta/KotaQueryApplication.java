@@ -2,7 +2,7 @@ package fi.helsinki.koulutustarjonta;
 
 import fi.helsinki.koulutustarjonta.config.KotaQueryConfig;
 import fi.helsinki.koulutustarjonta.dao.LearningOpportunityDAO;
-import fi.helsinki.koulutustarjonta.dao.LearningOpportunityJDBI;
+import fi.helsinki.koulutustarjonta.dao.jdbi.LearningOpportunityJDBI;
 import fi.helsinki.koulutustarjonta.resource.LearningOpportunityResource;
 import io.dropwizard.Application;
 import io.dropwizard.jdbi.DBIFactory;

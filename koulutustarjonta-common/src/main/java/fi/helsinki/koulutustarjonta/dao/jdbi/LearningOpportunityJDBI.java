@@ -1,4 +1,4 @@
-package fi.helsinki.koulutustarjonta.dao;
+package fi.helsinki.koulutustarjonta.dao.jdbi;
 
 import fi.helsinki.koulutustarjonta.dao.binder.BindLearningOpportunity;
 import fi.helsinki.koulutustarjonta.dao.binder.BindTeachingLanguage;

@@ -41,7 +41,7 @@ public class AttachmentConverterTest extends AbstractClientConverterTest {
         assertEquals("fi", a.getLang());
         assertEquals("Opintosuoritusote", a.getName());
         assertEquals("liitteen kuvaus fi", a.getDescription());
-        assertEquals(1411372327561L, a.getDeadline().getTime());
+        assertEquals(1411372327561L, a.getDue().getTime());
         assertNotNull(a.getAddress());
     }
 }

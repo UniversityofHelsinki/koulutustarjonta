@@ -51,9 +51,9 @@ public class ApplicationOptionConverterTest extends AbstractClientConverterTest 
         assertEquals("prerequisite name fi", suitability.getFi());
         assertEquals("prerequisite name sv", suitability.getSv());
         assertEquals("prerequisite name en", suitability.getEn());
-        assertEquals("hakukelpoisuus fi", ao.getApplicationSuitabilityrequirementDescription().getFi());
-        assertEquals("hakukelpoisuus sv", ao.getApplicationSuitabilityrequirementDescription().getSv());
-        assertEquals("hakukelpoisuus en", ao.getApplicationSuitabilityrequirementDescription().getEn());
+        assertEquals("hakukelpoisuus fi", ao.getApplicationSuitabilityRequirementDescription().getFi());
+        assertEquals("hakukelpoisuus sv", ao.getApplicationSuitabilityRequirementDescription().getSv());
+        assertEquals("hakukelpoisuus en", ao.getApplicationSuitabilityRequirementDescription().getEn());
         assertEquals("lisatiedot fi", ao.getAdditionalInfo().getFi());
         assertEquals("lisatiedot sv", ao.getAdditionalInfo().getSv());
         assertEquals("lisatiedot en", ao.getAdditionalInfo().getEn());

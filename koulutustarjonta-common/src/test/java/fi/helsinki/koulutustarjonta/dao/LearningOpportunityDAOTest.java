@@ -1,9 +1,7 @@
 package fi.helsinki.koulutustarjonta.dao;
 
-import com.google.common.base.Charsets;
-import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
-import com.google.common.io.Resources;
+import fi.helsinki.koulutustarjonta.dao.jdbi.LearningOpportunityJDBI;
 import fi.helsinki.koulutustarjonta.domain.I18N;
 import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
 import fi.helsinki.koulutustarjonta.domain.TeachingLanguage;
@@ -15,7 +13,6 @@ import org.junit.Test;
 import org.skife.jdbi.v2.DBI;
 import org.skife.jdbi.v2.Handle;
 
-import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -41,25 +38,15 @@ public class LearningOpportunityDAOTest {
         String url = System.getProperty("db.url");
         String user = System.getProperty("db.user");
         String passwd = System.getProperty("db.passwd");
-
-        ds = new OracleDataSource();
-        ds.setURL(url);
-        ds.setUser(user);
-        ds.setPassword(passwd);
-
-        executeSqlFile(ds, "db/populate_test_db.sql");
-
         dbi = new DBI(url, user, passwd);
         dao = new LearningOpportunityDAO(dbi.onDemand(LearningOpportunityJDBI.class));
     }
 
     @After
     public void close() throws SQLException, IOException {
-        executeSqlFile(ds, "db/delete_test_data.sql");
         Handle h = dbi.open();
         h.execute(String.format("DELETE FROM KOULUTUS_OPETUSKIELI WHERE id_koulutus = '%s'", oid2));
         h.execute(String.format("DELETE FROM KOULUTUS WHERE id = '%s'", oid2));
-        ds.close();
     }
 
     @Test
@@ -194,21 +181,4 @@ public class LearningOpportunityDAOTest {
 
     }
 
-    private void executeSqlFile (DataSource dataSource, String file) throws IOException {
-
-        String populate = Resources.toString(Resources.getResource(file), Charsets.UTF_8).trim();
-        Iterable<String> populateCommands = Splitter.on(';')
-                .trimResults()
-                .omitEmptyStrings()
-                .split(populate);
-        populateCommands.forEach(command ->
-        {
-            try {
-                dataSource.getConnection().prepareStatement(command).execute();
-            } catch (SQLException e) {
-                e.printStackTrace();
-                throw new RuntimeException(e);
-            }
-        });
-    }
 }

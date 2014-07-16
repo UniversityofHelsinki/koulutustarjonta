@@ -1,6 +1,7 @@
 package fi.helsinki.koulutustarjonta.test;
 
 import com.google.common.collect.Lists;
+import fi.helsinki.koulutustarjonta.domain.ApplicationOption;
 import fi.helsinki.koulutustarjonta.domain.I18N;
 import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
 import fi.helsinki.koulutustarjonta.domain.TeachingLanguage;
@@ -38,5 +39,18 @@ public class Fixture {
         TeachingLanguage teachingLanguage2 = new TeachingLanguage("en", new I18N("englanti", "engelska", "English"));
         lo.setTeachingLanguages(Lists.newArrayList(teachingLanguage1, teachingLanguage2));
         return lo;
+    }
+
+    public static ApplicationOption applicationOption(String oid) {
+        ApplicationOption ao = new ApplicationOption();
+        ao.setOid(oid);
+        ao.setName(new I18N("name fi", "name sv", "name en"));
+        ao.setStartingQuota(10);
+        ao.setApplicationSuitabilityRequirementDescription(
+                new I18N("suitability desc fi", "suitability desc sv", "suitability desc en"));
+        ao.setAdditionalInfo(new I18N("info fi", "info sv", "info en"));
+        ao.setSelectionCriteria(new I18N("criteria fi", "criteria sv", "criteria en"));
+        ao.setSora(new I18N("sora fi", "sora sv", "sora en"));
+        return ao;
     }
 }
