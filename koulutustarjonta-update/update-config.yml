@@ -26,10 +26,12 @@ logging:
 
 
 tarjontaClient:
-  baseUrl: https://od.helsinki.fi/tarjonta-service/rest/v1/
+  baseUrl: https://testi.virkailija.opintopolku.fi/tarjonta-service/rest/v1/
+  # https://od.helsinki.fi/tarjonta-service/rest/v1/
 
 koodistoClient:
-  baseUrl: https://od.helsinki.fi/koodisto-service/rest/json/
+  baseUrl: https://testi.virkailija.opintopolku.fi/koodisto-service/rest/json/
+  # https://od.helsinki.fi/koodisto-service/rest/json/
 
 database:
   # the name of your JDBC driver
