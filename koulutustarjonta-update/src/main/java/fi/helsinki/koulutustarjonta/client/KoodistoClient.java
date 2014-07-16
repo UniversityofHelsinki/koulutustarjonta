@@ -5,11 +5,15 @@ import com.sun.jersey.api.client.GenericType;
 import com.sun.jersey.api.client.WebResource;
 import fi.helsinki.koulutustarjonta.client.converter.CodeConverter;
 import fi.helsinki.koulutustarjonta.domain.Code;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author Hannu Lyytikainen
  */
 public class KoodistoClient {
+
+    private static final Logger LOG = LoggerFactory.getLogger(KoodistoClient.class);
 
     private static final String CODE_PATH = "koodi";
 
@@ -22,6 +26,7 @@ public class KoodistoClient {
     }
 
     public Code getCode(String codeUri) {
+        LOG.debug(String.format("Retrieving code with uri %s", codeUri));
         String path = String.format("%s/%s/%s",
                 parseCodeGroup(codeUri), CODE_PATH, codeUri);
 

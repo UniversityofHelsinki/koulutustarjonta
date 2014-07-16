@@ -10,6 +10,7 @@ import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 /**
  * @author Hannu Lyytikainen
@@ -20,13 +21,13 @@ public class CodeConverterTest extends AbstractClientConverterTest {
     CodeConverter converter;
 
     @Before
-    public void init() throws IOException {
+    public void init() {
         converter = new CodeConverter();
-        fixture = fixture("fixtures/koodi.json");
     }
 
     @Test
-    public void testConvert() {
+    public void testConvert() throws IOException {
+        fixture = fixture("fixtures/koodi1.json");
         Code code = converter.convert(fixture);
         assertNotNull(code);
         assertEquals("pohjakoulutusvaatimuskorkeakoulut_118", code.getUri());
@@ -46,5 +47,29 @@ public class CodeConverterTest extends AbstractClientConverterTest {
         assertEquals("Avoimen yliopiston opinnot desc", description.getFi());
         assertEquals("Studier vid öppna universitetet desc", description.getSv());
         assertEquals("Studies at the Open University desc", description.getEn());
+    }
+
+    @Test
+    public void testConvertWithMissingLanguages() throws IOException {
+        fixture = fixture("fixtures/koodi2.json");
+        Code code = converter.convert(fixture);
+        assertNotNull(code);
+        assertEquals("pohjakoulutusvaatimuskorkeakoulut_118", code.getUri());
+        assertEquals("118", code.getValue());
+        I18N name = code.getName();
+        assertNotNull(name);
+        assertEquals("Avoimen yliopiston opinnot", name.getFi());
+        assertNull(name.getSv());
+        assertNull(name.getEn());
+        I18N shortName = code.getShortName();
+        assertNotNull(shortName);
+        assertEquals("Avoimen yliopiston opinnot short", shortName.getFi());
+        assertNull(shortName.getSv());
+        assertNull(shortName.getEn());
+        I18N description = code.getDescription();
+        assertNotNull(description);
+        assertEquals("Avoimen yliopiston opinnot desc", description.getFi());
+        assertNull(description.getSv());
+        assertNull(description.getEn());
     }
 }
