@@ -38,7 +38,7 @@ public class CodeConverter {
         code.setDescription(new I18N(
                 fi.map(x -> x.get("kuvaus").textValue()).orElse(null),
                 sv.map(x -> x.get("kuvaus").textValue()).orElse(null),
-                sv.map(x -> x.get("kuvaus").textValue()).orElse(null)));
+                en.map(x -> x.get("kuvaus").textValue()).orElse(null)));
 
         return code;
     }
