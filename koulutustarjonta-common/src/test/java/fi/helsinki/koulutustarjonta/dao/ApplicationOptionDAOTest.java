@@ -16,8 +16,7 @@ public class ApplicationOptionDAOTest extends BaseDAOTest {
 
     DBI dbi;
     ApplicationOptionDAO dao;
-    String oid1 = "1.2.3";
-
+    ApplicationOption fixture1 = Fixture.applicationOption();
 
     @Before
     public void init() {
@@ -30,16 +29,18 @@ public class ApplicationOptionDAOTest extends BaseDAOTest {
 
     @After
     public void destroy() {
-
         Handle h = dbi.open();
-        h.execute(String.format("DELETE FROM hakukohde WHERE id = '%s'", oid1));
+        h.execute("DELETE FROM liite WHERE id_hakukohde = ?", fixture1.getOid());
+        fixture1.getExams().forEach(
+                exam -> h.execute("DELETE FROM valintakoe_ak WHERE id_valintakoe = ?", exam.getOid()));
+        h.execute("DELETE FROM valintakoe WHERE id_hakukohde = ?", fixture1.getOid());
+        h.execute("DELETE FROM hakukohde WHERE id = ?", fixture1.getOid());
     }
 
 
     @Test
     public void testSave() {
-        ApplicationOption ao = Fixture.applicationOption(oid1);
-        dao.save(ao);
+        dao.save(fixture1);
 
     }
 

@@ -1,10 +1,9 @@
 package fi.helsinki.koulutustarjonta.test;
 
 import com.google.common.collect.Lists;
-import fi.helsinki.koulutustarjonta.domain.ApplicationOption;
-import fi.helsinki.koulutustarjonta.domain.I18N;
-import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
-import fi.helsinki.koulutustarjonta.domain.TeachingLanguage;
+import fi.helsinki.koulutustarjonta.domain.*;
+
+import java.util.Date;
 
 /**
  * @author Hannu Lyytikainen
@@ -41,9 +40,9 @@ public class Fixture {
         return lo;
     }
 
-    public static ApplicationOption applicationOption(String oid) {
+    public static ApplicationOption applicationOption() {
         ApplicationOption ao = new ApplicationOption();
-        ao.setOid(oid);
+        ao.setOid("ao test oid 1");
         ao.setName(new I18N("name fi", "name sv", "name en"));
         ao.setStartingQuota(10);
         ao.setApplicationSuitabilityRequirementDescription(
@@ -51,6 +50,39 @@ public class Fixture {
         ao.setAdditionalInfo(new I18N("info fi", "info sv", "info en"));
         ao.setSelectionCriteria(new I18N("criteria fi", "criteria sv", "criteria en"));
         ao.setSora(new I18N("sora fi", "sora sv", "sora en"));
+        Exam exam = new Exam();
+        exam.setOid("examoid");
+        exam.setDescription("exam description");
+        exam.setLang("fi");
+        exam.setType("exam type");
+        ExamEvent event = new ExamEvent();
+        event.setOid("event oid");
+        event.setInfo("exam info");
+        Date starts = new Date();
+        Date ends = new Date(starts.getTime() + 3600000L);
+        event.setStarts(starts);
+        event.setEnds(ends);
+        Address address = new Address();
+        address.setPostalCode("00100");
+        address.setPostOffice("post office");
+        address.setStreet("street address 1");
+        event.setAddress(address);
+        exam.setEvents(Lists.newArrayList(event));
+        ao.setExams(Lists.newArrayList(exam));
+        Attachment attachment = new Attachment();
+        attachment.setOid("attachment oid");
+        attachment.setName("attachment name");
+        attachment.setLang("fi");
+        attachment.setDescription("attachment description");
+        attachment.setDue(new Date());
+        Address address2 = new Address();
+        address2.setPostalCode("00200");
+        address2.setPostOffice("post office2");
+        address2.setStreet("street address 2");
+        attachment.setAddress(address);
+        ao.setAttachments(Lists.newArrayList(attachment));
         return ao;
     }
+
+
 }
