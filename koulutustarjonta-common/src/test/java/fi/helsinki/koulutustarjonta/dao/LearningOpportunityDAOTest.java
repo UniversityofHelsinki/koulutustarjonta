@@ -23,7 +23,7 @@ import static org.junit.Assert.assertNotNull;
 /**
  * @author Hannu Lyytikainen
  */
-public class LearningOpportunityDAOTest {
+public class LearningOpportunityDAOTest extends BaseDAOTest {
 
     DBI dbi;
     LearningOpportunityDAO dao;
