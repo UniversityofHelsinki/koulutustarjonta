@@ -1,6 +1,7 @@
 package fi.helsinki.koulutustarjonta.dao;
 
 import fi.helsinki.koulutustarjonta.dao.jdbi.ApplicationOptionJDBI;
+import fi.helsinki.koulutustarjonta.dao.mapper.ApplicationOptionObjectGraphBuilder;
 import fi.helsinki.koulutustarjonta.domain.ApplicationOption;
 
 /**
@@ -23,6 +24,13 @@ public class ApplicationOptionDAO {
         applicationOption.getExams().forEach(exam -> jdbi.upsertExamEvents(exam.getEvents(), exam.getOid()));
         jdbi.removeAttachments(applicationOption.getOid());
         jdbi.insertAttachments(applicationOption.getAttachments(), applicationOption.getOid());
+    }
+
+    public ApplicationOption findByOid(String oid) {
+
+        ApplicationOption applicationOption = ApplicationOptionObjectGraphBuilder.build(jdbi.findJoinRowsById(oid)).get(0);
+        return applicationOption;
+
     }
 
 }

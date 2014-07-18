@@ -4,14 +4,18 @@ import fi.helsinki.koulutustarjonta.dao.binder.BindApplicationOption;
 import fi.helsinki.koulutustarjonta.dao.binder.BindAttachment;
 import fi.helsinki.koulutustarjonta.dao.binder.BindExam;
 import fi.helsinki.koulutustarjonta.dao.binder.BindExamEvent;
+import fi.helsinki.koulutustarjonta.dao.mapper.ApplicationOptionJoinRowMapper;
+import fi.helsinki.koulutustarjonta.dao.util.ApplicationOptionJoinRow;
 import fi.helsinki.koulutustarjonta.domain.ApplicationOption;
 import fi.helsinki.koulutustarjonta.domain.Attachment;
 import fi.helsinki.koulutustarjonta.domain.Exam;
 import fi.helsinki.koulutustarjonta.domain.ExamEvent;
 import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.SqlBatch;
+import org.skife.jdbi.v2.sqlobject.SqlQuery;
 import org.skife.jdbi.v2.sqlobject.SqlUpdate;
 import org.skife.jdbi.v2.sqlobject.customizers.BatchChunkSize;
+import org.skife.jdbi.v2.sqlobject.customizers.Mapper;
 
 import java.util.List;
 
@@ -54,6 +58,45 @@ public interface ApplicationOptionJDBI {
             ":lisatiedot_fi, :lisatiedot_sv, :lisatiedot_en, :valintaper_fi, :valintaper_sv, :valintaper_en, " +
             ":sorakuvaus_fi, :sorakuvaus_sv, :sorakuvaus_en)")
     void upsert(@BindApplicationOption ApplicationOption applicationOption);
+
+    @SqlQuery("select  " +
+            "h.*,  " +
+            "v.id as v_id, v.kieli as v_kieli, v.tyyppi as v_tyyppi,  v.kuvaus as v_kuvaus, " +
+            "ak.id as ak_id, ak.alkaa as ak_alkaa, ak.loppuu as ak_loppuu, " +
+            "ak.kuvaus as ak_kuvaus, ak.osoite as ak_osoite, ak.postinumero as ak_postinumero, " +
+            "ak.ptoimipaikka as ak_ptoimipaikka, " +
+            "l.id as l_id, l.kieli as l_kieli, l.nimi as l_nimi, l.erapaiva as l_erapaiva, " +
+            "l.kuvaus as l_kuvaus, l.osoite as l_osoite, l.postinumero as l_postinumero, " +
+            "l.ptoimipaikka as l_ptoimipaikka " +
+            "from hakukohde h " +
+            "inner join " +
+            "valintakoe v on v.id_hakukohde = h.id " +
+            "inner join " +
+            "valintakoe_ak ak on ak.id_valintakoe = v.id " +
+            "inner join " +
+            "liite l on l.id_hakukohde = h.id " +
+            "where h.id = :id")
+    @Mapper(ApplicationOptionJoinRowMapper.class)
+    List<ApplicationOptionJoinRow> findJoinRowsById(@Bind("id") String id);
+
+    @SqlQuery("select  " +
+            "h.*,  " +
+            "v.id as v_id, v.kieli as v_kieli, v.tyyppi as v_tyyppi,  v.kuvaus as v_kuvaus, " +
+            "ak.id as ak_id, ak.alkaa as ak_alkaa, ak.loppuu as ak_loppuu, " +
+            "ak.kuvaus as ak_kuvaus, ak.osoite as ak_osoite, ak.postinumero as ak_postinumero, " +
+            "ak.ptoimipaikka as ak_ptoimipaikka, " +
+            "l.id as l_id, l.kieli as l_kieli, l.nimi as l_nimi, l.erapaiva as l_erapaiva, " +
+            "l.kuvaus as l_kuvaus, l.osoite as l_osoite, l.postinumero as l_postinumero, " +
+            "l.ptoimipaikka as l_ptoimipaikka " +
+            "from hakukohde h " +
+            "inner join " +
+            "valintakoe v on v.id_hakukohde = h.id " +
+            "inner join " +
+            "valintakoe_ak ak on ak.id_valintakoe = v.id " +
+            "inner join " +
+            "liite l on l.id_hakukohde = h.id")
+    @Mapper(ApplicationOptionJoinRowMapper.class)
+    List<ApplicationOptionJoinRow> findJoinRows();
 
     @SqlBatch("MERGE INTO valintakoe USING dual on ( id = :id ) " +
             "WHEN MATCHED THEN UPDATE SET " +

@@ -8,6 +8,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
+ * Builds LearninOpportunity objects from JOIN database
+ * query results.
+ *
  * @author Hannu Lyytikainen
  */
 public class LearningOpportunityObjectGraphBuilder {
