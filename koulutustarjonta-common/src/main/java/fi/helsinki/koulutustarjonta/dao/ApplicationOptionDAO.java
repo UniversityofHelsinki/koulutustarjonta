@@ -4,6 +4,8 @@ import fi.helsinki.koulutustarjonta.dao.jdbi.ApplicationOptionJDBI;
 import fi.helsinki.koulutustarjonta.dao.mapper.ApplicationOptionObjectGraphBuilder;
 import fi.helsinki.koulutustarjonta.domain.ApplicationOption;
 
+import java.util.List;
+
 /**
  * @author Hannu Lyytikainen
  */
@@ -27,10 +29,11 @@ public class ApplicationOptionDAO {
     }
 
     public ApplicationOption findByOid(String oid) {
-
         ApplicationOption applicationOption = ApplicationOptionObjectGraphBuilder.build(jdbi.findJoinRowsById(oid)).get(0);
         return applicationOption;
-
     }
 
+    public List<ApplicationOption> findAll() {
+        return ApplicationOptionObjectGraphBuilder.build(jdbi.findJoinRows());
+    }
 }
