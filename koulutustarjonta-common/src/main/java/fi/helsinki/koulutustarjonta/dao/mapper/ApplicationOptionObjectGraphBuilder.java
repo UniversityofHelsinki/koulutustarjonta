@@ -2,6 +2,7 @@ package fi.helsinki.koulutustarjonta.dao.mapper;
 
 import fi.helsinki.koulutustarjonta.dao.util.ApplicationOptionJoinRow;
 import fi.helsinki.koulutustarjonta.domain.ApplicationOption;
+import fi.helsinki.koulutustarjonta.domain.Attachment;
 import fi.helsinki.koulutustarjonta.domain.Exam;
 import fi.helsinki.koulutustarjonta.domain.ExamEvent;
 
@@ -37,6 +38,14 @@ public class ApplicationOptionObjectGraphBuilder {
                 .collect(toList());
 
         ao.setExams(exams);
+
+        List<Attachment> attachments = joinRows.stream()
+                .collect(groupingBy(row -> row.getAttachment().getOid()))
+                .values()
+                .stream()
+                .map(rows -> resolveAttachment(rows))
+                .collect(toList());
+        ao.setAttachments(attachments);
         return ao;
     }
 
@@ -56,6 +65,10 @@ public class ApplicationOptionObjectGraphBuilder {
 
     private static ExamEvent resolveExamEvent(List<ApplicationOptionJoinRow> joinRows) {
         return joinRows.get(0).getExamEvent();
+    }
+
+    private static Attachment resolveAttachment(List<ApplicationOptionJoinRow> joinRows) {
+        return joinRows.get(0).getAttachment();
     }
 
 }
