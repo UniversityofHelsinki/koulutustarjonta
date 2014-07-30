@@ -45,7 +45,7 @@ run {
 }
 
 
-task rpm(type: Rpm, dependsOn: 'jar') << {
+task rpm(type: Rpm, dependsOn: 'jar') {
     packageName = 'koulutustarjonta-query'
     release = commitHash()
     arch = NOARCH

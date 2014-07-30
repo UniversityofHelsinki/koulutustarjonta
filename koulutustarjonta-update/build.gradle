@@ -44,7 +44,7 @@ run {
     args 'server', 'update-config.yml'
 }
 
-task rpm(type: Rpm, dependsOn: 'jar') << {
+task rpm(type: Rpm, dependsOn: 'jar') {
     packageName = 'koulutustarjonta-update'
     release = commitHash()
     arch = NOARCH
