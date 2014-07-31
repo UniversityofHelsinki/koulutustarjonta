@@ -132,7 +132,11 @@ public interface ApplicationOptionJDBI {
             "(kuvaus_fi, kuvaus_sv, kuvaus_en, id_hakukohde) " +
             "VALUES (:kuvaus_fi, :kuvaus_sv, :kuvaus_en, :id_hakukohde)")
     @BatchChunkSize(10)
-    void insertApplicationSuitabilityRequirements(
+    void insertRequirements(
             @BindRequirement List<Requirement> requirements,
             @Bind("id_hakukohde") String applicationOptionOid);
+
+    @SqlUpdate("DELETE FROM hakukelp " +
+            "WHERE id_hakukohde=:id_hakukohde")
+    void removeRequirements(@Bind("id_hakukohde") String applicationOptionOid);
 }

@@ -31,7 +31,8 @@ public class ApplicationOptionDAO {
             jdbi.insertAttachments(applicationOption.getAttachments(), applicationOption.getOid());
         }
         if (applicationOption.getRequirements() != null) {
-            jdbi.insertApplicationSuitabilityRequirements(applicationOption.getRequirements(),
+            jdbi.removeRequirements(applicationOption.getOid());
+            jdbi.insertRequirements(applicationOption.getRequirements(),
                     applicationOption.getOid());
         }
     }
