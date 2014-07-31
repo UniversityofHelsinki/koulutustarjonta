@@ -45,7 +45,7 @@ public class Fixture {
         ao.setOid("ao test oid 1");
         ao.setName(new I18N("name fi", "name sv", "name en"));
         ao.setStartingQuota(10);
-        ao.setApplicationSuitabilityRequirementDescription(
+        ao.setRequirementDescription(
                 new I18N("suitability desc fi", "suitability desc sv", "suitability desc en"));
         ao.setAdditionalInfo(new I18N("info fi", "info sv", "info en"));
         ao.setSelectionCriteria(new I18N("criteria fi", "criteria sv", "criteria en"));

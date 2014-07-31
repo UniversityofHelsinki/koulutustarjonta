@@ -22,10 +22,18 @@ public class ApplicationOptionDAO {
         if (updated == 0) {
             jdbi.insert(applicationOption);
         }
-        jdbi.upsertExams(applicationOption.getExams(), applicationOption.getOid());
-        applicationOption.getExams().forEach(exam -> jdbi.upsertExamEvents(exam.getEvents(), exam.getOid()));
-        jdbi.removeAttachments(applicationOption.getOid());
-        jdbi.insertAttachments(applicationOption.getAttachments(), applicationOption.getOid());
+        if (applicationOption.getExams() != null) {
+            jdbi.upsertExams(applicationOption.getExams(), applicationOption.getOid());
+            applicationOption.getExams().forEach(exam -> jdbi.upsertExamEvents(exam.getEvents(), exam.getOid()));
+        }
+        if (applicationOption.getAttachments() != null) {
+            jdbi.removeAttachments(applicationOption.getOid());
+            jdbi.insertAttachments(applicationOption.getAttachments(), applicationOption.getOid());
+        }
+        if (applicationOption.getRequirements() != null) {
+            jdbi.insertApplicationSuitabilityRequirements(applicationOption.getRequirements(),
+                    applicationOption.getOid());
+        }
     }
 
     public ApplicationOption findByOid(String oid) {

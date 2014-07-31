@@ -17,13 +17,13 @@ public class ApplicationOption {
     private String oid;
     private I18N name;
     private int startingQuota;//aloituspaikat
-    private I18N applicationSuitabilityRequirementDescription;//hakukelpoisuusvaatimus kuvaus
+    private I18N requirementDescription;//hakukelpoisuusvaatimus kuvaus
     private I18N additionalInfo;//lisatiedot
     private I18N selectionCriteria;//valintaperustekuvaus
     private I18N sora;//sora kuvaus
     private List<Exam> exams;//valintakokeet
     private List<Attachment> attachments;//liitteet
-    private List<I18N> applicationSuitabilityRequirements;//hakukelpoisuusvaatimukset
+    private List<Requirement> requirements;//hakukelpoisuusvaatimukset
     private ApplicationSystem applicationSystem;//haku
 
 }

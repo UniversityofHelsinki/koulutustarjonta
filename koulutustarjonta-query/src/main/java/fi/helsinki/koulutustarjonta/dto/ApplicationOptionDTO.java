@@ -12,13 +12,13 @@ public class ApplicationOptionDTO {
     private String oid;
     private I18NDTO name;
     private int startingQuota;
-    private I18NDTO applicationSuitabilityRequirementDescription;
+    private I18NDTO requirementDescription;
     private I18NDTO additionalInfo;
     private I18NDTO selectionCriteria;
     private I18NDTO sora;
     private List<ExamDTO> exams;
     private List<AttachmentDTO> attachments;
-    private List<I18NDTO> applicationSuitabilityRequirements;
+    private List<I18NDTO> requirements;
     private ApplicationSystemDTO applicationSystem;
 
     public ApplicationOptionDTO() {
@@ -53,12 +53,12 @@ public class ApplicationOptionDTO {
 
 
     @JsonProperty("hakukelpoisuusvaatimus_kuvaus")
-    public I18NDTO getApplicationSuitabilityRequirementDescription() {
-        return applicationSuitabilityRequirementDescription;
+    public I18NDTO getRequirementDescription() {
+        return requirementDescription;
     }
 
-    public void setApplicationSuitabilityRequirementDescription(I18NDTO applicationSuitabilityRequirementDescription) {
-        this.applicationSuitabilityRequirementDescription = applicationSuitabilityRequirementDescription;
+    public void setRequirementDescription(I18NDTO requirementDescription) {
+        this.requirementDescription = requirementDescription;
     }
 
     @JsonProperty("lisatiedot")
@@ -107,12 +107,12 @@ public class ApplicationOptionDTO {
     }
 
     @JsonProperty("hakukelpoisuusvaatimukset")
-    public List<I18NDTO> getApplicationSuitabilityRequirements() {
-        return applicationSuitabilityRequirements;
+    public List<I18NDTO> getRequirements() {
+        return requirements;
     }
 
-    public void setApplicationSuitabilityRequirements(List<I18NDTO> applicationSuitabilityRequirements) {
-        this.applicationSuitabilityRequirements = applicationSuitabilityRequirements;
+    public void setRequirements(List<I18NDTO> requirements) {
+        this.requirements = requirements;
     }
 
     @JsonProperty("haku")

@@ -1,10 +1,7 @@
 package fi.helsinki.koulutustarjonta.dao.mapper;
 
 import fi.helsinki.koulutustarjonta.dao.util.ApplicationOptionJoinRow;
-import fi.helsinki.koulutustarjonta.domain.ApplicationOption;
-import fi.helsinki.koulutustarjonta.domain.Attachment;
-import fi.helsinki.koulutustarjonta.domain.Exam;
-import fi.helsinki.koulutustarjonta.domain.ExamEvent;
+import fi.helsinki.koulutustarjonta.domain.*;
 
 import java.util.List;
 
@@ -36,7 +33,6 @@ public class ApplicationOptionObjectGraphBuilder {
                 .stream()
                 .map(rows -> resolveExam(rows))
                 .collect(toList());
-
         ao.setExams(exams);
 
         List<Attachment> attachments = joinRows.stream()
@@ -46,6 +42,15 @@ public class ApplicationOptionObjectGraphBuilder {
                 .map(rows -> resolveAttachment(rows))
                 .collect(toList());
         ao.setAttachments(attachments);
+
+        List<Requirement> requirements = joinRows.stream()
+                .collect(groupingBy(row -> row.getRequirement().getId()))
+                .values()
+                .stream()
+                .map(rows -> resolveRequirement(rows))
+                .collect(toList());
+        ao.setRequirements(requirements);
+
         return ao;
     }
 
@@ -69,6 +74,10 @@ public class ApplicationOptionObjectGraphBuilder {
 
     private static Attachment resolveAttachment(List<ApplicationOptionJoinRow> joinRows) {
         return joinRows.get(0).getAttachment();
+    }
+
+    private static Requirement resolveRequirement(List<ApplicationOptionJoinRow> joinRows) {
+        return joinRows.get(0).getRequirement();
     }
 
 }

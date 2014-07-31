@@ -37,7 +37,6 @@ public class ApplicationOptionDAOTest extends BaseDAOTest {
         h.execute("DELETE FROM hakukohde WHERE id = ?", fixture1.getOid());
     }
 
-
     @Test
     public void testSave() {
         dao.save(fixture1);

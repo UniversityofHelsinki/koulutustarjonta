@@ -1,10 +1,7 @@
 package fi.helsinki.koulutustarjonta.dao.mapper;
 
 import fi.helsinki.koulutustarjonta.dao.util.ApplicationOptionJoinRow;
-import fi.helsinki.koulutustarjonta.domain.ApplicationOption;
-import fi.helsinki.koulutustarjonta.domain.Attachment;
-import fi.helsinki.koulutustarjonta.domain.Exam;
-import fi.helsinki.koulutustarjonta.domain.ExamEvent;
+import fi.helsinki.koulutustarjonta.domain.*;
 import org.skife.jdbi.v2.StatementContext;
 import org.skife.jdbi.v2.tweak.ResultSetMapper;
 
@@ -21,12 +18,14 @@ public class ApplicationOptionJoinRowMapper implements ResultSetMapper<Applicati
     private final ExamMapper examMapper;
     private final ExamEventMapper eventMapper;
     private final AttachmentMapper attachmentMapper;
+    private final RequirementMapper requirementMapper;
 
 
     public ApplicationOptionJoinRowMapper() {
         this.examMapper = new ExamMapper();
         this.eventMapper = new ExamEventMapper();
         this.attachmentMapper = new AttachmentMapper();
+        this.requirementMapper = new RequirementMapper();
     }
 
     @Override
@@ -35,13 +34,14 @@ public class ApplicationOptionJoinRowMapper implements ResultSetMapper<Applicati
         ao.setOid(r.getString("id"));
         ao.setName(resolveI18N(r, "nimi"));
         ao.setStartingQuota(r.getInt("aloituspaikat"));
-        ao.setApplicationSuitabilityRequirementDescription(resolveI18N(r, "hakukelp"));
+        ao.setRequirementDescription(resolveI18N(r, "hakukelp_kuvaus"));
         ao.setAdditionalInfo(resolveI18N(r, "lisatiedot"));
         ao.setSelectionCriteria(resolveI18N(r, "valintaper"));
         ao.setSora(resolveI18N(r, "sorakuvaus"));
         Exam exam = examMapper.map(index, r, ctx);
         ExamEvent event = eventMapper.map(index, r, ctx);
         Attachment attachment = attachmentMapper.map(index, r, ctx);
-        return new ApplicationOptionJoinRow(ao, exam, event, attachment);
+        Requirement requirement = requirementMapper.map(index, r,ctx);
+        return new ApplicationOptionJoinRow(ao, exam, event, attachment, requirement);
     }
 }

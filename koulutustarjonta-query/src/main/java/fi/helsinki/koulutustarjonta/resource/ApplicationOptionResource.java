@@ -2,7 +2,7 @@ package fi.helsinki.koulutustarjonta.resource;
 
 import fi.helsinki.koulutustarjonta.dao.ApplicationOptionDAO;
 import fi.helsinki.koulutustarjonta.dto.ApplicationOptionDTO;
-import org.modelmapper.ModelMapper;
+import fi.helsinki.koulutustarjonta.mapping.ApplicationOptionModelMapper;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -20,11 +20,11 @@ import java.util.stream.Collectors;
 public class ApplicationOptionResource {
 
     private final ApplicationOptionDAO applicationOptionDAO;
-    private final ModelMapper modelMapper;
+    private final ApplicationOptionModelMapper modelMapper;
 
     public ApplicationOptionResource(ApplicationOptionDAO applicationOptionDAO) {
         this.applicationOptionDAO = applicationOptionDAO;
-        this.modelMapper = new ModelMapper();
+        this.modelMapper = new ApplicationOptionModelMapper();
     }
 
     @GET

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.collect.Lists;
 import fi.helsinki.koulutustarjonta.client.KoodistoClient;
 import fi.helsinki.koulutustarjonta.domain.ApplicationOption;
+import fi.helsinki.koulutustarjonta.domain.Requirement;
 
 import java.util.stream.Collectors;
 
@@ -27,11 +28,12 @@ public class ApplicationOptionConverter extends KoodistoAwareConverter {
         ao.setOid(content.get("oid").textValue());
         ao.setName(convertToI18N(content.get("hakukohteenNimet")));
         ao.setStartingQuota(content.get("aloituspaikatLkm").intValue());
-        ao.setApplicationSuitabilityRequirements(
+        ao.setRequirements(
                 Lists.newArrayList(content.get("hakukelpoisuusvaatimusUris")).stream()
-                        .map(uri -> getCode(uri.textValue()).getName()).collect(Collectors.toList())
+                        .map(uri -> new Requirement(getCode(uri.textValue()).getName()))
+                        .collect(Collectors.toList())
         );
-        ao.setApplicationSuitabilityRequirementDescription(convertToI18N(content.get("hakukelpoisuusVaatimusKuvaukset")));
+        ao.setRequirementDescription(convertToI18N(content.get("hakukelpoisuusVaatimusKuvaukset")));
         ao.setAdditionalInfo(convertToI18N(content.get("lisatiedot")));
         ao.setSelectionCriteria(convertToI18N(content.get("valintaperusteKuvaukset")));
         ao.setSora(convertToI18N(content.get("soraKuvaukset")));
@@ -43,4 +45,5 @@ public class ApplicationOptionConverter extends KoodistoAwareConverter {
                 .collect(Collectors.toList()));
         return ao;
     }
+
 }
