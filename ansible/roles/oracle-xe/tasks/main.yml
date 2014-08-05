@@ -25,4 +25,9 @@
     shell: ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe /u01/app/oracle/product/11.2.0/xe/bin/sqlplus
            system/manager@localhost < /src/oracle/set_listener.sql
 
+  - name: Increase number of processes
+    shell: ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe /u01/app/oracle/product/11.2.0/xe/bin/sqlplus
+           system/manager@localhost <<< 'alter system set processes=150 scope=spfile;'
 
+  - name: Restart DB
+    shell: /etc/init.d/oracle-xe restart
