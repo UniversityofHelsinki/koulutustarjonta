@@ -6,7 +6,6 @@ import fi.helsinki.koulutustarjonta.domain.I18N;
 import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
 import fi.helsinki.koulutustarjonta.domain.TeachingLanguage;
 import fi.helsinki.koulutustarjonta.test.Fixture;
-import oracle.jdbc.pool.OracleDataSource;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,7 +26,6 @@ public class LearningOpportunityDAOTest extends BaseDAOTest {
 
     DBI dbi;
     LearningOpportunityDAO dao;
-    OracleDataSource ds;
 
     final String oid1 = "1.2.3";
     final String oid2 = "1.2.3.4";
