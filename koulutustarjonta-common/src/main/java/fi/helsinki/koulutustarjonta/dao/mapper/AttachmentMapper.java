@@ -22,7 +22,7 @@ public class AttachmentMapper implements ResultSetMapper<Attachment> {
             attachment.setOid(r.getString("l_id"));
             attachment.setLang(r.getString("l_kieli"));
             attachment.setName(r.getString("l_nimi"));
-            attachment.setDue(r.getDate("l_erapaiva"));
+            attachment.setDue(r.getTimestamp("l_erapaiva"));
             attachment.setDescription(r.getString("l_kuvaus"));
             Address address = new Address();
             address.setStreet(r.getString("l_osoite"));

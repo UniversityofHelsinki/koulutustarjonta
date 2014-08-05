@@ -21,8 +21,8 @@ public class ExamEventMapper implements ResultSetMapper<ExamEvent> {
         else {
             ExamEvent event = new ExamEvent();
             event.setOid(r.getString("ak_id"));
-            event.setStarts(r.getDate("ak_alkaa"));
-            event.setEnds(r.getDate("ak_loppuu"));
+            event.setStarts(r.getTimestamp("ak_alkaa"));
+            event.setEnds(r.getTimestamp("ak_loppuu"));
             event.setInfo(r.getString("ak_kuvaus"));
             Address address = new Address();
             address.setStreet(r.getString("ak_osoite"));
