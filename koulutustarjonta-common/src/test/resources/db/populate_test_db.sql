@@ -1,3 +1,4 @@
+-- koulutus
 INSERT INTO KOULUTUS
             (id,  tutkintonimike_fi, tutkintonimike_sv, tutkintonimike_en,
             opintoala_fi, opintoala_sv, opintoala_en,
@@ -48,3 +49,28 @@ INSERT INTO KOULUTUS_OPETUSKIELI (id_koulutus, id_opetuskieli)
 VALUES ('1.2.3', 'fi');
 INSERT INTO KOULUTUS_OPETUSKIELI (id_koulutus, id_opetuskieli)
 VALUES ('1.2.3', 'sv');
+
+-- hakukohde
+INSERT INTO hakukohde
+            (id, nimi_fi, nimi_sv, nimi_en, aloituspaikat,
+            sorakuvaus_fi, sorakuvaus_sv, sorakuvaus_en,
+            lisatiedot_fi, lisatiedot_sv, lisatiedot_en,
+            valintaper_fi, valintaper_sv, valintaper_en,
+            hakukelp_kuvaus_fi, hakukelp_kuvaus_sv, hakukelp_kuvaus_en)
+VALUES ('2.1.2.3', 'nimi fi', 'nimi sv', 'nimi en', 11, 'sora fi', 'sora sv', 'sora en',
+'lisatiedot fi', 'lisatiedot sv', 'lisatiedot en',
+'valintaper fi', 'valintaper sv', 'valintaper en',
+'kuvaus fi', 'kuvaus sv', 'kuvaus en');
+
+INSERT INTO valintakoe
+            (id, id_hakukohde, kieli, tyyppi, kuvaus)
+VALUES ('valintakoe_id1', '2.1.2.3', 'fi', 'koetyyppi', 'kokeen kuvaus');
+
+INSERT INTO valintakoe_ak
+(id, id_valintakoe, alkaa, loppuu, kuvaus, osoite, postinumero, ptoimipaikka)
+VALUES
+('ajankohta_id1', 'valintakoe_id1',
+TO_DATE('2015/01/03 15:00:00', 'yyyy/mm/dd hh24:mi:ss'),
+TO_DATE('2015/01/03 18:00:00', 'yyyy/mm/dd hh24:mi:ss'),
+'valintakoeajankohta kuvaus', 'katuosoite', 'postinumero',
+'postitoimipaikka');

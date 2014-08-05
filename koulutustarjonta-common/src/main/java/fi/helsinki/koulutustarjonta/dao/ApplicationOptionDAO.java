@@ -1,8 +1,12 @@
 package fi.helsinki.koulutustarjonta.dao;
 
+import fi.helsinki.koulutustarjonta.dao.exception.ResourceNotFound;
 import fi.helsinki.koulutustarjonta.dao.jdbi.ApplicationOptionJDBI;
 import fi.helsinki.koulutustarjonta.dao.mapper.ApplicationOptionObjectGraphBuilder;
+import fi.helsinki.koulutustarjonta.dao.util.ApplicationOptionJoinRow;
 import fi.helsinki.koulutustarjonta.domain.ApplicationOption;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -10,6 +14,8 @@ import java.util.List;
  * @author Hannu Lyytikainen
  */
 public class ApplicationOptionDAO {
+
+    private static final Logger LOG = LoggerFactory.getLogger(ApplicationOptionDAO.class);
 
     private final ApplicationOptionJDBI jdbi;
 
@@ -37,9 +43,14 @@ public class ApplicationOptionDAO {
         }
     }
 
-    public ApplicationOption findByOid(String oid) {
-        ApplicationOption applicationOption = ApplicationOptionObjectGraphBuilder.build(jdbi.findJoinRowsById(oid)).get(0);
-        return applicationOption;
+    public ApplicationOption findByOid(String oid) throws ResourceNotFound {
+        List<ApplicationOptionJoinRow> rows = jdbi.findJoinRowsById(oid);
+        if (rows.size() == 0) {
+            throw new ResourceNotFound(ApplicationOption.class, oid);
+        }
+        else {
+           return ApplicationOptionObjectGraphBuilder.build(rows).get(0);
+        }
     }
 
     public List<ApplicationOption> findAll() {

@@ -1,6 +1,7 @@
 package fi.helsinki.koulutustarjonta.resource;
 
 import fi.helsinki.koulutustarjonta.dao.ApplicationOptionDAO;
+import fi.helsinki.koulutustarjonta.dao.exception.ResourceNotFound;
 import fi.helsinki.koulutustarjonta.dto.ApplicationOptionDTO;
 import fi.helsinki.koulutustarjonta.mapping.ApplicationOptionModelMapper;
 
@@ -36,7 +37,7 @@ public class ApplicationOptionResource {
 
     @GET
     @Path("/{oid}")
-    public ApplicationOptionDTO getApplicationOption(@PathParam("oid") String oid) {
+    public ApplicationOptionDTO getApplicationOption(@PathParam("oid") String oid) throws ResourceNotFound{
         return modelMapper.map(applicationOptionDAO.findByOid(oid), ApplicationOptionDTO.class);
     }
 

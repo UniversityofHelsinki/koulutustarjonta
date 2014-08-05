@@ -28,6 +28,7 @@ public class ApplicationOptionObjectGraphBuilder {
         ApplicationOption ao = joinRows.get(0).getApplicationOption();
 
         List<Exam> exams = joinRows.stream()
+                .filter(row -> row.getExam() != null)
                 .collect(groupingBy(row -> row.getExam().getOid()))
                 .values()
                 .stream()
@@ -36,6 +37,7 @@ public class ApplicationOptionObjectGraphBuilder {
         ao.setExams(exams);
 
         List<Attachment> attachments = joinRows.stream()
+                .filter(row -> row.getAttachment() != null)
                 .collect(groupingBy(row -> row.getAttachment().getOid()))
                 .values()
                 .stream()
@@ -44,6 +46,7 @@ public class ApplicationOptionObjectGraphBuilder {
         ao.setAttachments(attachments);
 
         List<Requirement> requirements = joinRows.stream()
+                .filter(row -> row.getRequirement() != null)
                 .collect(groupingBy(row -> row.getRequirement().getId()))
                 .values()
                 .stream()
@@ -58,6 +61,7 @@ public class ApplicationOptionObjectGraphBuilder {
         Exam exam = joinRows.get(0).getExam();
 
         List<ExamEvent> events = joinRows.stream()
+                .filter(row -> row.getExamEvent() != null)
                 .collect(groupingBy(row -> row.getExamEvent().getOid()))
                 .values()
                 .stream()

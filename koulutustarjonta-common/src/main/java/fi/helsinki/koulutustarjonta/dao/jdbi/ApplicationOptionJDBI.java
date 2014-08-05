@@ -65,13 +65,13 @@ public interface ApplicationOptionJDBI {
             "hk.id as hk_id, hk.kuvaus_fi as hk_kuvaus_fi, " +
             "hk.kuvaus_sv as hk_kuvaus_sv, hk.kuvaus_en as hk_kuvaus_en " +
             "from hakukohde h " +
-            "inner join " +
+            "left join " +
             "valintakoe v on v.id_hakukohde = h.id " +
-            "inner join " +
+            "left join " +
             "valintakoe_ak ak on ak.id_valintakoe = v.id " +
-            "inner join " +
+            "left join " +
             "liite l on l.id_hakukohde = h.id " +
-            "inner join " +
+            "left join " +
             "hakukelp hk on hk.id_hakukohde = h.id " +
             "where h.id = :id")
     @Mapper(ApplicationOptionJoinRowMapper.class)
@@ -89,13 +89,13 @@ public interface ApplicationOptionJDBI {
             "hk.id as hk_id, hk.kuvaus_fi as hk_kuvaus_fi, " +
             "hk.kuvaus_sv as hk_kuvaus_sv, hk.kuvaus_en as hk_kuvaus_en " +
             "from hakukohde h " +
-            "inner join " +
+            "left join " +
             "valintakoe v on v.id_hakukohde = h.id " +
-            "inner join " +
+            "left join " +
             "valintakoe_ak ak on ak.id_valintakoe = v.id " +
-            "inner join " +
+            "left join " +
             "liite l on l.id_hakukohde = h.id " +
-            "inner join " +
+            "left join " +
             "hakukelp hk on hk.id_hakukohde = h.id ")
     @Mapper(ApplicationOptionJoinRowMapper.class)
     List<ApplicationOptionJoinRow> findJoinRows();

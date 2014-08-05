@@ -40,9 +40,9 @@ public class Fixture {
         return lo;
     }
 
-    public static ApplicationOption applicationOption() {
+    public static ApplicationOption applicationOption(String oid) {
         ApplicationOption ao = new ApplicationOption();
-        ao.setOid("ao test oid 1");
+        ao.setOid(oid);
         ao.setName(new I18N("name fi", "name sv", "name en"));
         ao.setStartingQuota(10);
         ao.setRequirementDescription(
