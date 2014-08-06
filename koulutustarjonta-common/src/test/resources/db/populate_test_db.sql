@@ -57,14 +57,14 @@ INSERT INTO hakukohde
             lisatiedot_fi, lisatiedot_sv, lisatiedot_en,
             valintaper_fi, valintaper_sv, valintaper_en,
             hakukelp_kuvaus_fi, hakukelp_kuvaus_sv, hakukelp_kuvaus_en)
-VALUES ('2.1.2.3', 'nimi fi', 'nimi sv', 'nimi en', 11, 'sora fi', 'sora sv', 'sora en',
+VALUES ('hakukohde_id1', 'nimi fi', 'nimi sv', 'nimi en', 11, 'sora fi', 'sora sv', 'sora en',
 'lisatiedot fi', 'lisatiedot sv', 'lisatiedot en',
 'valintaper fi', 'valintaper sv', 'valintaper en',
 'kuvaus fi', 'kuvaus sv', 'kuvaus en');
 
 INSERT INTO valintakoe
             (id, id_hakukohde, kieli, tyyppi, kuvaus)
-VALUES ('valintakoe_id1', '2.1.2.3', 'fi', 'koetyyppi', 'kokeen kuvaus');
+VALUES ('valintakoe_id1', 'hakukohde_id1', 'fi', 'koetyyppi', 'kokeen kuvaus');
 
 INSERT INTO valintakoe_ak
 (id, id_valintakoe, alkaa, loppuu, kuvaus, osoite, postinumero, ptoimipaikka)
@@ -74,3 +74,15 @@ TO_DATE('2015/01/03 15:00:00', 'yyyy/mm/dd hh24:mi:ss'),
 TO_DATE('2015/01/03 18:00:00', 'yyyy/mm/dd hh24:mi:ss'),
 'valintakoeajankohta kuvaus', 'katuosoite', 'postinumero',
 'postitoimipaikka');
+
+INSERT INTO liite
+(id, id_hakukohde, kieli, nimi, erapaiva, kuvaus, osoite, postinumero, ptoimipaikka)
+VALUES
+('liite_id1', 'hakukohde_id1', 'fi', 'liite nimi',
+TO_DATE('2015/02/01 12:00:00', 'yyyy/mm/dd hh24:mi:ss'),
+'liite kuvaus', 'liite katuosoite', 'liite postinumero', 'liite ptoimipaikka');
+
+INSERT INTO hakukelp
+(id, id_hakukohde, kuvaus_fi, kuvaus_sv, kuvaus_en)
+VALUES
+(999999, 'hakukohde_id1', 'hakukelp fi', 'hakukelp sv', 'hakukelp en');

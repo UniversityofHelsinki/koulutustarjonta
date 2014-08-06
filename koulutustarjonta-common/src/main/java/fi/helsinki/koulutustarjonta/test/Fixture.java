@@ -3,6 +3,7 @@ package fi.helsinki.koulutustarjonta.test;
 import com.google.common.collect.Lists;
 import fi.helsinki.koulutustarjonta.domain.*;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -58,7 +59,9 @@ public class Fixture {
         ExamEvent event = new ExamEvent();
         event.setOid("event oid");
         event.setInfo("exam info");
-        Date starts = new Date();
+        Calendar startsCal = Calendar.getInstance();
+        startsCal.set(Calendar.MILLISECOND, 0);
+        Date starts = startsCal.getTime();
         Date ends = new Date(starts.getTime() + 3600000L);
         event.setStarts(starts);
         event.setEnds(ends);
@@ -74,13 +77,18 @@ public class Fixture {
         attachment.setName("attachment name");
         attachment.setLang("fi");
         attachment.setDescription("attachment description");
-        attachment.setDue(new Date());
+        Calendar dueCal = Calendar.getInstance();
+        dueCal.set(Calendar.MILLISECOND, 0);
+        attachment.setDue(dueCal.getTime());
         Address address2 = new Address();
         address2.setPostalCode("00200");
         address2.setPostOffice("post office2");
         address2.setStreet("street address 2");
         attachment.setAddress(address);
         ao.setAttachments(Lists.newArrayList(attachment));
+        Requirement r = new Requirement();
+        r.setDescription(new I18N("requirement fi", "requirement sv", "requirement en"));
+        ao.setRequirements(Lists.newArrayList(r));
         return ao;
     }
 

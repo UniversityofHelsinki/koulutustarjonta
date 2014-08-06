@@ -2,7 +2,6 @@ package fi.helsinki.koulutustarjonta.dao;
 
 import com.google.common.collect.Lists;
 import fi.helsinki.koulutustarjonta.dao.jdbi.LearningOpportunityJDBI;
-import fi.helsinki.koulutustarjonta.domain.I18N;
 import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
 import fi.helsinki.koulutustarjonta.domain.TeachingLanguage;
 import fi.helsinki.koulutustarjonta.test.Fixture;
@@ -45,6 +44,7 @@ public class LearningOpportunityDAOTest extends BaseDAOTest {
         Handle h = dbi.open();
         h.execute(String.format("DELETE FROM KOULUTUS_OPETUSKIELI WHERE id_koulutus = '%s'", oid2));
         h.execute(String.format("DELETE FROM KOULUTUS WHERE id = '%s'", oid2));
+        dbi.close(h);
     }
 
     @Test
@@ -172,11 +172,5 @@ public class LearningOpportunityDAOTest extends BaseDAOTest {
 
     }
 
-    private void i18NEquals(I18N expected, I18N actual) {
-        assertEquals(expected.getFi(), actual.getFi());
-        assertEquals(expected.getSv(), actual.getSv());
-        assertEquals(expected.getEn(), actual.getEn());
-
-    }
 
 }
