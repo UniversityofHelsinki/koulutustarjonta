@@ -23,11 +23,19 @@
   - name: set oracle listener
     sudo: False
     shell: ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe /u01/app/oracle/product/11.2.0/xe/bin/sqlplus
-           system/manager@localhost < /src/oracle/set_listener.sql
+            system/manager@localhost < /src/oracle/set_listener.sql
 
   - name: Increase number of processes
     shell: ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe /u01/app/oracle/product/11.2.0/xe/bin/sqlplus
-           system/manager@localhost <<< 'alter system set processes=150 scope=spfile;'
+            system/manager@localhost < /src/oracle/set_processes.sql
 
   - name: Restart DB
     shell: /etc/init.d/oracle-xe restart
+
+  - name: Create DB user
+    shell: ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe /u01/app/oracle/product/11.2.0/xe/bin/sqlplus
+            system/manager@localhost < /src/koulutustarjonta-common/src/main/resources/db/create_user.sql
+
+  - name: Create DB tables
+    shell: ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe /u01/app/oracle/product/11.2.0/xe/bin/sqlplus
+            koultarj/koultarj@localhost < /src/koulutustarjonta-common/src/main/resources/db/create_tables.sql
