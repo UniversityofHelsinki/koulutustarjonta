@@ -31,13 +31,10 @@ public class Updater {
         LOG.debug("Update data");
         LearningOpportunity learningOpportunity = tarjontaClient.getLearningOpportunity("1.2.246.562.17.17939899864");
         dao.save(learningOpportunity);
-        LOG.debug("Update finished");
-    }
-
-    public void updateApplicationOptions() {
+        LOG.debug("Learning opportunity update finished");
         LOG.debug("Update application options");
         ApplicationOption ao = tarjontaClient.getApplicationOption("1.2.246.562.20.92573201339");
         applicationOptionDAO.save(ao);
-        LOG.debug("Update finished");
+        LOG.debug("Application option update finished");
     }
 }
