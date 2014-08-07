@@ -75,7 +75,7 @@ task rpm(type: Rpm, dependsOn: 'jar') {
         // insert db configuration parameters
         expand(db_url: project.hasProperty('db_url') ? project.getProperty('db_url') : "",
                 db_user: project.hasProperty('db_user') ? project.getProperty('db_user') : "",
-                db_passwd: project.hasProperty('db_paswd') ? project.getProperty('db_passwd') : "")
+                db_passwd: project.hasProperty('db_passwd') ? project.getProperty('db_passwd') : "")
     }
 
     // Upstart file for RHEL
