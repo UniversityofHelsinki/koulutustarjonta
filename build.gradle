@@ -11,7 +11,7 @@ subprojects {
     dependencies {
         compile "org.projectlombok:lombok:1.14.4"
     }
-    
+
     test {
         testLogging {
             afterSuite { desc, result ->
@@ -31,10 +31,15 @@ def commitHash() {
     if (hash == null) {
         println("git commit jenkins variable not found, resolving commit from git HEAD")
         def cmd = "git rev-parse --short HEAD"
-        def proc = cmd.execute()
-        hash = proc.text.trim()
-    }
-    else {
+        try {
+            def proc = cmd.execute()
+            hash = proc.text.trim()
+        }
+        catch (Exception e) {
+            println("Could not execure git command, could reolve hash")
+            hash = null;
+        }
+    } else {
         hash = hash[0..6]
     }
     hash
