@@ -33,15 +33,4 @@ public class TarjontaIT {
         assertEquals( "ok", response.get("status").textValue());
 
     }
-
-    @Test
-    public void testUpdateApplicationOptions() {
-        Client client = new Client();
-        JsonNode response = client.resource(
-                String.format("http://localhost:%d/update/applicationOption", RULE.getLocalPort()))
-                .get(new GenericType<JsonNode>() {});
-        //assertEquals(String.format("Update failed: %s", response.get("cause").textValue()), "ok", response.get("status").textValue());
-        assertEquals( "ok", response.get("status").textValue());
-
-    }
 }
