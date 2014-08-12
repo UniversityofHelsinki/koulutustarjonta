@@ -16,6 +16,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author Hannu Lyytikainen
@@ -143,7 +144,7 @@ public class ApplicationOptionDAOTest extends BaseDAOTest {
     public void testFindAll() {
         List<ApplicationOption> aos = dao.findAll();
         assertNotNull(aos);
-        assertEquals(1, aos.size());
+        assertTrue(aos.size() > 0);
     }
 
     @Test

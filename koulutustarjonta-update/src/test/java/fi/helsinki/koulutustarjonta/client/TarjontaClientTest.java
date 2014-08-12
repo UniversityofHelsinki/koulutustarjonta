@@ -34,7 +34,7 @@ public class TarjontaClientTest {
         when(koulutusResource.path(anyString())).thenReturn(koulutusResource);
         when(koulutusResource.get((GenericType<Object>) any())).thenReturn(result);
 
-        client = new TarjontaClient(koulutusResource, null, null);
+        client = new TarjontaClient(koulutusResource, null, null, null);
 
     }
 

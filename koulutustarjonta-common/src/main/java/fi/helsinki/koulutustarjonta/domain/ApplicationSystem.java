@@ -1,44 +1,25 @@
 package fi.helsinki.koulutustarjonta.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.List;
+
 /**
  * @author Hannu Lyytikainen
  */
+@Getter
+@Setter
+@AllArgsConstructor
 public class ApplicationSystem {
-
     private String oid;
     private I18N name;
     private I18N applicationMethod;
-    private String applicationYear;
-
-    public String getOid() {
-        return oid;
-    }
-
-    public void setOid(String oid) {
-        this.oid = oid;
-    }
-
-    public I18N getName() {
-        return name;
-    }
-
-    public void setName(I18N name) {
-        this.name = name;
-    }
-
-    public I18N getApplicationMethod() {
-        return applicationMethod;
-    }
-
-    public void setApplicationMethod(I18N applicationMethod) {
-        this.applicationMethod = applicationMethod;
-    }
-
-    public String getApplicationYear() {
-        return applicationYear;
-    }
-
-    public void setApplicationYear(String applicationYear) {
-        this.applicationYear = applicationYear;
-    }
+    private int applicationYear;
+    private String applicationSeason;
+    private int educationStartYear;
+    private String educationStartSeason;
+    private String applicationFormUrl;
+    private List<ApplicationPeriod> applicationPeriods;
 }

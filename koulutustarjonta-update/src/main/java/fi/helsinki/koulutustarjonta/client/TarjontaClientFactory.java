@@ -18,6 +18,7 @@ public class TarjontaClientFactory {
 
     private static final String LEARNING_OPPORTUNITY_PATH = "koulutus/";
     private static final String APPLICATION_OPTION_PATH = "hakukohde/";
+    private static final String APPLICATION_SYSTEM_PATH = "haku/";
 
     @Valid
     @NotNull
@@ -44,8 +45,9 @@ public class TarjontaClientFactory {
                 .build(this.getClass().toString());
         WebResource learningOpportunityResource = client.resource(String.format("%s%s", baseUrl, LEARNING_OPPORTUNITY_PATH));
         WebResource applicationOptionResource = client.resource(String.format("%s%s", baseUrl, APPLICATION_OPTION_PATH));
+        WebResource applicationSystemResource = client.resource(String.format("%s%s", baseUrl, APPLICATION_SYSTEM_PATH));
 
-        return new TarjontaClient(learningOpportunityResource, applicationOptionResource, koodistoClient);
+        return new TarjontaClient(learningOpportunityResource, applicationOptionResource, applicationSystemResource, koodistoClient);
 
     }
 }

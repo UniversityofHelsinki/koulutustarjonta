@@ -1,0 +1,40 @@
+{
+  "result" : {
+    "modified" : 1403763829567,
+    "modifiedBy" : "1.2.246.562.24.97747275774",
+    "oid" : "1.2.246.562.29.31035368682",
+    "hakukausiUri" : "kausi_s#1",
+    "hakukausiVuosi" : 2014,
+    "hakutapaUri" : "hakutapa_02#1",
+    "hakulomakeUri" : "http://www.helsinki.fi/ml/lomakkeet/opintooikeus.pdf",
+    "hakutyyppiUri" : "hakutyyppi_01#1",
+    "kohdejoukkoUri" : "haunkohdejoukko_12#1",
+    "koulutuksenAlkamisVuosi" : 2015,
+    "koulutuksenAlkamiskausiUri" : "kausi_k#1",
+    "tila" : "JULKAISTU",
+    "sijoittelu" : false,
+    "jarjestelmanHakulomake" : false,
+    "hakuaikas" : [ {
+      "hakuaikaId" : "228749",
+      "nimi" : "Haku avoimessa yliopistossa opintoja suorittaneille",
+      "alkuPvm" : 1410152404012,
+      "loppuPvm" : 1411387241418
+    } ],
+    "hakukohdeOids" : [ "1.2.246.562.20.96395730326", "1.2.246.562.20.98159006992", "1.2.246.562.20.15630524138", "1.2.246.562.20.97214898831", "1.2.246.562.20.92573201339" ],
+    "nimi" : {
+      "kieli_sv" : "Ansökan",
+      "kieli_en" : "Application system",
+      "kieli_fi" : "Haku avoimessa"
+    },
+    "maxHakukohdes" : 0,
+    "organisaatioOids" : [ "1.2.246.562.10.39218317368" ],
+    "tarjoajaOids" : [ "1.2.246.562.10.39218317368", "1.2.246.562.10.94639300915" ],
+    "usePriority" : true
+  },
+  "status" : "OK",
+  "accessRights" : {
+    "update" : false,
+    "delete" : false,
+    "create" : false
+  }
+}

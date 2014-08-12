@@ -24,7 +24,7 @@ public class ApplicationOptionConverter extends KoodistoAwareConverter {
 
     public ApplicationOption convert(JsonNode apiCallResult) {
         ApplicationOption ao = new ApplicationOption();
-        JsonNode content = apiCallResult.get("result");
+        JsonNode content = resolveApplicationOptionContent(apiCallResult);
         ao.setOid(content.get("oid").textValue());
         ao.setName(convertToI18N(content.get("hakukohteenNimet")));
         ao.setStartingQuota(content.get("aloituspaikatLkm").intValue());
@@ -44,6 +44,17 @@ public class ApplicationOptionConverter extends KoodistoAwareConverter {
                 .map(attach -> attachmentConverter.convert(attach))
                 .collect(Collectors.toList()));
         return ao;
+    }
+
+
+    public String resolveApplicationSystemOid(JsonNode apiCallResult) {
+        JsonNode content = resolveApplicationOptionContent(apiCallResult);
+        return content.get("hakuOid").textValue();
+
+    }
+
+    private JsonNode resolveApplicationOptionContent(JsonNode apiCallResult) {
+        return apiCallResult.get("result");
     }
 
 }
