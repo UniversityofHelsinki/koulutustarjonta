@@ -5,10 +5,12 @@ import fi.helsinki.koulutustarjonta.dao.jdbi.ApplicationOptionJDBI;
 import fi.helsinki.koulutustarjonta.dao.mapper.ApplicationOptionObjectGraphBuilder;
 import fi.helsinki.koulutustarjonta.dao.util.ApplicationOptionJoinRow;
 import fi.helsinki.koulutustarjonta.domain.ApplicationOption;
+import fi.helsinki.koulutustarjonta.domain.ApplicationSystem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author Hannu Lyytikainen
@@ -24,10 +26,21 @@ public class ApplicationOptionDAO {
     }
 
     public void save(ApplicationOption applicationOption) {
+        ApplicationSystem as = applicationOption.getApplicationSystem();
+        jdbi.upsertApplicationSystem(as);
+        jdbi.upsertApplicationPeriods(as.getApplicationPeriods(),
+                as.getOid());
+        jdbi.removeDeletedApplicationPeriods(as.getOid(),
+                as.getApplicationPeriods().stream()
+                        .map(period -> period.getId())
+                        .collect(Collectors.toList())
+                );
+
         int updated = jdbi.update(applicationOption);
         if (updated == 0) {
             jdbi.insert(applicationOption);
         }
+
         if (applicationOption.getExams() != null) {
             jdbi.upsertExams(applicationOption.getExams(), applicationOption.getOid());
             applicationOption.getExams().forEach(exam -> jdbi.upsertExamEvents(exam.getEvents(), exam.getOid()));
@@ -56,4 +69,5 @@ public class ApplicationOptionDAO {
     public List<ApplicationOption> findAll() {
         return ApplicationOptionObjectGraphBuilder.build(jdbi.findJoinRows());
     }
+
 }

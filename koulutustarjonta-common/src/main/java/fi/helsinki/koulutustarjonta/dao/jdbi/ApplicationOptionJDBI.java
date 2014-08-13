@@ -10,21 +10,24 @@ import org.skife.jdbi.v2.sqlobject.SqlQuery;
 import org.skife.jdbi.v2.sqlobject.SqlUpdate;
 import org.skife.jdbi.v2.sqlobject.customizers.BatchChunkSize;
 import org.skife.jdbi.v2.sqlobject.customizers.Mapper;
+import org.skife.jdbi.v2.sqlobject.stringtemplate.UseStringTemplate3StatementLocator;
+import org.skife.jdbi.v2.unstable.BindIn;
 
 import java.util.List;
 
 /**
  * @author Hannu Lyytikainen
  */
+@UseStringTemplate3StatementLocator
 public interface ApplicationOptionJDBI {
 
     @SqlUpdate("INSERT INTO hakukohde" +
             "(id, nimi_fi, nimi_sv, nimi_en, aloituspaikat, hakukelp_kuvaus_fi, hakukelp_kuvaus_sv, hakukelp_kuvaus_en, " +
             "lisatiedot_fi, lisatiedot_sv, lisatiedot_en, valintaper_fi, valintaper_sv, valintaper_en, " +
-            "sorakuvaus_fi, sorakuvaus_sv, sorakuvaus_en) " +
+            "sorakuvaus_fi, sorakuvaus_sv, sorakuvaus_en, id_haku) " +
             "VALUES (:id, :nimi_fi, :nimi_sv, :nimi_en, :aloituspaikat, :hakukelp_kuvaus_fi, :hakukelp_kuvaus_sv, :hakukelp_kuvaus_en, " +
             ":lisatiedot_fi, :lisatiedot_sv, :lisatiedot_en, :valintaper_fi, :valintaper_sv, :valintaper_en, " +
-            ":sorakuvaus_fi, :sorakuvaus_sv, :sorakuvaus_en)")
+            ":sorakuvaus_fi, :sorakuvaus_sv, :sorakuvaus_en, :id_haku)")
     void insert(@BindApplicationOption ApplicationOption applicationOption);
 
 
@@ -33,7 +36,8 @@ public interface ApplicationOptionJDBI {
             "hakukelp_kuvaus_fi=:hakukelp_kuvaus_fi, hakukelp_kuvaus_sv=:hakukelp_kuvaus_sv, hakukelp_kuvaus_en=:hakukelp_kuvaus_en, " +
             "lisatiedot_fi=:lisatiedot_fi, lisatiedot_sv=:lisatiedot_sv, lisatiedot_en=:lisatiedot_en, " +
             "valintaper_fi=:valintaper_fi, valintaper_sv=:valintaper_sv, valintaper_en=:valintaper_en, " +
-            "sorakuvaus_fi=:sorakuvaus_fi, sorakuvaus_sv=:sorakuvaus_sv, sorakuvaus_en=:sorakuvaus_en " +
+            "sorakuvaus_fi=:sorakuvaus_fi, sorakuvaus_sv=:sorakuvaus_sv, sorakuvaus_en=:sorakuvaus_en, " +
+            "id_haku=:id_haku " +
             "WHERE id=:id")
     int update(@BindApplicationOption ApplicationOption applicationOption);
 
@@ -139,4 +143,37 @@ public interface ApplicationOptionJDBI {
     @SqlUpdate("DELETE FROM hakukelp " +
             "WHERE id_hakukohde=:id_hakukohde")
     void removeRequirements(@Bind("id_hakukohde") String applicationOptionOid);
+
+    @SqlUpdate("MERGE INTO haku USING dual on ( id = :id ) " +
+            "WHEN MATCHED THEN UPDATE SET " +
+            "nimi_fi=:nimi_fi, nimi_sv=:nimi_sv, nimi_en= nimi_en, " +
+            "hakutapa_fi=:hakutapa_fi, hakutapa_sv=:hakutapa_sv, hakutapa_en=:hakutapa_en, " +
+            "hakukausi_vuosi=:hakukausi_vuosi, hakukausi=:hakukausi, koul_alk_vuosi=:koul_alk_vuosi, " +
+            "hakulomake_url = :hakulomake_url " +
+            "WHEN NOT MATCHED THEN INSERT " +
+            "(id, nimi_fi, nimi_sv, nimi_en, hakutapa_fi, hakutapa_sv, hakutapa_en, " +
+            "hakukausi_vuosi, hakukausi, koul_alk_vuosi, koul_alk_kausi, hakulomake_url) " +
+            "VALUES " +
+            "(:id, :nimi_fi, :nimi_sv, :nimi_en, :hakutapa_fi, :hakutapa_sv, :hakutapa_en, " +
+            ":hakukausi_vuosi, :hakukausi, :koul_alk_vuosi, :koul_alk_kausi, " +
+            ":hakulomake_url)")
+    void upsertApplicationSystem(@BindApplicationSystem ApplicationSystem applicationSystem);
+
+    @SqlBatch("MERGE INTO hakuaika USING dual on ( id = :id ) " +
+            "WHEN MATCHED THEN UPDATE SET " +
+            "nimi=:nimi, alkaa=:alkaa, loppuu=:loppuu " +
+            "WHEN NOT MATCHED THEN INSERT " +
+            "(id, nimi, alkaa, loppuu, id_haku) " +
+            "VALUES " +
+            "(:id, :nimi, :alkaa, :loppuu, :id_haku)")
+    @BatchChunkSize(10)
+    void upsertApplicationPeriods(@BindApplicationPeriod List<ApplicationPeriod> applicationPeriods,
+                                  @Bind("id_haku") String applicationSystemOid);
+
+
+    @SqlUpdate("DELETE FROM hakuaika " +
+            "WHERE id_haku = :id_haku " +
+            "AND id NOT IN (<current>)")
+    void removeDeletedApplicationPeriods(@Bind("id_haku") String applicationSystemOid,
+                                         @BindIn("current") List<String> currentPeriodIds);
 }

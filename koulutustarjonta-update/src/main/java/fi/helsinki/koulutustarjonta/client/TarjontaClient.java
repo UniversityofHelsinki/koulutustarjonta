@@ -45,7 +45,6 @@ public class TarjontaClient {
         LearningOpportunity learningOpportunity = learningOpportunityConverter.convert(learningOpportunityNode);
 
         return learningOpportunity;
-
     }
 
     public ApplicationOption getApplicationOption(String oid) {
@@ -61,9 +60,8 @@ public class TarjontaClient {
                 .get(new GenericType<JsonNode>() {});
 
         ApplicationSystem applicationSystem = applicationSystemConverter.convert(applicationSystemJson);
+        applicationOption.setApplicationSystem(applicationSystem);
 
         return applicationOption;
-
     }
-
 }

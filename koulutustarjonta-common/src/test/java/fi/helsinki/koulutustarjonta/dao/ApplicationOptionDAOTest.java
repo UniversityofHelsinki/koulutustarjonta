@@ -48,6 +48,8 @@ public class ApplicationOptionDAOTest extends BaseDAOTest {
                 exam -> h.execute("DELETE FROM valintakoe_ak WHERE id_valintakoe = ?", exam.getOid()));
         h.execute("DELETE FROM valintakoe WHERE id_hakukohde = ?", fixture1.getOid());
         h.execute("DELETE FROM hakukohde WHERE id = ?", fixture1.getOid());
+        h.execute("DELETE FROM hakuaika WHERE id_haku = ?", fixture1.getApplicationSystem().getOid());
+        h.execute("DELETE FROM haku WHERE id = ?", fixture1.getApplicationSystem().getOid());
         dbi.close(h);
     }
 
