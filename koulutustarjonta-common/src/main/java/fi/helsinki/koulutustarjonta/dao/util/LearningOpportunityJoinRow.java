@@ -2,25 +2,16 @@ package fi.helsinki.koulutustarjonta.dao.util;
 
 import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
 import fi.helsinki.koulutustarjonta.domain.TeachingLanguage;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 /**
  * @author Hannu Lyytikainen
  */
+@AllArgsConstructor
+@Getter
 public class LearningOpportunityJoinRow {
 
-    final LearningOpportunity learningOpportunity;
-    final TeachingLanguage teachingLanguage;
-
-    public LearningOpportunityJoinRow(LearningOpportunity learningOpportunity, TeachingLanguage teachingLanguage) {
-        this.teachingLanguage = teachingLanguage;
-        this.learningOpportunity = learningOpportunity;
-    }
-
-    public LearningOpportunity getLearningOpportunity() {
-        return learningOpportunity;
-    }
-
-    public TeachingLanguage getTeachingLanguage() {
-        return teachingLanguage;
-    }
+    private final LearningOpportunity learningOpportunity;
+    private final TeachingLanguage teachingLanguage;
 }
