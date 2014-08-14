@@ -148,15 +148,21 @@ public interface ApplicationOptionJDBI {
             "WHEN MATCHED THEN UPDATE SET " +
             "nimi_fi=:nimi_fi, nimi_sv=:nimi_sv, nimi_en= nimi_en, " +
             "hakutapa_fi=:hakutapa_fi, hakutapa_sv=:hakutapa_sv, hakutapa_en=:hakutapa_en, " +
-            "hakukausi_vuosi=:hakukausi_vuosi, hakukausi=:hakukausi, koul_alk_vuosi=:koul_alk_vuosi, " +
-            "hakulomake_url = :hakulomake_url " +
+            "hakukausi_vuosi=:hakukausi_vuosi, hakukausi_arvo=:hakukausi_arvo, " +
+            "hakukausi_fi=:hakukausi_fi, hakukausi_sv=:hakukausi_sv, hakukausi_en=:hakukausi_en, " +
+            "koul_alk_vuosi=:koul_alk_vuosi, koul_alk_kausi_arvo=:koul_alk_kausi_arvo, " +
+            "koul_alk_kausi_fi=:koul_alk_kausi_fi, koul_alk_kausi_sv=:koul_alk_kausi_sv, " +
+            "koul_alk_kausi_en=:koul_alk_kausi_en, hakulomake_url = :hakulomake_url " +
             "WHEN NOT MATCHED THEN INSERT " +
             "(id, nimi_fi, nimi_sv, nimi_en, hakutapa_fi, hakutapa_sv, hakutapa_en, " +
-            "hakukausi_vuosi, hakukausi, koul_alk_vuosi, koul_alk_kausi, hakulomake_url) " +
+            "hakukausi_vuosi, hakukausi_arvo, hakukausi_fi, hakukausi_sv, hakukausi_en, " +
+            "koul_alk_vuosi, koul_alk_kausi_arvo, koul_alk_kausi_fi, koul_alk_kausi_sv, " +
+            "koul_alk_kausi_en, hakulomake_url) " +
             "VALUES " +
             "(:id, :nimi_fi, :nimi_sv, :nimi_en, :hakutapa_fi, :hakutapa_sv, :hakutapa_en, " +
-            ":hakukausi_vuosi, :hakukausi, :koul_alk_vuosi, :koul_alk_kausi, " +
-            ":hakulomake_url)")
+            ":hakukausi_vuosi, :hakukausi_arvo, :hakukausi_fi, :hakukausi_sv, :hakukausi_en, " +
+            ":koul_alk_vuosi, :koul_alk_kausi_arvo, :koul_alk_kausi_fi, :koul_alk_kausi_sv, " +
+            ":koul_alk_kausi_en, :hakulomake_url)")
     void upsertApplicationSystem(@BindApplicationSystem ApplicationSystem applicationSystem);
 
     @SqlBatch("MERGE INTO hakuaika USING dual on ( id = :id ) " +
@@ -169,7 +175,6 @@ public interface ApplicationOptionJDBI {
     @BatchChunkSize(10)
     void upsertApplicationPeriods(@BindApplicationPeriod List<ApplicationPeriod> applicationPeriods,
                                   @Bind("id_haku") String applicationSystemOid);
-
 
     @SqlUpdate("DELETE FROM hakuaika " +
             "WHERE id_haku = :id_haku " +

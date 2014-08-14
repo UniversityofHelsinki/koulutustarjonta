@@ -97,10 +97,14 @@ public class Fixture {
 
         ApplicationPeriod ap = new ApplicationPeriod("ap id", "ap name", apStarts, apEnds);
 
+        Season applicationSeason = new Season("K", new I18N("a season fi", "a season sv", "a season en"));
+        Season educationSeason = new Season("S", new I18N("e season fi", "e season sv", "e season en"));
+
         ApplicationSystem as = new ApplicationSystem("as oid",
                 new I18N("as name fi", "as name sv", "as name en"),
                 new I18N("method fi", "method sv", "method en"),
-                2015, "K", 2016, "S", "www.applicationform.url", Lists.newArrayList(ap));
+                2015, applicationSeason, 2016, educationSeason,
+                "www.applicationform.url", Lists.newArrayList(ap));
         ao.setApplicationSystem(as);
         return ao;
     }

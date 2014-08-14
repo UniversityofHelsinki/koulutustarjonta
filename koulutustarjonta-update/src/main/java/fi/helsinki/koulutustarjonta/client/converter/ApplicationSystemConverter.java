@@ -5,6 +5,8 @@ import com.google.common.collect.Lists;
 import fi.helsinki.koulutustarjonta.client.KoodistoClient;
 import fi.helsinki.koulutustarjonta.domain.ApplicationPeriod;
 import fi.helsinki.koulutustarjonta.domain.ApplicationSystem;
+import fi.helsinki.koulutustarjonta.domain.Code;
+import fi.helsinki.koulutustarjonta.domain.Season;
 
 import java.util.Date;
 import java.util.List;
@@ -27,14 +29,17 @@ public class ApplicationSystemConverter extends KoodistoAwareConverter {
                 .map(elem -> convertApplicationPeriod(elem))
                 .collect(Collectors.toList());
 
+        Code applicationSeasonCode = getCode(root.get("hakukausiUri").textValue());
+        Code educationStartsSeasonCode = getCode(root.get("koulutuksenAlkamiskausiUri").textValue());
+
         return new ApplicationSystem(
                 root.get("oid").textValue(),
                 convertToI18N(root.get("nimi")),
                 getCode(root.get("hakutapaUri").textValue()).getName(),
                 root.get("hakukausiVuosi").intValue(),
-                getCode(root.get("hakukausiUri").textValue()).getValue(),
+                new Season(applicationSeasonCode.getValue(), applicationSeasonCode.getName()),
                 root.get("koulutuksenAlkamisVuosi").intValue(),
-                getCode(root.get("koulutuksenAlkamiskausiUri").textValue()).getValue(),
+                new Season(educationStartsSeasonCode.getValue(), educationStartsSeasonCode.getName()),
                 root.get("hakulomakeUri").textValue(),
                 periods
         );

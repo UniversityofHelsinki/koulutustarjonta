@@ -17,9 +17,9 @@ public class ApplicationSystem {
     private I18N name;
     private I18N applicationMethod;
     private int applicationYear;
-    private String applicationSeason;
+    private Season applicationSeason;
     private int educationStartYear;
-    private String educationStartSeason;
+    private Season educationStartSeason;
     private String applicationFormUrl;
     private List<ApplicationPeriod> applicationPeriods;
 }
