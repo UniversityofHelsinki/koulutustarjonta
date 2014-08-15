@@ -5,6 +5,13 @@ WHERE id_koulutus = '1.2.3';
 DELETE FROM KOULUTUS
 WHERE id = '1.2.3';
 
+-- haku
+DELETE FROM hakuaika
+WHERE id_haku = 'haku_id1';
+
+DELETE FROM haku
+WHERE id = 'haku_id1';
+
 -- hakukohde
 DELETE FROM hakukelp
 WHERE id = 999999;

@@ -2,10 +2,13 @@ package fi.helsinki.koulutustarjonta;
 
 import fi.helsinki.koulutustarjonta.config.KotaQueryConfig;
 import fi.helsinki.koulutustarjonta.dao.ApplicationOptionDAO;
+import fi.helsinki.koulutustarjonta.dao.ApplicationSystemDAO;
 import fi.helsinki.koulutustarjonta.dao.LearningOpportunityDAO;
 import fi.helsinki.koulutustarjonta.dao.jdbi.ApplicationOptionJDBI;
+import fi.helsinki.koulutustarjonta.dao.jdbi.ApplicationSystemJDBI;
 import fi.helsinki.koulutustarjonta.dao.jdbi.LearningOpportunityJDBI;
 import fi.helsinki.koulutustarjonta.resource.ApplicationOptionResource;
+import fi.helsinki.koulutustarjonta.resource.ApplicationSystemResource;
 import fi.helsinki.koulutustarjonta.resource.LearningOpportunityResource;
 import io.dropwizard.Application;
 import io.dropwizard.jdbi.DBIFactory;
@@ -38,13 +41,17 @@ public class KotaQueryApplication extends Application<KotaQueryConfig> {
         final DBIFactory factory = new DBIFactory();
         final DBI dbi = factory.build(environment, configuration.getDataSourceFactory(), "oracle");
 
-        final LearningOpportunityJDBI jdbi = dbi.onDemand(LearningOpportunityJDBI.class);
-        final LearningOpportunityDAO dao = new LearningOpportunityDAO(jdbi);
-        final LearningOpportunityResource lor = new LearningOpportunityResource(dao);
+        final LearningOpportunityJDBI learningOpportunityJDBI = dbi.onDemand(LearningOpportunityJDBI.class);
+        final LearningOpportunityDAO learningOpportunityDAO = new LearningOpportunityDAO(learningOpportunityJDBI);
+        final LearningOpportunityResource lor = new LearningOpportunityResource(learningOpportunityDAO);
         final ApplicationOptionJDBI applicationOptionJDBI = dbi.onDemand(ApplicationOptionJDBI.class);
         final ApplicationOptionDAO applicationOptionDAO = new ApplicationOptionDAO(applicationOptionJDBI);
         final ApplicationOptionResource aor = new ApplicationOptionResource(applicationOptionDAO);
+        final ApplicationSystemJDBI applicationSystemJDBI = dbi.onDemand(ApplicationSystemJDBI.class);
+        final ApplicationSystemDAO applicationSystemDAO = new ApplicationSystemDAO(applicationSystemJDBI);
+        final ApplicationSystemResource asr = new ApplicationSystemResource(applicationSystemDAO);
         environment.jersey().register(lor);
         environment.jersey().register(aor);
+        environment.jersey().register(asr);
     }
 }

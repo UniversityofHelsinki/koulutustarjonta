@@ -5,8 +5,10 @@ import fi.helsinki.koulutustarjonta.client.TarjontaClient;
 import fi.helsinki.koulutustarjonta.config.KotaUpdateConfiguration;
 import fi.helsinki.koulutustarjonta.core.Updater;
 import fi.helsinki.koulutustarjonta.dao.ApplicationOptionDAO;
+import fi.helsinki.koulutustarjonta.dao.ApplicationSystemDAO;
 import fi.helsinki.koulutustarjonta.dao.LearningOpportunityDAO;
 import fi.helsinki.koulutustarjonta.dao.jdbi.ApplicationOptionJDBI;
+import fi.helsinki.koulutustarjonta.dao.jdbi.ApplicationSystemJDBI;
 import fi.helsinki.koulutustarjonta.dao.jdbi.LearningOpportunityJDBI;
 import fi.helsinki.koulutustarjonta.dao.util.OracleStatementBuilderFactory;
 import fi.helsinki.koulutustarjonta.resource.UpdateResource;
@@ -42,9 +44,10 @@ public class KotaUpdateApplication extends Application<KotaUpdateConfiguration> 
         final LearningOpportunityDAO learningOpportunityDAO = new LearningOpportunityDAO(jdbi);
         final ApplicationOptionJDBI applicationOptionJDBI = dbi.onDemand(ApplicationOptionJDBI.class);
         final ApplicationOptionDAO applicationOptionDAO = new ApplicationOptionDAO(applicationOptionJDBI);
+        final ApplicationSystemDAO applicationSystemDAO = new ApplicationSystemDAO(dbi.onDemand(ApplicationSystemJDBI.class));
         final KoodistoClient koodistoClient = configuration.getKoodistoClientFactory().build(environment);
         final TarjontaClient tarjontaClient = configuration.getTarjontaClientFactory().build(environment, koodistoClient);
-        final Updater updater = new Updater(tarjontaClient, learningOpportunityDAO, applicationOptionDAO);
+        final Updater updater = new Updater(tarjontaClient, learningOpportunityDAO, applicationOptionDAO, applicationSystemDAO);
         final UpdateResource updateResource = new UpdateResource(updater);
         environment.jersey().register(updateResource);
 

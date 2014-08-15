@@ -7,10 +7,12 @@ import fi.helsinki.koulutustarjonta.domain.I18N;
 import oracle.jdbc.pool.OracleDataSource;
 import org.junit.After;
 import org.junit.Before;
+import org.skife.jdbi.v2.DBI;
 
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Calendar;
 
 import static org.junit.Assert.assertEquals;
 
@@ -20,6 +22,7 @@ import static org.junit.Assert.assertEquals;
 public class BaseDAOTest {
 
     OracleDataSource ds;
+    DBI dbi;
 
     @Before
     public void baseInit() throws IOException, SQLException {
@@ -34,6 +37,7 @@ public class BaseDAOTest {
 
         executeSqlFile(ds, "db/populate_test_db.sql");
 
+        dbi = new DBI(url, user, passwd);
 
     }
 
@@ -66,5 +70,17 @@ public class BaseDAOTest {
         assertEquals(expected.getSv(), actual.getSv());
         assertEquals(expected.getEn(), actual.getEn());
 
+    }
+
+    public Calendar getZeroCalendar() {
+        Calendar zeroCal = Calendar.getInstance();
+        zeroCal.set(Calendar.YEAR, 0);
+        zeroCal.set(Calendar.MONTH, Calendar.JANUARY);
+        zeroCal.set(Calendar.DATE, 0);
+        zeroCal.set(Calendar.HOUR_OF_DAY, 0);
+        zeroCal.set(Calendar.MINUTE, 0);
+        zeroCal.set(Calendar.SECOND, 0);
+        zeroCal.set(Calendar.MILLISECOND, 0);
+        return zeroCal;
     }
 }

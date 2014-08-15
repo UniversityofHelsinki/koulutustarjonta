@@ -50,6 +50,26 @@ VALUES ('1.2.3', 'fi');
 INSERT INTO KOULUTUS_OPETUSKIELI (id_koulutus, id_opetuskieli)
 VALUES ('1.2.3', 'sv');
 
+-- haku
+INSERT INTO haku
+(id, nimi_fi, nimi_sv, nimi_en, hakutapa_fi, hakutapa_sv, hakutapa_en,
+hakukausi_vuosi, hakukausi_arvo, hakukausi_fi, hakukausi_sv, hakukausi_en,
+koul_alk_vuosi, koul_alk_kausi_arvo, koul_alk_kausi_fi, koul_alk_kausi_sv,
+koul_alk_kausi_en, hakulomake_url)
+VALUES
+('haku_id1', 'haku nimi fi', 'haku nimi sv', 'haku nimi en', 'hakutapa fi', 'hakutapa sv', 'hakutapa en',
+2015, 'K', 'hakukausi fi', 'hakukausi sv', 'hakukausi en',
+2016, 'S', 'koul alk kausi fi', 'koul alk kausi sv',
+'koul alk kausi en', 'hakulomake url');
+
+INSERT INTO hakuaika
+(id, nimi, alkaa, loppuu, id_haku)
+VALUES
+('hakuaika_id1', 'hakuaika nimi',
+TO_DATE('2015/01/01 15:00:00', 'yyyy/mm/dd hh24:mi:ss'),
+TO_DATE('2015/02/01 15:00:00', 'yyyy/mm/dd hh24:mi:ss'),
+'haku_id1');
+
 -- hakukohde
 INSERT INTO hakukohde
             (id, nimi_fi, nimi_sv, nimi_en, aloituspaikat,

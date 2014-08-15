@@ -35,10 +35,12 @@ public class ApplicationSystemConverterTest extends AbstractClientConverterTest 
 
         Code applicationSeason = new Code();
         applicationSeason.setValue("S");
+        applicationSeason.setName(new I18N("app season fi", "app season sv", "app season en"));
         when(koodistoClient.getCode(eq("kausi_s#1"))).thenReturn(applicationSeason);
 
         Code educationStartSeason = new Code();
         educationStartSeason.setValue("K");
+        educationStartSeason.setName(new I18N("edu season fi", "edu season sv", "edu season en"));
         when(koodistoClient.getCode(eq("kausi_k#1"))).thenReturn(educationStartSeason);
 
         converter = new ApplicationSystemConverter(koodistoClient);
@@ -57,9 +59,15 @@ public class ApplicationSystemConverterTest extends AbstractClientConverterTest 
         assertEquals("hakutapa sv", as.getApplicationMethod().getSv());
         assertEquals("hakutapa en", as.getApplicationMethod().getEn());
         assertEquals(2014, as.getApplicationYear());
-        assertEquals("S", as.getApplicationSeason());
+        assertEquals("S", as.getApplicationSeason().getValue());
+        assertEquals("app season fi", as.getApplicationSeason().getName().getFi());
+        assertEquals("app season sv", as.getApplicationSeason().getName().getSv());
+        assertEquals("app season en", as.getApplicationSeason().getName().getEn());
         assertEquals(2015, as.getEducationStartYear());
-        assertEquals("K", as.getEducationStartSeason());
+        assertEquals("K", as.getEducationStartSeason().getValue());
+        assertEquals("edu season fi", as.getEducationStartSeason().getName().getFi());
+        assertEquals("edu season sv", as.getEducationStartSeason().getName().getSv());
+        assertEquals("edu season en", as.getEducationStartSeason().getName().getEn());
         assertEquals("http://www.helsinki.fi/ml/lomakkeet/opintooikeus.pdf", as.getApplicationFormUrl());
         assertNotNull(as.getApplicationPeriods());
         ApplicationPeriod ap = as.getApplicationPeriods().get(0);

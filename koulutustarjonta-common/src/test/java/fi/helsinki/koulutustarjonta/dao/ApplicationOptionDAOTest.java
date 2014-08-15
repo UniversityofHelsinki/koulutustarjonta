@@ -202,16 +202,5 @@ public class ApplicationOptionDAOTest extends BaseDAOTest {
         i18NEquals(fixtureRequirement.getDescription(), requirement.getDescription());
     }
 
-    private Calendar getZeroCalendar() {
-        Calendar zeroCal = Calendar.getInstance();
-        zeroCal.set(Calendar.YEAR, 0);
-        zeroCal.set(Calendar.MONTH, Calendar.JANUARY);
-        zeroCal.set(Calendar.DATE, 0);
-        zeroCal.set(Calendar.HOUR_OF_DAY, 0);
-        zeroCal.set(Calendar.MINUTE, 0);
-        zeroCal.set(Calendar.SECOND, 0);
-        zeroCal.set(Calendar.MILLISECOND, 0);
-        return zeroCal;
-    }
 
 }
