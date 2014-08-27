@@ -8,8 +8,12 @@ logging:
   loggers:
     "fi.helsinki.koulutustarjonta": DEBUG
 
-  #appenders:
-  #  - type: console
+  appenders:
+    - type: file
+      currentLogFilename: ./logs/koulutustarjonta-query.log
+      archivedLogFilenamePattern: ./logs/koulutustarjonta-query-%d.log.gz
+      archivedFileCount: 15
+      timeZone: UTC
 
 database:
   # the name of your JDBC driver

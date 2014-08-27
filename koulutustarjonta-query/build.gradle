@@ -1,5 +1,3 @@
-import java.text.SimpleDateFormat
-
 apply plugin: 'application'
 apply plugin: 'rpm'
 
@@ -29,7 +27,6 @@ buildscript {
 }
 
 dependencies {
-    compile 'org.slf4j:slf4j-api:1.7.5'
     compile 'io.dropwizard:dropwizard-core:0.7.0'
     compile 'org.modelmapper:modelmapper:0.7.1'
     compile project(':koulutustarjonta-common')

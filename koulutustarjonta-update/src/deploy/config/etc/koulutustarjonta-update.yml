@@ -18,12 +18,12 @@ logging:
   loggers:
     "fi.helsinki.koulutustarjonta": DEBUG
 
-#  appenders:
-#    - type: file
-#      currentLogFilename: ./logs/query.log
-#      archivedLogFilenamePattern: ./logs/query-%d.log.gz
-#      archivedFileCount: 5
-#      timeZone: UTC
+  appenders:
+    - type: file
+      currentLogFilename: ./logs/koulutustarjonta-update.log
+      archivedLogFilenamePattern: ./logs/koulutustarjonta-update-%d.log.gz
+      archivedFileCount: 15
+      timeZone: UTC
 
 tarjontaClient:
   baseUrl: https://testi.virkailija.opintopolku.fi/tarjonta-service/rest/v1/
