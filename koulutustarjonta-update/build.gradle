@@ -1,5 +1,8 @@
+import com.github.jengelman.gradle.plugins.shadow.transformers.ServiceFileTransformer
+
 apply plugin: 'application'
 apply plugin: 'rpm'
+apply plugin: 'com.github.johnrengelman.shadow'
 
 mainClassName = 'fi.helsinki.koulutustarjonta.KotaUpdateApplication'
 
@@ -8,8 +11,14 @@ jar {
         attributes("Implementation-Title": "Koulutustarjonta - Update", "Implementation-Version": version,
                 "Main-Class": mainClassName)
     }
-    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
-    exclude 'META-INF/*.RSA', 'META-INF/*.SF','META-INF/*.DSA'
+}
+
+shadowJar {
+    transform(ServiceFileTransformer)
+    classifier = ''
+    exclude 'META-INF/*.RSA'
+    exclude 'META-INF/*.SF'
+    exclude 'META-INF/*.DSA'
 }
 
 repositories {
@@ -23,6 +32,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.netflix.nebula:gradle-ospackage-plugin:1.9.1'
+        classpath 'com.github.jengelman.gradle.plugins:shadow:1.1.0'
     }
 }
 
@@ -41,7 +51,7 @@ run {
     args 'server', 'update-config.yml'
 }
 
-task rpm(type: Rpm, dependsOn: 'jar') {
+task rpm(type: Rpm, dependsOn: 'shadowJar') {
     packageName = 'koulutustarjonta-update'
     release = commitHash()
     arch = NOARCH
