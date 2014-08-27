@@ -12,6 +12,7 @@ import org.skife.jdbi.v2.sqlobject.SqlQuery;
 import org.skife.jdbi.v2.sqlobject.SqlUpdate;
 import org.skife.jdbi.v2.sqlobject.customizers.BatchChunkSize;
 import org.skife.jdbi.v2.sqlobject.customizers.Mapper;
+import org.skife.jdbi.v2.sqlobject.stringtemplate.UseStringTemplate3StatementLocator;
 import org.skife.jdbi.v2.unstable.BindIn;
 
 import java.util.List;
@@ -19,6 +20,7 @@ import java.util.List;
 /**
  * @author Hannu Lyytikainen
  */
+@UseStringTemplate3StatementLocator
 public interface ApplicationSystemJDBI {
 
     @SqlQuery("SELECT h.*, ha.id AS ha_id, ha.nimi AS ha_nimi, " +
