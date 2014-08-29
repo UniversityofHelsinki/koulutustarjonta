@@ -6,25 +6,16 @@ import com.sun.jersey.api.client.WebResource;
 import io.dropwizard.client.JerseyClientBuilder;
 import io.dropwizard.client.JerseyClientConfiguration;
 import io.dropwizard.setup.Environment;
-import io.dropwizard.util.Duration;
 import org.hibernate.validator.constraints.NotEmpty;
-
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 
 /**
  * @author Hannu Lyytikainen
  */
-public class TarjontaClientFactory {
+public class TarjontaClientFactory extends JerseyClientConfiguration {
 
     private static final String LEARNING_OPPORTUNITY_PATH = "koulutus/";
     private static final String APPLICATION_OPTION_PATH = "hakukohde/";
     private static final String APPLICATION_SYSTEM_PATH = "haku/";
-
-    @Valid
-    @NotNull
-    @JsonProperty
-    private JerseyClientConfiguration httpClient = new JerseyClientConfiguration();
 
     @NotEmpty
     private String baseUrl;
@@ -40,11 +31,8 @@ public class TarjontaClientFactory {
     }
 
     public TarjontaClient build(Environment environment, KoodistoClient koodistoClient) {
-        httpClient.setConnectionTimeout(Duration.milliseconds(2000));
-        httpClient.setTimeout(Duration.milliseconds(2000));
-
         final Client client = new JerseyClientBuilder(environment)
-                .using(httpClient)
+                .using(this)
                 .build(this.getClass().toString());
         WebResource learningOpportunityResource = client.resource(String.format("%s%s", baseUrl, LEARNING_OPPORTUNITY_PATH));
         WebResource applicationOptionResource = client.resource(String.format("%s%s", baseUrl, APPLICATION_OPTION_PATH));

@@ -17,6 +17,7 @@ logging:
   # specific log levels
   loggers:
     "fi.helsinki.koulutustarjonta": DEBUG
+    "org.skife.jdbi": DEBUG
 
   appenders:
     - type: file
@@ -24,14 +25,6 @@ logging:
       archivedLogFilenamePattern: ./logs/koulutustarjonta-update-%d.log.gz
       archivedFileCount: 15
       timeZone: UTC
-
-tarjontaClient:
-  baseUrl: https://testi.virkailija.opintopolku.fi/tarjonta-service/rest/v1/
-  #baseUrl: https://od.helsinki.fi/tarjonta-service/rest/v1/
-
-koodistoClient:
-  baseUrl: https://testi.virkailija.opintopolku.fi/koodisto-service/rest/json/
-  # https://od.helsinki.fi/koodisto-service/rest/json/
 
 database:
   # the name of your JDBC driver
@@ -73,4 +66,16 @@ database:
 
   # the minimum amount of time an connection must sit idle in the pool before it is eligible for eviction
   minIdleTime: 1 minute
+
+tarjontaClient:
+  connectionTimeout: 4000ms
+  baseUrl: https://od.helsinki.fi/tarjonta-service/rest/v1/
+
+#organisaatioClient:
+#  baseUrl: https://testi.virkailija.opintopolku.fi/organisaatio-service/rest/
+  #baseUrl: https://od.helsinki.fi/organisaatio-service/rest/
+
+koodistoClient:
+  connectionTimeout: 4000ms
+  baseUrl: https://od.helsinki.fi/koodisto-service/rest/json/
 
