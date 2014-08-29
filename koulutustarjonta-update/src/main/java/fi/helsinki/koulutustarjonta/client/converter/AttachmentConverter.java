@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * @author Hannu Lyytikainen
  */
-public class AttachmentConverter extends KoodistoAwareConverter {
+public class AttachmentConverter extends BaseConverter {
 
     private final AddressConverter addressConverter;
 

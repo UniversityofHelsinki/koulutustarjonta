@@ -14,7 +14,6 @@ import java.io.IOException;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 /**
@@ -27,7 +26,7 @@ public class ApplicationSystemConverterTest extends AbstractClientConverterTest 
 
     @Before
     public void init() throws IOException {
-        KoodistoClient koodistoClient = mock(KoodistoClient.class);
+        KoodistoClient koodistoClient = mockKoodistoClient();
 
         Code applicationMethod = new Code();
         applicationMethod.setName(new I18N("hakutapa fi", "hakutapa sv", "hakutapa en"));

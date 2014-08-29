@@ -12,7 +12,6 @@ import java.io.IOException;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 /**
@@ -25,7 +24,7 @@ public class AddressConverterTest extends AbstractClientConverterTest {
 
     @Before
     public void init() {
-        KoodistoClient koodistoClient = mock(KoodistoClient.class);
+        KoodistoClient koodistoClient = mockKoodistoClient();
         Code postalCode = new Code();
         postalCode.setValue("00014");
         when(koodistoClient.getCode(eq("posti_00014"))).thenReturn(postalCode);

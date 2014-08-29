@@ -6,6 +6,7 @@ import com.sun.jersey.api.client.WebResource;
 import io.dropwizard.client.JerseyClientBuilder;
 import io.dropwizard.client.JerseyClientConfiguration;
 import io.dropwizard.setup.Environment;
+import io.dropwizard.util.Duration;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.Valid;
@@ -35,6 +36,8 @@ public class KoodistoClientFactory {
     }
 
     public KoodistoClient build(Environment environment) {
+        httpClient.setConnectionTimeout(Duration.milliseconds(2000));
+        httpClient.setTimeout(Duration.milliseconds(2000));
 
         final Client client = new JerseyClientBuilder(environment)
                 .using(httpClient)

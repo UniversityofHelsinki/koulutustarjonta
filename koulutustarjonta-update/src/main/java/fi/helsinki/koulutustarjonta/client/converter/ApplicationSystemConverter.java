@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 /**
  * @author Hannu Lyytikainen
  */
-public class ApplicationSystemConverter extends KoodistoAwareConverter {
+public class ApplicationSystemConverter extends BaseConverter {
 
     public ApplicationSystemConverter(KoodistoClient koodistoClient) {
         super(koodistoClient);

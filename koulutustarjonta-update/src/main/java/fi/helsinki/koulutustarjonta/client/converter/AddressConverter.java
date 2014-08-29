@@ -8,7 +8,7 @@ import fi.helsinki.koulutustarjonta.domain.Code;
 /**
  * @author Hannu Lyytikainen
  */
-public class AddressConverter extends KoodistoAwareConverter {
+public class AddressConverter extends BaseConverter {
 
     public AddressConverter(KoodistoClient koodistoClient) {
         super(koodistoClient);

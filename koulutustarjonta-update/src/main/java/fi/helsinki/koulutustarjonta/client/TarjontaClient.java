@@ -31,7 +31,7 @@ public class TarjontaClient {
                           WebResource applicationSystemResource, KoodistoClient koodistoClient) {
         this.learningOpportunitResource = learningOpportunityResource;
         this.koodistoClient = koodistoClient;
-        this.learningOpportunityConverter = new LearningOpportunityConverter();
+        this.learningOpportunityConverter = new LearningOpportunityConverter(koodistoClient);
         this.applicationOptionResource = applicationOptionResource;
         this.applicationOptionConverter = new ApplicationOptionConverter(koodistoClient);
         this.applicationSystemResource = applicationSystemResource;

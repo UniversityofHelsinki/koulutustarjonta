@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 /**
  * @author Hannu Lyytikainen
  */
-public class ApplicationOptionConverter extends KoodistoAwareConverter {
+public class ApplicationOptionConverter extends BaseConverter {
 
     private final ExamConverter examConverter;
     private final AttachmentConverter attachmentConverter;

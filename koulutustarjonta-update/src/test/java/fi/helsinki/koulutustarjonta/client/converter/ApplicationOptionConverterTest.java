@@ -12,7 +12,6 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 /**
@@ -25,7 +24,7 @@ public class ApplicationOptionConverterTest extends AbstractClientConverterTest 
 
     @Before
     public void init() throws IOException {
-        KoodistoClient koodistoClient = mock(KoodistoClient.class);
+        KoodistoClient koodistoClient = mockKoodistoClient();
         Code prerequisite = new Code();
         prerequisite.setName(new I18N("prerequisite name fi", "prerequisite name sv", "prerequisite name en"));
         when(koodistoClient.getCode(eq("pohjakoulutusvaatimuskorkeakoulut_118"))).thenReturn(prerequisite);

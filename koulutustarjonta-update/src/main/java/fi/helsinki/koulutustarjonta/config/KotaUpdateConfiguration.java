@@ -41,6 +41,7 @@ public class KotaUpdateConfiguration extends Configuration {
     public void setKoodistoClientFactory(KoodistoClientFactory koodistoClientFactory) {
         this.koodistoClientFactory = koodistoClientFactory;
     }
+
     @Valid
     @NotNull
     @JsonProperty

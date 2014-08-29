@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 /**
  * @author Hannu Lyytikainen
  */
-public class ExamConverter  extends KoodistoAwareConverter {
+public class ExamConverter extends BaseConverter {
 
     private final AddressConverter addressConverter;
 

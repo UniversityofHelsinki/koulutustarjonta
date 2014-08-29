@@ -12,7 +12,6 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.mockito.Mockito.mock;
 
 /**
  * @author Hannu Lyytikainen
@@ -24,7 +23,7 @@ public class ExamConverterTest extends AbstractClientConverterTest {
 
     @Before
     public void init() throws IOException {
-        KoodistoClient koodistoClient = mock(KoodistoClient.class);
+        KoodistoClient koodistoClient = mockKoodistoClient();
         converter = new ExamConverter(koodistoClient);
         fixture = fixture("fixtures/valintakoe.json");
     }

@@ -1,6 +1,9 @@
 package fi.helsinki.koulutustarjonta.client.converter;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.google.common.collect.Lists;
+import fi.helsinki.koulutustarjonta.client.KoodistoClient;
+import fi.helsinki.koulutustarjonta.domain.Code;
 import fi.helsinki.koulutustarjonta.domain.I18N;
 
 /**
@@ -8,6 +11,15 @@ import fi.helsinki.koulutustarjonta.domain.I18N;
  */
 public abstract class BaseConverter {
 
+    private final KoodistoClient koodistoClient;
+
+    protected BaseConverter(KoodistoClient koodistoClient) {
+        this.koodistoClient = koodistoClient;
+    }
+
+    public Code getCode(String uri) {
+        return koodistoClient.getCode(uri);
+    }
 
     /**
      * Converts a json object that contains text and meta information into
@@ -36,13 +48,22 @@ public abstract class BaseConverter {
         if (node == null) {
             return null;
         }
-        else {
-            return new I18N(
-                    node.get("kieli_fi") == null ? null : node.get("kieli_fi").textValue(),
-                    node.get("kieli_sv") == null ? null : node.get("kieli_sv").textValue(),
-                    node.get("kieli_en") == null ? null : node.get("kieli_en").textValue()
-            );
+        String fi = null;
+        String sv = null;
+        String en = null;
+
+        for (String field : Lists.newArrayList(node.fieldNames())) {
+
+            String lang = getCode(field).getValue();
+            if (lang.equals("fi")) {
+                fi = node.get(field).textValue();
+            } else if (lang.equals("sv")) {
+                sv = node.get(field).textValue();
+            } else if (lang.equals("en")) {
+                en = node.get(field).textValue();
+            }
         }
+        return new I18N(fi, sv, en);
     }
 
     /**
@@ -52,14 +73,6 @@ public abstract class BaseConverter {
      * @return language code
      */
     public String resolveLang(String langUri) {
-        if (langUri.equals("kieli_en")) {
-            return "en";
-        }
-        else if (langUri.equals("kieli_sv")) {
-            return "sv";
-        }
-        else {
-            return "fi";
-        }
+        return getCode(langUri).getValue();
     }
 }

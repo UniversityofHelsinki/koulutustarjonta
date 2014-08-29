@@ -1,6 +1,7 @@
 package fi.helsinki.koulutustarjonta.client.converter;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import fi.helsinki.koulutustarjonta.client.KoodistoClient;
 import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,7 +21,8 @@ public class LearningOpportunityConverterTest extends AbstractClientConverterTes
 
     @Before
     public void init() throws IOException {
-        converter = new LearningOpportunityConverter();
+        KoodistoClient koodistoClient = mockKoodistoClient();
+        converter = new LearningOpportunityConverter(koodistoClient);
         fixture = fixture("fixtures/koulutus.json");
     }
 
