@@ -14,17 +14,34 @@ public class AddressConverter extends BaseConverter {
         super(koodistoClient);
     }
 
+    /**
+     * OPH tarjonta service API data model
+     *
+     * @param node json node
+     * @return address
+     */
     public Address convert(JsonNode node) {
         Address address = new Address();
         address.setStreet(node.get("osoiterivi1").textValue());
         if (node.has("postinumeroArvo")) {
             address.setPostalCode(node.get("postinumeroArvo").textValue());
-        }
-        else {
+        } else {
             Code postalCode = getCode(node.get("postinumero").textValue());
             address.setPostalCode(postalCode.getValue());
         }
         address.setPostOffice(node.get("postitoimipaikka").textValue());
         return address;
+    }
+
+    /**
+     * OPH organisaatio API data model
+     *
+     * @param node json node
+     * @return address
+     */
+    public Address convertOrganizationAddress(JsonNode node) {
+        return new Address(node.get("osoite").textValue(),
+                getCode(node.get("postinumeroUri").textValue()).getValue(),
+                node.get("postitoimipaikka").textValue());
     }
 }

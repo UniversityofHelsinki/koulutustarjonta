@@ -1,0 +1,337 @@
+{
+  "yhteishaunKoulukoodi" : "",
+  "version" : 21,
+  "metadata" : {
+    "data" : {
+      "VALINTAMENETTELY" : {
+      },
+      "VAPAA_AIKA" : {
+      },
+      "LINKED_IN" : {
+          "kieli_fi#1" : "https://www.linkedin.fi",
+          "kieli_sv#1" : "https://www.linkedin.sv",
+          "kieli_en#1" : "https://www.linkedin.en"
+      },
+      "FACEBOOK" : {
+        "kieli_fi#1" : "https://www.facebook.com/ml.tiedekuntafi",
+        "kieli_sv#1" : "https://www.facebook.com/ml.tiedekuntasv",
+        "kieli_en#1" : "https://www.facebook.com/ml.tiedekuntaen"
+      },
+      "TWITTER" : {
+        "kieli_fi#1" : "https://twitter.com/UHFacultyofScifi",
+        "kieli_sv#1" : "https://twitter.com/UHFacultyofScisv",
+        "kieli_en#1" : "https://twitter.com/UHFacultyofScien"
+      },
+      "RAHOITUS" : {
+      },
+      "OPISKELIJALIIKUNTA" : {
+      },
+      "AIEMMIN_HANKITTU_OSAAMINEN" : {
+      },
+      "MUU" : {
+      },
+      "OPISKELIJALIIKKUVUUS" : {
+        "kieli_fi#1" : "<p>Kaikilla Helsingin yliopiston opiskelijoilla on mahdollisuus</p>",
+        "kieli_sv#1" : "<p>Alla studenter vid Helsingfors universitet har möjlighet att delta</p>",
+        "kieli_en#1" : "<p>student transfer</p>"
+      },
+      "OPPIMISYMPARISTO" : {
+        "kieli_fi#1" : "<p>Matemaattis-luonnontieteellinen tiedekunta on tutkimuksellisesti</p>",
+        "kieli_sv#1" : "<p>Matematisk-naturvetenskapliga fakulteten är en internationell</p>",
+        "kieli_en#1" : "<p>study environment</p>"
+      },
+      "KANSAINVALISET_KOULUTUSOHJELMAT" : {
+        "kieli_fi#1" : "<p>matemaattis-luonnontieteellinen tiedekunta tarjoaa englanninkielistä</p>",
+        "kieli_sv#1" : "<p>Matematisk-naturvetenskapliga fakulteten ger undervisning på engelska</p>",
+        "kieli_en#1" : "<p>international study programs</p>"
+      },
+      "OPISKELIJARUOKAILU" : {
+      },
+      "GOOGLE_PLUS" : {
+          "kieli_fi#1" : "https://www.googleplus.fi",
+          "kieli_sv#1" : "https://www.googleplus.sv",
+          "kieli_en#1" : "https://www.googleplus.en"
+      },
+      "TIETOA_ASUMISESTA" : {
+      },
+      "ESTEETOMYYS" : {
+        "kieli_fi#1" : "<p>Hakijoiden erityisjärjestelyillä tarkoitetaan käytännön järjestelyjä valintakoetilanteessa. Tällaisia voivat olla esimerkiksi liikuntaesteiden poistaminen, rauhallinen koetila, lisäaika, laajempi kirjoitustila, apuvälineiden käyttö tai muu vastaava järjestely. Näillä järjestelyillä on tarkoitus huolehtia siitä, että erityisjärjestelyä valintakoetilanteessa tarvitsevat hakijat ovat tasavertaisessa asemassa muiden hakijoiden kanssa. Jos koet tarvitsevasi <a href=\"http://www.helsinki.fi/opiskelijaksi/valintakokeet.html#Erityisjarjestelyt_valintakokeessa\">erityisjärjestelyjä</a>, sinun tulee jättää asiasta kirjallinen anomus siihen tiedekuntaan, jonne olet hakemassa.</p> <p>Helsingin yliopiston keskustakampuksen opiskelijaneuvonnassa on tarjolla yleisneuvontaa, mikäli tarvitset vamman, sairauden tai oppimisvaikeuden takia erityisjärjestelyitä opinnoissasi tai esimerkiksi tenttitilanteessa. Lisätietoa saat osoitteesta <a href=\"mailto:vammaisneuvonta@helsinki.fi\" rel=\"nofollow\">vammaisneuvonta@helsinki.fi</a>.</p>",
+        "kieli_sv#1" : "<div style=\"\"> <div> <p>Med specialarrangemang för sökande avses praktiska arrangemang vid urvalsprovstillfället. Dessa kan vara exempelvis avlägsnande av rörelsehinder, lugnt provutrymme, tilläggstid, större skrivbord, användning av hjälpmedel eller andra liknande arrangemang. Arrangemangen strävar efter att sökande som behöver specialarrangemang i urvalsprovet är jämställda med andra sökande. Ifall du upplever att du är i behov av specialarrangemang ska du lämna in en skriftlig anhållan till den fakultet du söker till.</p> <p>Helsingfors universitets studentrådgivning erbjuder allmän rådgivning ifall du behöver specialarrangemang i dina studier eller vid tenttillfällen på grund av skada, sjukdom eller inlärningssvårigheter. Mer information får du på vammaisneuvonta@helsinki.fi</p> </div> </div>"
+      },
+      "TERVEYDENHUOLTOPALVELUT" : {
+      },
+      "VASTUUHENKILOT" : {
+      },
+      "VAKUUTUKSET" : {
+      },
+      "KIELIOPINNOT" : {
+      },
+      "VUOSIKELLO" : {
+      },
+      "YLEISKUVAUS" : {
+        "kieli_fi#1" : "<p>Luonnontieteellinen osaaminen on Suomessa kansainvälistä huippua.</p>",
+        "kieli_sv#1" : "<p>Kunskaperna i naturvetenskap är på internationell toppnivå i Finland.</p>",
+        "kieli_en#1" : "<p>outline</p>"
+      },
+      "KUSTANNUKSET" : {
+        "kieli_fi#1" : "<p>Yliopisto-opiskelijoille on tarjolla palveluja ja etuja </p>",
+        "kieli_sv#1" : "<p>Åt universitetsstuderande erbjuds tjänster och förmåner gällande</p>",
+        "kieli_en#1" : "<p>expenses</p>"
+      },
+      "TYOHARJOITTELU" : {
+        "kieli_fi#1" : "<p>Matemaattis-luonnontieteellisen tiedekunnan tutkintoihin sisältyy työelämä- ja yrittäjyyskursseja sekä työharjoittelua, joka antaa mahdollisuuden soveltaa oppimaasi käytännön työelämässä.</p> <p>Luonnontieteilijöiden yleisiä harjoittelupaikkoja ovat esimerkiksi tutkimuskeskukset (muun muassa ympäristökeskukset, Ilmatieteen laitos, Geologian tutkimuskeskus, Geodeettinen laitos, VTT ja CERN), vakuutus- ja finanssialan organisaatiot, sairaalat, lääketeollisuus ja muu kemianteollisuus. Lisäksi luonnontieteellisten alojen opiskelijoille sopivia harjoittelupaikkoja löytyy esimerkiksi opetus-, matkailu-, IT-alan tehtävien parista.</p> <p>Tiedekunta edistää opiskelijoidensa harjoittelumahdollisuuksia tarjoamalla harjoittelutukea maisterivaiheen opiskelijoille.</p>",
+        "kieli_sv#1" : "<p>Examina vid Matematisk-naturvetenskapliga fakulteten innehåller kurser i arbetslivsorientering och företagande samt arbetspraktik, där du kan tillämpa dina kunskaper i arbetslivet.</p> <p>Studenterna i naturvetenskapliga ämnen gör ofta sin praktik vid olika forskningscenter (till exempel miljöcentralerna, Meteorologiska institutet, Geologiska forskningscentralen (GTK), Geodetiska institutet, VTT eller CERN), organisationer inom försäkrings- och finansbranschen, inom läkemedelsindustrin eller övrig kemiindustri. Lämpliga praktikplatser kan också finnas inom till exempel undervisning, turism och IT.</p> <p>Fakulteten stöder studenternas möjligheter till praktik genom att erbjuda magisterstuderande praktikstöd.</p>"
+      },
+      "OPISKELIJA_JARJESTOT" : {
+      }
+    },
+    "nimi" : {
+    },
+    "yhteystiedot" : [ {
+      "kieli" : "kieli_fi#1",
+      "osoiteTyyppi" : "kaynti",
+      "yhteystietoOid" : "1.2.246.562.5.2014043013015175696862",
+      "postinumeroUri" : "posti_00014",
+      "osoite" : "Fabianinkatu 33, 1. krs",
+      "postitoimipaikka" : "HELSINGIN YLIOPISTO",
+      "lng" : null,
+      "maaUri" : null,
+      "id" : "382423",
+      "ytjPaivitysPvm" : null,
+      "lap" : null,
+      "coordinateType" : null,
+      "osavaltio" : null,
+      "extraRivi" : null
+    }, {
+      "kieli" : "kieli_fi#1",
+      "osoiteTyyppi" : "posti",
+      "yhteystietoOid" : "1.2.246.562.5.2014043013015175762171",
+      "postinumeroUri" : "posti_00014",
+      "osoite" : "PL 3",
+      "postitoimipaikka" : "HELSINGIN YLIOPISTO",
+      "lng" : null,
+      "maaUri" : null,
+      "id" : "382424",
+      "ytjPaivitysPvm" : null,
+      "lap" : null,
+      "coordinateType" : null,
+      "osavaltio" : null,
+      "extraRivi" : null
+    }, {
+      "kieli" : "kieli_fi#1",
+      "id" : "382425",
+      "yhteystietoOid" : "13988521117550.2727701427929716",
+      "email" : "hakijapalvelut@helsinki.fi"
+    }, {
+      "kieli" : "kieli_fi#1",
+      "id" : "382426",
+      "yhteystietoOid" : "13988521117550.2952901431517039",
+      "www" : "http://www.helsinki.fi/opiskelijaksi"
+    }, {
+      "tyyppi" : "puhelin",
+      "kieli" : "kieli_fi#1",
+      "id" : "382427",
+      "yhteystietoOid" : "1.2.246.562.5.2014043013015175716686",
+      "numero" : "02941 24140"
+    }, {
+      "kieli" : "kieli_sv#1",
+      "osoiteTyyppi" : "kaynti",
+      "yhteystietoOid" : "1.2.246.562.5.2014043013252959014345",
+      "postinumeroUri" : "posti_00014",
+      "osoite" : "Fabiansgatan 33, 1 vån",
+      "postitoimipaikka" : "HELSINGIN YLIOPISTO",
+      "lng" : null,
+      "maaUri" : null,
+      "id" : "382428",
+      "ytjPaivitysPvm" : null,
+      "lap" : null,
+      "coordinateType" : null,
+      "osavaltio" : null,
+      "extraRivi" : null
+    }, {
+      "kieli" : "kieli_sv#1",
+      "osoiteTyyppi" : "posti",
+      "yhteystietoOid" : "1.2.246.562.5.2014043013252959034563",
+      "postinumeroUri" : "posti_00014",
+      "osoite" : "PB 3",
+      "postitoimipaikka" : "HELSINGIN YLIOPISTO",
+      "lng" : null,
+      "maaUri" : null,
+      "id" : "382429",
+      "ytjPaivitysPvm" : null,
+      "lap" : null,
+      "coordinateType" : null,
+      "osavaltio" : null,
+      "extraRivi" : null
+    }, {
+      "kieli" : "kieli_sv#1",
+      "id" : "382430",
+      "yhteystietoOid" : "13988535295890.891230720739103",
+      "email" : "studera@helsinki.fi"
+    }, {
+      "kieli" : "kieli_sv#1",
+      "id" : "382431",
+      "yhteystietoOid" : "13988535295890.6952634108723412",
+      "www" : "http://www.helsinki.fi/ansokningen"
+    }, {
+      "tyyppi" : "puhelin",
+      "kieli" : "kieli_sv#1",
+      "id" : "382432",
+      "yhteystietoOid" : "1.2.246.562.5.2014043013252959043040",
+      "numero" : "02941 24140"
+    } ],
+    "luontiPvm" : 1395655655573,
+    "muokkausPvm" : 1395655655573,
+    "hakutoimistonNimi" : {
+      "kieli_fi#1" : "Hakijapalvelut",
+      "kieli_sv#1" : "Hakijapalvelut"
+    }
+  },
+  "oid" : "1.2.246.562.10.94639300915",
+  "nimi" : {
+    "fi" : "Helsingin yliopisto, Matemaattis-luonnontieteellinen tiedekunta",
+    "sv" : "Helsingfors universitet, Matematisk-naturvetenskapliga fakulteten",
+    "en" : "University of Helsinki, Faculty of Science"
+  },
+  "kuvaus2" : {
+  },
+  "parentOid" : "1.2.246.562.10.39218317368",
+  "tyypit" : [ "Toimipiste" ],
+  "yhteystietoArvos" : [ ],
+  "yhteystiedot" : [ {
+    "kieli" : "kieli_fi#1",
+    "id" : "382433",
+    "yhteystietoOid" : "1.2.246.562.5.30661441326",
+    "email" : "ml-neuvonta@helsinki.fi"
+  }, {
+    "tyyppi" : "faksi",
+    "kieli" : "kieli_fi#1",
+    "id" : "382434",
+    "yhteystietoOid" : "1.2.246.562.5.912269158410",
+    "numero" : "02941 50070"
+  }, {
+    "tyyppi" : "puhelin",
+    "kieli" : "kieli_fi#1",
+    "id" : "382435",
+    "yhteystietoOid" : "1.2.246.562.5.49859713635",
+    "numero" : "02941 50066"
+  }, {
+    "kieli" : "kieli_fi#1",
+    "id" : "382436",
+    "yhteystietoOid" : "1.2.246.562.5.77700691593",
+    "www" : "http://www.helsinki.fi/ml/"
+  }, {
+    "kieli" : "kieli_fi#1",
+    "osoiteTyyppi" : "posti",
+    "yhteystietoOid" : "1.2.246.562.5.62060095783",
+    "postinumeroUri" : "posti_00014",
+    "osoite" : "PL 44",
+    "postitoimipaikka" : "HELSINGIN YLIOPISTO",
+    "lng" : null,
+    "maaUri" : null,
+    "id" : "382437",
+    "ytjPaivitysPvm" : null,
+    "lap" : null,
+    "coordinateType" : null,
+    "osavaltio" : null,
+    "extraRivi" : null
+  }, {
+    "kieli" : "kieli_fi#1",
+    "osoiteTyyppi" : "kaynti",
+    "yhteystietoOid" : "1.2.246.562.5.83505933065",
+    "postinumeroUri" : "posti_00560",
+    "osoite" : "Jyrängöntie 2",
+    "postitoimipaikka" : "HELSINKI",
+    "lng" : null,
+    "maaUri" : null,
+    "id" : "382438",
+    "ytjPaivitysPvm" : null,
+    "lap" : null,
+    "coordinateType" : null,
+    "osavaltio" : null,
+    "extraRivi" : null
+  }, {
+    "kieli" : "kieli_sv#1",
+    "osoiteTyyppi" : "kaynti",
+    "yhteystietoOid" : "1.2.246.562.5.2014043013252959039288",
+    "postinumeroUri" : "posti_00560",
+    "osoite" : "Jyränkövägen 2",
+    "postitoimipaikka" : "HELSINGFORS",
+    "lng" : null,
+    "maaUri" : null,
+    "id" : "382439",
+    "ytjPaivitysPvm" : null,
+    "lap" : null,
+    "coordinateType" : null,
+    "osavaltio" : null,
+    "extraRivi" : null
+  }, {
+    "kieli" : "kieli_sv#1",
+    "osoiteTyyppi" : "posti",
+    "yhteystietoOid" : "1.2.246.562.5.2014043013252959080210",
+    "postinumeroUri" : "posti_00014",
+    "osoite" : "PB 44",
+    "postitoimipaikka" : "HELSINGIN YLIOPISTO",
+    "lng" : null,
+    "maaUri" : null,
+    "id" : "382440",
+    "ytjPaivitysPvm" : null,
+    "lap" : null,
+    "coordinateType" : null,
+    "osavaltio" : null,
+    "extraRivi" : null
+  }, {
+    "kieli" : "kieli_sv#1",
+    "id" : "382441",
+    "yhteystietoOid" : "13988535295890.4643527468672496",
+    "email" : "ml-neuvonta@helsinki.sv"
+  }, {
+    "kieli" : "kieli_sv#1",
+    "id" : "382442",
+    "yhteystietoOid" : "13988535295890.9650069411098692",
+    "www" : "http://www.helsinki.sv/matnat"
+  }, {
+    "tyyppi" : "puhelin",
+    "kieli" : "kieli_sv#1",
+    "id" : "382443",
+    "yhteystietoOid" : "1.2.246.562.5.2014043013252959082306",
+    "numero" : "02941 50066"
+  } ],
+  "parentOidPath" : "|1.2.246.562.10.00000000001|1.2.246.562.10.53814745062|1.2.246.562.10.39218317368|",
+  "kieletUris" : [ "oppilaitoksenopetuskieli_1#1", "oppilaitoksenopetuskieli_2#1" ],
+  "vuosiluokat" : [ ],
+  "alkuPvm" : "1993-01-01",
+  "ryhmatyypit" : [ ],
+  "kayttoryhmat" : [ ],
+  "toimipistekoodi" : "0190119",
+  "kayntiosoite" : {
+    "osoiteTyyppi" : "kaynti",
+    "yhteystietoOid" : "1.2.246.562.5.83505933065",
+    "postinumeroUri" : "posti_00560",
+    "osoite" : "Jyrängöntie 2",
+    "postitoimipaikka" : "HELSINKI",
+    "ytjPaivitysPvm" : null,
+    "lng" : null,
+    "lap" : null,
+    "coordinateType" : null,
+    "osavaltio" : null,
+    "extraRivi" : null,
+    "maaUri" : null
+  },
+  "kotipaikkaUri" : "kunta_091",
+  "maaUri" : "maatjavaltiot1_fin",
+  "postiosoite" : {
+    "osoiteTyyppi" : "posti",
+    "yhteystietoOid" : "1.2.246.562.5.62060095783",
+    "postinumeroUri" : "posti_00014",
+    "osoite" : "PL 44",
+    "postitoimipaikka" : "HELSINGIN YLIOPISTO",
+    "ytjPaivitysPvm" : null,
+    "lng" : null,
+    "lap" : null,
+    "coordinateType" : null,
+    "osavaltio" : null,
+    "extraRivi" : null,
+    "maaUri" : null
+  }
+}
