@@ -8,20 +8,12 @@ import io.dropwizard.client.JerseyClientConfiguration;
 import io.dropwizard.setup.Environment;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-
 /**
  * @author Hannu Lyytikainen
  */
-public class OrganisaatioClientFactory {
+public class OrganisaatioClientFactory extends JerseyClientConfiguration {
 
     private static final String ORGANIZATION_PATH = "organisaatio/";
-
-    @Valid
-    @NotNull
-    @JsonProperty
-    private JerseyClientConfiguration httpClient = new JerseyClientConfiguration();
 
     @NotEmpty
     private String baseUrl;
@@ -39,11 +31,11 @@ public class OrganisaatioClientFactory {
     public OrganisaatioClient build(Environment environment, KoodistoClient koodistoClient) {
 
         final Client client = new JerseyClientBuilder(environment)
-                .using(httpClient)
+                .using(this)
                 .build(this.getClass().toString());
         WebResource organizationResource = client.resource(String.format("%s%s", baseUrl, ORGANIZATION_PATH));
 
-        return new OrganisaatioClient(organizationResource);
+        return new OrganisaatioClient(organizationResource, koodistoClient);
 
     }
 }

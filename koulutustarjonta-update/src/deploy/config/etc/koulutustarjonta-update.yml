@@ -25,14 +25,6 @@ logging:
       archivedFileCount: 15
       timeZone: UTC
 
-tarjontaClient:
-  connectionTimeout: 4000ms
-  baseUrl: https://od.helsinki.fi/tarjonta-service/rest/v1/
-
-koodistoClient:
-  connectionTimeout: 4000ms
-  baseUrl: https://od.helsinki.fi/koodisto-service/rest/json/
-
 database:
   # the name of your JDBC driver
   driverClass: oracle.jdbc.OracleDriver
@@ -73,3 +65,15 @@ database:
 
   # the minimum amount of time an connection must sit idle in the pool before it is eligible for eviction
   minIdleTime: 1 minute
+
+tarjontaClient:
+  connectionTimeout: 10s
+  baseUrl: https://od.helsinki.fi/tarjonta-service/rest/v1/
+
+organisaatioClient:
+  connectionTimeout: 10s
+  baseUrl: https://od.helsinki.fi/organisaatio-service/rest/
+
+koodistoClient:
+  connectionTimeout: 10s
+  baseUrl: https://od.helsinki.fi/koodisto-service/rest/json/

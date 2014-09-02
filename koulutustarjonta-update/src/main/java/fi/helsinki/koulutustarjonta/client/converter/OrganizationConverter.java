@@ -17,7 +17,7 @@ public class OrganizationConverter extends BaseConverter {
 
     private final AddressConverter addressConverter;
 
-    protected OrganizationConverter(KoodistoClient koodistoClient) {
+    public OrganizationConverter(KoodistoClient koodistoClient) {
         super(koodistoClient);
         this.addressConverter = new AddressConverter(koodistoClient);
     }
