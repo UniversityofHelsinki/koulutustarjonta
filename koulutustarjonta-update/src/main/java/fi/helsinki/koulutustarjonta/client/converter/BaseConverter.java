@@ -55,11 +55,11 @@ public abstract class BaseConverter {
         for (String field : Lists.newArrayList(node.fieldNames())) {
 
             String lang = getCode(field).getValue();
-            if (lang.equals("fi")) {
+            if (lang.equalsIgnoreCase("fi")) {
                 fi = node.get(field).textValue();
-            } else if (lang.equals("sv")) {
+            } else if (lang.equalsIgnoreCase("sv")) {
                 sv = node.get(field).textValue();
-            } else if (lang.equals("en")) {
+            } else if (lang.equalsIgnoreCase("en")) {
                 en = node.get(field).textValue();
             }
         }
