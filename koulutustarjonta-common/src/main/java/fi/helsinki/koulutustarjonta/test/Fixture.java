@@ -128,4 +128,25 @@ public class Fixture {
                 "www.applicationform.url", Lists.newArrayList(ap));
         return as;
     }
+
+    public static Organization organization() {
+        return new Organization("organization oid",
+                new I18N("name fi", "name sv", "name en"),
+                new I18N("outline fi", "outline sv", "outline en"),
+                new I18N("expenses fi", "expenses sv", "expenses en"),
+                new I18N("international fi", "international sv", "internationl en"),
+                new I18N("transfer fi", "transfer sv", "transfer en"),
+                new I18N("environment fi", "environment sv", "environment en"),
+                new Some(new I18N("facebook fi", "facebook sv", "facebook en"),
+                        new I18N("twitter fi", "twitter sv", "twitter en"),
+                        new I18N("google plus fi", "google plus sv", "google plus en"),
+                        new I18N("linkedin fi", "linkedin sv", "linkedin en")),
+                Lists.newArrayList(new ContactInfo("contact oid", ContactInfo.TYPE.CONTACT, "fi", "c www fi",
+                        "c phone fi", "c email fi", "c fax fi", new Address("c street visit", "c postal code visit", "c post office visit"),
+                        new Address("c street post", "c postal code post", "c post office post"))),
+                Lists.newArrayList(new ContactInfo("applicant oid", ContactInfo.TYPE.APPLICANT, "fi", "a www fi",
+                        "a phone fi", "a email fi", "a fax fi", new Address("a street visit", "a postal code visit", "a post office visit"),
+                        new Address("a street post", "a postal code post", "a post office post")))
+                );
+    }
 }

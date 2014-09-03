@@ -8,9 +8,11 @@ import fi.helsinki.koulutustarjonta.core.Updater;
 import fi.helsinki.koulutustarjonta.dao.ApplicationOptionDAO;
 import fi.helsinki.koulutustarjonta.dao.ApplicationSystemDAO;
 import fi.helsinki.koulutustarjonta.dao.LearningOpportunityDAO;
+import fi.helsinki.koulutustarjonta.dao.OrganizationDAO;
 import fi.helsinki.koulutustarjonta.dao.jdbi.ApplicationOptionJDBI;
 import fi.helsinki.koulutustarjonta.dao.jdbi.ApplicationSystemJDBI;
 import fi.helsinki.koulutustarjonta.dao.jdbi.LearningOpportunityJDBI;
+import fi.helsinki.koulutustarjonta.dao.jdbi.OrganizationJDBI;
 import fi.helsinki.koulutustarjonta.dao.util.OracleStatementBuilderFactory;
 import fi.helsinki.koulutustarjonta.resource.UpdateResource;
 import io.dropwizard.Application;
@@ -46,11 +48,13 @@ public class KotaUpdateApplication extends Application<KotaUpdateConfiguration> 
         final ApplicationOptionJDBI applicationOptionJDBI = dbi.onDemand(ApplicationOptionJDBI.class);
         final ApplicationOptionDAO applicationOptionDAO = new ApplicationOptionDAO(applicationOptionJDBI);
         final ApplicationSystemDAO applicationSystemDAO = new ApplicationSystemDAO(dbi.onDemand(ApplicationSystemJDBI.class));
+        final OrganizationJDBI organizationJDBI = dbi.onDemand(OrganizationJDBI.class);
+        final OrganizationDAO organizationDAO = new OrganizationDAO(organizationJDBI);
         final KoodistoClient koodistoClient = configuration.getKoodistoClientFactory().build(environment);
         final TarjontaClient tarjontaClient = configuration.getTarjontaClientFactory().build(environment, koodistoClient);
         final OrganisaatioClient organisaatioClient = configuration.getOrganisaatioClientFactory().build(environment, koodistoClient);
         final Updater updater = new Updater(tarjontaClient, organisaatioClient,
-                learningOpportunityDAO, applicationOptionDAO, applicationSystemDAO);
+                learningOpportunityDAO, applicationOptionDAO, applicationSystemDAO, organizationDAO);
         final UpdateResource updateResource = new UpdateResource(updater);
         environment.jersey().register(updateResource);
 

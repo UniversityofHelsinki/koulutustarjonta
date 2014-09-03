@@ -36,21 +36,21 @@ public class OrganizationConverter extends BaseConverter {
                         convertToI18N(metadata.get("TWITTER")),
                         convertToI18N(metadata.get("GOOGLE_PLUS")),
                         convertToI18N(metadata.get("LINKED_IN"))),
-                convertContactInfos(node.get("yhteystiedot")),
-                convertContactInfos(node.get("metadata").get("yhteystiedot"))
+                convertContactInfos(node.get("yhteystiedot"), ContactInfo.TYPE.CONTACT),
+                convertContactInfos(node.get("metadata").get("yhteystiedot"), ContactInfo.TYPE.APPLICANT)
         );
     }
 
-    private List<ContactInfo> convertContactInfos(JsonNode contactInfosNode) {
+    private List<ContactInfo> convertContactInfos(JsonNode contactInfosNode, ContactInfo.TYPE type) {
         return Lists.newArrayList(contactInfosNode).stream()
                 .collect(groupingBy(info -> info.get("kieli").textValue()))
                 .entrySet()
                 .stream()
-                .map(entry -> convertContactInfo(entry.getKey(), entry.getValue()))
+                .map(entry -> convertContactInfo(entry.getKey(), type, entry.getValue()))
                 .collect(toList());
     }
 
-    private ContactInfo convertContactInfo(String langUri, List<JsonNode> contactInfoNodes) {
+    private ContactInfo convertContactInfo(String langUri, ContactInfo.TYPE type, List<JsonNode> contactInfoNodes) {
         String lang = getCode(langUri).getValue();
         String oid = null;
         String www = null;
@@ -72,11 +72,11 @@ public class OrganizationConverter extends BaseConverter {
                 }
             }
             else if (infoNode.has("tyyppi")) {
-                String type = infoNode.get("tyyppi").textValue();
-                if (type.equals("faksi")) {
+                String numbetType = infoNode.get("tyyppi").textValue();
+                if (numbetType.equals("faksi")) {
                     fax = infoNode.get("numero").textValue();
                 }
-                else if (type.equals("puhelin")) {
+                else if (numbetType.equals("puhelin")) {
                     phone = infoNode.get("numero").textValue();
                 }
             }
@@ -87,7 +87,7 @@ public class OrganizationConverter extends BaseConverter {
                 www = infoNode.get("www").textValue();
             }
         }
-        return new ContactInfo(oid, lang, www, phone, email,
+        return new ContactInfo(oid, type, lang, www, phone, email,
                 fax, visitingAddress, postalAddress);
     }
 

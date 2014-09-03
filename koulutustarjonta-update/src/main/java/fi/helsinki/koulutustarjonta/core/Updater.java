@@ -5,6 +5,7 @@ import fi.helsinki.koulutustarjonta.client.TarjontaClient;
 import fi.helsinki.koulutustarjonta.dao.ApplicationOptionDAO;
 import fi.helsinki.koulutustarjonta.dao.ApplicationSystemDAO;
 import fi.helsinki.koulutustarjonta.dao.LearningOpportunityDAO;
+import fi.helsinki.koulutustarjonta.dao.OrganizationDAO;
 import fi.helsinki.koulutustarjonta.domain.ApplicationOption;
 import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
 import fi.helsinki.koulutustarjonta.domain.Organization;
@@ -23,19 +24,22 @@ public class Updater {
     final LearningOpportunityDAO learningOpportunityDAO;
     final ApplicationOptionDAO applicationOptionDAO;
     final ApplicationSystemDAO applicationSystemDAO;
+    final OrganizationDAO organizationDAO;
 
     public Updater(TarjontaClient tarjontaClient, OrganisaatioClient organisaatioClient, LearningOpportunityDAO learningOpportunityDAO,
-                   ApplicationOptionDAO applicationOptionDAO, ApplicationSystemDAO applicationSystemDAO) {
+                   ApplicationOptionDAO applicationOptionDAO, ApplicationSystemDAO applicationSystemDAO, OrganizationDAO organizationDAO) {
         this.tarjontaClient = tarjontaClient;
         this.organisaatioClient = organisaatioClient;
         this.learningOpportunityDAO = learningOpportunityDAO;
         this.applicationOptionDAO = applicationOptionDAO;
         this.applicationSystemDAO = applicationSystemDAO;
+        this.organizationDAO = organizationDAO;
     }
 
     public void update() {
         LOG.debug("Update data");
         Organization organization = organisaatioClient.getOrganization("1.2.246.562.10.94639300915");
+        organizationDAO.save(organization);
         LOG.debug("Organization update finished");
         LearningOpportunity learningOpportunity = tarjontaClient.getLearningOpportunity("1.2.246.562.17.17939899864");
         learningOpportunityDAO.save(learningOpportunity);

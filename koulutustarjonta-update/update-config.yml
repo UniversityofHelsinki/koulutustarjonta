@@ -68,14 +68,14 @@ database:
   minIdleTime: 1 minute
 
 tarjontaClient:
-  connectionTimeout: 10s
+  connectionTimeout: 10000ms
   baseUrl: https://od.helsinki.fi/tarjonta-service/rest/v1/
 
 organisaatioClient:
-  connectionTimeout: 10s
+  connectionTimeout: 10000ms
   baseUrl: https://od.helsinki.fi/organisaatio-service/rest/
 
 koodistoClient:
-  connectionTimeout: 10s
+  connectionTimeout: 10000ms
   baseUrl: https://od.helsinki.fi/koodisto-service/rest/json/
 

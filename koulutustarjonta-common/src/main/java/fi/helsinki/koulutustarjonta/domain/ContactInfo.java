@@ -9,7 +9,10 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class ContactInfo {
+    public enum TYPE {CONTACT, APPLICANT}
+
     private final String oid;
+    private final TYPE type;
     private final String lang;
     private final String www;
     private final String phone;
