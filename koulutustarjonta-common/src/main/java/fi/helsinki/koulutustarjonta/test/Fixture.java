@@ -129,8 +129,8 @@ public class Fixture {
         return as;
     }
 
-    public static Organization organization() {
-        return new Organization("organization oid",
+    public static Organization organization(String oid) {
+        return new Organization(oid,
                 new I18N("name fi", "name sv", "name en"),
                 new I18N("outline fi", "outline sv", "outline en"),
                 new I18N("expenses fi", "expenses sv", "expenses en"),

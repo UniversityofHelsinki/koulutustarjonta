@@ -23,7 +23,7 @@ public class OrganizationDAOTest extends BaseDAOTest {
 
     OrganizationDAO dao;
 
-    final Organization fixture = Fixture.organization();
+    final Organization fixture = Fixture.organization("org_test_oid");
 
     // test data organization oid
     final String orgOidPopulated = "organisaatio_id1";
@@ -93,10 +93,6 @@ public class OrganizationDAOTest extends BaseDAOTest {
         return contactInfos.stream()
                 .filter(info -> info.getLang().equals(lang))
                 .collect(toList()).get(0);
-    }
-
-    private boolean hasLang(ContactInfo contactInfo, String lang) {
-        return contactInfo.getLang().equals(lang);
     }
 
     private void contactInfosEqual(ContactInfo expected, ContactInfo actual) {
