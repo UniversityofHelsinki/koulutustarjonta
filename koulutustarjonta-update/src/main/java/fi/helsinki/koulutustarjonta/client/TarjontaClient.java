@@ -1,6 +1,7 @@
 package fi.helsinki.koulutustarjonta.client;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.google.common.collect.Lists;
 import com.sun.jersey.api.client.GenericType;
 import com.sun.jersey.api.client.WebResource;
 import fi.helsinki.koulutustarjonta.client.converter.ApplicationOptionConverter;
@@ -11,6 +12,11 @@ import fi.helsinki.koulutustarjonta.domain.ApplicationSystem;
 import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static java.util.stream.Collectors.toList;
 
 /**
  * @author Hannu Lyytikainen
@@ -36,6 +42,42 @@ public class TarjontaClient {
         this.applicationOptionConverter = new ApplicationOptionConverter(koodistoClient);
         this.applicationSystemResource = applicationSystemResource;
         this.applicationSystemConverter = new ApplicationSystemConverter(koodistoClient);
+    }
+
+    public List<String> getLearningOpportunityOidsByProvider(String organizationOid) {
+        LOG.debug(String.format("Searching learning opportunities with organization %s", organizationOid));
+        JsonNode searchResult = learningOpportunitResource.path("search")
+                .queryParam("organisationOid", organizationOid)
+                .queryParam("tila", "JULKAISTU")
+                .get(new GenericType<JsonNode>() {})
+                .get("result").get("tulokset");
+        if (searchResult.size() > 0) {
+            return Lists.newArrayList(searchResult.get(0).get("tulokset"))
+                    .parallelStream()
+                    .map(result -> result.get("oid").textValue())
+                    .collect(toList());
+        }
+        else {
+            return new ArrayList<>();
+        }
+    }
+
+    public List<String> getApplicationOptionOidsByProvider(String organizationOid) {
+        LOG.debug(String.format("Searching application options with organization %s", organizationOid));
+        JsonNode searchResult = applicationOptionResource.path("search")
+                .queryParam("organisationOid", organizationOid)
+                .queryParam("tila", "JULKAISTU")
+                .get(new GenericType<JsonNode>() {})
+                .get("result").get("tulokset");
+        if (searchResult.size() > 0) {
+            return Lists.newArrayList(searchResult.get(0).get("tulokset"))
+                    .parallelStream()
+                    .map(result -> result.get("oid").textValue())
+                    .collect(toList());
+        }
+        else {
+            return new ArrayList<>();
+        }
     }
 
     public LearningOpportunity getLearningOpportunity(String oid) {

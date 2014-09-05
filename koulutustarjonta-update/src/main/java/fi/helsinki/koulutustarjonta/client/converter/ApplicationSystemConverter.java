@@ -40,7 +40,7 @@ public class ApplicationSystemConverter extends BaseConverter {
                 new Season(applicationSeasonCode.getValue(), applicationSeasonCode.getName()),
                 root.get("koulutuksenAlkamisVuosi").intValue(),
                 new Season(educationStartsSeasonCode.getValue(), educationStartsSeasonCode.getName()),
-                root.get("hakulomakeUri").textValue(),
+                root.hasNonNull("hakulomakeUri") ? root.get("hakulomakeUri").textValue() : null,
                 periods
         );
     }

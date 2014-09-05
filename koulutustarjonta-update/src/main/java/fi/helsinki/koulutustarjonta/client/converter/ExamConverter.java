@@ -43,7 +43,9 @@ public class ExamConverter extends BaseConverter {
         event.setOid(eventJson.get("oid").textValue());
         event.setStarts(new Date(eventJson.get("alkaa").asLong()));
         event.setEnds(new Date(eventJson.get("loppuu").asLong()));
-        event.setInfo(eventJson.get("lisatiedot").textValue());
+        if (eventJson.hasNonNull("lisatiedot")) {
+            event.setInfo(eventJson.get("lisatiedot").textValue());
+        }
         event.setAddress(addressConverter.convert(eventJson.get("osoite")));
         return event;
     }

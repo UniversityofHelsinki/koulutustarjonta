@@ -28,7 +28,6 @@ public class KoodistoClient {
     public Code getCode(String codeUriAndVersion) {
         String codeUri = parseCodeUri(codeUriAndVersion);
         String version = parseVersion(codeUriAndVersion);
-        LOG.debug(String.format("Retrieving code with uri %s", codeUri));
         String path = String.format("%s/%s/%s",
                 parseCodeGroup(codeUri), CODE_PATH, codeUri);
         WebResource resource = codeResource.path(path);

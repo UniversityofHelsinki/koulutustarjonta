@@ -42,23 +42,30 @@ public class Updater {
     public void update() {
         LOG.debug("Update data");
         List<String> organizationOids = organisaatioClient.resolveFacultyOids("1.2.246.562.10.39218317368");
-        organizationOids.forEach(oid -> {
+        organizationOids.forEach(organizationOid -> {
             Organization organization = null;
-            try {
-                organization = organisaatioClient.getOrganization(oid);
-                organizationDAO.save(organization);
-            } catch (DataUpdateException e) {
-                LOG.warn(String.format("Could not retreive organization %s: %s", oid, e.getMessage()));
+            List<String> learningOpportunityOids = tarjontaClient.getLearningOpportunityOidsByProvider(organizationOid);
+            LOG.debug(String.format("Found %d learning opportunities for organization %s", learningOpportunityOids.size(), organizationOid));
+            List<String> applicationOptionOids = tarjontaClient.getApplicationOptionOidsByProvider(organizationOid);
+            LOG.debug(String.format("Found %d application options for organization %s", applicationOptionOids.size(), organizationOid));
+            if (learningOpportunityOids.size() > 0 || applicationOptionOids.size() > 0) {
+                try {
+                    organization = organisaatioClient.getOrganization(organizationOid);
+                    organizationDAO.save(organization);
+                    learningOpportunityOids.forEach(loOid -> {
+                        LearningOpportunity learningOpportunity = tarjontaClient.getLearningOpportunity(loOid);
+                        learningOpportunityDAO.save(learningOpportunity);
+                    });
+                    applicationOptionOids.forEach(aoOid -> {
+                        ApplicationOption ao = tarjontaClient.getApplicationOption(aoOid);
+                        applicationSystemDAO.save(ao.getApplicationSystem());
+                        applicationOptionDAO.save(ao);
+                    });
+                } catch (DataUpdateException e) {
+                    LOG.warn(String.format("Could not retreive organization %s: %s", organizationOid, e.getMessage()));
+                }
             }
         });
-        LOG.debug("Organization update finished");
-        LearningOpportunity learningOpportunity = tarjontaClient.getLearningOpportunity("1.2.246.562.17.17939899864");
-        learningOpportunityDAO.save(learningOpportunity);
-        LOG.debug("Learning opportunity update finished");
-        LOG.debug("Update application options");
-        ApplicationOption ao = tarjontaClient.getApplicationOption("1.2.246.562.20.92573201339");
-        applicationSystemDAO.save(ao.getApplicationSystem());
-        applicationOptionDAO.save(ao);
-        LOG.debug("Application option update finished");
+        LOG.debug("Data update completed");
     }
 }
