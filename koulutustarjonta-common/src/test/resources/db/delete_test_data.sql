@@ -1,3 +1,10 @@
+--organisaatio
+DELETE FROM yhteystieto
+WHERE id_organisaatio = 'organisaatio_id1';
+
+DELETE FROM organisaatio
+WHERE id = 'organisaatio_id1';
+
 -- koulutus
 DELETE FROM KOULUTUS_OPETUSKIELI
 WHERE id_koulutus = '1.2.3';

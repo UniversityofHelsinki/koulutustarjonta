@@ -24,4 +24,24 @@ public class Organization {
     private final Some some;
     private final List<ContactInfo> contactInfos;
     private final List<ContactInfo> applicantServices;
+
+    /**
+     * Add contact information list.
+     * @param contactInfoList
+     * @return a new organization with new contact information
+     */
+    public Organization addContactInfos(List<ContactInfo> contactInfoList) {
+        return new Organization(oid, name, outline, expenses, internationalStudyPrograms,
+                studentTransfer, studyEnvironment, some, contactInfoList, applicantServices);
+    }
+
+    /**
+     * Add applicant service contact information.
+     * @param applicantServiceList
+     * @return a new organization with new applicant service contact information
+     */
+    public Organization addApplicantServices(List<ContactInfo> applicantServiceList) {
+        return new Organization(oid, name, outline, expenses, internationalStudyPrograms,
+                studentTransfer, studyEnvironment, some, contactInfos, applicantServiceList);
+    }
 }

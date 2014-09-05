@@ -141,12 +141,29 @@ public class Fixture {
                         new I18N("twitter fi", "twitter sv", "twitter en"),
                         new I18N("google plus fi", "google plus sv", "google plus en"),
                         new I18N("linkedin fi", "linkedin sv", "linkedin en")),
-                Lists.newArrayList(new ContactInfo("contact oid", ContactInfo.TYPE.CONTACT, "fi", "c www fi",
-                        "c phone fi", "c email fi", "c fax fi", new Address("c street visit", "c postal code visit", "c post office visit"),
-                        new Address("c street post", "c postal code post", "c post office post"))),
-                Lists.newArrayList(new ContactInfo("applicant oid", ContactInfo.TYPE.APPLICANT, "fi", "a www fi",
-                        "a phone fi", "a email fi", "a fax fi", new Address("a street visit", "a postal code visit", "a post office visit"),
-                        new Address("a street post", "a postal code post", "a post office post")))
-                );
+                Lists.newArrayList(
+
+                        new ContactInfo("contact oid 1", ContactInfo.TYPE.CONTACT, "fi", "c www fi",
+                                "c phone fi", "c email fi", "c fax fi", new Address("c street visit", "c postal code visit", "c post office visit"),
+                                new Address("c street post", "c postal code post", "c post office post")),
+                        new ContactInfo("contact oid 2", ContactInfo.TYPE.CONTACT, "sv", "c www sv",
+                                "c phone sv", "c email sv", "c fax sv", new Address("c street visit", "c postal code visit", "c post office visit"),
+                                new Address("c street post", "c postal code post", "c post office post")),
+                        new ContactInfo("contact oid 3", ContactInfo.TYPE.CONTACT, "en", "c www en",
+                                "c phone en", "c email en", "c fax en", new Address("c street visit", "c postal code visit", "c post office visit"),
+                                new Address("c street post", "c postal code post", "c post office post"))
+                        ),
+                Lists.newArrayList(
+                        new ContactInfo("applicant oid 1", ContactInfo.TYPE.APPLICANT, "fi", "a www fi",
+                                "a phone fi", "a email fi", "a fax fi", new Address("a street visit", "a postal code visit", "a post office visit"),
+                                new Address("a street post", "a postal code post", "a post office post")),
+                        new ContactInfo("applicant oid 2", ContactInfo.TYPE.APPLICANT, "sv", "a www sv",
+                                "a phone sv", "a email sv", "a fax sv", new Address("a street visit", "a postal code visit", "a post office visit"),
+                                new Address("a street post", "a postal code post", "a post office post")),
+                        new ContactInfo("applicant oid 3", ContactInfo.TYPE.APPLICANT, "en", "a www en",
+                                "a phone en", "a email en", "a fax en", new Address("a street visit", "a postal code visit", "a post office visit"),
+                                new Address("a street post", "a postal code post", "a post office post"))
+                        )
+        );
     }
 }

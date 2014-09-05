@@ -1,3 +1,66 @@
+-- organisaatio
+INSERT INTO organisaatio
+(id, nimi_fi, nimi_sv, nimi_en, kustannukset_fi, kustannukset_sv, kustannukset_en, kv_koulohj_fi,
+kv_koulohj_sv, kv_koulohj_en, opliikkuvuus_fi, opliikkuvuus_sv, opliikkuvuus_en, oppimisymparisto_fi,
+oppimisymparisto_sv, oppimisymparisto_en, yleiskuvaus_fi, yleiskuvaus_sv, yleiskuvaus_en, facebook_fi,
+facebook_sv, facebook_en, twitter_fi, twitter_sv, twitter_en, google_plus_fi, google_plus_sv, google_plus_en,
+linkedin_fi, linkedin_sv, linkedin_en)
+VALUES
+('organisaatio_id1', 'o nimi fi', 'o nimi sv', 'o nimi en', 'kustannukset fi', 'kustannukset sv',
+'kustannukset en', 'kv fi',  'kv sv', 'kv en', 'liikkuvuus fi', 'liikkuvuus sv', 'liikkuvuus en',
+'ymparisto fi', 'ymparisto sv', 'ymparisto en', 'yleiskuvaus fi', 'yleiskuvaus sv', 'yleiskuvaus en',
+'face fi', 'face sv', 'face en', 'twitter fi', 'twitter sv', 'twitter en', 'plus fi', 'plus sv', 'plus en',
+'linkedin fi', 'linkedin sv', 'linkedin en');
+
+INSERT INTO yhteystieto
+(id, tyyppi, kieli, www, puhelin, email, fax, kaynti_osoite, kaynti_postinumero, kaynti_postitoimipaikka,
+posti_osoite, posti_postinumero, posti_postitoimipaikka, id_organisaatio)
+VALUES
+('yhteystieto_id1', 'CONTACT', 'fi', 'contact www fi', 'contact phone fi', 'contact email fi', 'contact fax fi',
+'contact visit street fi', 'contact visit numb fi', 'contact visit office fi', 'contact post street fi',
+'contact post numb fi', 'contact post office fi', 'organisaatio_id1');
+
+INSERT INTO yhteystieto
+(id, tyyppi, kieli, www, puhelin, email, fax, kaynti_osoite, kaynti_postinumero, kaynti_postitoimipaikka,
+posti_osoite, posti_postinumero, posti_postitoimipaikka, id_organisaatio)
+VALUES
+('yhteystieto_id2', 'CONTACT', 'sv', 'contact www sv', 'contact phone sv', 'contact email sv', 'contact fax sv',
+'contact visit street sv', 'contact visit numb sv', 'contact visit office sv', 'contact post street sv',
+'contact post numb sv', 'contact post office sv', 'organisaatio_id1');
+
+INSERT INTO yhteystieto
+(id, tyyppi, kieli, www, puhelin, email, fax, kaynti_osoite, kaynti_postinumero, kaynti_postitoimipaikka,
+posti_osoite, posti_postinumero, posti_postitoimipaikka, id_organisaatio)
+VALUES
+('yhteystieto_id3', 'CONTACT', 'en', 'contact www en', 'contact phone en', 'contact email en', 'contact fax en',
+'contact visit street en', 'contact visit numb en', 'contact visit office en', 'contact post street en',
+'contact post numb en', 'contact post office en', 'organisaatio_id1');
+
+INSERT INTO yhteystieto
+(id, tyyppi, kieli, www, puhelin, email, fax, kaynti_osoite, kaynti_postinumero, kaynti_postitoimipaikka,
+posti_osoite, posti_postinumero, posti_postitoimipaikka, id_organisaatio)
+VALUES
+('yhteystieto_id4', 'APPLICANT', 'fi', 'applicant www fi', 'applicant phone fi', 'applicant email fi', 'applicant fax fi',
+'applicant visit street fi', 'applicant visit numb fi', 'applicant visit office fi', 'applicant post street fi',
+'applicant post numb fi', 'applicant post office fi', 'organisaatio_id1');
+
+INSERT INTO yhteystieto
+(id, tyyppi, kieli, www, puhelin, email, fax, kaynti_osoite, kaynti_postinumero, kaynti_postitoimipaikka,
+posti_osoite, posti_postinumero, posti_postitoimipaikka, id_organisaatio)
+VALUES
+('yhteystieto_id5', 'APPLICANT', 'sv', 'applicant www sv', 'applicant phone sv', 'applicant email sv', 'applicant fax sv',
+'applicant visit street sv', 'applicant visit numb sv', 'applicant visit office sv', 'applicant post street sv',
+'applicant post numb sv', 'applicant post office sv', 'organisaatio_id1');
+
+INSERT INTO yhteystieto
+(id, tyyppi, kieli, www, puhelin, email, fax, kaynti_osoite, kaynti_postinumero, kaynti_postitoimipaikka,
+posti_osoite, posti_postinumero, posti_postitoimipaikka, id_organisaatio)
+VALUES
+('yhteystieto_id6', 'APPLICANT', 'en', 'applicant www en', 'applicant phone en', 'applicant email en', 'applicant fax en',
+'applicant visit street en', 'applicant visit numb en', 'applicant visit office en', 'applicant post street en',
+'applicant post numb en', 'applicant post office en', 'organisaatio_id1');
+
+
 -- koulutus
 INSERT INTO KOULUTUS
             (id,  tutkintonimike_fi, tutkintonimike_sv, tutkintonimike_en,

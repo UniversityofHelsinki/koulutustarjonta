@@ -2,12 +2,16 @@ package fi.helsinki.koulutustarjonta.dao.jdbi;
 
 import fi.helsinki.koulutustarjonta.dao.binder.BindContactInfo;
 import fi.helsinki.koulutustarjonta.dao.binder.BindOrganization;
+import fi.helsinki.koulutustarjonta.dao.mapper.OrganizationJoinRowMapper;
+import fi.helsinki.koulutustarjonta.dao.util.OrganizationJoinRow;
 import fi.helsinki.koulutustarjonta.domain.ContactInfo;
 import fi.helsinki.koulutustarjonta.domain.Organization;
 import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.SqlBatch;
+import org.skife.jdbi.v2.sqlobject.SqlQuery;
 import org.skife.jdbi.v2.sqlobject.SqlUpdate;
 import org.skife.jdbi.v2.sqlobject.customizers.BatchChunkSize;
+import org.skife.jdbi.v2.sqlobject.customizers.Mapper;
 import org.skife.jdbi.v2.sqlobject.mixins.Transactional;
 import org.skife.jdbi.v2.sqlobject.stringtemplate.UseStringTemplate3StatementLocator;
 import org.skife.jdbi.v2.unstable.BindIn;
@@ -19,6 +23,29 @@ import java.util.List;
  */
 @UseStringTemplate3StatementLocator
 public interface OrganizationJDBI extends Transactional<OrganizationJDBI> {
+
+    @SqlQuery("SELECT o.*, y.id AS y_id, y.tyyppi AS y_tyyppi, y.kieli AS y_kieli, " +
+            "y.www AS y_www, y.puhelin AS y_puhelin, y.email AS y_email, y.fax AS y_fax, " +
+            "y.kaynti_osoite AS y_kaynti_osoite, y.kaynti_postinumero AS y_kaynti_postinumero, " +
+            "y.kaynti_postitoimipaikka AS y_kaynti_postitoimipaikka, y.posti_osoite AS y_posti_osoite, " +
+            "y.posti_postinumero AS y_posti_postinumero, y.posti_postitoimipaikka AS y_posti_postitoimipaikka " +
+            "FROM organisaatio o " +
+            "LEFT JOIN " +
+            "yhteystieto y ON y.id_organisaatio = o.id " +
+            "WHERE o.id = :id")
+    @Mapper(OrganizationJoinRowMapper.class)
+    List<OrganizationJoinRow> findByOid(@Bind("id") String oid);
+
+    @SqlQuery("SELECT o.*, y.id AS y_id, y.tyyppi AS y_tyyppi, y.kieli AS y_kieli, " +
+            "y.www AS y_www, y.puhelin AS y_puhelin, y.email AS y_email, y.fax AS y_fax, " +
+            "y.kaynti_osoite AS y_kaynti_osoite, y.kaynti_postinumero AS y_kaynti_postinumero, " +
+            "y.kaynti_postitoimipaikka AS y_kaynti_postitoimipaikka, y.posti_osoite AS y_posti_osoite, " +
+            "y.posti_postinumero AS y_posti_postinumero, y.posti_postitoimipaikka AS y_posti_postitoimipaikka " +
+            "FROM organisaatio o " +
+            "LEFT JOIN " +
+            "yhteystieto y ON y.id_organisaatio = o.id")
+    @Mapper(OrganizationJoinRowMapper.class)
+    List<OrganizationJoinRow> findAll();
 
     // Broken in oracle DB 11.2.0.2.0, should work in 11.2.0.4.0
     @Deprecated
@@ -85,12 +112,12 @@ public interface OrganizationJDBI extends Transactional<OrganizationJDBI> {
             "posti_osoite=:posti_osoite, posti_postinumero=:posti_postinumero, posti_postitoimipaikka=:posti_postitoimipaikka " +
             "WHEN NOT MATCHED THEN INSERT " +
             "(id, tyyppi, kieli, www, puhelin, email, fax, kaynti_osoite, kaynti_postinumero, kaynti_postitoimipaikka, " +
-            "posti_osoite, posti_postinumero, posti_postitoimipaikka) " +
+            "posti_osoite, posti_postinumero, posti_postitoimipaikka, id_organisaatio) " +
             "VALUES " +
             "(:id, :tyyppi, :kieli, :www, :puhelin, :email, :fax, :kaynti_osoite, :kaynti_postinumero, :kaynti_postitoimipaikka, " +
-            ":posti_osoite, :posti_postinumero, :posti_postitoimipaikka)")
+            ":posti_osoite, :posti_postinumero, :posti_postitoimipaikka, :id_organisaatio)")
     @BatchChunkSize(10)
-    void upsertContactInfos(@BindContactInfo List<ContactInfo> contactInfos);
+    void upsertContactInfos(@BindContactInfo List<ContactInfo> contactInfos, @Bind("id_organisaatio") String organizationOid);
 
     @SqlUpdate("DELETE FROM yhteystieto " +
             "WHERE id_organisaatio = :id_organisaatio " +
