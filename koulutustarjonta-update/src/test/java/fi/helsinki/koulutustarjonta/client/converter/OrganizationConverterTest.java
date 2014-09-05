@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import fi.helsinki.koulutustarjonta.client.KoodistoClient;
 import fi.helsinki.koulutustarjonta.domain.ContactInfo;
 import fi.helsinki.koulutustarjonta.domain.Organization;
+import fi.helsinki.koulutustarjonta.exception.DataUpdateException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -32,7 +33,7 @@ public class OrganizationConverterTest extends AbstractClientConverterTest {
     }
 
     @Test
-    public void testConvert() {
+    public void testConvert() throws DataUpdateException {
         Organization o = converter.convert(fixture);
         assertNotNull(o);
         assertEquals("1.2.246.562.10.94639300915", o.getOid());

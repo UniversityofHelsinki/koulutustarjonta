@@ -40,8 +40,9 @@ public class AddressConverter extends BaseConverter {
      * @return address
      */
     public Address convertOrganizationAddress(JsonNode node) {
-        return new Address(node.get("osoite").textValue(),
-                getCode(node.get("postinumeroUri").textValue()).getValue(),
-                node.get("postitoimipaikka").textValue());
+        return new Address(
+                node.hasNonNull("osoite") ? node.get("osoite").textValue() : null,
+                node.hasNonNull("postinumeroUri") ? getCode(node.get("postinumeroUri").textValue()).getValue() : null,
+                node.hasNonNull("postitoimipaikka") ? node.get("postitoimipaikka").textValue() : null);
     }
 }

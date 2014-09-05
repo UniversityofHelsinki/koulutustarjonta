@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.collect.Lists;
 import fi.helsinki.koulutustarjonta.client.KoodistoClient;
 import fi.helsinki.koulutustarjonta.domain.*;
+import fi.helsinki.koulutustarjonta.exception.DataUpdateException;
 
 import java.util.List;
 
@@ -22,7 +23,10 @@ public class OrganizationConverter extends BaseConverter {
         this.addressConverter = new AddressConverter(koodistoClient);
     }
 
-    public Organization convert(JsonNode node) {
+    public Organization convert(JsonNode node) throws DataUpdateException {
+        if (!node.has("metadata")) {
+            throw new DataUpdateException("Can not parse organization, metadata field missing");
+        }
         JsonNode metadata = node.get("metadata").get("data");
         return new Organization(
                 node.get("oid").textValue(),
@@ -69,12 +73,12 @@ public class OrganizationConverter extends BaseConverter {
         for (JsonNode infoNode : contactInfoNodes) {
             if (infoNode.has("osoiteTyyppi")) {
                 String addressType = infoNode.get("osoiteTyyppi").textValue();
-                if (addressType.equals("kaynti")) {
+                if (addressType.equals("kaynti") || addressType.equals("ulkomainen_kaynti")) {
                     // visiting address oid is the address identifier
                     oid = infoNode.get("yhteystietoOid").textValue();
                     visitingAddress = addressConverter.convertOrganizationAddress(infoNode);
                 }
-                else if (addressType.equals("posti")) {
+                else if (addressType.equals("posti") || addressType.equals("ulkomainen_posti")) {
                     postalAddress = addressConverter.convertOrganizationAddress(infoNode);
                 }
             }

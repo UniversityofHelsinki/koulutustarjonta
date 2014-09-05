@@ -8,6 +8,7 @@ import org.skife.jdbi.v2.sqlobject.BinderFactory;
 import org.skife.jdbi.v2.sqlobject.BindingAnnotation;
 
 import java.lang.annotation.*;
+import java.sql.Types;
 
 /**
  * @author Hannu Lyytikainen
@@ -33,12 +34,27 @@ public @interface BindContactInfo {
                     q.bind("puhelin", c.getPhone());
                     q.bind("email", c.getEmail());
                     q.bind("fax", c.getFax());
-                    q.bind("kaynti_osoite", c.getVisitingAddress().getStreet());
-                    q.bind("kaynti_postinumero", c.getVisitingAddress().getPostalCode());
-                    q.bind("kaynti_postitoimipaikka", c.getVisitingAddress().getPostOffice());
-                    q.bind("posti_osoite", c.getPostalAddress().getStreet());
-                    q.bind("posti_postinumero", c.getPostalAddress().getPostalCode());
-                    q.bind("posti_postitoimipaikka", c.getPostalAddress().getPostOffice());
+                    if (c.getVisitingAddress() == null) {
+                        q.bindNull("kaynti_osoite", Types.VARCHAR);
+                        q.bindNull("kaynti_postinumero", Types.VARCHAR);
+                        q.bind("kaynti_postitoimipaikka", Types.VARCHAR);
+                    }
+                    else  {
+                        q.bind("kaynti_osoite", c.getVisitingAddress().getStreet());
+                        q.bind("kaynti_postinumero", c.getVisitingAddress().getPostalCode());
+                        q.bind("kaynti_postitoimipaikka", c.getVisitingAddress().getPostOffice());
+                    }
+
+                    if (c.getPostalAddress() == null) {
+                        q.bindNull("posti_osoite", Types.VARCHAR);
+                        q.bindNull("posti_postinumero", Types.VARCHAR);
+                        q.bindNull("posti_postitoimipaikka", Types.VARCHAR);
+                    }
+                    else {
+                        q.bind("posti_osoite", c.getPostalAddress().getStreet());
+                        q.bind("posti_postinumero", c.getPostalAddress().getPostalCode());
+                        q.bind("posti_postitoimipaikka", c.getPostalAddress().getPostOffice());
+                    }
                 }
             };
         }

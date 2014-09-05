@@ -9,8 +9,11 @@ import fi.helsinki.koulutustarjonta.dao.OrganizationDAO;
 import fi.helsinki.koulutustarjonta.domain.ApplicationOption;
 import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
 import fi.helsinki.koulutustarjonta.domain.Organization;
+import fi.helsinki.koulutustarjonta.exception.DataUpdateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
 
 /**
  * @author Hannu Lyytikainen
@@ -38,8 +41,16 @@ public class Updater {
 
     public void update() {
         LOG.debug("Update data");
-        Organization organization = organisaatioClient.getOrganization("1.2.246.562.10.94639300915");
-        organizationDAO.save(organization);
+        List<String> organizationOids = organisaatioClient.resolveFacultyOids("1.2.246.562.10.39218317368");
+        organizationOids.forEach(oid -> {
+            Organization organization = null;
+            try {
+                organization = organisaatioClient.getOrganization(oid);
+                organizationDAO.save(organization);
+            } catch (DataUpdateException e) {
+                LOG.warn(String.format("Could not retreive organization %s: %s", oid, e.getMessage()));
+            }
+        });
         LOG.debug("Organization update finished");
         LearningOpportunity learningOpportunity = tarjontaClient.getLearningOpportunity("1.2.246.562.17.17939899864");
         learningOpportunityDAO.save(learningOpportunity);
