@@ -30,6 +30,20 @@ public class OrganizationDTO {
     private I18NDTO studentTransfer;
     @JsonProperty("oppimisymparisto")
     private I18NDTO studyEnvironment;
+    @JsonProperty("saavutettavuus")
+    private I18NDTO accessibility;
+    @JsonProperty("vuosikello")
+    private I18NDTO yearClock;
+    @JsonProperty("vastuuhenkilot")
+    private I18NDTO peopleInCharge;
+    @JsonProperty("valintamenettely")
+    private I18NDTO selectionProcedure;
+    @JsonProperty("aiemmin_hankittu_osaaminen")
+    private I18NDTO previouslyGainedExperience;
+    @JsonProperty("kieliopinnot")
+    private I18NDTO languageStudies;
+    @JsonProperty("tyoharjoittelu")
+    private I18NDTO internship;
     @JsonProperty("some")
     private SomeDTO some;
     @JsonProperty("yhteystiedot")

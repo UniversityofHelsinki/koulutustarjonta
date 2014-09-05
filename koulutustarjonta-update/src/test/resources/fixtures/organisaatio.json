@@ -4,6 +4,9 @@
   "metadata" : {
     "data" : {
       "VALINTAMENETTELY" : {
+          "kieli_fi#1": "<p>valintamenettely fi</p>",
+          "kieli_sv#1": "<p>valintamenettely sv</p>",
+          "kieli_en#1": "<p>valintamenettely en</p>"
       },
       "VAPAA_AIKA" : {
       },
@@ -27,6 +30,9 @@
       "OPISKELIJALIIKUNTA" : {
       },
       "AIEMMIN_HANKITTU_OSAAMINEN" : {
+          "kieli_fi#1": "<p>aikaisemmin hankittu osaaminen fi</p>",
+          "kieli_sv#1": "<p>aikaisemmin hankittu osaaminen sv</p>",
+          "kieli_en#1": "<p>aikaisemmin hankittu osaaminen en</p>"
       },
       "MUU" : {
       },
@@ -55,19 +61,29 @@
       "TIETOA_ASUMISESTA" : {
       },
       "ESTEETOMYYS" : {
-        "kieli_fi#1" : "<p>Hakijoiden erityisjärjestelyillä tarkoitetaan käytännön järjestelyjä valintakoetilanteessa. Tällaisia voivat olla esimerkiksi liikuntaesteiden poistaminen, rauhallinen koetila, lisäaika, laajempi kirjoitustila, apuvälineiden käyttö tai muu vastaava järjestely. Näillä järjestelyillä on tarkoitus huolehtia siitä, että erityisjärjestelyä valintakoetilanteessa tarvitsevat hakijat ovat tasavertaisessa asemassa muiden hakijoiden kanssa. Jos koet tarvitsevasi <a href=\"http://www.helsinki.fi/opiskelijaksi/valintakokeet.html#Erityisjarjestelyt_valintakokeessa\">erityisjärjestelyjä</a>, sinun tulee jättää asiasta kirjallinen anomus siihen tiedekuntaan, jonne olet hakemassa.</p> <p>Helsingin yliopiston keskustakampuksen opiskelijaneuvonnassa on tarjolla yleisneuvontaa, mikäli tarvitset vamman, sairauden tai oppimisvaikeuden takia erityisjärjestelyitä opinnoissasi tai esimerkiksi tenttitilanteessa. Lisätietoa saat osoitteesta <a href=\"mailto:vammaisneuvonta@helsinki.fi\" rel=\"nofollow\">vammaisneuvonta@helsinki.fi</a>.</p>",
-        "kieli_sv#1" : "<div style=\"\"> <div> <p>Med specialarrangemang för sökande avses praktiska arrangemang vid urvalsprovstillfället. Dessa kan vara exempelvis avlägsnande av rörelsehinder, lugnt provutrymme, tilläggstid, större skrivbord, användning av hjälpmedel eller andra liknande arrangemang. Arrangemangen strävar efter att sökande som behöver specialarrangemang i urvalsprovet är jämställda med andra sökande. Ifall du upplever att du är i behov av specialarrangemang ska du lämna in en skriftlig anhållan till den fakultet du söker till.</p> <p>Helsingfors universitets studentrådgivning erbjuder allmän rådgivning ifall du behöver specialarrangemang i dina studier eller vid tenttillfällen på grund av skada, sjukdom eller inlärningssvårigheter. Mer information får du på vammaisneuvonta@helsinki.fi</p> </div> </div>"
+        "kieli_fi#1" : "<p>Hakijoiden erityisjärjestelyillä tarkoitetaan käytännön </p>",
+        "kieli_sv#1" : "<div style=\"\"> <div> <p>Med specialarrangemang för sökande avses praktiska arrangemang </p> </div> </div>",
+        "kieli_en#1" : "<p>esteettomyys en</p>"
       },
       "TERVEYDENHUOLTOPALVELUT" : {
       },
       "VASTUUHENKILOT" : {
+          "kieli_fi#1": "<p>vastuuhenkilot fi</p>",
+          "kieli_sv#1": "<p>vastuuhenkilot sv</p>",
+          "kieli_en#1": "<p>vastuuhenkilot en</p>"
       },
       "VAKUUTUKSET" : {
       },
       "KIELIOPINNOT" : {
+          "kieli_fi#1": "<p>kieliopinnot fi</p>",
+          "kieli_sv#1": "<p>kieliopinnot sv</p>",
+          "kieli_en#1": "<p>kieliopinnot en</p>"
       },
       "VUOSIKELLO" : {
-      },
+          "kieli_fi#1": "<p>vousikello fi</p>",
+          "kieli_sv#1": "<p>vousikello sv</p>",
+          "kieli_en#1": "<p>vousikello en</p>"
+    },
       "YLEISKUVAUS" : {
         "kieli_fi#1" : "<p>Luonnontieteellinen osaaminen on Suomessa kansainvälistä huippua.</p>",
         "kieli_sv#1" : "<p>Kunskaperna i naturvetenskap är på internationell toppnivå i Finland.</p>",
@@ -79,8 +95,9 @@
         "kieli_en#1" : "<p>expenses</p>"
       },
       "TYOHARJOITTELU" : {
-        "kieli_fi#1" : "<p>Matemaattis-luonnontieteellisen tiedekunnan tutkintoihin sisältyy työelämä- ja yrittäjyyskursseja sekä työharjoittelua, joka antaa mahdollisuuden soveltaa oppimaasi käytännön työelämässä.</p> <p>Luonnontieteilijöiden yleisiä harjoittelupaikkoja ovat esimerkiksi tutkimuskeskukset (muun muassa ympäristökeskukset, Ilmatieteen laitos, Geologian tutkimuskeskus, Geodeettinen laitos, VTT ja CERN), vakuutus- ja finanssialan organisaatiot, sairaalat, lääketeollisuus ja muu kemianteollisuus. Lisäksi luonnontieteellisten alojen opiskelijoille sopivia harjoittelupaikkoja löytyy esimerkiksi opetus-, matkailu-, IT-alan tehtävien parista.</p> <p>Tiedekunta edistää opiskelijoidensa harjoittelumahdollisuuksia tarjoamalla harjoittelutukea maisterivaiheen opiskelijoille.</p>",
-        "kieli_sv#1" : "<p>Examina vid Matematisk-naturvetenskapliga fakulteten innehåller kurser i arbetslivsorientering och företagande samt arbetspraktik, där du kan tillämpa dina kunskaper i arbetslivet.</p> <p>Studenterna i naturvetenskapliga ämnen gör ofta sin praktik vid olika forskningscenter (till exempel miljöcentralerna, Meteorologiska institutet, Geologiska forskningscentralen (GTK), Geodetiska institutet, VTT eller CERN), organisationer inom försäkrings- och finansbranschen, inom läkemedelsindustrin eller övrig kemiindustri. Lämpliga praktikplatser kan också finnas inom till exempel undervisning, turism och IT.</p> <p>Fakulteten stöder studenternas möjligheter till praktik genom att erbjuda magisterstuderande praktikstöd.</p>"
+        "kieli_fi#1" : "<p>Matemaattis-luonnontieteellisen tiedekunnan tutkintoihin</p>",
+        "kieli_sv#1" : "<p>Examina vid Matematisk-naturvetenskapliga fakulteten innehåller</p>",
+        "kieli_en#1" : "<p>tyoharjoittelu en</p>"
       },
       "OPISKELIJA_JARJESTOT" : {
       }

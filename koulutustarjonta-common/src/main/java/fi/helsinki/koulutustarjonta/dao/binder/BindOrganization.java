@@ -34,6 +34,13 @@ public @interface BindOrganization {
                     BindUtil.bindI18N(q, "opliikkuvuus", o.getStudentTransfer());
                     BindUtil.bindI18N(q, "oppimisymparisto", o.getStudyEnvironment());
                     BindUtil.bindI18N(q, "yleiskuvaus", o.getOutline());
+                    BindUtil.bindI18N(q, "saavutettavuus", o.getAccessibility());
+                    BindUtil.bindI18N(q, "vuosikello", o.getYearClock());
+                    BindUtil.bindI18N(q, "vastuuhenkilot", o.getPeopleInCharge());
+                    BindUtil.bindI18N(q, "valintamenettely", o.getSelectionProcedure());
+                    BindUtil.bindI18N(q, "aik_kokemus", o.getPreviouslyGainedExperience());
+                    BindUtil.bindI18N(q, "kieliopinnot", o.getLanguageStudies());
+                    BindUtil.bindI18N(q, "tyoharjoittelu", o.getInternship());
                     Some s = o.getSome();
                     BindUtil.bindI18N(q, "facebook", s.getFacebook());
                     BindUtil.bindI18N(q, "twitter", s.getTwitter());

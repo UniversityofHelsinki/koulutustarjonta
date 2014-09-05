@@ -26,7 +26,11 @@ public class OrganizationJoinRowMapper implements ResultSetMapper<OrganizationJo
         Organization o = new Organization(r.getString("id"), MapperUtil.resolveI18N(r, "nimi"),
                 MapperUtil.resolveI18N(r, "yleiskuvaus"), MapperUtil.resolveI18N(r, "kustannukset"),
                 MapperUtil.resolveI18N(r, "kv_koulohj"), MapperUtil.resolveI18N(r, "opliikkuvuus"),
-                MapperUtil.resolveI18N(r, "oppimisymparisto"), new Some(
+                MapperUtil.resolveI18N(r, "oppimisymparisto"), MapperUtil.resolveI18N(r, "saavutettavuus"),
+                MapperUtil.resolveI18N(r, "vuosikello"), MapperUtil.resolveI18N(r, "vastuuhenkilot"),
+                MapperUtil.resolveI18N(r, "valintamenettely"), MapperUtil.resolveI18N(r, "aik_kokemus"),
+                MapperUtil.resolveI18N(r, "kieliopinnot"), MapperUtil.resolveI18N(r, "tyoharjoittelu"),
+                new Some(
                 MapperUtil.resolveI18N(r, "facebook"), MapperUtil.resolveI18N(r, "twitter"),
                 MapperUtil.resolveI18N(r, "google_plus"), MapperUtil.resolveI18N(r, "linkedin")),
                 null, null);

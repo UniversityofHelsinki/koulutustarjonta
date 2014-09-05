@@ -21,6 +21,13 @@ public class Organization {
     private final I18N internationalStudyPrograms;
     private final I18N studentTransfer;
     private final I18N studyEnvironment;
+    private final I18N accessibility;
+    private final I18N yearClock;
+    private final I18N peopleInCharge;
+    private final I18N selectionProcedure;
+    private final I18N previouslyGainedExperience;
+    private final I18N languageStudies;
+    private final I18N internship;
     private final Some some;
     private final List<ContactInfo> contactInfos;
     private final List<ContactInfo> applicantServices;
@@ -32,7 +39,9 @@ public class Organization {
      */
     public Organization addContactInfos(List<ContactInfo> contactInfoList) {
         return new Organization(oid, name, outline, expenses, internationalStudyPrograms,
-                studentTransfer, studyEnvironment, some, contactInfoList, applicantServices);
+                studentTransfer, studyEnvironment, accessibility, yearClock, peopleInCharge,
+                selectionProcedure, previouslyGainedExperience, languageStudies, internship,
+                some, contactInfoList, applicantServices);
     }
 
     /**
@@ -42,6 +51,8 @@ public class Organization {
      */
     public Organization addApplicantServices(List<ContactInfo> applicantServiceList) {
         return new Organization(oid, name, outline, expenses, internationalStudyPrograms,
-                studentTransfer, studyEnvironment, some, contactInfos, applicantServiceList);
+                studentTransfer, studyEnvironment, accessibility, yearClock, peopleInCharge,
+                selectionProcedure, previouslyGainedExperience, languageStudies, internship,
+                some, contactInfos, applicantServiceList);
     }
 }

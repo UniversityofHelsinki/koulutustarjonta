@@ -2,13 +2,23 @@
 INSERT INTO organisaatio
 (id, nimi_fi, nimi_sv, nimi_en, kustannukset_fi, kustannukset_sv, kustannukset_en, kv_koulohj_fi,
 kv_koulohj_sv, kv_koulohj_en, opliikkuvuus_fi, opliikkuvuus_sv, opliikkuvuus_en, oppimisymparisto_fi,
-oppimisymparisto_sv, oppimisymparisto_en, yleiskuvaus_fi, yleiskuvaus_sv, yleiskuvaus_en, facebook_fi,
+oppimisymparisto_sv, oppimisymparisto_en, yleiskuvaus_fi, yleiskuvaus_sv, yleiskuvaus_en,
+saavutettavuus_fi, saavutettavuus_sv, saavutettavuus_en,
+vuosikello_fi, vuosikello_sv, vuosikello_en, vastuuhenkilot_fi, vastuuhenkilot_sv, vastuuhenkilot_en,
+valintamenettely_fi, valintamenettely_sv, valintamenettely_en,
+aik_kokemus_fi, aik_kokemus_sv, aik_kokemus_en, kieliopinnot_fi, kieliopinnot_sv, kieliopinnot_en,
+tyoharjoittelu_fi, tyoharjoittelu_sv, tyoharjoittelu_en, facebook_fi,
 facebook_sv, facebook_en, twitter_fi, twitter_sv, twitter_en, google_plus_fi, google_plus_sv, google_plus_en,
 linkedin_fi, linkedin_sv, linkedin_en)
 VALUES
 ('organisaatio_id1', 'o nimi fi', 'o nimi sv', 'o nimi en', 'kustannukset fi', 'kustannukset sv',
 'kustannukset en', 'kv fi',  'kv sv', 'kv en', 'liikkuvuus fi', 'liikkuvuus sv', 'liikkuvuus en',
 'ymparisto fi', 'ymparisto sv', 'ymparisto en', 'yleiskuvaus fi', 'yleiskuvaus sv', 'yleiskuvaus en',
+'saavutettavuus fi', 'saavutettavuus sv', 'saavutettavuus en',
+'vuosikello fi', 'vuosikello sv', 'vuosikello en', 'vastuuhenkilot fi', 'vastuuhenkilot sv', 'vastuuhenkilot en',
+'valintamenettely fi', 'valintamenettely sv', 'valintamenettely en',
+'aik kokemus fi', 'aik kokemus sv', 'aik kokemus en', 'kieliopinnot fi', 'kieliopinnot sv', 'kieliopinnot en',
+'tyoharjoittelu fi', 'tyoharjoittelu sv', 'tyoharjoittelu en',
 'face fi', 'face sv', 'face en', 'twitter fi', 'twitter sv', 'twitter en', 'plus fi', 'plus sv', 'plus en',
 'linkedin fi', 'linkedin sv', 'linkedin en');
 

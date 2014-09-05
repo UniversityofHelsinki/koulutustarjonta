@@ -62,6 +62,13 @@ public class OrganizationResourceTest {
         DTOTestUtil.i18NDTOsEqual(expected.getInternationalStudyPrograms(), actual.getInternationalStudyPrograms());
         DTOTestUtil.i18NDTOsEqual(expected.getStudentTransfer(), actual.getStudentTransfer());
         DTOTestUtil.i18NDTOsEqual(expected.getStudyEnvironment(), actual.getStudyEnvironment());
+        DTOTestUtil.i18NDTOsEqual(expected.getAccessibility(), actual.getAccessibility());
+        DTOTestUtil.i18NDTOsEqual(expected.getYearClock(), actual.getYearClock());
+        DTOTestUtil.i18NDTOsEqual(expected.getPeopleInCharge(), actual.getPeopleInCharge());
+        DTOTestUtil.i18NDTOsEqual(expected.getSelectionProcedure(), actual.getSelectionProcedure());
+        DTOTestUtil.i18NDTOsEqual(expected.getPreviouslyGainedExperience(), actual.getPreviouslyGainedExperience());
+        DTOTestUtil.i18NDTOsEqual(expected.getLanguageStudies(), actual.getLanguageStudies());
+        DTOTestUtil.i18NDTOsEqual(expected.getInternship(), actual.getInternship());
         someDTOsEqual(expected.getSome(), actual.getSome());
         contactInfoDTOsEqual(filterLang(expected.getContactInfos(), "fi"), filterLang(actual.getContactInfos(), "fi"));
         contactInfoDTOsEqual(filterLang(expected.getContactInfos(), "sv"), filterLang(actual.getContactInfos(), "sv"));
