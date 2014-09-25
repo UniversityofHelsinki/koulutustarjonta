@@ -60,49 +60,73 @@ public class LearningOpportunityConverter extends BaseConverter {
     }
 
     private List<String> resolveTranslations(JsonNode goals) {
-        return Lists.newArrayList(goals.get("meta")).parallelStream()
-                .map(elem -> elem.get("kieliArvo").textValue().toLowerCase())
-                .collect(Collectors.toList());
+        if (goals == null) {
+            return null;
+        }
+        else {
+            return Lists.newArrayList(goals.get("meta")).parallelStream()
+                    .map(elem -> elem.get("kieliArvo").textValue().toLowerCase())
+                    .collect(Collectors.toList());
+        }
     }
 
     private List<TeachingLanguage> resolveTeachingLanguages(JsonNode node) {
-        return Lists.newArrayList(node.get("meta")).parallelStream()
-                .map(elem -> resolveTeachingLanguage(elem))
-                .collect(Collectors.toList());
+        if (node == null) {
+            return null;
+        }
+        else {
+            return Lists.newArrayList(node.get("meta")).parallelStream()
+                    .map(elem -> resolveTeachingLanguage(elem))
+                    .collect(Collectors.toList());
+        }
     }
 
     private TeachingLanguage resolveTeachingLanguage(JsonNode langNode) {
-        return new TeachingLanguage(langNode.get("arvo").textValue().toLowerCase(),
-                new I18N(langNode.get("meta").get("kieli_fi").get("nimi").textValue(),
-                        langNode.get("meta").get("kieli_sv").get("nimi").textValue(),
-                        langNode.get("meta").get("kieli_en").get("nimi").textValue()));
+        if (langNode == null) {
+            return null;
+        }
+        else {
+            return new TeachingLanguage(langNode.get("arvo").textValue().toLowerCase(),
+                    convertToI18N(langNode.get("meta")));
+        }
     }
 
     private I18N resolveDegreeProgram(JsonNode node) {
-        JsonNode texts = node.get("tekstis");
-        return new I18N(
-                texts.get("kieli_fi").textValue(),
-                texts.get("kieli_sv").textValue(),
-                texts.get("kieli_en").textValue()
-        );
+        if (node == null) {
+            return null;
+        }
+        else {
+            JsonNode texts = node.get("tekstis");
+            return convertToI18N(texts);
+        }
     }
 
     private I18N resolveMetaLangName(JsonNode node) {
-        JsonNode texts = node.get("meta");
-        return new I18N(
-                texts.get("kieli_fi").get("nimi").textValue(),
-                texts.get("kieli_sv").get("nimi").textValue(),
-                texts.get("kieli_en").get("nimi").textValue()
-        );
+        if (node == null) {
+            return null;
+        }
+        else {
+            JsonNode texts = node.get("meta");
+            return new I18N(
+                    texts.get("kieli_fi").get("nimi").textValue(),
+                    texts.get("kieli_sv").get("nimi").textValue(),
+                    texts.get("kieli_en").get("nimi").textValue()
+            );
+        }
     }
 
     private I18N resolveQualification(JsonNode node) {
-        JsonNode texts = node.get("meta").elements().next().get("meta");
-        return new I18N(
-                texts.get("kieli_fi").get("nimi").textValue(),
-                texts.get("kieli_sv").get("nimi").textValue(),
-                texts.get("kieli_en").get("nimi").textValue()
-        );
+        if (node == null) {
+            return null;
+        }
+        else {
+            JsonNode texts = node.get("meta").elements().next().get("meta");
+            return new I18N(
+                    texts.get("kieli_fi").get("nimi").textValue(),
+                    texts.get("kieli_sv").get("nimi").textValue(),
+                    texts.get("kieli_en").get("nimi").textValue()
+            );
+        }
     }
 
 }
