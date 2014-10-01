@@ -26,7 +26,7 @@ public @interface BindExam {
                     q.bind("id", exam.getOid());
                     q.bind("kieli", exam.getLang());
                     q.bind("tyyppi", exam.getType());
-                    q.bind("kuvaus", exam.getDescription());
+                    BindUtil.bindText(q, "kuvaus", exam.getDescription());
                 }
             };
         }

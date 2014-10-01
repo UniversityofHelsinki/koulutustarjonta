@@ -26,7 +26,7 @@ public @interface BindAttachment {
                     q.bind("id", attachment.getOid());
                     q.bind("kieli", attachment.getLang());
                     q.bind("nimi", attachment.getName());
-                    q.bind("kuvaus", attachment.getDescription());
+                    BindUtil.bindText(q, "kuvaus", attachment.getDescription());
                     q.bind("erapaiva", attachment.getDue());
                     q.bind("osoite", attachment.getAddress().getStreet());
                     q.bind("postinumero", attachment.getAddress().getPostalCode());

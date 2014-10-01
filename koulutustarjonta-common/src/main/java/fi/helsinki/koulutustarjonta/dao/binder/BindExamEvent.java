@@ -26,7 +26,7 @@ public @interface BindExamEvent {
                     q.bind("id", event.getOid());
                     q.bind("alkaa", event.getStarts());
                     q.bind("loppuu", event.getEnds());
-                    q.bind("kuvaus", event.getInfo());
+                    BindUtil.bindText(q, "kuvaus", event.getInfo());
                     q.bind("osoite", event.getAddress().getStreet());
                     q.bind("postinumero", event.getAddress().getPostalCode());
                     q.bind("ptoimipaikka", event.getAddress().getPostOffice());
