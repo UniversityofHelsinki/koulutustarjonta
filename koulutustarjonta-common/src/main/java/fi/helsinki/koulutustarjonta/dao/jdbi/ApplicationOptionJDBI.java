@@ -18,40 +18,20 @@ import java.util.List;
  */
 public interface ApplicationOptionJDBI {
 
-    @SqlUpdate("INSERT INTO hakukohde" +
-            "(id, nimi_fi, nimi_sv, nimi_en, aloituspaikat, hakukelp_kuvaus_fi, hakukelp_kuvaus_sv, hakukelp_kuvaus_en, " +
-            "lisatiedot_fi, lisatiedot_sv, lisatiedot_en, valintaper_fi, valintaper_sv, valintaper_en, " +
-            "sorakuvaus_fi, sorakuvaus_sv, sorakuvaus_en, id_haku) " +
-            "VALUES (:id, :nimi_fi, :nimi_sv, :nimi_en, :aloituspaikat, :hakukelp_kuvaus_fi, :hakukelp_kuvaus_sv, :hakukelp_kuvaus_en, " +
-            ":lisatiedot_fi, :lisatiedot_sv, :lisatiedot_en, :valintaper_fi, :valintaper_sv, :valintaper_en, " +
-            ":sorakuvaus_fi, :sorakuvaus_sv, :sorakuvaus_en, :id_haku)")
-    void insert(@BindApplicationOption ApplicationOption applicationOption);
-
-
-    @SqlUpdate("UPDATE hakukohde " +
-            "SET nimi_fi=:nimi_fi, nimi_sv=:nimi_sv, nimi_en=:nimi_en, aloituspaikat=:aloituspaikat, " +
-            "hakukelp_kuvaus_fi=:hakukelp_kuvaus_fi, hakukelp_kuvaus_sv=:hakukelp_kuvaus_sv, hakukelp_kuvaus_en=:hakukelp_kuvaus_en, " +
-            "lisatiedot_fi=:lisatiedot_fi, lisatiedot_sv=:lisatiedot_sv, lisatiedot_en=:lisatiedot_en, " +
-            "valintaper_fi=:valintaper_fi, valintaper_sv=:valintaper_sv, valintaper_en=:valintaper_en, " +
-            "sorakuvaus_fi=:sorakuvaus_fi, sorakuvaus_sv=:sorakuvaus_sv, sorakuvaus_en=:sorakuvaus_en, " +
-            "id_haku=:id_haku " +
-            "WHERE id=:id")
-    int update(@BindApplicationOption ApplicationOption applicationOption);
-
     @SqlUpdate("MERGE INTO hakukohde USING dual ON ( id=:id ) " +
             "WHEN MATCHED THEN UPDATE SET " +
             "nimi_fi=:nimi_fi, nimi_sv=:nimi_sv, nimi_en=:nimi_en, aloituspaikat=:aloituspaikat, " +
             "hakukelp_kuvaus_fi=:hakukelp_kuvaus_fi, hakukelp_kuvaus_sv=:hakukelp_kuvaus_sv, hakukelp_kuvaus_en=:hakukelp_kuvaus_en, " +
             "lisatiedot_fi=:lisatiedot_fi, lisatiedot_sv=:lisatiedot_sv, lisatiedot_en=:lisatiedot_en, " +
             "valintaper_fi=:valintaper_fi, valintaper_sv=:valintaper_sv, valintaper_en=:valintaper_en, " +
-            "sorakuvaus_fi=:sorakuvaus_fi, sorakuvaus_sv=:sorakuvaus_sv, sorakuvaus_en=:sorakuvaus_en " +
+            "sorakuvaus_fi=:sorakuvaus_fi, sorakuvaus_sv=:sorakuvaus_sv, sorakuvaus_en=:sorakuvaus_en, id_haku=:id_haku " +
             "WHEN NOT MATCHED THEN INSERT " +
             "(id, nimi_fi, nimi_sv, nimi_en, aloituspaikat, hakukelp_kuvaus_fi, hakukelp_kuvaus_sv, hakukelp_kuvaus_en, " +
             "lisatiedot_fi, lisatiedot_sv, lisatiedot_en, valintaper_fi, valintaper_sv, valintaper_en, " +
-            "sorakuvaus_fi, sorakuvaus_sv, sorakuvaus_en) " +
+            "sorakuvaus_fi, sorakuvaus_sv, sorakuvaus_en, id_haku) " +
             "VALUES (:id, :nimi_fi, :nimi_sv, :nimi_en, :aloituspaikat, :hakukelp_kuvaus_fi, :hakukelp_kuvaus_sv, :hakukelp_kuvaus_en, " +
             ":lisatiedot_fi, :lisatiedot_sv, :lisatiedot_en, :valintaper_fi, :valintaper_sv, :valintaper_en, " +
-            ":sorakuvaus_fi, :sorakuvaus_sv, :sorakuvaus_en)")
+            ":sorakuvaus_fi, :sorakuvaus_sv, :sorakuvaus_en, :id_haku)")
     void upsert(@BindApplicationOption ApplicationOption applicationOption);
 
     @SqlQuery("select  " +

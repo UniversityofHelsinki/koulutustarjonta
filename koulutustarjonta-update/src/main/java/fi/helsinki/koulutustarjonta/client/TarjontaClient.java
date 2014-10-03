@@ -45,6 +45,7 @@ public class TarjontaClient {
     }
 
     public List<String> getLearningOpportunityOidsByProvider(String organizationOid) {
+
         LOG.debug(String.format("Searching learning opportunities with organization %s", organizationOid));
         JsonNode searchResult = learningOpportunitResource.path("search")
                 .queryParam("organisationOid", organizationOid)

@@ -24,11 +24,7 @@ public class ApplicationOptionDAO {
     }
 
     public void save(ApplicationOption applicationOption) {
-        int updated = jdbi.update(applicationOption);
-        if (updated == 0) {
-            jdbi.insert(applicationOption);
-        }
-
+        jdbi.upsert(applicationOption);
         if (applicationOption.getExams() != null) {
             jdbi.upsertExams(applicationOption.getExams(), applicationOption.getOid());
             applicationOption.getExams().forEach(exam -> jdbi.upsertExamEvents(exam.getEvents(), exam.getOid()));

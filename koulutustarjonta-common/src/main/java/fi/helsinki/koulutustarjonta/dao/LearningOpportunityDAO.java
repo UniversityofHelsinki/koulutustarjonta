@@ -19,23 +19,9 @@ public class LearningOpportunityDAO {
     }
 
     public void save(LearningOpportunity learningOpportunity) {
-        int affected = jdbi.update(learningOpportunity);
-        if (affected == 0) {
-            insert(learningOpportunity);
-        }
-        else {
-            jdbi.removeTeachingLanguagesFromLearningOpportunity(learningOpportunity.getOid());
-            jdbi.addTeachingLanguagesToLearningOpportunity(learningOpportunity.getOid(),
-            learningOpportunity.getTeachingLanguages()
-                    .stream()
-                    .map(x -> x.getLang())
-                    .collect(Collectors.toList()));
-        }
-    }
-
-    private void insert(LearningOpportunity learningOpportunity) {
-        jdbi.insert(learningOpportunity);
+        jdbi.upsert(learningOpportunity);
         jdbi.insertTeachingLanguages(learningOpportunity.getTeachingLanguages());
+        jdbi.removeTeachingLanguagesFromLearningOpportunity(learningOpportunity.getOid());
         jdbi.addTeachingLanguagesToLearningOpportunity(learningOpportunity.getOid(),
                 learningOpportunity.getTeachingLanguages()
                         .stream()

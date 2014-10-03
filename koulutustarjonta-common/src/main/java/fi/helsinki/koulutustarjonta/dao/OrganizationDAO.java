@@ -25,10 +25,7 @@ public class OrganizationDAO {
 
     public void save(Organization organization) {
         jdbi.begin();
-        int updated = jdbi.update(organization);
-        if (updated == 0) {
-            jdbi.insert(organization);
-        }
+        jdbi.upsert(organization);
         List<ContactInfo> combinedContactInfos = Lists.newArrayList(organization.getContactInfos());
         combinedContactInfos.addAll(organization.getApplicantServices());
         jdbi.upsertContactInfos(combinedContactInfos, organization.getOid());

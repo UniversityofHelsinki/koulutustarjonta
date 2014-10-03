@@ -17,10 +17,27 @@ import java.util.List;
  */
 public interface LearningOpportunityJDBI {
 
-    @SqlUpdate("MERGE INTO KOULUTUS USING dual ON ( id=:id ) WHEN MATCHED THEN UPDATE SET tavoitteet_fi=:tavoitteet_fi WHEN NOT MATCHED THEN INSERT (id, tavoitteet_fi) VALUES (:id, :tavoitteet_fi)")
-    void upsert(@BindLearningOpportunity LearningOpportunity learningOpportunity);
-
-    @SqlUpdate("INSERT INTO koulutus " +
+    @SqlUpdate("MERGE INTO koulutus USING dual ON ( id=:id ) " +
+            "WHEN MATCHED THEN UPDATE SET " +
+            "tutkintonimike_fi = :tutkintonimike_fi, tutkintonimike_sv = :tutkintonimike_sv, tutkintonimike_en = :tutkintonimike_en, " +
+            "opintoala_fi = :opintoala_fi, opintoala_sv = :opintoala_sv, opintoala_en = :opintoala_en, " +
+            "tutkintoohjelma_fi = :tutkintoohjelma_fi, tutkintoohjelma_sv = :tutkintoohjelma_sv, tutkintoohjelma_en = :tutkintoohjelma_en, " +
+            "alkamisvuosi = :alkamisvuosi, alkamiskausi_fi = :alkamiskausi_fi, alkamiskausi_sv = :alkamiskausi_sv, alkamiskausi_en = :alkamiskausi_en, " +
+            "suunni_kesto = :suunni_kesto, suunni_tyyppi_fi = :suunni_tyyppi_fi, suunni_tyyppi_sv = :suunni_tyyppi_sv, suunni_tyyppi_en = :suunni_tyyppi_en, " +
+            "laajuus = :laajuus, laajuus_tyyppi_fi = :laajuus_tyyppi_fi, laajuus_tyyppi_sv = :laajuus_tyyppi_sv, laajuus_tyyppi_en = :laajuus_tyyppi_en, " +
+            "rakenne_fi = :rakenne_fi,  rakenne_sv = :rakenne_sv, rakenne_en = :rakenne_en," +
+            "tavoitteet_fi = :tavoitteet_fi, tavoitteet_sv = :tavoitteet_sv, tavoitteet_en = :tavoitteet_en, " +
+            "mahdollisuudet_fi = :mahdollisuudet_fi, mahdollisuudet_sv = :mahdollisuudet_sv, mahdollisuudet_en = :mahdollisuudet_en, " +
+            "patevyys_fi = :patevyys_fi, patevyys_sv = :patevyys_sv, patevyys_en = :patevyys_en, " +
+            "lisat_opkiel_fi = :lisat_opkiel_fi, lisat_opkiel_sv = :lisat_opkiel_sv, lisat_opkiel_en = :lisat_opkiel_en, " +
+            "yhteistyo_fi = :yhteistyo_fi, yhteistyo_sv = :yhteistyo_sv, yhteistyo_en = :yhteistyo_en, " +
+            "paaaineval_fi = :paaaineval_fi, paaaineval_sv = :paaaineval_sv, paaaineval_en = :paaaineval_en, " +
+            "kansval_fi = :kansval_fi, kansval_sv = :kansval_sv, kansval_en = :kansval_en, " +
+            "sijtyo_fi = :sijtyo_fi, sijtyo_sv = :sijtyo_sv, sijtyo_en = :sijtyo_en, " +
+            "sisalto_fi = :sisalto_fi, sisalto_sv = :sisalto_sv, sisalto_en = :sisalto_en, " +
+            "tutkpaino_fi = :tutkpaino_fi, tutkpaino_sv = :tutkpaino_sv, tutkpaino_en = :tutkpaino_en, " +
+            "opinnaytetyo_fi = :opinnaytetyo_fi, opinnaytetyo_sv = :opinnaytetyo_sv, opinnaytetyo_en = :opinnaytetyo_en " +
+            "WHEN NOT MATCHED THEN INSERT " +
             "(id,  tutkintonimike_fi, tutkintonimike_sv, tutkintonimike_en, " +
             "opintoala_fi, opintoala_sv, opintoala_en, " +
             "tutkintoohjelma_fi, tutkintoohjelma_sv, tutkintoohjelma_en, " +
@@ -57,29 +74,7 @@ public interface LearningOpportunityJDBI {
             ":sisalto_fi, :sisalto_sv, :sisalto_en, " +
             ":tutkpaino_fi, :tutkpaino_sv, :tutkpaino_en, " +
             ":opinnaytetyo_fi, :opinnaytetyo_sv, :opinnaytetyo_en)")
-    void insert(@BindLearningOpportunity LearningOpportunity learningOpportunity);
-
-    @SqlUpdate("UPDATE koulutus " +
-            "SET tutkintonimike_fi = :tutkintonimike_fi, tutkintonimike_sv = :tutkintonimike_sv, tutkintonimike_en = :tutkintonimike_en, " +
-            "opintoala_fi = :opintoala_fi, opintoala_sv = :opintoala_sv, opintoala_en = :opintoala_en, " +
-            "tutkintoohjelma_fi = :tutkintoohjelma_fi, tutkintoohjelma_sv = :tutkintoohjelma_sv, tutkintoohjelma_en = :tutkintoohjelma_en, " +
-            "alkamisvuosi = :alkamisvuosi, alkamiskausi_fi = :alkamiskausi_fi, alkamiskausi_sv = :alkamiskausi_sv, alkamiskausi_en = :alkamiskausi_en, " +
-            "suunni_kesto = :suunni_kesto, suunni_tyyppi_fi = :suunni_tyyppi_fi, suunni_tyyppi_sv = :suunni_tyyppi_sv, suunni_tyyppi_en = :suunni_tyyppi_en, " +
-            "laajuus = :laajuus, laajuus_tyyppi_fi = :laajuus_tyyppi_fi, laajuus_tyyppi_sv = :laajuus_tyyppi_sv, laajuus_tyyppi_en = :laajuus_tyyppi_en, " +
-            "rakenne_fi = :rakenne_fi,  rakenne_sv = :rakenne_sv, rakenne_en = :rakenne_en," +
-            "tavoitteet_fi = :tavoitteet_fi, tavoitteet_sv = :tavoitteet_sv, tavoitteet_en = :tavoitteet_en, " +
-            "mahdollisuudet_fi = :mahdollisuudet_fi, mahdollisuudet_sv = :mahdollisuudet_sv, mahdollisuudet_en = :mahdollisuudet_en, " +
-            "patevyys_fi = :patevyys_fi, patevyys_sv = :patevyys_sv, patevyys_en = :patevyys_en, " +
-            "lisat_opkiel_fi = :lisat_opkiel_fi, lisat_opkiel_sv = :lisat_opkiel_sv, lisat_opkiel_en = :lisat_opkiel_en, " +
-            "yhteistyo_fi = :yhteistyo_fi, yhteistyo_sv = :yhteistyo_sv, yhteistyo_en = :yhteistyo_en, " +
-            "paaaineval_fi = :paaaineval_fi, paaaineval_sv = :paaaineval_sv, paaaineval_en = :paaaineval_en, " +
-            "kansval_fi = :kansval_fi, kansval_sv = :kansval_sv, kansval_en = :kansval_en, " +
-            "sijtyo_fi = :sijtyo_fi, sijtyo_sv = :sijtyo_sv, sijtyo_en = :sijtyo_en, " +
-            "sisalto_fi = :sisalto_fi, sisalto_sv = :sisalto_sv, sisalto_en = :sisalto_en, " +
-            "tutkpaino_fi = :tutkpaino_fi, tutkpaino_sv = :tutkpaino_sv, tutkpaino_en = :tutkpaino_en, " +
-            "opinnaytetyo_fi = :opinnaytetyo_fi, opinnaytetyo_sv = :opinnaytetyo_sv, opinnaytetyo_en = :opinnaytetyo_en " +
-            "WHERE id = :id")
-    int update(@BindLearningOpportunity LearningOpportunity learningOpportunity);
+    void upsert(@BindLearningOpportunity LearningOpportunity learningOpportunity);
 
     @SqlQuery("SELECT k.*, ok.kieli as opetuskieli_kieli, " +
             "ok.selite_fi as opetuskieli_selite_fi, ok.selite_sv as opetuskieli_selite_sv, " +

@@ -39,10 +39,10 @@ public class LearningOpportunityConverter extends BaseConverter {
         //komo info
         JsonNode komoInfo = content.get("kuvausKomo");
         lo.setGoals(convertMetaTextsToI18N(komoInfo.get("TAVOITTEET")));
+
         lo.setStructure(convertMetaTextsToI18N(komoInfo.get("KOULUTUKSEN_RAKENNE")));
         lo.setPostgraduateStudies(convertMetaTextsToI18N(komoInfo.get("JATKOOPINTO_MAHDOLLISUUDET")));
         lo.setCompetency(convertMetaTextsToI18N(komoInfo.get("PATEVYYS")));
-
         lo.setTranslations(resolveTranslations(komoInfo.get("TAVOITTEET")));
 
         //komoto info
