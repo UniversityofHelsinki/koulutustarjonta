@@ -6,6 +6,7 @@ import fi.helsinki.koulutustarjonta.dao.ApplicationOptionDAO;
 import fi.helsinki.koulutustarjonta.dao.ApplicationSystemDAO;
 import fi.helsinki.koulutustarjonta.dao.LearningOpportunityDAO;
 import fi.helsinki.koulutustarjonta.dao.OrganizationDAO;
+import fi.helsinki.koulutustarjonta.domain.ApplicationOption;
 import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
 import fi.helsinki.koulutustarjonta.domain.Organization;
 import fi.helsinki.koulutustarjonta.exception.DataUpdateException;
@@ -55,11 +56,11 @@ public class Updater {
                         LearningOpportunity learningOpportunity = tarjontaClient.getLearningOpportunity(loOid);
                         learningOpportunityDAO.save(learningOpportunity);
                     });
-                    //applicationOptionOids.forEach(aoOid -> {
-                    //    ApplicationOption ao = tarjontaClient.getApplicationOption(aoOid);
-                    //    applicationSystemDAO.save(ao.getApplicationSystem());
-                    //    applicationOptionDAO.save(ao);
-//                    });
+                    applicationOptionOids.forEach(aoOid -> {
+                        ApplicationOption ao = tarjontaClient.getApplicationOption(aoOid);
+                        applicationSystemDAO.save(ao.getApplicationSystem());
+                        applicationOptionDAO.save(ao);
+                    });
                 } catch (DataUpdateException e) {
                     LOG.warn(String.format("Could not retreive organization %s: %s", organizationOid, e.getMessage()));
                 }
