@@ -38,6 +38,7 @@ public class Fixture {
         TeachingLanguage teachingLanguage1 = new TeachingLanguage("fi", new I18N("suomi", "finska", "Finnish"));
         TeachingLanguage teachingLanguage2 = new TeachingLanguage("en", new I18N("englanti", "engelska", "English"));
         lo.setTeachingLanguages(Lists.newArrayList(teachingLanguage1, teachingLanguage2));
+        lo.setApplicationOptions(Lists.newArrayList("hakukohde_id1"));
         return lo;
     }
 

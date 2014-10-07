@@ -4,7 +4,6 @@ import fi.helsinki.koulutustarjonta.dao.util.LearningOpportunityJoinRow;
 import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
 
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -15,18 +14,23 @@ import java.util.stream.Collectors;
  */
 public class LearningOpportunityObjectGraphBuilder {
     public static List<LearningOpportunity> build(List<LearningOpportunityJoinRow> joinRows) {
-
-        Map<String, List<LearningOpportunityJoinRow>> grouped = joinRows.stream()
-                .collect(Collectors.groupingBy(row -> row.getLearningOpportunity().getOid()));
-
-        return grouped.values().stream()
-                .map(list -> combineRows(list))
+        return joinRows.stream()
+                .collect(Collectors.groupingBy(row -> row.getLearningOpportunity().getOid()))
+                .values().stream()
+                .map(list -> resolveLearningOpportunity(list))
                 .collect(Collectors.<LearningOpportunity>toList());
     }
 
-    private static LearningOpportunity combineRows(List<LearningOpportunityJoinRow> rows) {
+    private static LearningOpportunity resolveLearningOpportunity(List<LearningOpportunityJoinRow> rows) {
         LearningOpportunity lo = rows.get(0).getLearningOpportunity();
-        lo.setTeachingLanguages(rows.stream().map(row -> row.getTeachingLanguage()).collect(Collectors.toList()));
+        lo.setTeachingLanguages(rows.stream()
+                .map(row -> row.getTeachingLanguage())
+                .collect(Collectors.toList()));
+        lo.setApplicationOptions(rows
+                .stream()
+                .map(row -> row.getApplicationOptionOid())
+                .distinct()
+                .collect(Collectors.toList()));
         return lo;
     }
 }

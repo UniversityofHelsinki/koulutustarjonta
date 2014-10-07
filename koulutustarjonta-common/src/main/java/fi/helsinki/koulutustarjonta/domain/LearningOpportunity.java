@@ -31,7 +31,7 @@ public class LearningOpportunity {
     private I18N contents;//sisalto
     private I18N research;//tutkimuksen painopisteet
     private I18N thesis;//opinnaytetyo
-    private List<ApplicationOption> applicationOptions;//hakukohteet
+    private List<String> applicationOptions;//hakukohteet
     private Organization provider;//tarjoaja
 
     public LearningOpportunity() {
@@ -44,7 +44,7 @@ public class LearningOpportunity {
                                I18N structure, I18N postgraduateStudies, I18N competency,
                                I18N languageInfo, I18N cooperation, I18N selectingMajorSubject,
                                I18N internationalization, I18N workLifePlacement, I18N contents,
-                               I18N research, I18N thesis, List<ApplicationOption> applicationOptions,
+                               I18N research, I18N thesis, List<String> applicationOptions,
                                Organization provider) {
         this.oid = oid;
         this.qualification = qualification;
@@ -267,11 +267,11 @@ public class LearningOpportunity {
         this.research = research;
     }
 
-    public List<ApplicationOption> getApplicationOptions() {
+    public List<String> getApplicationOptions() {
         return applicationOptions;
     }
 
-    public void setApplicationOptions(List<ApplicationOption> applicationOptions) {
+    public void setApplicationOptions(List<String> applicationOptions) {
         this.applicationOptions = applicationOptions;
     }
 

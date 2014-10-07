@@ -33,7 +33,7 @@ public class LearningOpportunityDTO {
     private I18NDTO internationalization;
     private I18NDTO cooperation;
     private I18NDTO research;
-    //private List<ApplicationOption> applicationOptions;
+    private List<String> applicationOptions;
     //private Organization provider;
 
     public LearningOpportunityDTO() {
@@ -252,6 +252,16 @@ public class LearningOpportunityDTO {
     }
 
     public void setResearch(I18NDTO research) {
+
         this.research = research;
+    }
+
+    @JsonProperty("hakukohteet")
+    public List<String> getApplicationOptions() {
+        return applicationOptions;
+    }
+
+    public void setApplicationOptions(List<String> applicationOptions) {
+        this.applicationOptions = applicationOptions;
     }
 }

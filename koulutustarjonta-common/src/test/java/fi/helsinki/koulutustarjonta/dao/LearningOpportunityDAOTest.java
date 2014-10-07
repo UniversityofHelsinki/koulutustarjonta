@@ -42,6 +42,7 @@ public class LearningOpportunityDAOTest extends BaseDAOTest {
     @After
     public void close() throws SQLException, IOException {
         Handle h = dbi.open();
+        h.execute(String.format("DELETE FROM hakukohde_koulutus WHERE id_koulutus = '%s'", oid2));
         h.execute(String.format("DELETE FROM KOULUTUS_OPETUSKIELI WHERE id_koulutus = '%s'", oid2));
         h.execute(String.format("DELETE FROM KOULUTUS WHERE id = '%s'", oid2));
         dbi.close(h);
@@ -118,6 +119,10 @@ public class LearningOpportunityDAOTest extends BaseDAOTest {
         List<TeachingLanguage> teachingLangs = lo.getTeachingLanguages();
         assertNotNull(teachingLangs);
         assertEquals(2, teachingLangs.size());
+        List<String> applicationOptions = lo.getApplicationOptions();
+        assertNotNull(applicationOptions);
+        assertEquals(1, applicationOptions.size());
+        assertEquals("hakukohde_id1", applicationOptions.get(0));
     }
 
     @Test

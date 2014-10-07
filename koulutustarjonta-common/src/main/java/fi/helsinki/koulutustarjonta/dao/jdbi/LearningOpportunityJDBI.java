@@ -77,24 +77,28 @@ public interface LearningOpportunityJDBI {
     void upsert(@BindLearningOpportunity LearningOpportunity learningOpportunity);
 
     @SqlQuery("SELECT k.*, ok.kieli as opetuskieli_kieli, " +
-            "ok.selite_fi as opetuskieli_selite_fi, ok.selite_sv as opetuskieli_selite_sv, " +
-            "ok.selite_en as opetuskieli_selite_en " +
+            "ok.selite_fi AS opetuskieli_selite_fi, ok.selite_sv AS opetuskieli_selite_sv, " +
+            "ok.selite_en AS opetuskieli_selite_en, hk.id_hakukohde AS hakukohde_id " +
             "FROM koulutus k " +
             "LEFT JOIN " +
-            "koulutus_opetuskieli ko on k.id = ko.id_koulutus " +
+            "koulutus_opetuskieli ko ON k.id = ko.id_koulutus " +
             "LEFT JOIN " +
-            "opetuskieli ok on ok.id = ko.id_opetuskieli")
+            "opetuskieli ok ON ok.id = ko.id_opetuskieli " +
+            "LEFT JOIN " +
+            "hakukohde_koulutus hk ON k.id = hk.id_koulutus")
     @Mapper(LearningOpportunityJoinRowMapper.class)
     List<LearningOpportunityJoinRow> findAllJoinRows();
 
     @SqlQuery("SELECT k.*, ok.kieli as opetuskieli_kieli, " +
             "ok.selite_fi as opetuskieli_selite_fi, ok.selite_sv as opetuskieli_selite_sv, " +
-            "ok.selite_en as opetuskieli_selite_en " +
+            "ok.selite_en as opetuskieli_selite_en, hk.id_hakukohde AS hakukohde_id " +
             "FROM koulutus k " +
             "LEFT JOIN " +
             "koulutus_opetuskieli ko on k.id = ko.id_koulutus " +
             "LEFT JOIN " +
             "opetuskieli ok on ok.id = ko.id_opetuskieli " +
+            "LEFT JOIN " +
+            "hakukohde_koulutus hk ON k.id = hk.id_koulutus " +
             "WHERE k.id = :id")
     @Mapper(LearningOpportunityJoinRowMapper.class)
     List<LearningOpportunityJoinRow> findJoinRowsById(@Bind("id") String id);
@@ -105,9 +109,15 @@ public interface LearningOpportunityJDBI {
     void insertTeachingLanguages(@BindTeachingLanguage List<TeachingLanguage> teachingLanguage);
 
     @SqlBatch("INSERT INTO koulutus_opetuskieli (id_koulutus, id_opetuskieli) VALUES (:id_koulutus, :id_opetuskieli)")
+    @BatchChunkSize(10)
     void addTeachingLanguagesToLearningOpportunity(@Bind("id_koulutus") String learningOpportunityId,
                                                             @Bind("id_opetuskieli") List<String> teachingLanguageIds);
 
     @SqlUpdate("DELETE FROM koulutus_opetuskieli WHERE id_koulutus = :id")
     void removeTeachingLanguagesFromLearningOpportunity(@Bind("id") String learningOpportunityId);
+
+    @SqlBatch("MERGE INTO hakukohde_koulutus USING dual ON (id_koulutus = :id_koulutus AND id_hakukohde = :id_hakukohde)" +
+            "WHEN NOT MATCHED THEN INSERT (id_koulutus, id_hakukohde) VALUES (:id_koulutus, :id_hakukohde)")
+    @BatchChunkSize(10)
+    void addApplicationOptions(@Bind("id_koulutus") String learningOpportunityOid, @Bind("id_hakukohde") List<String> applicationOptionOids);
 }

@@ -52,14 +52,16 @@ public class Updater {
                 try {
                     organization = organisaatioClient.getOrganization(organizationOid);
                     organizationDAO.save(organization);
-                    learningOpportunityOids.forEach(loOid -> {
-                        LearningOpportunity learningOpportunity = tarjontaClient.getLearningOpportunity(loOid);
-                        learningOpportunityDAO.save(learningOpportunity);
-                    });
+
                     applicationOptionOids.forEach(aoOid -> {
                         ApplicationOption ao = tarjontaClient.getApplicationOption(aoOid);
                         applicationSystemDAO.save(ao.getApplicationSystem());
                         applicationOptionDAO.save(ao);
+                    });
+
+                    learningOpportunityOids.forEach(loOid -> {
+                        LearningOpportunity learningOpportunity = tarjontaClient.getLearningOpportunity(loOid);
+                        learningOpportunityDAO.save(learningOpportunity);
                     });
                 } catch (DataUpdateException e) {
                     LOG.warn(String.format("Could not retreive organization %s: %s", organizationOid, e.getMessage()));

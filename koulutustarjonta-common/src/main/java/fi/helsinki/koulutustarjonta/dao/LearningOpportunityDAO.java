@@ -27,6 +27,9 @@ public class LearningOpportunityDAO {
                         .stream()
                         .map(x -> x.getLang())
                         .collect(Collectors.toList()));
+        if (learningOpportunity.getApplicationOptions() != null) {
+            jdbi.addApplicationOptions(learningOpportunity.getOid(), learningOpportunity.getApplicationOptions());
+        }
     }
 
     public List<LearningOpportunity> findAll() {

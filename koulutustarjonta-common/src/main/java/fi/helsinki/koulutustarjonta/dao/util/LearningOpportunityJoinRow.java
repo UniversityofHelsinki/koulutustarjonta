@@ -14,4 +14,5 @@ public class LearningOpportunityJoinRow {
 
     private final LearningOpportunity learningOpportunity;
     private final TeachingLanguage teachingLanguage;
+    private final String applicationOptionOid;
 }
