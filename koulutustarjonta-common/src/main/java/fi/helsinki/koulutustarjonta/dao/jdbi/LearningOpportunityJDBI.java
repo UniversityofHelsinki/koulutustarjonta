@@ -6,15 +6,21 @@ import fi.helsinki.koulutustarjonta.dao.mapper.LearningOpportunityJoinRowMapper;
 import fi.helsinki.koulutustarjonta.dao.util.LearningOpportunityJoinRow;
 import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
 import fi.helsinki.koulutustarjonta.domain.TeachingLanguage;
-import org.skife.jdbi.v2.sqlobject.*;
+import org.skife.jdbi.v2.sqlobject.Bind;
+import org.skife.jdbi.v2.sqlobject.SqlBatch;
+import org.skife.jdbi.v2.sqlobject.SqlQuery;
+import org.skife.jdbi.v2.sqlobject.SqlUpdate;
 import org.skife.jdbi.v2.sqlobject.customizers.BatchChunkSize;
 import org.skife.jdbi.v2.sqlobject.customizers.Mapper;
+import org.skife.jdbi.v2.sqlobject.stringtemplate.UseStringTemplate3StatementLocator;
+import org.skife.jdbi.v2.unstable.BindIn;
 
 import java.util.List;
 
 /**
  * @author Hannu Lyytikainen
  */
+@UseStringTemplate3StatementLocator
 public interface LearningOpportunityJDBI {
 
     @SqlUpdate("MERGE INTO koulutus USING dual ON ( id=:id ) " +
@@ -120,4 +126,10 @@ public interface LearningOpportunityJDBI {
             "WHEN NOT MATCHED THEN INSERT (id_koulutus, id_hakukohde) VALUES (:id_koulutus, :id_hakukohde)")
     @BatchChunkSize(10)
     void addApplicationOptions(@Bind("id_koulutus") String learningOpportunityOid, @Bind("id_hakukohde") List<String> applicationOptionOids);
+
+    @SqlUpdate("DELETE FROM hakukohde_koulutus " +
+            "WHERE id_koulutus = :id_koulutus " +
+            "AND id_hakukohde NOT IN (<current>)")
+    void removeDeletedApplicationOptions(@Bind("id_koulutus") String learningOpportunityOid,
+                                         @BindIn("current") List<String> currentApplicationOptionOids);
 }

@@ -29,7 +29,8 @@ DELETE FROM valintakoe
 WHERE id = 'valintakoe_id1';
 
 DELETE FROM hakukohde
-WHERE id = 'hakukohde_id1';
+WHERE id = 'hakukohde_id1'
+OR id = 'hakukohde_id2';
 
 -- koulutus
 DELETE FROM KOULUTUS_OPETUSKIELI

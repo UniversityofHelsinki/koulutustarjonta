@@ -29,6 +29,7 @@ public class LearningOpportunityDAO {
                         .collect(Collectors.toList()));
         if (learningOpportunity.getApplicationOptions() != null) {
             jdbi.addApplicationOptions(learningOpportunity.getOid(), learningOpportunity.getApplicationOptions());
+            jdbi.removeDeletedApplicationOptions(learningOpportunity.getOid(), learningOpportunity.getApplicationOptions());
         }
     }
 

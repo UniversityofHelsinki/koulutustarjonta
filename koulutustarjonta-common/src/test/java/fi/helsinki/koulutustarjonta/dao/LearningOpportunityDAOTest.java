@@ -175,6 +175,8 @@ public class LearningOpportunityDAOTest extends BaseDAOTest {
             i18NEquals(expectedLang.getName(), actualLang.getName());
         }
 
+        assertEquals(expected.getApplicationOptions().size(), actual.getApplicationOptions().size());
+        assertEquals(expected.getApplicationOptions().get(0), actual.getApplicationOptions().get(0));
     }
 
 

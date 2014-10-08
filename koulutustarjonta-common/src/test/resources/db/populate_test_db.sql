@@ -102,6 +102,10 @@ VALUES ('hakukohde_id1', 'nimi fi', 'nimi sv', 'nimi en', 11, 'sora fi', 'sora s
 'valintaper fi', 'valintaper sv', 'valintaper en',
 'kuvaus fi', 'kuvaus sv', 'kuvaus en');
 
+INSERT INTO hakukohde
+            (id, nimi_fi, nimi_sv, nimi_en)
+VALUES ('hakukohde_id2', 'nimi fi', 'nimi sv', 'nimi en');
+
 INSERT INTO valintakoe
             (id, id_hakukohde, kieli, tyyppi, kuvaus)
 VALUES ('valintakoe_id1', 'hakukohde_id1', 'fi', 'koetyyppi', 'kokeen kuvaus');
