@@ -89,6 +89,8 @@ public class LearningOpportunityResourceTest {
                     .filter(x -> x.getLang().equals(expectedLang.getLang())).findFirst().get();
             DTOTestUtil.i18NDTOsEqual(expectedLang.getName(), actualLang.getName());
         }
+        assertEquals(expected.getApplicationOptions().size(), actual.getApplicationOptions().size());
+        assertEquals(expected.getApplicationOptions().get(0), actual.getApplicationOptions().get(0));
 
     }
 }
