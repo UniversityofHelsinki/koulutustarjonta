@@ -36,7 +36,7 @@ def commitHash() {
             hash = proc.text.trim()
         }
         catch (Exception e) {
-            println("Could not execure git command, could reolve hash")
+            println("Could not execute git command, couldn't resolve hash")
             hash = null;
         }
     } else {

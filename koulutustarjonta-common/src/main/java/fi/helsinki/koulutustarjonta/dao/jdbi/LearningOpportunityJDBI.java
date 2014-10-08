@@ -122,7 +122,7 @@ public interface LearningOpportunityJDBI {
     @SqlUpdate("DELETE FROM koulutus_opetuskieli WHERE id_koulutus = :id")
     void removeTeachingLanguagesFromLearningOpportunity(@Bind("id") String learningOpportunityId);
 
-    @SqlBatch("MERGE INTO hakukohde_koulutus USING dual ON (id_koulutus = :id_koulutus AND id_hakukohde = :id_hakukohde)" +
+    @SqlBatch("MERGE INTO hakukohde_koulutus USING dual ON (id_koulutus = :id_koulutus AND id_hakukohde = :id_hakukohde) " +
             "WHEN NOT MATCHED THEN INSERT (id_koulutus, id_hakukohde) VALUES (:id_koulutus, :id_hakukohde)")
     @BatchChunkSize(10)
     void addApplicationOptions(@Bind("id_koulutus") String learningOpportunityOid, @Bind("id_hakukohde") List<String> applicationOptionOids);
