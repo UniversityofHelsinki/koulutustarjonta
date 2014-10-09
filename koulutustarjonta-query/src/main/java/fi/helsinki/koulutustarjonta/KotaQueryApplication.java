@@ -37,16 +37,15 @@ public class KotaQueryApplication extends Application<KotaQueryConfig> {
 
     @Override
     public void run(KotaQueryConfig configuration, Environment environment) throws Exception {
-
         TimeZone tz = TimeZone.getTimeZone("EET");
         TimeZone.setDefault(tz);
 
         final DBIFactory factory = new DBIFactory();
-        final DBI dbi = factory.build(environment, configuration.getDataSourceFactory(), "oracle");
+        final DBI dbi = factory.build(environment, configuration.getDatabase(), "oracle");
 
         final LearningOpportunityJDBI learningOpportunityJDBI = dbi.onDemand(LearningOpportunityJDBI.class);
         final LearningOpportunityDAO learningOpportunityDAO = new LearningOpportunityDAO(learningOpportunityJDBI);
-        final LearningOpportunityResource lor = new LearningOpportunityResource(learningOpportunityDAO);
+        final LearningOpportunityResource lor = new LearningOpportunityResource(learningOpportunityDAO, configuration.getApiEndpoint());
         final ApplicationOptionJDBI applicationOptionJDBI = dbi.onDemand(ApplicationOptionJDBI.class);
         final ApplicationOptionDAO applicationOptionDAO = new ApplicationOptionDAO(applicationOptionJDBI);
         final ApplicationOptionResource aor = new ApplicationOptionResource(applicationOptionDAO);

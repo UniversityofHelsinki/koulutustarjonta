@@ -23,9 +23,9 @@ public class LearningOpportunityResource {
     final LearningOpportunityDAO learningOpportunityDAO;
     final LearningOpportunityModelMapper modelMapper;
 
-    public LearningOpportunityResource(LearningOpportunityDAO learningOpportunityDAO) {
+    public LearningOpportunityResource(LearningOpportunityDAO learningOpportunityDAO, String apiEndpoint) {
         this.learningOpportunityDAO = learningOpportunityDAO;
-        this.modelMapper = new LearningOpportunityModelMapper();
+        this.modelMapper = new LearningOpportunityModelMapper(apiEndpoint);
     }
 
     @GET

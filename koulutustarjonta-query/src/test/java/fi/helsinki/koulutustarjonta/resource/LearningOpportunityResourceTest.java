@@ -27,11 +27,12 @@ public class LearningOpportunityResourceTest {
     private static final LearningOpportunityDAO dao = mock(LearningOpportunityDAO.class);
     private final String oid = "1.2.3";
     private final LearningOpportunity learningOpportunity = Fixture.learningOpportunity(oid);
-    private final ModelMapper modelMapper = new LearningOpportunityModelMapper();
+    private static final String API_ENDPOINT = "API_ENDPOINT";
+    private final ModelMapper modelMapper = new LearningOpportunityModelMapper(API_ENDPOINT);
 
     @ClassRule
     public static final ResourceTestRule resources = ResourceTestRule.builder()
-            .addResource(new LearningOpportunityResource(dao))
+            .addResource(new LearningOpportunityResource(dao, API_ENDPOINT))
             .build();
 
     @Before
