@@ -6,6 +6,7 @@ import fi.helsinki.koulutustarjonta.client.KoodistoClient;
 import fi.helsinki.koulutustarjonta.domain.ApplicationOption;
 import fi.helsinki.koulutustarjonta.domain.Requirement;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -50,6 +51,30 @@ public class ApplicationOptionConverter extends BaseConverter {
     public String resolveApplicationSystemOid(JsonNode apiCallResult) {
         JsonNode content = resolveApplicationOptionContent(apiCallResult);
         return content.get("hakuOid").textValue();
+
+    }
+
+    /**
+     * Resolves oids from list returned by application option search by learning opportunity.
+     *
+     * @param apiCallResult
+     * @return oid list
+     */
+    public List<String> resolveOids(JsonNode apiCallResult) {
+        return Lists.newArrayList(apiCallResult.get("result"))
+                .stream()
+                .map(node -> node.get("oid").textValue())
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Checks if application option state is "JULKAISTU"
+     * @param apiCallResult
+     * @return
+     */
+    public boolean isApplicationOptionReleased(JsonNode apiCallResult) {
+        JsonNode content = resolveApplicationOptionContent(apiCallResult);
+        return content.get("tila").textValue().equals("JULKAISTU");
 
     }
 

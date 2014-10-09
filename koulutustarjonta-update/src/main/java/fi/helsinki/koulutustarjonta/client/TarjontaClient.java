@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
@@ -86,6 +87,7 @@ public class TarjontaClient {
         JsonNode learningOpportunityNode = learningOpportunitResource.path(oid).get(new GenericType<JsonNode>() {});
 
         LearningOpportunity learningOpportunity = learningOpportunityConverter.convert(learningOpportunityNode);
+        learningOpportunity.setApplicationOptions(getApplicationOptionOidsByLearningOpportunity(oid));
 
         return learningOpportunity;
     }
@@ -107,4 +109,26 @@ public class TarjontaClient {
 
         return applicationOption;
     }
+
+    private List<String> getApplicationOptionOidsByLearningOpportunity(String learningOpportunityOid) {
+        LOG.debug(String.format("Fetching application option oids for learning opportunity %s",
+                learningOpportunityOid));
+        JsonNode result = learningOpportunitResource
+                .path(learningOpportunityOid)
+                .path("hakukohteet")
+                .get(new GenericType<JsonNode>() {});
+
+        return applicationOptionConverter.resolveOids(result)
+                .stream()
+                .filter(oid -> isApplicationOptionReleased(oid))
+                .collect(Collectors.toList());
+    }
+
+    private boolean isApplicationOptionReleased(String oid) {
+        JsonNode result = applicationOptionResource
+                .path(oid)
+                .get(new GenericType<JsonNode>() {});
+        return applicationOptionConverter.isApplicationOptionReleased(result);
+    }
+
 }
