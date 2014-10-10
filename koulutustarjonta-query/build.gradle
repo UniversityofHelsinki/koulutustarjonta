@@ -80,9 +80,10 @@ task rpm(type: Rpm, dependsOn: 'shadowJar') {
         fileType = CONFIG
         into '/'
         // insert db configuration parameters
-        expand(db_url: project.hasProperty('db_url') ? project.getProperty('db_url') : "",
-                db_user: project.hasProperty('db_user') ? project.getProperty('db_user') : "",
-                db_passwd: project.hasProperty('db_passwd') ? project.getProperty('db_passwd') : "")
+        expand(db_url: project.hasProperty('db.url') ? project.getProperty('db.url') : "",
+                db_user: project.hasProperty('db.user') ? project.getProperty('db.user') : "",
+                db_passwd: project.hasProperty('db.passwd') ? project.getProperty('db.passwd') : "",
+                api_endpoint: project.hasProperty('api.endpoint') ? project.getProperty('api.endpoint') : "")
     }
 
     // Upstart file for RHEL

@@ -4,9 +4,9 @@ test {
     // prevent db tests from runnin in parallel
     maxParallelForks = 1
 
-    systemProperty 'db.url', project.hasProperty('db_url') ? project.getProperty('db_url') : 'jdbc:oracle:thin:@10.10.10.10:1521:XE'
-    systemProperty 'db.user', project.hasProperty('db_user') ? project.getProperty('db_user') : 'koultarj'
-    systemProperty 'db.passwd', project.hasProperty('db_passwd') ? project.getProperty('db_passwd') : 'koultarj'
+    systemProperty 'db.url', project.hasProperty('db.url') ? project.getProperty('db.url') : 'jdbc:oracle:thin:@10.10.10.10:1521:XE'
+    systemProperty 'db.user', project.hasProperty('db.user') ? project.getProperty('db.user') : 'koultarj'
+    systemProperty 'db.passwd', project.hasProperty('db.passwd') ? project.getProperty('db.passwd') : 'koultarj'
 }
 
 repositories {
