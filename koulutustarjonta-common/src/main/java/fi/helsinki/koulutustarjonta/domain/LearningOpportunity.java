@@ -41,5 +41,5 @@ public class LearningOpportunity {
     private I18N research;//tutkimuksen painopisteet
     private I18N thesis;//opinnaytetyo
     private List<String> applicationOptions;//hakukohteet
-    private Organization provider;//tarjoaja
+    private String provider;//tarjoaja
 }

@@ -42,7 +42,8 @@ public interface LearningOpportunityJDBI {
             "sijtyo_fi = :sijtyo_fi, sijtyo_sv = :sijtyo_sv, sijtyo_en = :sijtyo_en, " +
             "sisalto_fi = :sisalto_fi, sisalto_sv = :sisalto_sv, sisalto_en = :sisalto_en, " +
             "tutkpaino_fi = :tutkpaino_fi, tutkpaino_sv = :tutkpaino_sv, tutkpaino_en = :tutkpaino_en, " +
-            "opinnaytetyo_fi = :opinnaytetyo_fi, opinnaytetyo_sv = :opinnaytetyo_sv, opinnaytetyo_en = :opinnaytetyo_en " +
+            "opinnaytetyo_fi = :opinnaytetyo_fi, opinnaytetyo_sv = :opinnaytetyo_sv, opinnaytetyo_en = :opinnaytetyo_en," +
+            "id_organisaatio = :id_organisaatio " +
             "WHEN NOT MATCHED THEN INSERT " +
             "(id,  tutkintonimike_fi, tutkintonimike_sv, tutkintonimike_en, " +
             "opintoala_fi, opintoala_sv, opintoala_en, " +
@@ -61,7 +62,7 @@ public interface LearningOpportunityJDBI {
             "sijtyo_fi, sijtyo_sv, sijtyo_en, " +
             "sisalto_fi, sisalto_sv, sisalto_en, " +
             "tutkpaino_fi, tutkpaino_sv, tutkpaino_en, " +
-            "opinnaytetyo_fi, opinnaytetyo_sv, opinnaytetyo_en)" +
+            "opinnaytetyo_fi, opinnaytetyo_sv, opinnaytetyo_en, id_organisaatio)" +
             "values (:id,  :tutkintonimike_fi, :tutkintonimike_sv, :tutkintonimike_en, " +
             ":opintoala_fi, :opintoala_sv, :opintoala_en, " +
             ":tutkintoohjelma_fi, :tutkintoohjelma_sv, :tutkintoohjelma_en, " +
@@ -79,7 +80,7 @@ public interface LearningOpportunityJDBI {
             ":sijtyo_fi, :sijtyo_sv, :sijtyo_en, " +
             ":sisalto_fi, :sisalto_sv, :sisalto_en, " +
             ":tutkpaino_fi, :tutkpaino_sv, :tutkpaino_en, " +
-            ":opinnaytetyo_fi, :opinnaytetyo_sv, :opinnaytetyo_en)")
+            ":opinnaytetyo_fi, :opinnaytetyo_sv, :opinnaytetyo_en, :id_organisaatio)")
     void upsert(@BindLearningOpportunity LearningOpportunity learningOpportunity);
 
     @SqlQuery("SELECT k.*, ok.kieli as opetuskieli_kieli, " +

@@ -47,6 +47,7 @@ public @interface BindLearningOpportunity {
                     BindUtil.bindI18N(q, "sisalto", lo.getContents());
                     BindUtil.bindI18N(q, "tutkpaino", lo.getResearch());
                     BindUtil.bindI18N(q, "opinnaytetyo", lo.getThesis());
+                    q.bind("id_organisaatio", lo.getProvider());
                 }
             };
         }

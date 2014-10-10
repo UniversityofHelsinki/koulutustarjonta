@@ -92,6 +92,7 @@ public class LearningOpportunityResourceTest {
         }
         assertEquals(expected.getApplicationOptions().size(), actual.getApplicationOptions().size());
         assertEquals(expected.getApplicationOptions().get(0), actual.getApplicationOptions().get(0));
+        assertEquals(expected.getProvider(), actual.getProvider());
 
     }
 }

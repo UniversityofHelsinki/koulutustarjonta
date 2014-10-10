@@ -56,5 +56,6 @@ public class LearningOpportunityConverterTest extends AbstractClientConverterTes
         assertNotNull(lo.getContents());
         assertNotNull(lo.getResearch());
         assertNotNull(lo.getThesis());
+        assertEquals("1.2.246.562.10.94639300915", lo.getProvider());
     }
 }

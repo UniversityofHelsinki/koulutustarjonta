@@ -1,10 +1,3 @@
---organisaatio
-DELETE FROM yhteystieto
-WHERE id_organisaatio = 'organisaatio_id1';
-
-DELETE FROM organisaatio
-WHERE id = 'organisaatio_id1';
-
 -- haku
 DELETE FROM hakuaika
 WHERE id_haku = 'haku_id1';
@@ -38,3 +31,11 @@ WHERE id_koulutus = '1.2.3';
 
 DELETE FROM KOULUTUS
 WHERE id = '1.2.3';
+
+--organisaatio
+DELETE FROM yhteystieto
+WHERE id_organisaatio = 'organisaatio_id1';
+
+DELETE FROM organisaatio
+WHERE id = 'organisaatio_id1'
+OR id = 'organisaatio_id2';

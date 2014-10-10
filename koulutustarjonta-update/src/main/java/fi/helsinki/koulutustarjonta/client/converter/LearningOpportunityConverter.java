@@ -35,6 +35,7 @@ public class LearningOpportunityConverter extends BaseConverter {
         lo.setCreditValue(content.get("opintojenLaajuusarvo").get("arvo").asInt());
         lo.setCreditUnit(resolveMetaLangName(content.get("opintojenLaajuusyksikko")));
         lo.setTeachingLanguages(resolveTeachingLanguages(content.get("opetuskielis")));
+        lo.setProvider(content.get("organisaatio").get("oid").textValue());
 
         //komo info
         JsonNode komoInfo = content.get("kuvausKomo");

@@ -67,6 +67,6 @@ public class LearningOpportunityDTO {
     private I18NDTO research;
     @JsonProperty("hakukohteet")
     private List<String> applicationOptions;
-    //private Organization provider;
-
+    @JsonProperty("tarjoaja")
+    private String provider;
 }

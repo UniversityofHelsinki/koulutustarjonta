@@ -123,6 +123,7 @@ public class LearningOpportunityDAOTest extends BaseDAOTest {
         assertNotNull(applicationOptions);
         assertEquals(1, applicationOptions.size());
         assertEquals("hakukohde_id1", applicationOptions.get(0));
+        assertEquals("organisaatio_id1", lo.getProvider());
     }
 
     @Test
@@ -177,6 +178,7 @@ public class LearningOpportunityDAOTest extends BaseDAOTest {
 
         assertEquals(expected.getApplicationOptions().size(), actual.getApplicationOptions().size());
         assertEquals(expected.getApplicationOptions().get(0), actual.getApplicationOptions().get(0));
+        assertEquals(expected.getProvider(), actual.getProvider());
     }
 
 

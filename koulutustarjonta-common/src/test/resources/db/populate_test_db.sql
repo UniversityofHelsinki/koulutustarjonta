@@ -70,6 +70,11 @@ VALUES
 'applicant visit street en', 'applicant visit numb en', 'applicant visit office en', 'applicant post street en',
 'applicant post numb en', 'applicant post office en', 'organisaatio_id1');
 
+INSERT INTO organisaatio
+(id, nimi_fi, nimi_sv, nimi_en)
+VALUES
+('organisaatio_id2', 'o nimi fi', 'o nimi sv', 'o nimi en');
+
 -- haku
 INSERT INTO haku
 (id, nimi_fi, nimi_sv, nimi_en, hakutapa_fi, hakutapa_sv, hakutapa_en,
@@ -150,7 +155,7 @@ INSERT INTO KOULUTUS
             sijtyo_fi, sijtyo_sv, sijtyo_en,
             sisalto_fi, sisalto_sv, sisalto_en,
             tutkpaino_fi, tutkpaino_sv, tutkpaino_en,
-            opinnaytetyo_fi, opinnaytetyo_sv, opinnaytetyo_en)
+            opinnaytetyo_fi, opinnaytetyo_sv, opinnaytetyo_en, id_organisaatio)
 VALUES ('1.2.3', 'tutkintonimike fi', 'tutkintonimike sv', 'tutkintonimike en',
 'opintoala fi', 'opintoala sv', 'opintoala en',
 'tutkintoohjelma fi', 'tutkintoohjelma sv', 'tutkintoohjelma en',
@@ -168,7 +173,7 @@ VALUES ('1.2.3', 'tutkintonimike fi', 'tutkintonimike sv', 'tutkintonimike en',
 'sijoittuminen tyoelamaan fi', 'sijoittuminen tyoelamaan sv', 'sijoittuminen tyoelamaan en',
 'sisalto fi', 'sisalto sv', 'sisalto en',
 'tutkimuksen painotus fi', 'tutkimuksen painotus sv', 'tutkimuksen painotus en',
-'opinnaytetyo fi', 'opinnaytetyo sv', 'opinnaytetyo en');
+'opinnaytetyo fi', 'opinnaytetyo sv', 'opinnaytetyo en', 'organisaatio_id1');
 
 MERGE INTO opetuskieli USING dual on ( id = 'fi' )
 WHEN NOT MATCHED THEN INSERT (id, kieli, selite_fi, selite_sv, selite_en)
