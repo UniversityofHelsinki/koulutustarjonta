@@ -33,7 +33,7 @@ public @interface BindApplicationOption {
                     BindUtil.bindI18N(q, "lisatiedot", ao.getAdditionalInfo());
                     BindUtil.bindI18N(q, "valintaper", ao.getSelectionCriteria());
                     BindUtil.bindI18N(q, "sorakuvaus", ao.getSora());
-                    q.bind("id_haku", ao.getApplicationSystem().getOid());
+                    q.bind("id_haku", ao.getApplicationSystem());
                 }
 
             };

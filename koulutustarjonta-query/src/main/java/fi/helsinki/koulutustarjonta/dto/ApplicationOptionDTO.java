@@ -19,7 +19,7 @@ public class ApplicationOptionDTO {
     private List<ExamDTO> exams;
     private List<AttachmentDTO> attachments;
     private List<I18NDTO> requirements;
-    private ApplicationSystemDTO applicationSystem;
+    private String applicationSystem;
 
     public ApplicationOptionDTO() {
     }
@@ -116,11 +116,11 @@ public class ApplicationOptionDTO {
     }
 
     @JsonProperty("haku")
-    public ApplicationSystemDTO getApplicationSystem() {
+    public String getApplicationSystem() {
         return applicationSystem;
     }
 
-    public void setApplicationSystem(ApplicationSystemDTO applicationSystem) {
+    public void setApplicationSystem(String applicationSystem) {
         this.applicationSystem = applicationSystem;
     }
 }

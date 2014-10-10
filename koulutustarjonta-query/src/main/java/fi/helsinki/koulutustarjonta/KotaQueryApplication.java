@@ -48,7 +48,7 @@ public class KotaQueryApplication extends Application<KotaQueryConfig> {
         final LearningOpportunityResource lor = new LearningOpportunityResource(learningOpportunityDAO, configuration.getApiEndpoint());
         final ApplicationOptionJDBI applicationOptionJDBI = dbi.onDemand(ApplicationOptionJDBI.class);
         final ApplicationOptionDAO applicationOptionDAO = new ApplicationOptionDAO(applicationOptionJDBI);
-        final ApplicationOptionResource aor = new ApplicationOptionResource(applicationOptionDAO);
+        final ApplicationOptionResource aor = new ApplicationOptionResource(applicationOptionDAO, configuration.getApiEndpoint());
         final ApplicationSystemJDBI applicationSystemJDBI = dbi.onDemand(ApplicationSystemJDBI.class);
         final ApplicationSystemDAO applicationSystemDAO = new ApplicationSystemDAO(applicationSystemJDBI);
         final ApplicationSystemResource asr = new ApplicationSystemResource(applicationSystemDAO);

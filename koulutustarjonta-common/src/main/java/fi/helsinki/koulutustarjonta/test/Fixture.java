@@ -91,23 +91,7 @@ public class Fixture {
         Requirement r = new Requirement();
         r.setDescription(new I18N("requirement fi", "requirement sv", "requirement en"));
         ao.setRequirements(Lists.newArrayList(r));
-
-        Calendar apStartsCal = Calendar.getInstance();
-        apStartsCal.set(Calendar.MILLISECOND, 0);
-        Date apStarts = apStartsCal.getTime();
-        Date apEnds = new Date(apStarts.getTime() + 3600L);
-
-        ApplicationPeriod ap = new ApplicationPeriod("ap id", "ap name", apStarts, apEnds);
-
-        Season applicationSeason = new Season("K", new I18N("a season fi", "a season sv", "a season en"));
-        Season educationSeason = new Season("S", new I18N("e season fi", "e season sv", "e season en"));
-
-        ApplicationSystem as = new ApplicationSystem("haku_id1",
-                new I18N("as name fi", "as name sv", "as name en"),
-                new I18N("method fi", "method sv", "method en"),
-                2015, applicationSeason, 2016, educationSeason,
-                "www.applicationform.url", Lists.newArrayList(ap));
-        ao.setApplicationSystem(as);
+        ao.setApplicationSystem("haku_id1");
         return ao;
     }
 

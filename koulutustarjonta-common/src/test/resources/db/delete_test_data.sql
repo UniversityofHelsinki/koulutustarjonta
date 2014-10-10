@@ -1,10 +1,3 @@
--- haku
-DELETE FROM hakuaika
-WHERE id_haku = 'haku_id1';
-
-DELETE FROM haku
-WHERE id = 'haku_id1';
-
 -- hakukohde
 DELETE FROM hakukohde_koulutus
 WHERE id_koulutus = '1.2.3';
@@ -24,6 +17,13 @@ WHERE id = 'valintakoe_id1';
 DELETE FROM hakukohde
 WHERE id = 'hakukohde_id1'
 OR id = 'hakukohde_id2';
+
+-- haku
+DELETE FROM hakuaika
+WHERE id_haku = 'haku_id1';
+
+DELETE FROM haku
+WHERE id = 'haku_id1';
 
 -- koulutus
 DELETE FROM KOULUTUS_OPETUSKIELI

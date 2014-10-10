@@ -48,8 +48,6 @@ public class ApplicationOptionDAOTest extends BaseDAOTest {
                 exam -> h.execute("DELETE FROM valintakoe_ak WHERE id_valintakoe = ?", exam.getOid()));
         h.execute("DELETE FROM valintakoe WHERE id_hakukohde = ?", fixture1.getOid());
         h.execute("DELETE FROM hakukohde WHERE id = ?", fixture1.getOid());
-        h.execute("DELETE FROM hakuaika WHERE id_haku = ?", fixture1.getApplicationSystem().getOid());
-        h.execute("DELETE FROM haku WHERE id = ?", fixture1.getApplicationSystem().getOid());
         dbi.close(h);
     }
 
@@ -134,7 +132,7 @@ public class ApplicationOptionDAOTest extends BaseDAOTest {
         assertEquals("hakukelp fi", requirement.getDescription().getFi());
         assertEquals("hakukelp sv", requirement.getDescription().getSv());
         assertEquals("hakukelp en", requirement.getDescription().getEn());
-
+        assertEquals("haku_id1", ao.getApplicationSystem());
     }
 
     @Test(expected = ResourceNotFound.class)
@@ -200,6 +198,7 @@ public class ApplicationOptionDAOTest extends BaseDAOTest {
         Requirement requirement = ao.getRequirements().get(0);
         Requirement fixtureRequirement = fixture1.getRequirements().get(0);
         i18NEquals(fixtureRequirement.getDescription(), requirement.getDescription());
+        assertEquals(fixture1.getApplicationSystem(), ao.getApplicationSystem());
     }
 
 

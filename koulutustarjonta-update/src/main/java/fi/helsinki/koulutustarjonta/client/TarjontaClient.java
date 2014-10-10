@@ -104,10 +104,15 @@ public class TarjontaClient {
                 .path(applicationSystemOid)
                 .get(new GenericType<JsonNode>() {});
 
-        ApplicationSystem applicationSystem = applicationSystemConverter.convert(applicationSystemJson);
-        applicationOption.setApplicationSystem(applicationSystem);
-
         return applicationOption;
+    }
+
+    public ApplicationSystem getApplicationSystem(String oid) {
+        JsonNode applicationSystemJson = applicationSystemResource
+                .path(oid)
+                .get(new GenericType<JsonNode>() {});
+
+        return applicationSystemConverter.convert(applicationSystemJson);
     }
 
     private List<String> getApplicationOptionOidsByLearningOpportunity(String learningOpportunityOid) {

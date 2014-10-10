@@ -7,6 +7,7 @@ import fi.helsinki.koulutustarjonta.dao.ApplicationSystemDAO;
 import fi.helsinki.koulutustarjonta.dao.LearningOpportunityDAO;
 import fi.helsinki.koulutustarjonta.dao.OrganizationDAO;
 import fi.helsinki.koulutustarjonta.domain.ApplicationOption;
+import fi.helsinki.koulutustarjonta.domain.ApplicationSystem;
 import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
 import fi.helsinki.koulutustarjonta.domain.Organization;
 import fi.helsinki.koulutustarjonta.exception.DataUpdateException;
@@ -55,7 +56,8 @@ public class Updater {
 
                     applicationOptionOids.forEach(aoOid -> {
                         ApplicationOption ao = tarjontaClient.getApplicationOption(aoOid);
-                        applicationSystemDAO.save(ao.getApplicationSystem());
+                        ApplicationSystem as = tarjontaClient.getApplicationSystem(ao.getApplicationSystem());
+                        applicationSystemDAO.save(as);
                         applicationOptionDAO.save(ao);
                     });
 

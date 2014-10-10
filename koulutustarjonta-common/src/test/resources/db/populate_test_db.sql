@@ -101,11 +101,11 @@ INSERT INTO hakukohde
             sorakuvaus_fi, sorakuvaus_sv, sorakuvaus_en,
             lisatiedot_fi, lisatiedot_sv, lisatiedot_en,
             valintaper_fi, valintaper_sv, valintaper_en,
-            hakukelp_kuvaus_fi, hakukelp_kuvaus_sv, hakukelp_kuvaus_en)
+            hakukelp_kuvaus_fi, hakukelp_kuvaus_sv, hakukelp_kuvaus_en, id_haku)
 VALUES ('hakukohde_id1', 'nimi fi', 'nimi sv', 'nimi en', 11, 'sora fi', 'sora sv', 'sora en',
 'lisatiedot fi', 'lisatiedot sv', 'lisatiedot en',
 'valintaper fi', 'valintaper sv', 'valintaper en',
-'kuvaus fi', 'kuvaus sv', 'kuvaus en');
+'kuvaus fi', 'kuvaus sv', 'kuvaus en', 'haku_id1');
 
 INSERT INTO hakukohde
             (id, nimi_fi, nimi_sv, nimi_en)

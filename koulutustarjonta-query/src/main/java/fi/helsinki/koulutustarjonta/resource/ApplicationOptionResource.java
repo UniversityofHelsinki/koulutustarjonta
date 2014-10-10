@@ -23,9 +23,9 @@ public class ApplicationOptionResource {
     private final ApplicationOptionDAO applicationOptionDAO;
     private final ApplicationOptionModelMapper modelMapper;
 
-    public ApplicationOptionResource(ApplicationOptionDAO applicationOptionDAO) {
+    public ApplicationOptionResource(ApplicationOptionDAO applicationOptionDAO, String apiEndpoint) {
         this.applicationOptionDAO = applicationOptionDAO;
-        this.modelMapper = new ApplicationOptionModelMapper();
+        this.modelMapper = new ApplicationOptionModelMapper(apiEndpoint);
     }
 
     @GET

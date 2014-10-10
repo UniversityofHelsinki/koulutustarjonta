@@ -44,14 +44,8 @@ public class ApplicationOptionConverter extends BaseConverter {
         ao.setAttachments(Lists.newArrayList(content.get("hakukohteenLiitteet")).parallelStream()
                 .map(attach -> attachmentConverter.convert(attach))
                 .collect(Collectors.toList()));
+        ao.setApplicationSystem(content.get("hakuOid").textValue());
         return ao;
-    }
-
-
-    public String resolveApplicationSystemOid(JsonNode apiCallResult) {
-        JsonNode content = resolveApplicationOptionContent(apiCallResult);
-        return content.get("hakuOid").textValue();
-
     }
 
     /**

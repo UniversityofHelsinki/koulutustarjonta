@@ -24,6 +24,6 @@ public class ApplicationOption {
     private List<Exam> exams;//valintakokeet
     private List<Attachment> attachments;//liitteet
     private List<Requirement> requirements;//hakukelpoisuusvaatimukset
-    private ApplicationSystem applicationSystem;//haku
+    private String applicationSystem;//haku
 
 }
