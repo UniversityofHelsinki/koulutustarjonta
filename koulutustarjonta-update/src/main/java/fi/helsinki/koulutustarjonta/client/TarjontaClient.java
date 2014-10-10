@@ -97,14 +97,7 @@ public class TarjontaClient {
         JsonNode applicationOptionJson = applicationOptionResource.path(oid)
                 .get(new GenericType<JsonNode>() {});
 
-        ApplicationOption applicationOption = applicationOptionConverter.convert(applicationOptionJson);
-
-        String applicationSystemOid = applicationOptionConverter.resolveApplicationSystemOid(applicationOptionJson);
-        JsonNode applicationSystemJson = applicationSystemResource
-                .path(applicationSystemOid)
-                .get(new GenericType<JsonNode>() {});
-
-        return applicationOption;
+        return applicationOptionConverter.convert(applicationOptionJson);
     }
 
     public ApplicationSystem getApplicationSystem(String oid) {

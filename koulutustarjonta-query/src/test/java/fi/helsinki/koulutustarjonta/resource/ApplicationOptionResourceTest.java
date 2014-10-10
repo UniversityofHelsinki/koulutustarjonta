@@ -28,14 +28,14 @@ public class ApplicationOptionResourceTest {
 
 
     private final String aoOid = "ao_oid";
-
+    private static final String API_ENDPOINT = "API_ENDPOINT";
     private static final ApplicationOptionDAO dao = mock(ApplicationOptionDAO.class);
     private final ApplicationOption applicationOption = Fixture.applicationOption(aoOid);
-    private final ModelMapper modelMapper = new ApplicationOptionModelMapper();
+    private final ModelMapper modelMapper = new ApplicationOptionModelMapper(API_ENDPOINT);
 
     @ClassRule
     public static final ResourceTestRule resources = ResourceTestRule.builder()
-            .addResource(new ApplicationOptionResource(dao))
+            .addResource(new ApplicationOptionResource(dao, API_ENDPOINT))
             .build();
 
     @Before
