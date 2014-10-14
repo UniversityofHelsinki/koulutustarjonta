@@ -1,8 +1,9 @@
-package fi.helsinki.koulutustarjonta.client;
+package fi.helsinki.koulutustarjonta.config;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
+import fi.helsinki.koulutustarjonta.client.KoodistoClient;
 import io.dropwizard.client.JerseyClientBuilder;
 import io.dropwizard.client.JerseyClientConfiguration;
 import io.dropwizard.setup.Environment;

@@ -1,9 +1,6 @@
 package fi.helsinki.koulutustarjonta.config;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import fi.helsinki.koulutustarjonta.client.KoodistoClientFactory;
-import fi.helsinki.koulutustarjonta.client.OrganisaatioClientFactory;
-import fi.helsinki.koulutustarjonta.client.TarjontaClientFactory;
 import io.dropwizard.Configuration;
 import io.dropwizard.db.DataSourceFactory;
 
