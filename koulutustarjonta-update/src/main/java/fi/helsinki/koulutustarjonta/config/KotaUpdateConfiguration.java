@@ -3,6 +3,8 @@ package fi.helsinki.koulutustarjonta.config;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.dropwizard.Configuration;
 import io.dropwizard.db.DataSourceFactory;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -10,56 +12,37 @@ import javax.validation.constraints.NotNull;
 /**
  * @author Hannu Lyytikainen
  */
+@Getter
+@Setter
 public class KotaUpdateConfiguration extends Configuration {
 
     @Valid
     @NotNull
+    @JsonProperty("tarjontaClient")
     private TarjontaClientFactory tarjontaClientFactory = new TarjontaClientFactory();
 
-    @JsonProperty("tarjontaClient")
-    public TarjontaClientFactory getTarjontaClientFactory() {
-        return tarjontaClientFactory;
-    }
-
-    @JsonProperty("tarjontaClient")
-    public void setTarjontaClientFactory(TarjontaClientFactory tarjontaClientFactory) {
-        this.tarjontaClientFactory = tarjontaClientFactory;
-    }
-
     @Valid
     @NotNull
+    @JsonProperty("koodistoClient")
     private KoodistoClientFactory koodistoClientFactory = new KoodistoClientFactory();
 
-    @JsonProperty("koodistoClient")
-    public KoodistoClientFactory getKoodistoClientFactory() {
-        return koodistoClientFactory;
-    }
-
-    @JsonProperty("koodistoClient")
-    public void setKoodistoClientFactory(KoodistoClientFactory koodistoClientFactory) {
-        this.koodistoClientFactory = koodistoClientFactory;
-    }
-
     @Valid
     @NotNull
+    @JsonProperty("organisaatioClient")
     private OrganisaatioClientFactory organisaatioClientFactory = new OrganisaatioClientFactory();
 
-    @JsonProperty("organisaatioClient")
-    public OrganisaatioClientFactory getOrganisaatioClientFactory() {
-        return organisaatioClientFactory;
-    }
-
-    @JsonProperty("organisaatioClient")
-    public void setOrganisaatioClientFactory(OrganisaatioClientFactory organisaatioClientFactory) {
-        this.organisaatioClientFactory = organisaatioClientFactory;
-    }
+    @Valid
+    @NotNull
+    @JsonProperty("database")
+    private DataSourceFactory dataSourceFactory = new DataSourceFactory();
 
     @Valid
     @NotNull
-    @JsonProperty
-    private DataSourceFactory database = new DataSourceFactory();
+    @JsonProperty("sundial")
+    private SundialConfiguration sundial = new SundialConfiguration();
 
-    public DataSourceFactory getDataSourceFactory() {
-        return database;
-    }
+    @Valid
+    @NotNull
+    @JsonProperty("updateCron")
+    private String updateCron;
 }

@@ -80,3 +80,13 @@ koodistoClient:
   timeout: 10000ms
   connectionTimeout: 10s
   baseUrl: https://od.helsinki.fi/koodisto-service/rest/json/
+
+sundial:
+  thread-pool-size: 5
+  shutdown-on-unload: true
+  wait-on-shutdown: false
+  start-delay-seconds: 0
+  start-scheduler-on-load: true
+  global-lock-on-load: false
+
+updateCron: 0 0 15 * * ?

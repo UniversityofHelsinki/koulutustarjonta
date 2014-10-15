@@ -14,7 +14,9 @@ import fi.helsinki.koulutustarjonta.dao.jdbi.ApplicationSystemJDBI;
 import fi.helsinki.koulutustarjonta.dao.jdbi.LearningOpportunityJDBI;
 import fi.helsinki.koulutustarjonta.dao.jdbi.OrganizationJDBI;
 import fi.helsinki.koulutustarjonta.dao.util.OracleStatementBuilderFactory;
+import fi.helsinki.koulutustarjonta.manager.SundialManager;
 import fi.helsinki.koulutustarjonta.resource.UpdateResource;
+import fi.helsinki.koulutustarjonta.task.UpdateTask;
 import io.dropwizard.Application;
 import io.dropwizard.jdbi.DBIFactory;
 import io.dropwizard.setup.Bootstrap;
@@ -53,10 +55,20 @@ public class KotaUpdateApplication extends Application<KotaUpdateConfiguration> 
         final KoodistoClient koodistoClient = configuration.getKoodistoClientFactory().build(environment);
         final TarjontaClient tarjontaClient = configuration.getTarjontaClientFactory().build(environment, koodistoClient);
         final OrganisaatioClient organisaatioClient = configuration.getOrganisaatioClientFactory().build(environment, koodistoClient);
+
+
+
         final Updater updater = new Updater(tarjontaClient, organisaatioClient,
                 learningOpportunityDAO, applicationOptionDAO, applicationSystemDAO, organizationDAO);
+        environment.admin().addTask(new UpdateTask("update"));
         final UpdateResource updateResource = new UpdateResource(updater);
         environment.jersey().register(updateResource);
+
+
+        // Sundial
+        SundialManager sm = new SundialManager(configuration.getSundial(), environment, updater, configuration.getUpdateCron());
+        environment.lifecycle().manage(sm);
+
 
     }
 }
