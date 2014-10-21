@@ -1,0 +1,125 @@
+{
+    "result" : {
+        "tulokset" : [
+            {
+            "oid" : "1.2.246.562.10.94639300915",
+            "version" : 0,
+            "nimi" : {
+                "fi" : "Helsingin yliopisto, Matemaattis-luonnontieteellinen tiedekunta",
+                "sv" : "Helsingfors universitet, Matematisk-naturvetenskapliga fakulteten",
+                "en" : "University of Helsinki, Faculty of Science"
+            },
+            "tulokset" : [ {
+                "oid" : "1.2.246.562.17.34742478059",
+                "nimi" : {
+                    "fi" : "Maantiede, filosofian maisteri",
+                    "sv" : "Geografi, filosofie magister",
+                    "en" : "Geography, Master of Science"
+                },
+                "kausi" : {
+                    "fi" : "Kevät",
+                    "sv" : "Vår",
+                    "en" : "Spring"
+                },
+                "kausiUri" : "kausi_k#1",
+                "vuosi" : 2015,
+                "tila" : "JULKAISTU",
+                "koulutusasteTyyppi" : "KORKEAKOULUTUS",
+                "koulutuskoodi" : "koulutus_742601#1",
+                "komoOid" : "1.2.246.562.13.94258296014",
+                "koulutuslaji" : { }
+            }, {
+                "oid" : "1.2.246.562.17.78302757881",
+                "nimi" : {
+                    "fi" : "Maantiede, filosofian maisteri",
+                    "sv" : "Geografi, filosofie magister",
+                    "en" : "Geography, Master of Science"
+                },
+                "kausi" : {
+                    "fi" : "Syksy",
+                    "sv" : "Höst",
+                    "en" : "Autumn"
+                },
+                "kausiUri" : "kausi_s#1",
+                "vuosi" : 2015,
+                "tila" : "JULKAISTU",
+                "koulutusasteTyyppi" : "KORKEAKOULUTUS",
+                "koulutuskoodi" : "koulutus_742601#1",
+                "komoOid" : "1.2.246.562.13.94258296014",
+                "koulutuslaji" : { }
+            } ]
+        },
+         {
+            "oid" : "1.2.246.562.10.123",
+            "version" : 0,
+            "nimi" : {
+                "fi" : "Helsingin yliopisto, Matemaattis-luonnontieteellinen tiedekunta",
+                "sv" : "Helsingfors universitet, Matematisk-naturvetenskapliga fakulteten",
+                "en" : "University of Helsinki, Faculty of Science"
+            },
+            "tulokset" : [ {
+                "oid" : "1.2.246.562.17.1234",
+                "nimi" : {
+                    "fi" : "Maantiede, filosofian maisteri",
+                    "sv" : "Geografi, filosofie magister",
+                    "en" : "Geography, Master of Science"
+                },
+                "kausi" : {
+                    "fi" : "Kevät",
+                    "sv" : "Vår",
+                    "en" : "Spring"
+                },
+                "kausiUri" : "kausi_k#1",
+                "vuosi" : 2015,
+                "tila" : "JULKAISTU",
+                "koulutusasteTyyppi" : "KORKEAKOULUTUS",
+                "koulutuskoodi" : "koulutus_742601#1",
+                "komoOid" : "1.2.246.562.13.94258296014",
+                "koulutuslaji" : { }
+            }, {
+                "oid" : "1.2.246.562.17.1235",
+                "nimi" : {
+                    "fi" : "Maantiede, filosofian maisteri",
+                    "sv" : "Geografi, filosofie magister",
+                    "en" : "Geography, Master of Science"
+                },
+                "kausi" : {
+                    "fi" : "Syksy",
+                    "sv" : "Höst",
+                    "en" : "Autumn"
+                },
+                "kausiUri" : "kausi_s#1",
+                "vuosi" : 2015,
+                "tila" : "JULKAISTU",
+                "koulutusasteTyyppi" : "KORKEAKOULUTUS",
+                "koulutuskoodi" : "koulutus_742601#1",
+                "komoOid" : "1.2.246.562.13.94258296014",
+                "koulutuslaji" : { }
+            },
+            {
+                "oid" : "1.2.246.562.17.1236",
+                "nimi" : {
+                    "fi" : "Maantiede, filosofian maisteri",
+                    "sv" : "Geografi, filosofie magister",
+                    "en" : "Geography, Master of Science"
+                },
+                "kausi" : {
+                    "fi" : "Syksy",
+                    "sv" : "Höst",
+                    "en" : "Autumn"
+                },
+                "kausiUri" : "kausi_s#1",
+                "vuosi" : 2015,
+                "tila" : "JULKAISTU",
+                "koulutusasteTyyppi" : "KORKEAKOULUTUS",
+                "koulutuskoodi" : "koulutus_742601#1",
+                "komoOid" : "1.2.246.562.13.94258296014",
+                "koulutuslaji" : { }
+            } ]
+        }
+        ],
+        "tuloksia" : 2
+    },
+    "status" : "OK",
+    "accessRights" : { }
+}

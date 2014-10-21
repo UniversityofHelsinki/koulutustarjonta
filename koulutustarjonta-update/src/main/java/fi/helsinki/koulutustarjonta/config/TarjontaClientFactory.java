@@ -18,6 +18,7 @@ public class TarjontaClientFactory extends JerseyClientConfiguration {
     private static final String LEARNING_OPPORTUNITY_PATH = "koulutus/";
     private static final String APPLICATION_OPTION_PATH = "hakukohde/";
     private static final String APPLICATION_SYSTEM_PATH = "haku/";
+    private static final String LINK_PATH = "link/";
 
     @NotEmpty
     private String baseUrl;
@@ -39,8 +40,9 @@ public class TarjontaClientFactory extends JerseyClientConfiguration {
         WebResource learningOpportunityResource = client.resource(String.format("%s%s", baseUrl, LEARNING_OPPORTUNITY_PATH));
         WebResource applicationOptionResource = client.resource(String.format("%s%s", baseUrl, APPLICATION_OPTION_PATH));
         WebResource applicationSystemResource = client.resource(String.format("%s%s", baseUrl, APPLICATION_SYSTEM_PATH));
+        WebResource linkResource = client.resource(String.format("%s%s", baseUrl, LINK_PATH));
 
-        return new TarjontaClient(learningOpportunityResource, applicationOptionResource, applicationSystemResource, koodistoClient);
+        return new TarjontaClient(learningOpportunityResource, applicationOptionResource, applicationSystemResource, linkResource, koodistoClient);
 
     }
 }

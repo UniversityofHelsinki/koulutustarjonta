@@ -1,6 +1,5 @@
 package fi.helsinki.koulutustarjonta.client.converter;
 
-
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.collect.Lists;
 import fi.helsinki.koulutustarjonta.client.KoodistoClient;
@@ -14,21 +13,23 @@ import java.util.stream.Collectors;
 /**
  * @author Hannu Lyytikainen
  */
-public class LearningOpportunityConverter extends BaseConverter {
+public class LearningOpportunityWrapper extends BaseWrapper {
 
-    public LearningOpportunityConverter(KoodistoClient koodistoClient) {
+    private final JsonNode content;
+
+    public LearningOpportunityWrapper(JsonNode apiResult, KoodistoClient koodistoClient) {
         super(koodistoClient);
+        this.content = apiResult.get("result");
     }
 
-    public LearningOpportunity convert(JsonNode apiCallResult) {
+    public LearningOpportunity getLearningOpportunity() {
         LearningOpportunity lo = new LearningOpportunity();
-        JsonNode content = apiCallResult.get("result");
 
         lo.setOid(content.get("oid").textValue());
         lo.setQualification(resolveQualification(content.get("tutkintonimikes")));
         lo.setEducationalField(resolveMetaLangName(content.get("opintoala")));
         lo.setDegreeProgram(resolveDegreeProgram(content.get("koulutusohjelma")));
-        lo.setStartYear(content.get("koulutuksenAlkamisvuosi").intValue());
+        lo.setStartYear(getStartingYear());
         lo.setStartSeason(resolveMetaLangName(content.get("koulutuksenAlkamiskausi")));
         lo.setPlannedDurationValue(content.get("suunniteltuKestoArvo").asInt());
         lo.setPlannedDurationUnit(resolveMetaLangName(content.get("suunniteltuKestoTyyppi")));
@@ -60,19 +61,16 @@ public class LearningOpportunityConverter extends BaseConverter {
         return lo;
     }
 
-    public String resolveKomoOid(JsonNode apiCallResult) {
-
-        return null;
+    public String getKomoOid() {
+        return content.get("komoOid").textValue();
     }
 
-    public String resolveStartingYear(JsonNode apiCallResult) {
-
-        return null;
+    public int getStartingYear() {
+        return content.get("koulutuksenAlkamisvuosi").intValue();
     }
 
-    public String resolveStartingSeasonCode(JsonNode apiCallResult) {
-
-        return null;
+    public String getStartingSeasonCode() {
+        return resolveCode(content.get("koulutuksenAlkamiskausi"));
     }
 
     private List<String> resolveTranslations(JsonNode goals) {
@@ -131,6 +129,17 @@ public class LearningOpportunityConverter extends BaseConverter {
         }
     }
 
+    private String resolveCode(JsonNode node) {
+        if (node == null) {
+            return null;
+        }
+        else {
+            return String.format("%s#%s",
+                    node.get("uri").textValue(),
+                    String.valueOf(node.get("versio").intValue()));
+        }
+    }
+
     private I18N resolveQualification(JsonNode node) {
         if (node == null) {
             return null;
@@ -144,5 +153,4 @@ public class LearningOpportunityConverter extends BaseConverter {
             );
         }
     }
-
 }
