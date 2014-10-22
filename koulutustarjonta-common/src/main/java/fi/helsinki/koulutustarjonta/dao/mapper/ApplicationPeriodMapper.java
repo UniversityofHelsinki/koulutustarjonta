@@ -13,7 +13,12 @@ import java.sql.SQLException;
 public class ApplicationPeriodMapper implements ResultSetMapper<ApplicationPeriod> {
     @Override
     public ApplicationPeriod map(int index, ResultSet r, StatementContext ctx) throws SQLException {
-        return new ApplicationPeriod(r.getString("ha_id"), r.getString("ha_nimi"),
-                r.getTimestamp("ha_alkaa"), r.getTimestamp("ha_loppuu"));
+        if (r.getString("ha_id") == null) {
+            return null;
+        }
+        else {
+            return new ApplicationPeriod(r.getString("ha_id"), MapperUtil.resolveI18N(r, "ha_nimi"),
+                    r.getTimestamp("ha_alkaa"), r.getTimestamp("ha_loppuu"));
+        }
     }
 }

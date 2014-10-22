@@ -27,6 +27,7 @@ public @interface BindApplicationPeriod {
                 public void bind(SQLStatement q, BindApplicationPeriod bind, ApplicationPeriod ap)
                 {
                     q.bind("id", ap.getId());
+                    BindUtil.bindI18N(q, "nimi", ap.getName());
                     q.bind("nimi", ap.getName());
                     q.bind("alkaa", ap.getStarts());
                     q.bind("loppuu", ap.getEnds());

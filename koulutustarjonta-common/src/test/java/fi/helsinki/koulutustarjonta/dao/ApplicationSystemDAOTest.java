@@ -62,6 +62,42 @@ public class ApplicationSystemDAOTest extends BaseDAOTest {
         dao.findByOid("invalid_oid");
     }
 
+    @Test
+    public void testInsert() throws ResourceNotFound {
+        dao.save(fixture1);
+        ApplicationSystem as = dao.findByOid(fixture1.getOid());
+        applicationSystemsEqual(fixture1, as);
+    }
+
+    @Test
+    public void testUpdate() throws ResourceNotFound {
+        ApplicationSystem fixture2 = Fixture.applicationSystem(populatedAsOid);
+        dao.save(fixture2);
+        ApplicationSystem as = dao.findByOid(fixture2.getOid());
+        applicationSystemsEqual(fixture2, as);
+    }
+
+    private void applicationSystemsEqual(ApplicationSystem expected, ApplicationSystem actual) {
+        assertNotNull(actual);
+        assertEquals(expected.getOid(), actual.getOid());
+        i18NEquals(expected.getName(), actual.getName());
+        i18NEquals(expected.getApplicationMethod(), actual.getApplicationMethod());
+        assertEquals(expected.getApplicationYear(), actual.getApplicationYear());
+        assertEquals(expected.getApplicationSeason().getValue(), actual.getApplicationSeason().getValue());
+        i18NEquals(expected.getApplicationSeason().getName(), actual.getApplicationSeason().getName());
+        assertEquals(expected.getEducationStartYear(), actual.getEducationStartYear());
+        assertEquals(expected.getEducationStartSeason().getValue(), actual.getEducationStartSeason().getValue());
+        i18NEquals(expected.getEducationStartSeason().getName(), actual.getEducationStartSeason().getName());
+        assertNotNull(actual.getApplicationPeriods());
+        assertEquals(expected.getApplicationPeriods().size(), actual.getApplicationPeriods().size());
+        assertEquals(expected.getApplicationPeriods().get(0).getId(), actual.getApplicationPeriods().get(0).getId());
+        assertEquals(expected.getApplicationPeriods().get(0).getName().getFi(), actual.getApplicationPeriods().get(0).getName().getFi());
+        assertEquals(expected.getApplicationPeriods().get(0).getName().getSv(), actual.getApplicationPeriods().get(0).getName().getSv());
+        assertEquals(expected.getApplicationPeriods().get(0).getName().getEn(), actual.getApplicationPeriods().get(0).getName().getEn());
+        assertEquals(expected.getApplicationPeriods().get(0).getStarts().getTime(), actual.getApplicationPeriods().get(0).getStarts().getTime());
+        assertEquals(expected.getApplicationPeriods().get(0).getEnds().getTime(), actual.getApplicationPeriods().get(0).getEnds().getTime());
+    }
+
     private void verifyApplicationSystem(ApplicationSystem as) {
         assertNotNull(as);
         assertEquals(populatedAsOid, as.getOid());
@@ -87,7 +123,9 @@ public class ApplicationSystemDAOTest extends BaseDAOTest {
         ApplicationPeriod ap = as.getApplicationPeriods().get(0);
         assertNotNull(ap);
         assertEquals("hakuaika_id1", ap.getId());
-        assertEquals("hakuaika nimi", ap.getName());
+        assertEquals("hakuaika nimi fi", ap.getName().getFi());
+        assertEquals("hakuaika nimi sv", ap.getName().getSv());
+        assertEquals("hakuaika nimi en", ap.getName().getEn());
         Calendar starts = getZeroCalendar();
         starts.set(Calendar.YEAR, 2015);
         starts.set(Calendar.MONTH, Calendar.JANUARY);

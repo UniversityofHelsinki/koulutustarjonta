@@ -100,9 +100,9 @@ public class Fixture {
         Calendar apStartsCal = Calendar.getInstance();
         apStartsCal.set(Calendar.MILLISECOND, 0);
         Date apStarts = apStartsCal.getTime();
-        Date apEnds = new Date(apStarts.getTime() + 3600L);
+        Date apEnds = new Date(apStarts.getTime() + 3600000L);
 
-        ApplicationPeriod ap = new ApplicationPeriod("ap id", "ap name", apStarts, apEnds);
+        ApplicationPeriod ap = new ApplicationPeriod("ap id", new I18N("ap name fi", "ap name sv", "ap name en"), apStarts, apEnds);
 
         Season applicationSeason = new Season("K", new I18N("a season fi", "a season sv", "a season en"));
         Season educationSeason = new Season("S", new I18N("e season fi", "e season sv", "e season en"));

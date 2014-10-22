@@ -29,7 +29,8 @@ public class ApplicationSystemObjectBuilder {
 
     private static ApplicationSystem resolveApplicationSystem(List<ApplicationSystemJoinRow> rows) {
         ApplicationSystem as = rows.get(0).getApplicationSystem();
-        List<ApplicationPeriod> aps = rows.parallelStream()
+        List<ApplicationPeriod> aps = rows.stream()
+                .filter(row -> row.getApplicationPeriod() != null)
                 .collect(groupingBy(row -> row.getApplicationPeriod().getId()))
                 .values()
                 .parallelStream()

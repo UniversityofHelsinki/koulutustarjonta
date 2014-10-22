@@ -48,7 +48,7 @@ public class ApplicationSystemConverter extends BaseConverter {
     private ApplicationPeriod convertApplicationPeriod(JsonNode node) {
         return new ApplicationPeriod(
                 node.get("hakuaikaId").textValue(),
-                node.get("nimi").textValue(),
+                convertToI18N(node.get("nimet")),
                 new Date(node.get("alkuPvm").longValue()),
                 new Date(node.get("loppuPvm").longValue())
         );

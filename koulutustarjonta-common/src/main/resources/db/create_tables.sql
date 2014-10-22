@@ -31,7 +31,9 @@ CREATE TABLE HAKUAIKA
 (
   ID                VARCHAR2(300 CHAR),
   ID_HAKU           VARCHAR2(300 CHAR),
-  NIMI              VARCHAR2(100 CHAR),
+  NIMI_FI           VARCHAR2(100 CHAR),
+  NIMI_SV           VARCHAR2(100 CHAR),
+  NIMI_EN           VARCHAR2(100 CHAR),
   ALKAA             DATE,
   LOPPUU            DATE
 )

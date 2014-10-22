@@ -72,7 +72,9 @@ public class ApplicationSystemConverterTest extends AbstractClientConverterTest 
         ApplicationPeriod ap = as.getApplicationPeriods().get(0);
         assertNotNull(ap);
         assertEquals("228749", ap.getId());
-        assertEquals("Haku avoimessa yliopistossa opintoja suorittaneille", ap.getName());
+        assertEquals("hakuaika fi", ap.getName().getFi());
+        assertEquals("hakuaika sv", ap.getName().getSv());
+        assertEquals("hakuaika en", ap.getName().getEn());
         assertEquals(1410152404012L, ap.getStarts().getTime());
         assertEquals(1411387241418L, ap.getEnds().getTime());
     }

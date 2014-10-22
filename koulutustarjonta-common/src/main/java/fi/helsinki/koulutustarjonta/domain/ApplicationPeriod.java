@@ -14,7 +14,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class ApplicationPeriod {
     private String id;
-    private String name;
+    private I18N name;
     private Date starts;
     private Date ends;
 }

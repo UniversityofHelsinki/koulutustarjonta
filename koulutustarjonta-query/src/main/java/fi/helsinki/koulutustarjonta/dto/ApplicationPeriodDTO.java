@@ -17,7 +17,7 @@ public class ApplicationPeriodDTO {
     @JsonProperty("id")
     private String id;
     @JsonProperty("nimi")
-    private String name;
+    private I18NDTO name;
     @JsonProperty("alkaa")
     private Date starts;
     @JsonProperty("loppuu")

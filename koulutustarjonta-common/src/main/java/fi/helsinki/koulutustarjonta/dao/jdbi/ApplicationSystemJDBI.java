@@ -23,7 +23,8 @@ import java.util.List;
 @UseStringTemplate3StatementLocator
 public interface ApplicationSystemJDBI {
 
-    @SqlQuery("SELECT h.*, ha.id AS ha_id, ha.nimi AS ha_nimi, " +
+    @SqlQuery("SELECT h.*, ha.id AS ha_id, " +
+            "ha.nimi_fi AS ha_nimi_fi, ha.nimi_sv AS ha_nimi_sv, ha.nimi_en AS ha_nimi_en, " +
             "ha.alkaa AS ha_alkaa, ha.loppuu AS ha_loppuu " +
             "FROM haku h " +
             "LEFT JOIN " +
@@ -32,7 +33,8 @@ public interface ApplicationSystemJDBI {
     @Mapper(ApplicationSystemJoinRowMapper.class)
     List<ApplicationSystemJoinRow> findByOid(@Bind("id") String oid);
 
-    @SqlQuery("SELECT h.*, ha.id AS ha_id, ha.nimi AS ha_nimi, " +
+    @SqlQuery("SELECT h.*, ha.id AS ha_id, " +
+            "ha.nimi_fi AS ha_nimi_fi, ha.nimi_sv AS ha_nimi_sv, ha.nimi_en AS ha_nimi_en, " +
             "ha.alkaa AS ha_alkaa, ha.loppuu AS ha_loppuu " +
             "FROM haku h " +
             "LEFT JOIN " +
@@ -42,7 +44,7 @@ public interface ApplicationSystemJDBI {
 
     @SqlUpdate("MERGE INTO haku USING dual on ( id = :id ) " +
             "WHEN MATCHED THEN UPDATE SET " +
-            "nimi_fi=:nimi_fi, nimi_sv=:nimi_sv, nimi_en= nimi_en, " +
+            "nimi_fi=:nimi_fi, nimi_sv=:nimi_sv, nimi_en=:nimi_en, " +
             "hakutapa_fi=:hakutapa_fi, hakutapa_sv=:hakutapa_sv, hakutapa_en=:hakutapa_en, " +
             "hakukausi_vuosi=:hakukausi_vuosi, hakukausi_arvo=:hakukausi_arvo, " +
             "hakukausi_fi=:hakukausi_fi, hakukausi_sv=:hakukausi_sv, hakukausi_en=:hakukausi_en, " +
@@ -63,11 +65,12 @@ public interface ApplicationSystemJDBI {
 
     @SqlBatch("MERGE INTO hakuaika USING dual on ( id = :id ) " +
             "WHEN MATCHED THEN UPDATE SET " +
-            "nimi=:nimi, alkaa=:alkaa, loppuu=:loppuu " +
+            "nimi_fi=:nimi_fi, nimi_sv=:nimi_sv, nimi_en=:nimi_en, " +
+            " alkaa=:alkaa, loppuu=:loppuu " +
             "WHEN NOT MATCHED THEN INSERT " +
-            "(id, nimi, alkaa, loppuu, id_haku) " +
+            "(id, nimi_fi, nimi_sv, nimi_en, alkaa, loppuu, id_haku) " +
             "VALUES " +
-            "(:id, :nimi, :alkaa, :loppuu, :id_haku)")
+            "(:id, :nimi_fi, :nimi_sv, :nimi_en, :alkaa, :loppuu, :id_haku)")
     @BatchChunkSize(10)
     void upsertApplicationPeriods(@BindApplicationPeriod List<ApplicationPeriod> applicationPeriods,
                                   @Bind("id_haku") String applicationSystemOid);

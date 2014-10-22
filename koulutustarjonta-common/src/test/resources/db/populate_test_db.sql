@@ -88,9 +88,9 @@ VALUES
 'koul alk kausi en', 'hakulomake url');
 
 INSERT INTO hakuaika
-(id, nimi, alkaa, loppuu, id_haku)
+(id, nimi_fi, nimi_sv, nimi_en, alkaa, loppuu, id_haku)
 VALUES
-('hakuaika_id1', 'hakuaika nimi',
+('hakuaika_id1', 'hakuaika nimi fi', 'hakuaika nimi sv', 'hakuaika nimi en',
 TO_DATE('2015/01/01 15:00:00', 'yyyy/mm/dd hh24:mi:ss'),
 TO_DATE('2015/02/01 15:00:00', 'yyyy/mm/dd hh24:mi:ss'),
 'haku_id1');

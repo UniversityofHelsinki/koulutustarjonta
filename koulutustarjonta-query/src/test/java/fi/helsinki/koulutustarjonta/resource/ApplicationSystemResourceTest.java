@@ -67,7 +67,7 @@ public class ApplicationSystemResourceTest {
 
     private void applicationPeriodDTOsEqual(ApplicationPeriodDTO expected, ApplicationPeriodDTO actual) {
         assertEquals(expected.getId(), actual.getId());
-        assertEquals(expected.getName(), actual.getName());
+        DTOTestUtil.i18NDTOsEqual(expected.getName(), actual.getName());
         assertEquals(expected.getStarts(), actual.getStarts());
         assertEquals(expected.getEnds(), actual.getEnds());
     }

@@ -16,7 +16,11 @@
     "jarjestelmanHakulomake" : false,
     "hakuaikas" : [ {
       "hakuaikaId" : "228749",
-      "nimi" : "Haku avoimessa yliopistossa opintoja suorittaneille",
+      "nimet" : {
+        "kieli_fi" : "hakuaika fi",
+        "kieli_sv" : "hakuaika sv",
+        "kieli_en" : "hakuaika en"
+      },
       "alkuPvm" : 1410152404012,
       "loppuPvm" : 1411387241418
     } ],
