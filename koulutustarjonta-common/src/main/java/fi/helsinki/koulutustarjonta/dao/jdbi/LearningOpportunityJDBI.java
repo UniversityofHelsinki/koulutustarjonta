@@ -85,20 +85,26 @@ public interface LearningOpportunityJDBI {
 
     @SqlQuery("SELECT k.*, ok.kieli as opetuskieli_kieli, " +
             "ok.selite_fi AS opetuskieli_selite_fi, ok.selite_sv AS opetuskieli_selite_sv, " +
-            "ok.selite_en AS opetuskieli_selite_en, hk.id_hakukohde AS hakukohde_id " +
+            "ok.selite_en AS opetuskieli_selite_en, hk.id_hakukohde AS hakukohde_id, " +
+            "l.id_lapsi AS id_lapsi, v.id_vanhempi AS id_vanhempi " +
             "FROM koulutus k " +
             "LEFT JOIN " +
             "koulutus_opetuskieli ko ON k.id = ko.id_koulutus " +
             "LEFT JOIN " +
             "opetuskieli ok ON ok.id = ko.id_opetuskieli " +
             "LEFT JOIN " +
-            "hakukohde_koulutus hk ON k.id = hk.id_koulutus")
+            "hakukohde_koulutus hk ON k.id = hk.id_koulutus " +
+            "LEFT JOIN " +
+            "koulutus_sisaltyvyys l ON k.id = l.id_vanhempi " +
+            "LEFT JOIN " +
+            "koulutus_sisaltyvyys v ON k.id = v.id_lapsi")
     @Mapper(LearningOpportunityJoinRowMapper.class)
     List<LearningOpportunityJoinRow> findAllJoinRows();
 
     @SqlQuery("SELECT k.*, ok.kieli as opetuskieli_kieli, " +
             "ok.selite_fi as opetuskieli_selite_fi, ok.selite_sv as opetuskieli_selite_sv, " +
-            "ok.selite_en as opetuskieli_selite_en, hk.id_hakukohde AS hakukohde_id " +
+            "ok.selite_en as opetuskieli_selite_en, hk.id_hakukohde AS hakukohde_id, " +
+            "l.id_lapsi AS id_lapsi, v.id_vanhempi AS id_vanhempi " +
             "FROM koulutus k " +
             "LEFT JOIN " +
             "koulutus_opetuskieli ko on k.id = ko.id_koulutus " +
@@ -106,6 +112,10 @@ public interface LearningOpportunityJDBI {
             "opetuskieli ok on ok.id = ko.id_opetuskieli " +
             "LEFT JOIN " +
             "hakukohde_koulutus hk ON k.id = hk.id_koulutus " +
+            "LEFT JOIN " +
+            "koulutus_sisaltyvyys l ON k.id = l.id_vanhempi " +
+            "LEFT JOIN " +
+            "koulutus_sisaltyvyys v ON k.id = v.id_lapsi " +
             "WHERE k.id = :id")
     @Mapper(LearningOpportunityJoinRowMapper.class)
     List<LearningOpportunityJoinRow> findJoinRowsById(@Bind("id") String id);
@@ -133,4 +143,27 @@ public interface LearningOpportunityJDBI {
             "AND id_hakukohde NOT IN (<current>)")
     void removeDeletedApplicationOptions(@Bind("id_koulutus") String learningOpportunityOid,
                                          @BindIn("current") List<String> currentApplicationOptionOids);
+
+    @SqlUpdate("MERGE INTO koulutus_sisaltyvyys " +
+            "USING dual " +
+            "ON (id_lapsi = :id_lapsi AND id_vanhempi = :id_vanhempi) " +
+            "WHEN NOT MATCHED THEN " +
+            "INSERT (id_lapsi, id_vanhempi) VALUES (:id_lapsi, :id_vanhempi) " +
+            "WHERE EXISTS ( " +
+            "SELECT 1 " +
+            "FROM koulutus k " +
+            "WHERE k.id = :id_vanhempi)")
+    void addParent(@Bind("id_lapsi") String childOid, @Bind("id_vanhempi") String parentOid);
+
+    @SqlBatch("MERGE INTO koulutus_sisaltyvyys " +
+            "USING dual " +
+            "ON (id_lapsi = :id_lapsi AND id_vanhempi = :id_vanhempi) " +
+            "WHEN NOT MATCHED THEN " +
+            "INSERT (id_lapsi, id_vanhempi) VALUES (:id_lapsi, :id_vanhempi) " +
+            "WHERE EXISTS ( " +
+            "SELECT 1 " +
+            "FROM koulutus k " +
+            "WHERE k.id = :id_lapsi)")
+    @BatchChunkSize(10)
+    void addChildren(@Bind("id_vanhempi") String parentOid, @Bind("id_lapsi") List<String> childOids);
 }

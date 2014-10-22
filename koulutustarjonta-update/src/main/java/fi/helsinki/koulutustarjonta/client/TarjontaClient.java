@@ -91,8 +91,8 @@ public class TarjontaClient {
         LearningOpportunity learningOpportunity = learningOpportunityWrapper.getLearningOpportunity();
         learningOpportunity.setApplicationOptions(getApplicationOptionOidsByLearningOpportunity(oid));
         learningOpportunity.setChildren(getChildLearningOpportunities(learningOpportunityWrapper));
-        learningOpportunity.setParents(getParentLearningOpportunities(learningOpportunityWrapper));
-        LOG.debug(String.format("Related LOs for %s -> %d, %d", oid, learningOpportunity.getChildren().size(), learningOpportunity.getParents().size()));
+        learningOpportunity.setParent(getParentLearningOpportunity(learningOpportunityWrapper));
+        LOG.debug(String.format("Related LOs for %s -> %d, %s", oid, learningOpportunity.getChildren().size(), learningOpportunity.getParent()));
 
         return learningOpportunity;
     }
@@ -109,17 +109,23 @@ public class TarjontaClient {
                 loWrapper.getStartingSeasonCode());
     }
 
-    public List<String> getParentLearningOpportunities(LearningOpportunityWrapper loWrapper) {
+    public String getParentLearningOpportunity(LearningOpportunityWrapper loWrapper) {
 
         // get komo oid
         String komoOid = loWrapper.getKomoOid();
 
         List<String> parentKomoOids = searchParentKomos(komoOid);
 
-        return searchRelatedLearningOpportunities(parentKomoOids,
+        List<String> parentOids = searchRelatedLearningOpportunities(parentKomoOids,
                 String.valueOf(loWrapper.getStartingYear()),
                 loWrapper.getStartingSeasonCode());
 
+        if (parentOids.isEmpty()) {
+            return null;
+        }
+        else {
+            return parentOids.get(0);
+        }
     }
 
     private List<String> searchRelatedLearningOpportunities(List<String> komoOids,

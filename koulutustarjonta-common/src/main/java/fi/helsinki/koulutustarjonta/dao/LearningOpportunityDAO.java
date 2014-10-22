@@ -38,6 +38,12 @@ public class LearningOpportunityDAO {
             jdbi.addApplicationOptions(learningOpportunity.getOid(), learningOpportunity.getApplicationOptions());
             jdbi.removeDeletedApplicationOptions(learningOpportunity.getOid(), learningOpportunity.getApplicationOptions());
         }
+        if (learningOpportunity.getParent() != null) {
+            jdbi.addParent(learningOpportunity.getOid(), learningOpportunity.getParent());
+        }
+        if (learningOpportunity.getChildren() != null) {
+            jdbi.addChildren(learningOpportunity.getOid(), learningOpportunity.getChildren());
+        }
     }
 
     public List<LearningOpportunity> findAll() {

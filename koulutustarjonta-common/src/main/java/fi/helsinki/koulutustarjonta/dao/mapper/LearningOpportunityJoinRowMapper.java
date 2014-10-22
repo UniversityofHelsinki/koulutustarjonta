@@ -29,7 +29,8 @@ public class LearningOpportunityJoinRowMapper implements ResultSetMapper<Learnin
                 resolveI18N(r, "sijtyo"), resolveI18N(r, "sisalto"), resolveI18N(r, "tutkpaino"),
                 resolveI18N(r, "opinnaytetyo"), null, r.getString("id_organisaatio"), null, null
         );
-        return new LearningOpportunityJoinRow(lo, teachingLanguage, r.getString("hakukohde_id"));
+        return new LearningOpportunityJoinRow(lo, teachingLanguage, r.getString("hakukohde_id"),
+                r.getString("id_vanhempi"), r.getString("id_lapsi"));
     }
 
 }

@@ -7,6 +7,8 @@ import fi.helsinki.koulutustarjonta.domain.TeachingLanguage;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.toList;
+
 /**
  * Builds LearninOpportunity objects from JOIN database
  * query results.
@@ -29,12 +31,24 @@ public class LearningOpportunityObjectGraphBuilder {
                 .values()
                 .stream()
                 .map(list -> resolveTeachingLanguage(list))
-                .collect(Collectors.toList()));
+                .collect(toList()));
         lo.setApplicationOptions(rows
                 .stream()
                 .map(row -> row.getApplicationOptionOid())
                 .distinct()
-                .collect(Collectors.toList()));
+                .collect(toList()));
+        List<LearningOpportunityJoinRow> parentRows = rows.stream()
+                .filter(row -> row.getParentOid() != null)
+                .collect(toList());
+        if (!parentRows.isEmpty()) {
+           lo.setParent(parentRows.get(0).getParentOid());
+        }
+        lo.setChildren(rows
+                .stream()
+                .filter(row -> row.getChildOid() != null)
+                .map(row -> row.getChildOid())
+                .distinct()
+                .collect(toList()));
         return lo;
     }
 

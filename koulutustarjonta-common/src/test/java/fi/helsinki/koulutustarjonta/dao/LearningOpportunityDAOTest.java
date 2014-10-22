@@ -17,6 +17,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 /**
  * @author Hannu Lyytikainen
@@ -26,9 +27,10 @@ public class LearningOpportunityDAOTest extends BaseDAOTest {
     DBI dbi;
     LearningOpportunityDAO dao;
 
-    final String oid1 = "1.2.3";
+    final String populatedOid1 = "1.2.3";
+    final String populatedOid2 = "koulutus_id2";
     final String oid2 = "1.2.3.4";
-    final List<String> oids = Lists.newArrayList(oid1, oid2);
+    final List<String> oids = Lists.newArrayList(populatedOid1, oid2);
 
     @Before
     public void init() throws IOException, SQLException {
@@ -56,9 +58,9 @@ public class LearningOpportunityDAOTest extends BaseDAOTest {
 
     @Test
     public void testFindById() {
-        LearningOpportunity lo = dao.findById(oid1);
+        LearningOpportunity lo = dao.findById(populatedOid1);
         assertNotNull(lo);
-        assertEquals(oid1, lo.getOid());
+        assertEquals(populatedOid1, lo.getOid());
         assertEquals("tutkintonimike fi", lo.getQualification().getFi());
         assertEquals("tutkintonimike sv", lo.getQualification().getSv());
         assertEquals("tutkintonimike en", lo.getQualification().getEn());
@@ -124,6 +126,9 @@ public class LearningOpportunityDAOTest extends BaseDAOTest {
         assertEquals(1, applicationOptions.size());
         assertEquals("hakukohde_id1", applicationOptions.get(0));
         assertEquals("organisaatio_id1", lo.getProvider());
+        assertNull(lo.getParent());
+        assertNotNull(lo.getChildren());
+        assertEquals(1, lo.getChildren().size());
     }
 
     @Test
@@ -137,9 +142,9 @@ public class LearningOpportunityDAOTest extends BaseDAOTest {
 
     @Test
     public void testUpdate() {
-        LearningOpportunity lo = Fixture.learningOpportunity(oid1);
+        LearningOpportunity lo = Fixture.learningOpportunity(populatedOid1);
         dao.save(lo);
-        LearningOpportunity fetched = dao.findById(oid1);
+        LearningOpportunity fetched = dao.findById(populatedOid1);
         assertNotNull(fetched);
         learningOpportunitiesEqual(lo, fetched);
     }

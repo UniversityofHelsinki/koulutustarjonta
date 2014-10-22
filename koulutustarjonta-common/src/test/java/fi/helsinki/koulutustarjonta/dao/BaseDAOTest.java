@@ -8,6 +8,8 @@ import oracle.jdbc.pool.OracleDataSource;
 import org.junit.After;
 import org.junit.Before;
 import org.skife.jdbi.v2.DBI;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.sql.DataSource;
 import java.io.IOException;
@@ -21,6 +23,7 @@ import static org.junit.Assert.assertEquals;
  */
 public class BaseDAOTest {
 
+    private static final Logger LOG = LoggerFactory.getLogger(BaseDAOTest.class);
     OracleDataSource ds;
     DBI dbi;
 
@@ -56,6 +59,7 @@ public class BaseDAOTest {
                 .split(populate);
         populateCommands.forEach(command ->
         {
+            LOG.debug(String.format("Executing sql command \n%s", command));
             try {
                 dataSource.getConnection().prepareStatement(command).execute();
             } catch (SQLException e) {

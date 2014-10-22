@@ -175,6 +175,10 @@ VALUES ('1.2.3', 'tutkintonimike fi', 'tutkintonimike sv', 'tutkintonimike en',
 'tutkimuksen painotus fi', 'tutkimuksen painotus sv', 'tutkimuksen painotus en',
 'opinnaytetyo fi', 'opinnaytetyo sv', 'opinnaytetyo en', 'organisaatio_id1');
 
+INSERT INTO KOULUTUS
+            (id,  tutkintonimike_fi, tutkintonimike_sv, tutkintonimike_en)
+VALUES ('koulutus_id2', 'tutkintonimike fi', 'tutkintonimike sv', 'tutkintonimike en');
+
 MERGE INTO opetuskieli USING dual on ( id = 'fi' )
 WHEN NOT MATCHED THEN INSERT (id, kieli, selite_fi, selite_sv, selite_en)
 VALUES ('fi', 'fi', 'suomi', 'finska', 'Finnish');
@@ -187,6 +191,13 @@ INSERT INTO KOULUTUS_OPETUSKIELI (id_koulutus, id_opetuskieli)
 VALUES ('1.2.3', 'fi');
 INSERT INTO KOULUTUS_OPETUSKIELI (id_koulutus, id_opetuskieli)
 VALUES ('1.2.3', 'sv');
+INSERT INTO KOULUTUS_OPETUSKIELI (id_koulutus, id_opetuskieli)
+VALUES ('koulutus_id2', 'fi');
+INSERT INTO KOULUTUS_OPETUSKIELI (id_koulutus, id_opetuskieli)
+VALUES ('koulutus_id2', 'sv');
 
 INSERT INTO hakukohde_koulutus (id_hakukohde, id_koulutus)
 VALUES ('hakukohde_id1', '1.2.3');
+
+INSERT INTO koulutus_sisaltyvyys (id_lapsi, id_vanhempi)
+VALUES ('koulutus_id2', '1.2.3');
