@@ -1,0 +1,17 @@
+---
+
+# This playbook installs applications
+
+- hosts: query-server
+  sudo: true
+  vars_files:
+    - "common/vars/main.yml"
+  roles:
+    - query
+
+- hosts: update-server
+  sudo: true
+  vars_files:
+    - "common/vars/main.yml"
+  roles:
+    - update
