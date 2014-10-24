@@ -44,6 +44,7 @@ public class LearningOpportunityDAOTest extends BaseDAOTest {
     @After
     public void close() throws SQLException, IOException {
         Handle h = dbi.open();
+        h.execute(String.format("DELETE FROM koulutus_sisaltyvyys WHERE id_lapsi = '%s'", oid2));
         h.execute(String.format("DELETE FROM hakukohde_koulutus WHERE id_koulutus = '%s'", oid2));
         h.execute(String.format("DELETE FROM KOULUTUS_OPETUSKIELI WHERE id_koulutus = '%s'", oid2));
         h.execute(String.format("DELETE FROM KOULUTUS WHERE id = '%s'", oid2));

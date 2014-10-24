@@ -97,7 +97,7 @@ public class LearningOpportunityModelMapper extends ModelMapper {
 
         @Override
         protected List<String> convert(List<String> source) {
-            if (source.isEmpty()) {
+            if (source == null || source.isEmpty()) {
                 return null;
             }
             else {
