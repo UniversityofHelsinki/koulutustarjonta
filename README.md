@@ -39,7 +39,7 @@ or for a single module eg.
 ```
 ./gradlew :koulutustarjonta-common:test
 ```
-By default, tests are run agains local database runnin in Vagrant virtual machine. In order to run tests against another database, credentieals can be given as params
+By default, tests are run agains local database runnin in Vagrant virtual machine. To run tests against some other database:
 ```
 ./gradlew test -Pdb.url=<jdbc url> -Pdb.user=<username> -Pdb.passwd=<password>
 ```
