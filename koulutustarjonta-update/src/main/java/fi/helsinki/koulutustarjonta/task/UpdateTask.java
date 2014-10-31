@@ -18,6 +18,8 @@ public class UpdateTask extends Task {
 
     @Override
     public void execute(ImmutableMultimap<String, String> parameters, PrintWriter output) throws Exception {
-        SundialJobScheduler.startJob(UpdateJob.NAME);
+        if (!SundialJobScheduler.isJobRunning(UpdateJob.NAME)) {
+            SundialJobScheduler.startJob(UpdateJob.NAME);
+        }
     }
 }

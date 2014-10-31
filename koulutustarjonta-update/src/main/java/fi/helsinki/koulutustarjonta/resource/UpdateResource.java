@@ -1,13 +1,13 @@
 package fi.helsinki.koulutustarjonta.resource;
 
-import com.google.common.collect.Maps;
+import com.xeiam.sundial.SundialJobScheduler;
 import fi.helsinki.koulutustarjonta.core.Updater;
+import fi.helsinki.koulutustarjonta.job.UpdateJob;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import java.util.Map;
 
 /**
  * @author Hannu Lyytikainen
@@ -23,16 +23,14 @@ public class UpdateResource {
     }
 
     @GET
-    public Map<String, String> update() {
-        Map<String, String> status = Maps.newHashMap();
-        try {
-            updater.update();
-            status.put("status", "ok");
-        } catch (Exception e) {
-            e.printStackTrace();
-            status.put("status", "error");
-            status.put("cause", String.format("%s - %s", e.getClass().getName(), e.getMessage()));
+    public String update() {
+        if (SundialJobScheduler.isJobRunning(UpdateJob.NAME)) {
+            return "Update is already running";
+
         }
-        return status;
+        else {
+            SundialJobScheduler.startJob(UpdateJob.NAME);
+            return "Update started";
+        }
     }
 }
