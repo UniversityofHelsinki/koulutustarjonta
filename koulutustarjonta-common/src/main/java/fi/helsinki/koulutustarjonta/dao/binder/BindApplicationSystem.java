@@ -30,11 +30,15 @@ public @interface BindApplicationSystem {
                     BindUtil.bindI18N(q, "nimi", as.getName());
                     BindUtil.bindI18N(q, "hakutapa", as.getApplicationMethod());
                     q.bind("hakukausi_vuosi", as.getApplicationYear());
-                    q.bind("hakukausi_arvo", as.getApplicationSeason().getValue());
-                    BindUtil.bindI18N(q, "hakukausi", as.getApplicationSeason().getName());
+                    if (as.getApplicationSeason() != null) {
+                        q.bind("hakukausi_arvo", as.getApplicationSeason().getValue());
+                        BindUtil.bindI18N(q, "hakukausi", as.getApplicationSeason().getName());
+                    }
                     q.bind("koul_alk_vuosi", as.getEducationStartYear());
-                    q.bind("koul_alk_kausi_arvo", as.getEducationStartSeason().getValue());
-                    BindUtil.bindI18N(q, "koul_alk_kausi", as.getEducationStartSeason().getName());
+                    if (as.getEducationStartSeason() != null) {
+                        q.bind("koul_alk_kausi_arvo", as.getEducationStartSeason().getValue());
+                        BindUtil.bindI18N(q, "koul_alk_kausi", as.getEducationStartSeason().getName());
+                    }
                     q.bind("hakulomake_url", as.getApplicationFormUrl());
                 }
             };
