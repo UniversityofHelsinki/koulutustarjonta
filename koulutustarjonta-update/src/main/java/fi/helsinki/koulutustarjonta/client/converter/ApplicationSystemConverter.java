@@ -29,17 +29,26 @@ public class ApplicationSystemConverter extends BaseConverter {
                 .map(elem -> convertApplicationPeriod(elem))
                 .collect(Collectors.toList());
 
-        Code applicationSeasonCode = getCode(root.get("hakukausiUri").textValue());
-        Code educationStartsSeasonCode = getCode(root.get("koulutuksenAlkamiskausiUri").textValue());
+        Season applicationSeason = null;
+        if (root.has("hakukausiUri")) {
+            Code applicationSeasonCode = getCode(root.get("hakukausiUri").textValue());
+            applicationSeason = new Season(applicationSeasonCode.getValue(), applicationSeasonCode.getName());
+
+        }
+        Season educationStartsSeason = null;
+        if (root.has("koulutuksenAlkamiskausiUri")) {
+            Code educationStartsSeasonCode = getCode(root.get("koulutuksenAlkamiskausiUri").textValue());
+            educationStartsSeason = new Season(educationStartsSeasonCode.getValue(), educationStartsSeasonCode.getName());
+        }
 
         return new ApplicationSystem(
                 root.get("oid").textValue(),
                 convertToI18N(root.get("nimi")),
                 getCode(root.get("hakutapaUri").textValue()).getName(),
                 root.get("hakukausiVuosi").intValue(),
-                new Season(applicationSeasonCode.getValue(), applicationSeasonCode.getName()),
+                applicationSeason,
                 root.get("koulutuksenAlkamisVuosi").intValue(),
-                new Season(educationStartsSeasonCode.getValue(), educationStartsSeasonCode.getName()),
+                educationStartsSeason,
                 root.hasNonNull("hakulomakeUri") ? root.get("hakulomakeUri").textValue() : null,
                 periods
         );
