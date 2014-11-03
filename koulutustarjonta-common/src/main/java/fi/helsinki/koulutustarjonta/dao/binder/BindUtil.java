@@ -25,6 +25,8 @@ public class BindUtil {
         bindText(q, String.format("%s_en", fieldPrefix), optionalI18n.orElse(EMPTY_I18N).getEn());
     }
 
+
+
     public static void bindText(SQLStatement q, String field, String text) {
         if (text != null && text.length() >= CLOB_LIMIT) {
             bindClob(q, field, text);
