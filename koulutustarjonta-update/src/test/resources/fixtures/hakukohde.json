@@ -50,6 +50,35 @@
     "kaytetaanHaunPaattymisenAikaa" : false,
     "kaytetaanHakukohdekohtaistaHakuaikaa" : false,
     "hakukohteenLiitteet" : [ {
+          "oid" : "961150",
+          "version" : 0,
+          "kieliUri" : "kieli_fi",
+          "kieliNimi" : "suomi",
+          "liitteenNimi" : "Opintosuoritusote",
+          "liitteenKuvaukset" : { },
+          "toimitettavaMennessa" : 1428580822597,
+          "liitteenToimitusOsoite" : {
+              "version" : 0,
+              "osoiterivi1" : "Farmasian tiedekunnan kanslia, PL 56 (Viikinkaari 9 C)",
+              "postinumero" : "posti_00014",
+              "postinumeroArvo" : "00014",
+              "postitoimipaikka" : "HELSINGIN YLIOPISTO"
+          }
+      }, {
+          "oid" : "961147",
+          "version" : 0,
+          "kieliUri" : "kieli_sv",
+          "kieliNimi" : "ruotsi",
+          "liitteenNimi" : "Studieregisterutdraget",
+          "toimitettavaMennessa" : 1428580816872,
+          "liitteenToimitusOsoite" : {
+              "version" : 0,
+              "osoiterivi1" : "Farmaceutiska fakultetens kansli, PB 56 (Viksbågen 9 C)",
+              "postinumero" : "posti_00014",
+              "postinumeroArvo" : "00014",
+              "postitoimipaikka" : "HELSINGIN YLIOPISTO"
+          }
+      }, {
       "oid" : "333282",
       "version" : 0,
       "kieliUri" : "kieli_fi",

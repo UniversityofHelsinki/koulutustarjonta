@@ -68,7 +68,7 @@ public class ApplicationOptionConverterTest extends AbstractClientConverterTest 
         assertEquals(3, exams.size());
         List<Attachment> attachments = ao.getAttachments();
         assertNotNull(attachments);
-        assertEquals(4, attachments.size());
+        assertEquals(6, attachments.size());
     }
 
 }

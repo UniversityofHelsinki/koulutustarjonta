@@ -23,7 +23,7 @@ public class AttachmentConverter extends BaseConverter {
         attachment.setOid(attachmentNode.get("oid").textValue());
         attachment.setLang(resolveLang(attachmentNode.get("kieliUri").textValue()));
         attachment.setName(attachmentNode.get("liitteenNimi").textValue());
-        if (attachmentNode.has("liitteenKuvaukset")) {
+        if (attachmentNode.has("liitteenKuvaukset") && attachmentNode.get("liitteenKuvaukset").elements().hasNext()) {
             attachment.setDescription(attachmentNode.get("liitteenKuvaukset").elements().next().textValue());
         }
         attachment.setDue(new Date(attachmentNode.get("toimitettavaMennessa").longValue()));
