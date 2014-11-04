@@ -10,8 +10,8 @@ logging:
 
   appenders:
     - type: file
-      currentLogFilename: ./logs/koulutustarjonta-query.log
-      archivedLogFilenamePattern: ./logs/koulutustarjonta-query-%d.log.gz
+      currentLogFilename: ./logs/koulutustarjonta-service.log
+      archivedLogFilenamePattern: ./logs/koulutustarjonta-service-%d.log.gz
       archivedFileCount: 15
       timeZone: UTC
 

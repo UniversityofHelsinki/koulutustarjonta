@@ -1,6 +1,6 @@
 package fi.helsinki.koulutustarjonta;
 
-import fi.helsinki.koulutustarjonta.config.KotaQueryConfig;
+import fi.helsinki.koulutustarjonta.config.KoulutustarjontaServiceConfig;
 import fi.helsinki.koulutustarjonta.dao.ApplicationOptionDAO;
 import fi.helsinki.koulutustarjonta.dao.ApplicationSystemDAO;
 import fi.helsinki.koulutustarjonta.dao.LearningOpportunityDAO;
@@ -24,19 +24,19 @@ import java.util.TimeZone;
 /**
  * @author Hannu Lyytikainen
  */
-public class KotaQueryApplication extends Application<KotaQueryConfig> {
+public class KoulutustarjontaServiceApplication extends Application<KoulutustarjontaServiceConfig> {
 
     public static void main(String[] args) throws Exception {
-        new KotaQueryApplication().run(args);
+        new KoulutustarjontaServiceApplication().run(args);
     }
 
     @Override
-    public void initialize(Bootstrap<KotaQueryConfig> bootstrap) {
+    public void initialize(Bootstrap<KoulutustarjontaServiceConfig> bootstrap) {
 
     }
 
     @Override
-    public void run(KotaQueryConfig configuration, Environment environment) throws Exception {
+    public void run(KoulutustarjontaServiceConfig configuration, Environment environment) throws Exception {
         TimeZone tz = TimeZone.getTimeZone("EET");
         TimeZone.setDefault(tz);
 

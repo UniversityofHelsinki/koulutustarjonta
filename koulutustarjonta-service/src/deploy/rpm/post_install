@@ -1,0 +1,7 @@
+#!/bin/bash
+
+echo "Starting koulutustarjonta-service"
+
+start koulutustarjonta-service
+
+exit 0

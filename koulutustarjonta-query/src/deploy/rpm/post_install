@@ -1,7 +1,0 @@
-#!/bin/bash
-
-echo "Starting koulutustarjonta-query"
-
-start koulutustarjonta-query
-
-exit 0

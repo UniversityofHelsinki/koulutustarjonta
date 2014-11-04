@@ -1,4 +1,4 @@
 rootProject.name = 'koulutustarjonta'
 include 'koulutustarjonta-update'
 include 'koulutustarjonta-common'
-include 'koulutustarjonta-query'
+include 'koulutustarjonta-service'

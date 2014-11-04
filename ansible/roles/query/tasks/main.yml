@@ -1,4 +1,0 @@
----
-
-  - include: ../../../common/tasks/install_rpm.yml app_name=koulutustarjonta-query
-

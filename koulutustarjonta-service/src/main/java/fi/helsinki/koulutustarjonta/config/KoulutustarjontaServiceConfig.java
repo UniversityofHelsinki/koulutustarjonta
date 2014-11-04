@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
  * @author Hannu Lyytikainen
  */
 @Getter
-public class KotaQueryConfig extends Configuration {
+public class KoulutustarjontaServiceConfig extends Configuration {
     @Valid
     @NotNull
     @JsonProperty

@@ -1,0 +1,7 @@
+#!/bin/bash
+
+echo "Stopping koulutustarjonta-service"
+
+stop koulutustarjonta-service
+
+exit 0

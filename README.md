@@ -15,7 +15,7 @@ vagrant up
 
 Project structure
 -----------------
-**koulutustarjonta-query** Main service that provides an API for accessing education data
+**koulutustarjonta-service** Main service that provides an API for accessing education data
 
 **koulutustarjonta-update** Update worker that handle integration to OPH
 
@@ -25,7 +25,7 @@ Running locally
 ---------------
 Project folder is mapped to */src* in Vagrant. In that folder applications can be run with gradle
 ```
-./gradlew :koulutustarjonta-query:run
+./gradlew :koulutustarjonta-service:run
 ./gradlew :koulutustarjonta-update:run
 ```
 

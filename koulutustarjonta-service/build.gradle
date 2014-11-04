@@ -4,11 +4,11 @@ apply plugin: 'application'
 apply plugin: 'rpm'
 apply plugin: 'com.github.johnrengelman.shadow'
 
-mainClassName = 'fi.helsinki.koulutustarjonta.KotaQueryApplication'
+mainClassName = 'fi.helsinki.koulutustarjonta.KoulutustarjontaServiceApplication'
 
 jar {
     manifest {
-        attributes("Implementation-Title": "Koulutustarjonta - Query", "Implementation-Version": version,
+        attributes("Implementation-Title": "Koulutustarjonta - Service", "Implementation-Version": version,
                 "Main-Class": mainClassName)
     }
 }
@@ -48,15 +48,15 @@ dependencies {
 }
 
 run {
-    args 'server', 'query-config.yml'
+    args 'server', 'service-config.yml'
 }
 
 task rpm(type: Rpm, dependsOn: 'shadowJar') {
-    packageName = 'koulutustarjonta-query'
+    packageName = 'koulutustarjonta-service'
     release = commitHash()
     arch = NOARCH
     os = LINUX
-    summary = "Koulutustarjonta Query"
+    summary = "Koulutustarjonta Service"
     description ''
     user = "koultarj"
 
@@ -64,11 +64,11 @@ task rpm(type: Rpm, dependsOn: 'shadowJar') {
     postInstall = file('src/deploy/rpm/post_install')
     preUninstall = file('src/deploy/rpm/pre_uninstall')
 
-    into '/opt/koulutustarjonta-query'
+    into '/opt/koulutustarjonta-service'
 
     //application executable
     from("build/libs") {
-        include "koulutustarjonta-query-" + version + ".jar"
+        include "koulutustarjonta-service-" + version + ".jar"
         //remove version from file to avoid having to redo config files on every release
         rename { String fileName ->
             fileName.replace("-$version", '')

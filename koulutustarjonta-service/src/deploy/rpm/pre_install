@@ -1,0 +1,7 @@
+#!/bin/bash
+
+PIDS=`ps ax | grep 'koulutustarjonta-service.jar' | grep -v grep | grep -o '^[ ]*[0-9]*'`
+if [ -n "$PIDS" ]; then
+  echo "Stopping koulutustarjonta-service"
+  stop koulutustarjonta-service
+fi
