@@ -3,8 +3,8 @@
     - name: Install base libs
       yum: name="{{ item }}" state=latest
       with_items:
-      - glibc.i686
-      - libstdc++.i686
+      - glibc
+      - libstdc++
       - libgcc_s.so.1
       tags:
         - base
