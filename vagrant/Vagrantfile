@@ -8,7 +8,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define "koulutustarjonta" do |koulutustarjonta|
 
-  koulutustarjonta.vm.box = "chef/centos-6.5"
+  koulutustarjonta.vm.box = "chef/centos-6.6"
 
   koulutustarjonta.vm.network :private_network, ip: "10.10.10.10"
 
