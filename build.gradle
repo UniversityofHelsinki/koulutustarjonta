@@ -1,6 +1,5 @@
 subprojects {
     apply plugin: 'java'
-    apply plugin: 'idea'
     sourceCompatibility = '1.8'
     group = 'fi.helsinki.koulutustarjonta'
     version = '1.0-SNAPSHOT'
