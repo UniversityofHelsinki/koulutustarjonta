@@ -38,6 +38,7 @@ buildscript {
 
 dependencies {
     compile 'io.dropwizard:dropwizard-core:0.7.0'
+    compile 'io.dropwizard:dropwizard-migrations:0.7.0'
     compile 'org.modelmapper:modelmapper:0.7.1'
     compile project(':koulutustarjonta-common')
     compile files('../lib/ojdbc7.jar')

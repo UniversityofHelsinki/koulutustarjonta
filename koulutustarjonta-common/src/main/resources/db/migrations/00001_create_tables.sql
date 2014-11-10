@@ -1,3 +1,6 @@
+--liquibase formatted sql
+
+--changeset hannu:1
 CREATE TABLE HAKU
 (
   ID                        VARCHAR2(300 CHAR),
@@ -996,6 +999,8 @@ NOPARALLEL
 MONITORING;
 
 
+
+
 CREATE UNIQUE INDEX PK_HAKU ON HAKU
 (ID)
 LOGGING
@@ -1307,6 +1312,8 @@ ALTER TABLE KOULUTUS_SISALTYVYYS ADD (
 
 CREATE SEQUENCE HAKUKELP_SEQ;
 
+-- extra changeset to allow PL/SQL
+--changeset hannu:1.1 endDelimiter:/ splitStatements:true
 CREATE OR REPLACE TRIGGER HAKUKELP_TRIG
 BEFORE INSERT ON HAKUKELP
 FOR EACH ROW

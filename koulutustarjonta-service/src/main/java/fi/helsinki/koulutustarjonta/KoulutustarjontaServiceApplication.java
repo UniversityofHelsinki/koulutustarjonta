@@ -14,7 +14,9 @@ import fi.helsinki.koulutustarjonta.resource.ApplicationSystemResource;
 import fi.helsinki.koulutustarjonta.resource.LearningOpportunityResource;
 import fi.helsinki.koulutustarjonta.resource.OrganizationResource;
 import io.dropwizard.Application;
+import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.jdbi.DBIFactory;
+import io.dropwizard.migrations.MigrationsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import org.skife.jdbi.v2.DBI;
@@ -32,6 +34,12 @@ public class KoulutustarjontaServiceApplication extends Application<Koulutustarj
 
     @Override
     public void initialize(Bootstrap<KoulutustarjontaServiceConfig> bootstrap) {
+        bootstrap.addBundle(new MigrationsBundle<KoulutustarjontaServiceConfig>() {
+            @Override
+            public DataSourceFactory getDataSourceFactory(KoulutustarjontaServiceConfig configuration) {
+                return configuration.getDatabase();
+            }
+        });
 
     }
 
