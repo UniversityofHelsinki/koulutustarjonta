@@ -1,5 +1,12 @@
 koulutustarjonta
 ================
+Project structure
+-----------------
+**koulutustarjonta-service** Main service that provides an API for accessing education data
+
+**koulutustarjonta-update** Update worker that handle integration to OPH
+
+**koulutustarjonta-common** Common parts like DAO and domain packages that are used by both applications
 
 Getting Started
 ---------------
@@ -13,17 +20,20 @@ cd vagrant
 vagrant up
 ```
 
-Project structure
------------------
-**koulutustarjonta-service** Main service that provides an API for accessing education data
-
-**koulutustarjonta-update** Update worker that handle integration to OPH
-
-**koulutustarjonta-common** Common parts like DAO and domain packages that are used by both applications
-
 Running locally
 ---------------
-Project folder is mapped to */src* in Vagrant. In that folder applications can be run with gradle
+The project folder is mapped to */src* folder in Vagrant.
+```
+cd vagrant
+vagrant ssh
+cd /src
+```
+Run database migration to create tables
+```
+./gradlew clean :koulutustarjonta-service:shadowJar
+java -jar koulutustarjonta-service/build/libs/koulutustarjonta-service-1.0-SNAPSHOT.jar db migrate koulutustarjonta-service/service-config.yml
+```
+Start up the applications
 ```
 ./gradlew :koulutustarjonta-service:run
 ./gradlew :koulutustarjonta-update:run
@@ -44,5 +54,10 @@ By default, tests are run agains local database runnin in Vagrant virtual machin
 ./gradlew test -Pdb.url=<jdbc url> -Pdb.user=<username> -Pdb.passwd=<password>
 ```
 
+Building RPMs
+-------------
+```
+./gradlew clean rpm -Pdb.url=<jdbc url> -Pdb.user=<db user> -Pdb.passwd=<db password> -Papi.endpoint=<api endpoitn>
+```
 
 
