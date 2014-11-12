@@ -1,74 +1,31 @@
 package fi.helsinki.koulutustarjonta.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.Date;
 
 /**
  * @author Hannu Lyytikainen
  */
+@NoArgsConstructor
+@Getter
+@Setter
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class AttachmentDTO {
-    private String oid;
-    private String lang;
-    private String name;
-    private String description;
-    private Date due;
-    private AddressDTO address;
-
-    public AttachmentDTO() {
-    }
-
     @JsonProperty("oid")
-    public String getOid() {
-        return oid;
-    }
-
-    public void setOid(String oid) {
-        this.oid = oid;
-    }
-
+    private String oid;
     @JsonProperty("kieli")
-    public String getLang() {
-        return lang;
-    }
-
-    public void setLang(String lang) {
-        this.lang = lang;
-    }
-
+    private String lang;
     @JsonProperty("tyyppi")
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
+    private String name;
     @JsonProperty("kuvaus")
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
+    private String description;
     @JsonProperty("erapaiva")
-    public Date getDue() {
-        return due;
-    }
-
-    public void setDue(Date due) {
-        this.due = due;
-    }
-
+    private Date due;
     @JsonProperty("toimitusosoite")
-    public AddressDTO getAddress() {
-        return address;
-    }
-
-    public void setAddress(AddressDTO address) {
-        this.address = address;
-    }
+    private AddressDTO address;
 }

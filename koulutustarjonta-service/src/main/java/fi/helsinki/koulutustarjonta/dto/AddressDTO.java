@@ -1,42 +1,23 @@
 package fi.helsinki.koulutustarjonta.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * @author Hannu Lyytikainen
  */
+@NoArgsConstructor
+@Getter
+@Setter
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class AddressDTO {
-    private String street;
-    private String postalCode;
-    private String postOffice;
-
-    public AddressDTO() {
-    }
-
     @JsonProperty("katuosoite")
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
+    private String street;
     @JsonProperty("postinumero")
-    public String getPostalCode() {
-        return postalCode;
-    }
-
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
-    }
-
+    private String postalCode;
     @JsonProperty("postitoimipaikka")
-    public String getPostOffice() {
-        return postOffice;
-    }
-
-    public void setPostOffice(String postOffice) {
-        this.postOffice = postOffice;
-    }
+    private String postOffice;
 }

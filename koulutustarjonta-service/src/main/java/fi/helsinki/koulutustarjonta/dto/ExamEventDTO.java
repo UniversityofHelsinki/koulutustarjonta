@@ -1,64 +1,29 @@
 package fi.helsinki.koulutustarjonta.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.Date;
 
 /**
  * @author Hannu Lyytikainen
  */
+@NoArgsConstructor
+@Getter
+@Setter
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ExamEventDTO {
-    private String oid;
-    private Date starts;
-    private Date ends;
-    private String info;
-    private AddressDTO address;
-
-    public ExamEventDTO() {
-    }
-
     @JsonProperty("oid")
-    public String getOid() {
-        return oid;
-    }
-
-    public void setOid(String oid) {
-        this.oid = oid;
-    }
-
+    private String oid;
     @JsonProperty("alkaa")
-    public Date getStarts() {
-        return starts;
-    }
-
-    public void setStarts(Date starts) {
-        this.starts = starts;
-    }
-
+    private Date starts;
     @JsonProperty("loppuu")
-    public Date getEnds() {
-        return ends;
-    }
-
-    public void setEnds(Date ends) {
-        this.ends = ends;
-    }
-
+    private Date ends;
     @JsonProperty("kuvaus")
-    public String getInfo() {
-        return info;
-    }
-
-    public void setInfo(String info) {
-        this.info = info;
-    }
-
+    private String info;
     @JsonProperty("osoite")
-    public AddressDTO getAddress() {
-        return address;
-    }
-
-    public void setAddress(AddressDTO address) {
-        this.address = address;
-    }
+    private AddressDTO address;
 }

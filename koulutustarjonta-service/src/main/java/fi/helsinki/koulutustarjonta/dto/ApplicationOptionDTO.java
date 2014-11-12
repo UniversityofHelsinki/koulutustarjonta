@@ -1,126 +1,42 @@
 package fi.helsinki.koulutustarjonta.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
 /**
  * @author Hannu Lyytikainen
  */
+@NoArgsConstructor
+@Getter
+@Setter
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ApplicationOptionDTO {
 
-    private String oid;
-    private I18NDTO name;
-    private int startingQuota;
-    private I18NDTO requirementDescription;
-    private I18NDTO additionalInfo;
-    private I18NDTO selectionCriteria;
-    private I18NDTO sora;
-    private List<ExamDTO> exams;
-    private List<AttachmentDTO> attachments;
-    private List<I18NDTO> requirements;
-    private String applicationSystem;
-
-    public ApplicationOptionDTO() {
-    }
-
     @JsonProperty("oid")
-    public String getOid() {
-        return oid;
-    }
-
-    public void setOid(String oid) {
-        this.oid = oid;
-    }
-
+    private String oid;
     @JsonProperty("nimi")
-    public I18NDTO getName() {
-        return name;
-    }
-
-    public void setName(I18NDTO name) {
-        this.name = name;
-    }
-
+    private I18NDTO name;
     @JsonProperty("aloituspaikat")
-    public int getStartingQuota() {
-        return startingQuota;
-    }
-
-    public void setStartingQuota(int startingQuota) {
-        this.startingQuota = startingQuota;
-    }
-
-
+    private int startingQuota;
     @JsonProperty("hakukelpoisuusvaatimus_kuvaus")
-    public I18NDTO getRequirementDescription() {
-        return requirementDescription;
-    }
-
-    public void setRequirementDescription(I18NDTO requirementDescription) {
-        this.requirementDescription = requirementDescription;
-    }
-
+    private I18NDTO requirementDescription;
     @JsonProperty("lisatiedot")
-    public I18NDTO getAdditionalInfo() {
-        return additionalInfo;
-    }
-
-    public void setAdditionalInfo(I18NDTO additionalInfo) {
-        this.additionalInfo = additionalInfo;
-    }
-
+    private I18NDTO additionalInfo;
     @JsonProperty("valintaperustekuvaus")
-    public I18NDTO getSelectionCriteria() {
-        return selectionCriteria;
-    }
-
-    public void setSelectionCriteria(I18NDTO selectionCriteria) {
-        this.selectionCriteria = selectionCriteria;
-    }
-
+    private I18NDTO selectionCriteria;
     @JsonProperty("sorakuvaus")
-    public I18NDTO getSora() {
-        return sora;
-    }
-
-    public void setSora(I18NDTO sora) {
-        this.sora = sora;
-    }
-
+    private I18NDTO sora;
     @JsonProperty("valintakokeet")
-    public List<ExamDTO> getExams() {
-        return exams;
-    }
-
-    public void setExams(List<ExamDTO> exams) {
-        this.exams = exams;
-    }
-
+    private List<ExamDTO> exams;
     @JsonProperty("liitteet")
-    public List<AttachmentDTO> getAttachments() {
-        return attachments;
-    }
-
-    public void setAttachments(List<AttachmentDTO> attachments) {
-        this.attachments = attachments;
-    }
-
+    private List<AttachmentDTO> attachments;
     @JsonProperty("hakukelpoisuusvaatimukset")
-    public List<I18NDTO> getRequirements() {
-        return requirements;
-    }
-
-    public void setRequirements(List<I18NDTO> requirements) {
-        this.requirements = requirements;
-    }
-
+    private List<I18NDTO> requirements;
     @JsonProperty("haku")
-    public String getApplicationSystem() {
-        return applicationSystem;
-    }
-
-    public void setApplicationSystem(String applicationSystem) {
-        this.applicationSystem = applicationSystem;
-    }
+    private String applicationSystem;
 }
