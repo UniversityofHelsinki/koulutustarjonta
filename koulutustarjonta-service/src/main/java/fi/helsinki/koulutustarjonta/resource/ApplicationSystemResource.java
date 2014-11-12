@@ -3,7 +3,7 @@ package fi.helsinki.koulutustarjonta.resource;
 import fi.helsinki.koulutustarjonta.dao.ApplicationSystemDAO;
 import fi.helsinki.koulutustarjonta.dao.exception.ResourceNotFound;
 import fi.helsinki.koulutustarjonta.dto.ApplicationSystemDTO;
-import org.modelmapper.ModelMapper;
+import fi.helsinki.koulutustarjonta.mapping.ApplicationSystemModelMapper;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -21,11 +21,11 @@ import java.util.stream.Collectors;
 public class ApplicationSystemResource {
 
     private final ApplicationSystemDAO dao;
-    private final ModelMapper modelMapper;
+    private final ApplicationSystemModelMapper modelMapper;
 
     public ApplicationSystemResource(ApplicationSystemDAO dao) {
         this.dao = dao;
-        this.modelMapper = new ModelMapper();
+        this.modelMapper = new ApplicationSystemModelMapper();
     }
 
     @GET

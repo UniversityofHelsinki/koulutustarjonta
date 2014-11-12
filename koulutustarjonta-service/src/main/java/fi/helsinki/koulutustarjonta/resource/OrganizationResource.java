@@ -3,7 +3,7 @@ package fi.helsinki.koulutustarjonta.resource;
 import fi.helsinki.koulutustarjonta.dao.OrganizationDAO;
 import fi.helsinki.koulutustarjonta.dao.exception.ResourceNotFound;
 import fi.helsinki.koulutustarjonta.dto.OrganizationDTO;
-import org.modelmapper.ModelMapper;
+import fi.helsinki.koulutustarjonta.mapping.OrganizationModelMapper;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -22,11 +22,11 @@ import static java.util.stream.Collectors.toList;
 public class OrganizationResource {
 
     private final OrganizationDAO organizationDAO;
-    private final ModelMapper modelMapper;
+    private final OrganizationModelMapper modelMapper;
 
     public OrganizationResource(OrganizationDAO organizationDAO) {
         this.organizationDAO = organizationDAO;
-        modelMapper = new ModelMapper();
+        modelMapper = new OrganizationModelMapper();
     }
 
     @GET

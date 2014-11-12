@@ -79,6 +79,7 @@ public class ApplicationOptionResourceTest {
         assertNotNull(actual.getRequirements());
         DTOTestUtil.i18NDTOsEqual(expected.getRequirements().get(0), actual.getRequirements().get(0));
         assertEquals(expected.getApplicationSystem(), actual.getApplicationSystem());
+        assertEquals(expected.getTranslations().size(), actual.getTranslations().size());
     }
 
     private void attachmentDTOsEqual(AttachmentDTO expected, AttachmentDTO actual) {

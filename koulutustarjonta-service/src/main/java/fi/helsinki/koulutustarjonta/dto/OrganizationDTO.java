@@ -50,4 +50,6 @@ public class OrganizationDTO {
     private List<ContactInfoDTO> contactInfos;
     @JsonProperty("hakijapalvelut")
     private List<ContactInfoDTO> applicantServices;
+    @JsonProperty("kuvauskielet")
+    private List<String> translations;
 }

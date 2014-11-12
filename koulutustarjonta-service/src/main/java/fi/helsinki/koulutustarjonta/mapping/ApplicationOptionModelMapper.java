@@ -34,8 +34,8 @@ public class ApplicationOptionModelMapper extends ModelMapper {
 
         @Override
         protected void configure() {
+            map().setTranslations(source.getSelectionCriteria().availableTranslations());
             using(applicationSystemOidConverter).map().setApplicationSystem(source.getApplicationSystem());
-
         }
     }
 

@@ -8,12 +8,12 @@ import fi.helsinki.koulutustarjonta.domain.Organization;
 import fi.helsinki.koulutustarjonta.dto.ContactInfoDTO;
 import fi.helsinki.koulutustarjonta.dto.OrganizationDTO;
 import fi.helsinki.koulutustarjonta.dto.SomeDTO;
+import fi.helsinki.koulutustarjonta.mapping.OrganizationModelMapper;
 import fi.helsinki.koulutustarjonta.test.Fixture;
 import io.dropwizard.testing.junit.ResourceTestRule;
 import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Test;
-import org.modelmapper.ModelMapper;
 
 import java.util.List;
 
@@ -31,7 +31,7 @@ public class OrganizationResourceTest {
 
     private static final OrganizationDAO dao = mock(OrganizationDAO.class);
     private final Organization organization = Fixture.organization(organizationOid);
-    private final ModelMapper modelMapper = new ModelMapper();
+    private final OrganizationModelMapper modelMapper = new OrganizationModelMapper();
 
     @ClassRule
     public static final ResourceTestRule resources = ResourceTestRule.builder()
@@ -69,6 +69,7 @@ public class OrganizationResourceTest {
         DTOTestUtil.i18NDTOsEqual(expected.getPreviouslyGainedExperience(), actual.getPreviouslyGainedExperience());
         DTOTestUtil.i18NDTOsEqual(expected.getLanguageStudies(), actual.getLanguageStudies());
         DTOTestUtil.i18NDTOsEqual(expected.getInternship(), actual.getInternship());
+        assertEquals(expected.getTranslations().size(), actual.getTranslations().size());
         someDTOsEqual(expected.getSome(), actual.getSome());
         contactInfoDTOsEqual(filterLang(expected.getContactInfos(), "fi"), filterLang(actual.getContactInfos(), "fi"));
         contactInfoDTOsEqual(filterLang(expected.getContactInfos(), "sv"), filterLang(actual.getContactInfos(), "sv"));

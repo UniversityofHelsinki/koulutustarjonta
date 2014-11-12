@@ -7,6 +7,7 @@ import fi.helsinki.koulutustarjonta.domain.ApplicationSystem;
 import fi.helsinki.koulutustarjonta.dto.ApplicationPeriodDTO;
 import fi.helsinki.koulutustarjonta.dto.ApplicationSystemDTO;
 import fi.helsinki.koulutustarjonta.dto.SeasonDTO;
+import fi.helsinki.koulutustarjonta.mapping.ApplicationSystemModelMapper;
 import fi.helsinki.koulutustarjonta.test.Fixture;
 import io.dropwizard.testing.junit.ResourceTestRule;
 import org.junit.Before;
@@ -27,7 +28,7 @@ public class ApplicationSystemResourceTest {
     private static final String AS_OID = "as_oid";
     private static final ApplicationSystemDAO dao = mock(ApplicationSystemDAO.class);
     private final ApplicationSystem applicationSystem = Fixture.applicationSystem(AS_OID);
-    private final ModelMapper modelMapper = new ModelMapper();
+    private final ModelMapper modelMapper = new ApplicationSystemModelMapper();
 
     @ClassRule
     public static final ResourceTestRule resources = ResourceTestRule.builder()
@@ -63,6 +64,7 @@ public class ApplicationSystemResourceTest {
         ApplicationPeriodDTO actualAP = actual.getApplicationPeriods().get(0);
         assertNotNull(actualAP);
         applicationPeriodDTOsEqual(expectedAP, actualAP);
+        assertEquals(expected.getTranslations().size(), actual.getTranslations().size());
     }
 
     private void applicationPeriodDTOsEqual(ApplicationPeriodDTO expected, ApplicationPeriodDTO actual) {
