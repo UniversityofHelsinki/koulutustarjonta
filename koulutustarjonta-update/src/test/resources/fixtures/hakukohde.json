@@ -22,6 +22,11 @@
     "alinValintaPistemaara" : 0,
     "ylinValintapistemaara" : 0,
     "aloituspaikatLkm" : 8,
+    "aloituspaikatKuvaukset" : {
+        "kieli_fi" : "8 fi",
+        "kieli_sv" : "8 sv",
+        "kieli_en" : "8 en"
+    },
     "edellisenVuodenHakijatLkm" : 0,
     "valintojenAloituspaikatLkm" : 0,
     "tila" : "JULKAISTU",

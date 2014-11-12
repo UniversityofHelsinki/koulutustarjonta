@@ -98,11 +98,14 @@ TO_DATE('2015/02/01 15:00:00', 'yyyy/mm/dd hh24:mi:ss'),
 -- hakukohde
 INSERT INTO hakukohde
             (id, nimi_fi, nimi_sv, nimi_en, aloituspaikat,
+            aloituspaikat_fi, aloituspaikat_sv,
+            aloituspaikat_en,
             sorakuvaus_fi, sorakuvaus_sv, sorakuvaus_en,
             lisatiedot_fi, lisatiedot_sv, lisatiedot_en,
             valintaper_fi, valintaper_sv, valintaper_en,
             hakukelp_kuvaus_fi, hakukelp_kuvaus_sv, hakukelp_kuvaus_en, id_haku)
-VALUES ('hakukohde_id1', 'nimi fi', 'nimi sv', 'nimi en', 11, 'sora fi', 'sora sv', 'sora en',
+VALUES ('hakukohde_id1', 'nimi fi', 'nimi sv', 'nimi en', 11,
+'11 fi', '11 sv', '11 en', 'sora fi', 'sora sv', 'sora en',
 'lisatiedot fi', 'lisatiedot sv', 'lisatiedot en',
 'valintaper fi', 'valintaper sv', 'valintaper en',
 'kuvaus fi', 'kuvaus sv', 'kuvaus en', 'haku_id1');

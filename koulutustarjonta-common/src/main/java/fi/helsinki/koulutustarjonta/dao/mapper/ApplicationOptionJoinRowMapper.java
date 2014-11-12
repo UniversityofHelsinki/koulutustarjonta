@@ -34,6 +34,7 @@ public class ApplicationOptionJoinRowMapper implements ResultSetMapper<Applicati
         ao.setOid(r.getString("id"));
         ao.setName(resolveI18N(r, "nimi"));
         ao.setStartingQuota(r.getInt("aloituspaikat"));
+        ao.setStartingQuotaDescription(resolveI18N(r, "aloituspaikat"));
         ao.setRequirementDescription(resolveI18N(r, "hakukelp_kuvaus"));
         ao.setAdditionalInfo(resolveI18N(r, "lisatiedot"));
         ao.setSelectionCriteria(resolveI18N(r, "valintaper"));

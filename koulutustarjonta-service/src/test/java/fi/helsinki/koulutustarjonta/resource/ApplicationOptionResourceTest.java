@@ -66,6 +66,7 @@ public class ApplicationOptionResourceTest {
         assertEquals(expected.getOid(), actual.getOid());
         DTOTestUtil.i18NDTOsEqual(expected.getName(), actual.getName());
         assertEquals(expected.getStartingQuota(), actual.getStartingQuota());
+        DTOTestUtil.i18NDTOsEqual(expected.getStartingQuotaDescription(), actual.getStartingQuotaDescription());
         DTOTestUtil.i18NDTOsEqual(expected.getSora(), actual.getSora());
         DTOTestUtil.i18NDTOsEqual(expected.getAdditionalInfo(), actual.getAdditionalInfo());
         DTOTestUtil.i18NDTOsEqual(expected.getSelectionCriteria(), actual.getSelectionCriteria());

@@ -60,6 +60,9 @@ public class ApplicationOptionDAOTest extends BaseDAOTest {
         assertEquals("nimi sv", ao.getName().getSv());
         assertEquals("nimi en", ao.getName().getEn());
         assertEquals(11, ao.getStartingQuota());
+        assertEquals("11 fi", ao.getStartingQuotaDescription().getFi());
+        assertEquals("11 sv", ao.getStartingQuotaDescription().getSv());
+        assertEquals("11 en", ao.getStartingQuotaDescription().getEn());
         assertEquals("sora fi", ao.getSora().getFi());
         assertEquals("sora sv", ao.getSora().getSv());
         assertEquals("sora en", ao.getSora().getEn());
@@ -154,6 +157,7 @@ public class ApplicationOptionDAOTest extends BaseDAOTest {
         assertEquals(fixture1.getOid(), ao.getOid());
         i18NEquals(fixture1.getName(), ao.getName());
         assertEquals(fixture1.getStartingQuota(), ao.getStartingQuota());
+        i18NEquals(fixture1.getStartingQuotaDescription(), ao.getStartingQuotaDescription());
         i18NEquals(fixture1.getSora(), ao.getSora());
         i18NEquals(fixture1.getAdditionalInfo(), ao.getAdditionalInfo());
         i18NEquals(fixture1.getSelectionCriteria(), ao.getSelectionCriteria());

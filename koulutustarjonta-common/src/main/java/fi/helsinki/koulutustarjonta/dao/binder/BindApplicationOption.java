@@ -29,6 +29,7 @@ public @interface BindApplicationOption {
                     q.bind("id", ao.getOid());
                     BindUtil.bindI18N(q, "nimi", ao.getName());
                     q.bind("aloituspaikat", ao.getStartingQuota());
+                    BindUtil.bindI18N(q, "aloituspaikat", ao.getStartingQuotaDescription());
                     BindUtil.bindI18N(q, "hakukelp_kuvaus", ao.getRequirementDescription());
                     BindUtil.bindI18N(q, "lisatiedot", ao.getAdditionalInfo());
                     BindUtil.bindI18N(q, "valintaper", ao.getSelectionCriteria());

@@ -44,6 +44,9 @@ public class ApplicationOptionConverterTest extends AbstractClientConverterTest 
         assertEquals("Kemia, luonnontieteiden kandidaatti ja filosofian maisteri", ao.getName().getFi());
         assertEquals("Kemi, kandidat i naturvetenskaper och filosofie magister", ao.getName().getSv());
         assertEquals(8, ao.getStartingQuota());
+        assertEquals("8 fi", ao.getStartingQuotaDescription().getFi());
+        assertEquals("8 sv", ao.getStartingQuotaDescription().getSv());
+        assertEquals("8 en", ao.getStartingQuotaDescription().getEn());
         assertNotNull(ao.getRequirements());
         assertEquals(1, ao.getRequirements().size());
         I18N suitability = ao.getRequirements().get(0).getDescription();

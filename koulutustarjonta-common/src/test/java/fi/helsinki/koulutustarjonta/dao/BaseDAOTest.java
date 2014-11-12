@@ -15,6 +15,7 @@ import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Calendar;
+import java.util.TimeZone;
 
 import static org.junit.Assert.assertEquals;
 
@@ -32,6 +33,9 @@ public class BaseDAOTest {
         String url = System.getProperty("db.url");
         String user = System.getProperty("db.user");
         String passwd = System.getProperty("db.passwd");
+
+        TimeZone tz = TimeZone.getTimeZone("EET");
+        TimeZone.setDefault(tz);
 
         ds = new OracleDataSource();
         ds.setURL(url);

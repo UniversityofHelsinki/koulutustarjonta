@@ -17,6 +17,7 @@ public class ApplicationOption {
     private String oid;
     private I18N name;
     private int startingQuota;//aloituspaikat
+    private I18N startingQuotaDescription;//aloituspaikkakuvaus
     private I18N requirementDescription;//hakukelpoisuusvaatimus kuvaus
     private I18N additionalInfo;//lisatiedot
     private I18N selectionCriteria;//valintaperustekuvaus

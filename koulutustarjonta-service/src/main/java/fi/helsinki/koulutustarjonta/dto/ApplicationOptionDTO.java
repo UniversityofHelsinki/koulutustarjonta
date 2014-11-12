@@ -23,6 +23,8 @@ public class ApplicationOptionDTO {
     private I18NDTO name;
     @JsonProperty("aloituspaikat")
     private int startingQuota;
+    @JsonProperty("aloituspaikat_kuvaus")
+    private I18NDTO startingQuotaDescription;
     @JsonProperty("hakukelpoisuusvaatimus_kuvaus")
     private I18NDTO requirementDescription;
     @JsonProperty("lisatiedot")

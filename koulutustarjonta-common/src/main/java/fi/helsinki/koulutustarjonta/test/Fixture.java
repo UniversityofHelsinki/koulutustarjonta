@@ -49,6 +49,7 @@ public class Fixture {
         ao.setOid(oid);
         ao.setName(new I18N("name fi", "name sv", "name en"));
         ao.setStartingQuota(10);
+        ao.setStartingQuotaDescription(new I18N("10 fi", "10 sv", "10 en"));
         ao.setRequirementDescription(
                 new I18N("suitability desc fi", "suitability desc sv", "suitability desc en"));
         ao.setAdditionalInfo(new I18N("info fi", "info sv", "info en"));

@@ -29,6 +29,7 @@ public class ApplicationOptionConverter extends BaseConverter {
         ao.setOid(content.get("oid").textValue());
         ao.setName(convertToI18N(content.get("hakukohteenNimet")));
         ao.setStartingQuota(content.get("aloituspaikatLkm").intValue());
+        ao.setStartingQuotaDescription(convertToI18N(content.get("aloituspaikatKuvaukset")));
         ao.setRequirements(
                 Lists.newArrayList(content.get("hakukelpoisuusvaatimusUris")).stream()
                         .map(uri -> new Requirement(getCode(uri.textValue()).getName()))
