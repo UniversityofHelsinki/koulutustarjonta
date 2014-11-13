@@ -24,7 +24,7 @@ public class ApplicationSystemDTO {
     private I18NDTO applicationMethod;
     @JsonProperty("hakuvuosi")
     private int applicationYear;
-    @JsonProperty("kaukausi")
+    @JsonProperty("hakukausi")
     private SeasonDTO applicationSeason;
     @JsonProperty("koulutuksen_alkamisvuosi")
     private int educationStartYear;
