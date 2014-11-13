@@ -40,7 +40,7 @@ public class Fixture {
         lo.setTeachingLanguages(Lists.newArrayList(teachingLanguage1, teachingLanguage2));
         lo.setApplicationOptions(Lists.newArrayList("hakukohde_id2"));
         lo.setProvider("organisaatio_id2");
-        lo.setParent("1.2.3");
+        lo.setParents(Lists.newArrayList("1.2.3"));
         return lo;
     }
 

@@ -37,12 +37,14 @@ public class LearningOpportunityObjectGraphBuilder {
                 .map(row -> row.getApplicationOptionOid())
                 .distinct()
                 .collect(toList()));
-        List<LearningOpportunityJoinRow> parentRows = rows.stream()
-                .filter(row -> row.getParentOid() != null)
-                .collect(toList());
-        if (!parentRows.isEmpty()) {
-           lo.setParent(parentRows.get(0).getParentOid());
-        }
+
+        lo.setParents(rows
+        .stream()
+        .filter(row -> row.getParentOid() != null)
+        .map(row -> row.getParentOid())
+        .distinct()
+        .collect(toList()));
+
         lo.setChildren(rows
                 .stream()
                 .filter(row -> row.getChildOid() != null)

@@ -121,14 +121,14 @@ public interface LearningOpportunityJDBI {
     List<LearningOpportunityJoinRow> findJoinRowsById(@Bind("id") String id);
 
     @SqlBatch("MERGE INTO opetuskieli USING dual on ( id = :id ) " +
-               "WHEN NOT MATCHED THEN INSERT (id, kieli, selite_fi, selite_sv, selite_en) VALUES (:id, :kieli, :selite_fi, :selite_sv, :selite_en)")
+            "WHEN NOT MATCHED THEN INSERT (id, kieli, selite_fi, selite_sv, selite_en) VALUES (:id, :kieli, :selite_fi, :selite_sv, :selite_en)")
     @BatchChunkSize(10)
     void insertTeachingLanguages(@BindTeachingLanguage List<TeachingLanguage> teachingLanguage);
 
     @SqlBatch("INSERT INTO koulutus_opetuskieli (id_koulutus, id_opetuskieli) VALUES (:id_koulutus, :id_opetuskieli)")
     @BatchChunkSize(10)
     void addTeachingLanguagesToLearningOpportunity(@Bind("id_koulutus") String learningOpportunityId,
-                                                            @Bind("id_opetuskieli") List<String> teachingLanguageIds);
+                                                   @Bind("id_opetuskieli") List<String> teachingLanguageIds);
 
     @SqlUpdate("DELETE FROM koulutus_opetuskieli WHERE id_koulutus = :id")
     void removeTeachingLanguagesFromLearningOpportunity(@Bind("id") String learningOpportunityId);
@@ -144,7 +144,7 @@ public interface LearningOpportunityJDBI {
     void removeDeletedApplicationOptions(@Bind("id_koulutus") String learningOpportunityOid,
                                          @BindIn("current") List<String> currentApplicationOptionOids);
 
-    @SqlUpdate("MERGE INTO koulutus_sisaltyvyys " +
+    @SqlBatch("MERGE INTO koulutus_sisaltyvyys " +
             "USING dual " +
             "ON (id_lapsi = :id_lapsi AND id_vanhempi = :id_vanhempi) " +
             "WHEN NOT MATCHED THEN " +
@@ -153,7 +153,8 @@ public interface LearningOpportunityJDBI {
             "SELECT 1 " +
             "FROM koulutus k " +
             "WHERE k.id = :id_vanhempi)")
-    void addParent(@Bind("id_lapsi") String childOid, @Bind("id_vanhempi") String parentOid);
+    @BatchChunkSize(10)
+    void addParents(@Bind("id_lapsi") String childOid, @Bind("id_vanhempi") List<String> parentOids);
 
     @SqlBatch("MERGE INTO koulutus_sisaltyvyys " +
             "USING dual " +

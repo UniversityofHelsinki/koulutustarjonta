@@ -4,7 +4,10 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.collect.Lists;
 import com.sun.jersey.api.client.GenericType;
 import com.sun.jersey.api.client.WebResource;
-import fi.helsinki.koulutustarjonta.client.converter.*;
+import fi.helsinki.koulutustarjonta.client.converter.ApplicationOptionConverter;
+import fi.helsinki.koulutustarjonta.client.converter.ApplicationSystemConverter;
+import fi.helsinki.koulutustarjonta.client.converter.LearningOpportunityWrapper;
+import fi.helsinki.koulutustarjonta.client.converter.SearchResultWrapper;
 import fi.helsinki.koulutustarjonta.domain.ApplicationOption;
 import fi.helsinki.koulutustarjonta.domain.ApplicationSystem;
 import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
@@ -89,8 +92,8 @@ public class TarjontaClient {
         LearningOpportunity learningOpportunity = learningOpportunityWrapper.getLearningOpportunity();
         learningOpportunity.setApplicationOptions(getApplicationOptionOidsByLearningOpportunity(oid));
         learningOpportunity.setChildren(getChildLearningOpportunities(learningOpportunityWrapper));
-        learningOpportunity.setParent(getParentLearningOpportunity(learningOpportunityWrapper));
-        LOG.debug(String.format("Related LOs for %s -> %d, %s", oid, learningOpportunity.getChildren().size(), learningOpportunity.getParent()));
+        learningOpportunity.setParents(getParentLearningOpportunities(learningOpportunityWrapper));
+        LOG.debug(String.format("Related LOs for %s -> %d, %s", oid, learningOpportunity.getChildren().size(), learningOpportunity.getParents().size()));
 
         return learningOpportunity;
     }
@@ -107,23 +110,16 @@ public class TarjontaClient {
                 loWrapper.getStartingSeasonCode());
     }
 
-    public String getParentLearningOpportunity(LearningOpportunityWrapper loWrapper) {
+    public List<String> getParentLearningOpportunities(LearningOpportunityWrapper loWrapper) {
 
         // get komo oid
         String komoOid = loWrapper.getKomoOid();
 
         List<String> parentKomoOids = searchParentKomos(komoOid);
 
-        List<String> parentOids = searchRelatedLearningOpportunities(parentKomoOids,
+        return searchRelatedLearningOpportunities(parentKomoOids,
                 String.valueOf(loWrapper.getStartingYear()),
                 loWrapper.getStartingSeasonCode());
-
-        if (parentOids.isEmpty()) {
-            return null;
-        }
-        else {
-            return parentOids.get(0);
-        }
     }
 
     private List<String> searchRelatedLearningOpportunities(List<String> komoOids,

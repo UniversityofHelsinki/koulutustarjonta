@@ -14,7 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class LearningOpportunityDTO {
 
     @JsonProperty("oid")
@@ -69,8 +69,8 @@ public class LearningOpportunityDTO {
     private List<String> applicationOptions;
     @JsonProperty("tarjoaja")
     private String provider;
-    @JsonProperty("sisaltyy_koulutukseen")
-    private String parent;
+    @JsonProperty("sisaltyy_koulutuksiin")
+    private List<String> parents;
     @JsonProperty("sisaltaa_koulutukset")
     private List<String> children;
 }

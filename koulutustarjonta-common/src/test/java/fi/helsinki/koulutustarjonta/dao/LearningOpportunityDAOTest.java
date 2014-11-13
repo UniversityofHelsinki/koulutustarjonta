@@ -17,7 +17,6 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 
 /**
  * @author Hannu Lyytikainen
@@ -127,7 +126,7 @@ public class LearningOpportunityDAOTest extends BaseDAOTest {
         assertEquals(1, applicationOptions.size());
         assertEquals("hakukohde_id1", applicationOptions.get(0));
         assertEquals("organisaatio_id1", lo.getProvider());
-        assertNull(lo.getParent());
+        assertEquals(0, lo.getParents().size());
         assertNotNull(lo.getChildren());
         assertEquals(1, lo.getChildren().size());
     }

@@ -21,14 +21,12 @@ public class LearningOpportunityModelMapper extends ModelMapper {
     class LearningOpportunityMap extends PropertyMap<LearningOpportunity, LearningOpportunityDTO> {
         final ApplicationOptionOidsConverter applicationOptionOidsConverter;
         final OrganizationOidConverter organizationOidConverter;
-        final LearningOpportunityOidConverter learningOpportunityOidConverter;
         final LearningOpportunityOidsConverter learningOpportunityOidsConverter;
 
         protected LearningOpportunityMap(final String apiEndpoint) {
             super();
             this.applicationOptionOidsConverter = new ApplicationOptionOidsConverter(apiEndpoint);
             this.organizationOidConverter = new OrganizationOidConverter(apiEndpoint);
-            this.learningOpportunityOidConverter = new LearningOpportunityOidConverter(apiEndpoint);
             this.learningOpportunityOidsConverter = new LearningOpportunityOidsConverter(apiEndpoint);
         }
 
@@ -37,7 +35,7 @@ public class LearningOpportunityModelMapper extends ModelMapper {
             map().setTranslations(source.getGoals().availableTranslations());
             using(applicationOptionOidsConverter).map().setApplicationOptions(source.getApplicationOptions());
             using(organizationOidConverter).map().setProvider(source.getProvider());
-            using(learningOpportunityOidConverter).map().setParent(source.getParent());
+            using(learningOpportunityOidsConverter).map().setParents(source.getParents());
             using(learningOpportunityOidsConverter).map().setChildren(source.getChildren());
         }
     }
@@ -67,24 +65,6 @@ public class LearningOpportunityModelMapper extends ModelMapper {
         @Override
         protected String convert(String source) {
             return String.format("%s/organisaatio/%s", apiEndpoint, source);
-        }
-    }
-
-    private class LearningOpportunityOidConverter extends AbstractConverter<String, String> {
-        final String apiEndpoint;
-
-        private LearningOpportunityOidConverter(String apiEndpoint) {
-            this.apiEndpoint = apiEndpoint;
-        }
-
-        @Override
-        protected String convert(String source) {
-            if  (source == null) {
-                return null;
-            }
-            else {
-                return String.format("%s/koulutus/%s", apiEndpoint, source);
-            }
         }
     }
 
