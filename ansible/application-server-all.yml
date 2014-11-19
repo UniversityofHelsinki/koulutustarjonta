@@ -3,21 +3,21 @@
 # This playbook installs runtime dependencies and applications
 
 - hosts: application-server
-  sudo: true
+  sudo: True
   vars_files:
     - "common/vars/main.yml"
   roles:
     - base
 
 - hosts: service-server
-  sudo: true
+  sudo: True
   vars_files:
     - "common/vars/main.yml"
   roles:
     - service
 
 - hosts: update-server
-  sudo: true
+  sudo: True
   vars_files:
     - "common/vars/main.yml"
   roles:

@@ -1,2 +1,8 @@
 [application-server]
 10.10.10.10
+
+[service-server]
+10.10.10.10
+
+[update-server]
+10.10.10.10

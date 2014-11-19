@@ -13,10 +13,10 @@
     register: rpm_file
 
   - name: Uninstall old {{ app_name }} version
-    yum: name={{ app_name }} state=absent
+    raw: sudo /usr/bin/yum -y erase {{ app_name }}
 
   - name: Install {{ app_name }}
-    yum: name={{ rpm_file.stdout }} state=present
+    raw: sudo /usr/bin/yum -y install {{ rpm_file.stdout }}
 
   - name: Remove {{ app_name }} rpm file
     file: path={{ rpm_file.stdout }} state=absent

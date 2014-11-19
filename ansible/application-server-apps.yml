@@ -3,14 +3,14 @@
 # This playbook installs applications
 
 - hosts: service-server
-  sudo: true
+  sudo: True
   vars_files:
     - "common/vars/main.yml"
   roles:
     - service
 
 - hosts: update-server
-  sudo: true
+  sudo: True
   vars_files:
     - "common/vars/main.yml"
   roles:
