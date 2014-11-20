@@ -28,6 +28,11 @@ import java.util.TimeZone;
  */
 public class KoulutustarjontaServiceApplication extends Application<KoulutustarjontaServiceConfig> {
 
+    public KoulutustarjontaServiceApplication() {
+        TimeZone tz = TimeZone.getTimeZone("EET");
+        TimeZone.setDefault(tz);
+    }
+
     public static void main(String[] args) throws Exception {
         new KoulutustarjontaServiceApplication().run(args);
     }
@@ -40,14 +45,10 @@ public class KoulutustarjontaServiceApplication extends Application<Koulutustarj
                 return configuration.getDatabase();
             }
         });
-
     }
 
     @Override
     public void run(KoulutustarjontaServiceConfig configuration, Environment environment) throws Exception {
-        TimeZone tz = TimeZone.getTimeZone("EET");
-        TimeZone.setDefault(tz);
-
         final DBIFactory factory = new DBIFactory();
         final DBI dbi = factory.build(environment, configuration.getDatabase(), "oracle");
 
