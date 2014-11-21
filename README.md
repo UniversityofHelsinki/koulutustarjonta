@@ -57,7 +57,12 @@ By default, tests are run agains local database runnin in Vagrant virtual machin
 Building RPMs
 -------------
 ```
-./gradlew clean rpm -Pdb.url=<jdbc url> -Pdb.user=<db user> -Pdb.passwd=<db password> -Papi.endpoint=<api endpoitn>
+./gradlew clean rpm -Pdb.url=<jdbc url> -Pdb.user=<db user> -Pdb.passwd=<db password> -Papi.endpoint=<api endpoint>
 ```
 
-
+Deployment
+----------
+After RPMs have been built, the two applications can be deployed using ansible
+```
+ ansible-playbook -i <inventory file> ansible/application-server-apps.yml -U <sudo user> -u <remote user>
+```
