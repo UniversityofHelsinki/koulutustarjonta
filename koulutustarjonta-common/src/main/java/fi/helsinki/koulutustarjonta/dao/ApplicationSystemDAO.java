@@ -25,7 +25,7 @@ public class ApplicationSystemDAO {
     }
 
     public void save(ApplicationSystem as) {
-
+        LOG.debug(String.format("Saving application system %s", as.getOid()));
         jdbi.upsertApplicationSystem(as);
         jdbi.upsertApplicationPeriods(as.getApplicationPeriods(),
                 as.getOid());

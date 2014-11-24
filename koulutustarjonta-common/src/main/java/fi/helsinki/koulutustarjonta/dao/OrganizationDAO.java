@@ -7,6 +7,8 @@ import fi.helsinki.koulutustarjonta.dao.mapper.OrganizationObjectBuilder;
 import fi.helsinki.koulutustarjonta.dao.util.OrganizationJoinRow;
 import fi.helsinki.koulutustarjonta.domain.ContactInfo;
 import fi.helsinki.koulutustarjonta.domain.Organization;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -16,6 +18,7 @@ import static java.util.stream.Collectors.toList;
  * @author Hannu Lyytikainen
  */
 public class OrganizationDAO {
+    private static final Logger LOG = LoggerFactory.getLogger(OrganizationDAO.class);
 
     private final OrganizationJDBI jdbi;
 
@@ -24,6 +27,7 @@ public class OrganizationDAO {
     }
 
     public void save(Organization organization) {
+        LOG.debug(String.format("Saving organization %s", organization.getOid()));
         jdbi.begin();
         jdbi.upsert(organization);
         List<ContactInfo> combinedContactInfos = Lists.newArrayList(organization.getContactInfos());

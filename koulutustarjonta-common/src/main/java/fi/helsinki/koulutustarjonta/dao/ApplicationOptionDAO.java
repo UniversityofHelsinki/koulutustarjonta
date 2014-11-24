@@ -24,6 +24,7 @@ public class ApplicationOptionDAO {
     }
 
     public void save(ApplicationOption applicationOption) {
+        LOG.debug(String.format("Saving application option %s", applicationOption.getOid()));
         jdbi.upsert(applicationOption);
         if (applicationOption.getExams() != null) {
             jdbi.upsertExams(applicationOption.getExams(), applicationOption.getOid());
