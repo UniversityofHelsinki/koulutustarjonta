@@ -3,6 +3,7 @@ package fi.helsinki.koulutustarjonta.resource;
 import com.google.common.collect.Lists;
 import com.sun.jersey.api.client.GenericType;
 import fi.helsinki.koulutustarjonta.dao.LearningOpportunityDAO;
+import fi.helsinki.koulutustarjonta.dao.exception.ResourceNotFound;
 import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
 import fi.helsinki.koulutustarjonta.dto.LearningOpportunityDTO;
 import fi.helsinki.koulutustarjonta.dto.TeachingLanguageDTO;
@@ -36,13 +37,13 @@ public class LearningOpportunityResourceTest {
             .build();
 
     @Before
-    public void setup() {
+    public void setup() throws ResourceNotFound {
         when(dao.findById(eq(oid))).thenReturn(learningOpportunity);
         when(dao.findAll()).thenReturn(Lists.newArrayList(learningOpportunity));
     }
 
     @Test
-    public void testGetLearningOpportunity() {
+    public void testGetLearningOpportunity() throws ResourceNotFound {
         LearningOpportunityDTO response = resources.client().resource(String.format("/koulutus/%s", oid))
                 .get(LearningOpportunityDTO.class);
         LearningOpportunityDTO expected = modelMapper.map(learningOpportunity, LearningOpportunityDTO.class);

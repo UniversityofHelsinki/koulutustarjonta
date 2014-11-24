@@ -1,6 +1,7 @@
 package fi.helsinki.koulutustarjonta.resource;
 
 import fi.helsinki.koulutustarjonta.dao.LearningOpportunityDAO;
+import fi.helsinki.koulutustarjonta.dao.exception.ResourceNotFound;
 import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
 import fi.helsinki.koulutustarjonta.dto.LearningOpportunityDTO;
 import fi.helsinki.koulutustarjonta.mapping.LearningOpportunityModelMapper;
@@ -39,7 +40,7 @@ public class LearningOpportunityResource {
 
     @GET
     @Path("/{oid}")
-    public LearningOpportunityDTO getLearningOpportunity(@PathParam("oid") String oid) {
+    public LearningOpportunityDTO getLearningOpportunity(@PathParam("oid") String oid) throws ResourceNotFound {
         return modelMapper.map(learningOpportunityDAO.findById(oid), LearningOpportunityDTO.class);
     }
 

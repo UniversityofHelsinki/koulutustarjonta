@@ -1,6 +1,7 @@
 package fi.helsinki.koulutustarjonta.dao;
 
 import com.google.common.collect.Lists;
+import fi.helsinki.koulutustarjonta.dao.exception.ResourceNotFound;
 import fi.helsinki.koulutustarjonta.dao.jdbi.LearningOpportunityJDBI;
 import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
 import fi.helsinki.koulutustarjonta.domain.TeachingLanguage;
@@ -57,7 +58,7 @@ public class LearningOpportunityDAOTest extends BaseDAOTest {
     }
 
     @Test
-    public void testFindById() {
+    public void testFindById() throws ResourceNotFound {
         LearningOpportunity lo = dao.findById(populatedOid1);
         assertNotNull(lo);
         assertEquals(populatedOid1, lo.getOid());
@@ -131,8 +132,14 @@ public class LearningOpportunityDAOTest extends BaseDAOTest {
         assertEquals(1, lo.getChildren().size());
     }
 
+    @Test(expected = ResourceNotFound.class)
+    public void testNotFound() throws ResourceNotFound {
+        dao.findById("invalidid");
+
+    }
+
     @Test
-    public void testInsert() {
+    public void testInsert() throws ResourceNotFound {
         LearningOpportunity lo = Fixture.learningOpportunity(oid2);
         dao.save(lo);
         LearningOpportunity fetched = dao.findById(oid2);
@@ -141,7 +148,7 @@ public class LearningOpportunityDAOTest extends BaseDAOTest {
     }
 
     @Test
-    public void testUpdate() {
+    public void testUpdate() throws ResourceNotFound {
         LearningOpportunity lo = Fixture.learningOpportunity(populatedOid1);
         dao.save(lo);
         LearningOpportunity fetched = dao.findById(populatedOid1);
