@@ -9,10 +9,7 @@ import fi.helsinki.koulutustarjonta.dao.jdbi.ApplicationOptionJDBI;
 import fi.helsinki.koulutustarjonta.dao.jdbi.ApplicationSystemJDBI;
 import fi.helsinki.koulutustarjonta.dao.jdbi.LearningOpportunityJDBI;
 import fi.helsinki.koulutustarjonta.dao.jdbi.OrganizationJDBI;
-import fi.helsinki.koulutustarjonta.resource.ApplicationOptionResource;
-import fi.helsinki.koulutustarjonta.resource.ApplicationSystemResource;
-import fi.helsinki.koulutustarjonta.resource.LearningOpportunityResource;
-import fi.helsinki.koulutustarjonta.resource.OrganizationResource;
+import fi.helsinki.koulutustarjonta.resource.*;
 import io.dropwizard.Application;
 import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.jdbi.DBIFactory;
@@ -68,5 +65,6 @@ public class KoulutustarjontaServiceApplication extends Application<Koulutustarj
         environment.jersey().register(aor);
         environment.jersey().register(asr);
         environment.jersey().register(or);
+        environment.jersey().register(new ResourceNotFoundExceptionMapper());
     }
 }
