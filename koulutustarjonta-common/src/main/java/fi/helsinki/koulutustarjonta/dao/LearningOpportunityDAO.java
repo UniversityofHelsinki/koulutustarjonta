@@ -26,6 +26,7 @@ public class LearningOpportunityDAO {
 
     public void save(LearningOpportunity learningOpportunity) {
         LOG.debug(String.format("Saving learning opportunity %s", learningOpportunity.getOid()));
+        jdbi.begin();
         jdbi.upsert(learningOpportunity);
         jdbi.insertTeachingLanguages(learningOpportunity.getTeachingLanguages());
         jdbi.removeTeachingLanguagesFromLearningOpportunity(learningOpportunity.getOid());
@@ -46,6 +47,7 @@ public class LearningOpportunityDAO {
         if (learningOpportunity.getChildren() != null) {
             jdbi.addChildren(learningOpportunity.getOid(), learningOpportunity.getChildren());
         }
+        jdbi.commit();
     }
 
     public List<LearningOpportunity> findAll() {

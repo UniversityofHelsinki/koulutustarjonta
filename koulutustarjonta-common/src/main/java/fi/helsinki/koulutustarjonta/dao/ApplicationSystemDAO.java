@@ -26,6 +26,7 @@ public class ApplicationSystemDAO {
 
     public void save(ApplicationSystem as) {
         LOG.debug(String.format("Saving application system %s", as.getOid()));
+        jdbi.begin();
         jdbi.upsertApplicationSystem(as);
         jdbi.upsertApplicationPeriods(as.getApplicationPeriods(),
                 as.getOid());
@@ -34,6 +35,7 @@ public class ApplicationSystemDAO {
                         .map(period -> period.getId())
                         .collect(Collectors.toList())
         );
+        jdbi.commit();
     }
 
     public ApplicationSystem findByOid(String oid) throws ResourceNotFound {

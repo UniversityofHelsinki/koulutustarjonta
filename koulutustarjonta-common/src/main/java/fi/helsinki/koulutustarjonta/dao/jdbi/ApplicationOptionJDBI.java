@@ -10,13 +10,14 @@ import org.skife.jdbi.v2.sqlobject.SqlQuery;
 import org.skife.jdbi.v2.sqlobject.SqlUpdate;
 import org.skife.jdbi.v2.sqlobject.customizers.BatchChunkSize;
 import org.skife.jdbi.v2.sqlobject.customizers.Mapper;
+import org.skife.jdbi.v2.sqlobject.mixins.Transactional;
 
 import java.util.List;
 
 /**
  * @author Hannu Lyytikainen
  */
-public interface ApplicationOptionJDBI {
+public interface ApplicationOptionJDBI extends Transactional<ApplicationOptionJDBI> {
 
     @SqlUpdate("MERGE INTO hakukohde USING dual ON ( id=:id ) " +
             "WHEN MATCHED THEN UPDATE SET " +
