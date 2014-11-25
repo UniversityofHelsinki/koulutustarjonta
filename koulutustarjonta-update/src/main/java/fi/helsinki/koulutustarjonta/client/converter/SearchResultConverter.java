@@ -10,16 +10,10 @@ import static java.util.stream.Collectors.toList;
 /**
  * @author Hannu Lyytikainen
  */
-public class SearchResultWrapper {
+public class SearchResultConverter {
 
-    private final JsonNode rootNode;
-
-    public SearchResultWrapper(JsonNode apiResult) {
-        this.rootNode = apiResult;
-    }
-
-    public List<String> getOids() {
-        return Lists.newArrayList(rootNode.get("result")
+    public List<String> convert(JsonNode apiResult) {
+        return Lists.newArrayList(apiResult.get("result")
                 .get("tulokset"))
                 .stream()
                 .map(provider ->

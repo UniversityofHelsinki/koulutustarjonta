@@ -13,23 +13,22 @@ import java.util.stream.Collectors;
 /**
  * @author Hannu Lyytikainen
  */
-public class LearningOpportunityWrapper extends BaseWrapper {
+public class LearningOpportunityConverter extends BaseConverter {
 
-    private final JsonNode content;
 
-    public LearningOpportunityWrapper(JsonNode apiResult, KoodistoClient koodistoClient) {
+    public LearningOpportunityConverter(KoodistoClient koodistoClient) {
         super(koodistoClient);
-        this.content = apiResult.get("result");
     }
 
-    public LearningOpportunity getLearningOpportunity() {
+    public LearningOpportunity convert(JsonNode apiCallResult) {
         LearningOpportunity lo = new LearningOpportunity();
 
+        JsonNode content = apiCallResult.get("result");
         lo.setOid(content.get("oid").textValue());
         lo.setQualification(resolveQualification(content.get("tutkintonimikes")));
         lo.setEducationalField(resolveMetaLangName(content.get("opintoala")));
         lo.setDegreeProgram(resolveDegreeProgram(content.get("koulutusohjelma")));
-        lo.setStartYear(getStartingYear());
+        lo.setStartYear(resolveStartingYear(apiCallResult));
         lo.setStartSeason(resolveMetaLangName(content.get("koulutuksenAlkamiskausi")));
         lo.setPlannedDurationValue(content.get("suunniteltuKestoArvo").asInt());
         lo.setPlannedDurationUnit(resolveMetaLangName(content.get("suunniteltuKestoTyyppi")));
@@ -61,16 +60,20 @@ public class LearningOpportunityWrapper extends BaseWrapper {
         return lo;
     }
 
-    public String getKomoOid() {
-        return content.get("komoOid").textValue();
+    public String resolveKomoOid(JsonNode apiCallResult) {
+        return resolveContent(apiCallResult).get("komoOid").textValue();
     }
 
-    public int getStartingYear() {
-        return content.get("koulutuksenAlkamisvuosi").intValue();
+    public int resolveStartingYear(JsonNode apiCallResult) {
+        return resolveContent(apiCallResult).get("koulutuksenAlkamisvuosi").intValue();
     }
 
-    public String getStartingSeasonCode() {
-        return resolveCode(content.get("koulutuksenAlkamiskausi"));
+    public String resolveStartingSeasonCode(JsonNode apiCallResult) {
+        return resolveCode(resolveContent(apiCallResult).get("koulutuksenAlkamiskausi"));
+    }
+
+    private JsonNode resolveContent(JsonNode apiCallResult) {
+        return apiCallResult.get("result");
     }
 
     private List<String> resolveTranslations(JsonNode goals) {

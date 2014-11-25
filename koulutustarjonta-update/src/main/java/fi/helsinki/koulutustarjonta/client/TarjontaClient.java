@@ -6,8 +6,8 @@ import com.sun.jersey.api.client.GenericType;
 import com.sun.jersey.api.client.WebResource;
 import fi.helsinki.koulutustarjonta.client.converter.ApplicationOptionConverter;
 import fi.helsinki.koulutustarjonta.client.converter.ApplicationSystemConverter;
-import fi.helsinki.koulutustarjonta.client.converter.LearningOpportunityWrapper;
-import fi.helsinki.koulutustarjonta.client.converter.SearchResultWrapper;
+import fi.helsinki.koulutustarjonta.client.converter.LearningOpportunityConverter;
+import fi.helsinki.koulutustarjonta.client.converter.SearchResultConverter;
 import fi.helsinki.koulutustarjonta.domain.ApplicationOption;
 import fi.helsinki.koulutustarjonta.domain.ApplicationSystem;
 import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
@@ -33,16 +33,18 @@ public class TarjontaClient {
     private WebResource linkResource;
     private ApplicationOptionConverter applicationOptionConverter;
     private ApplicationSystemConverter applicationSystemConverter;
-    private KoodistoClient koodistoClient;
+    private LearningOpportunityConverter learningOpportunityConverter;
+    private SearchResultConverter searchResultConverter;
 
     public TarjontaClient(WebResource learningOpportunityResource, WebResource applicationOptionResource,
                           WebResource applicationSystemResource, WebResource linkResource, KoodistoClient koodistoClient) {
         this.learningOpportunitResource = learningOpportunityResource;
-        this.koodistoClient = koodistoClient;
         this.applicationOptionResource = applicationOptionResource;
         this.applicationOptionConverter = new ApplicationOptionConverter(koodistoClient);
         this.applicationSystemResource = applicationSystemResource;
         this.applicationSystemConverter = new ApplicationSystemConverter(koodistoClient);
+        this.learningOpportunityConverter = new LearningOpportunityConverter(koodistoClient);
+        this.searchResultConverter = new SearchResultConverter();
         this.linkResource = linkResource;
     }
 
@@ -85,41 +87,39 @@ public class TarjontaClient {
 
     public LearningOpportunity getLearningOpportunity(String oid) {
         LOG.debug(String.format("Fetching learning opportunity %s", oid));
-        JsonNode learningOpportunityNode = learningOpportunitResource.path(oid).get(new GenericType<JsonNode>() {});
+        JsonNode apiCallResult = learningOpportunitResource.path(oid).get(new GenericType<JsonNode>() {});
 
-        LearningOpportunityWrapper learningOpportunityWrapper = new LearningOpportunityWrapper(learningOpportunityNode, koodistoClient);
-
-        LearningOpportunity learningOpportunity = learningOpportunityWrapper.getLearningOpportunity();
+        LearningOpportunity learningOpportunity = learningOpportunityConverter.convert(apiCallResult);
         learningOpportunity.setApplicationOptions(getApplicationOptionOidsByLearningOpportunity(oid));
-        learningOpportunity.setChildren(getChildLearningOpportunities(learningOpportunityWrapper));
-        learningOpportunity.setParents(getParentLearningOpportunities(learningOpportunityWrapper));
+        learningOpportunity.setChildren(getChildLearningOpportunities(apiCallResult));
+        learningOpportunity.setParents(getParentLearningOpportunities(apiCallResult));
         LOG.debug(String.format("Related LOs for %s -> %d, %s", oid, learningOpportunity.getChildren().size(), learningOpportunity.getParents().size()));
 
         return learningOpportunity;
     }
 
-    private List<String> getChildLearningOpportunities(LearningOpportunityWrapper loWrapper) {
+    private List<String> getChildLearningOpportunities(JsonNode apiCallResult) {
 
         // get komo oid
-        String komoOid = loWrapper.getKomoOid();
+        String komoOid = learningOpportunityConverter.resolveKomoOid(apiCallResult);
 
         List<String> childKomoOids = searchChildKomos(komoOid);
 
         return searchRelatedLearningOpportunities(childKomoOids,
-                String.valueOf(loWrapper.getStartingYear()),
-                loWrapper.getStartingSeasonCode());
+                String.valueOf(learningOpportunityConverter.resolveStartingYear(apiCallResult)),
+                learningOpportunityConverter.resolveStartingSeasonCode(apiCallResult));
     }
 
-    public List<String> getParentLearningOpportunities(LearningOpportunityWrapper loWrapper) {
+    public List<String> getParentLearningOpportunities(JsonNode apiCallResult) {
 
         // get komo oid
-        String komoOid = loWrapper.getKomoOid();
+        String komoOid = learningOpportunityConverter.resolveKomoOid(apiCallResult);
 
         List<String> parentKomoOids = searchParentKomos(komoOid);
 
         return searchRelatedLearningOpportunities(parentKomoOids,
-                String.valueOf(loWrapper.getStartingYear()),
-                loWrapper.getStartingSeasonCode());
+                String.valueOf(learningOpportunityConverter.resolveStartingYear(apiCallResult)),
+                learningOpportunityConverter.resolveStartingSeasonCode(apiCallResult));
     }
 
     private List<String> searchRelatedLearningOpportunities(List<String> komoOids,
@@ -132,8 +132,7 @@ public class TarjontaClient {
                             .queryParam("alkamisVuosi", startingYear)
                             .queryParam("alkamisKausi", startingSeasonCode)
                             .get(new GenericType<JsonNode>() {});
-                    SearchResultWrapper wrapper = new SearchResultWrapper(searchResult);
-                    return wrapper.getOids();
+                    return searchResultConverter.convert(searchResult);
 
                 })
                 .flatMap(oids -> oids.stream())

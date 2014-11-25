@@ -1,7 +1,7 @@
-package fi.helsinki.koulutustarjonta.client.wrapper;
+package fi.helsinki.koulutustarjonta.client.converter;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import fi.helsinki.koulutustarjonta.client.KoodistoClient;
-import fi.helsinki.koulutustarjonta.client.converter.LearningOpportunityWrapper;
 import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,19 +14,21 @@ import static org.junit.Assert.assertNotNull;
 /**
  * @author Hannu Lyytikainen
  */
-public class LearningOpportunityWrapperTest extends AbstractClientWrapperTest {
+public class LearningOpportunityConverterTest extends AbstractClientConverterTest {
 
-    LearningOpportunityWrapper wrapper;
+    LearningOpportunityConverter converter;
+    JsonNode fixture;
 
     @Before
     public void init() throws IOException {
         KoodistoClient koodistoClient = mockKoodistoClient();
-        wrapper = new LearningOpportunityWrapper(fixture("fixtures/koulutus.json"), koodistoClient);
+        converter = new LearningOpportunityConverter(koodistoClient);
+        fixture = fixture("fixtures/koulutus.json");
     }
 
     @Test
     public void testConvert() {
-        LearningOpportunity lo = wrapper.getLearningOpportunity();
+        LearningOpportunity lo = converter.convert(fixture);
         assertNotNull(lo);
         assertEquals("1.2.246.562.17.17939899864", lo.getOid());
         assertNotNull(lo.getQualification());

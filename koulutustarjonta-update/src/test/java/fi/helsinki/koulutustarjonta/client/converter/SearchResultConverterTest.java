@@ -13,20 +13,20 @@ import static org.junit.Assert.assertNotNull;
 /**
  * @author Hannu Lyytikainen
  */
-public class SearchResultWrapperTest extends AbstractClientConverterTest {
+public class SearchResultConverterTest extends AbstractClientConverterTest {
 
     JsonNode fixture;
-    SearchResultWrapper wrapper;
+    SearchResultConverter converter;
 
     @Before
     public void init() throws IOException {
-        JsonNode fixture = fixture("fixtures/koulutus_haku.json");
-        wrapper = new SearchResultWrapper(fixture);
+        converter = new SearchResultConverter();
+        fixture = fixture("fixtures/koulutus_haku.json");
     }
 
     @Test
-    public void testGetOids() {
-        List<String> oids = wrapper.getOids();
+    public void testConvert() {
+        List<String> oids = converter.convert(fixture);
         assertNotNull(oids);
         assertEquals(5, oids.size());
     }
