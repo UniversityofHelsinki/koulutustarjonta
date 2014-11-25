@@ -19,7 +19,7 @@ public class Fixture {
         lo.setDegreeProgram(new I18N("degree fi new", "degree sv new", "degree en new"));
         lo.setStartYear(3015);
         lo.setStartSeason(new I18N("season fi new", "season sv new", "season en new"));
-        lo.setPlannedDurationValue(5);
+        lo.setPlannedDurationValue("5");
         lo.setPlannedDurationUnit(new I18N("duration fi new", "duration sv new", "duration en new"));
         lo.setCreditValue(200);
         lo.setCreditUnit(new I18N("credits fi new", "credits sv new", "credits en new"));

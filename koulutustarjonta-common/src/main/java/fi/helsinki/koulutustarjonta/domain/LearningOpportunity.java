@@ -22,7 +22,7 @@ public class LearningOpportunity {
     private I18N degreeProgram;//tutkintoOhjelma
     private Integer startYear;//alkamisvuosi
     private I18N startSeason;//alkamiskausi
-    private Integer plannedDurationValue;//suunniteltu kesto arvo
+    private String plannedDurationValue;//suunniteltu kesto arvo
     private I18N plannedDurationUnit;//suunniteltu kesto yksikko
     private Integer creditValue;//laajuus arvo
     private I18N creditUnit;//laajuus yksikko

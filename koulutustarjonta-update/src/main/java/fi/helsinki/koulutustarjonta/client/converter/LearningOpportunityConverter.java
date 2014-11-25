@@ -30,7 +30,7 @@ public class LearningOpportunityConverter extends BaseConverter {
         lo.setDegreeProgram(resolveDegreeProgram(content.get("koulutusohjelma")));
         lo.setStartYear(resolveStartingYear(apiCallResult));
         lo.setStartSeason(resolveMetaLangName(content.get("koulutuksenAlkamiskausi")));
-        lo.setPlannedDurationValue(content.get("suunniteltuKestoArvo").asInt());
+        lo.setPlannedDurationValue(content.get("suunniteltuKestoArvo").textValue());
         lo.setPlannedDurationUnit(resolveMetaLangName(content.get("suunniteltuKestoTyyppi")));
         lo.setCreditValue(content.get("opintojenLaajuusarvo").get("arvo").asInt());
         lo.setCreditUnit(resolveMetaLangName(content.get("opintojenLaajuusyksikko")));

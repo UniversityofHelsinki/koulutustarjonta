@@ -1,0 +1,10 @@
+--liquibase formatted sql
+
+--changeset hannu:3
+UPDATE KOULUTUS
+SET SUUNNI_KESTO = NULL;
+
+ALTER TABLE KOULUTUS
+  MODIFY (
+  SUUNNI_KESTO       VARCHAR2(255 CHAR)
+  );

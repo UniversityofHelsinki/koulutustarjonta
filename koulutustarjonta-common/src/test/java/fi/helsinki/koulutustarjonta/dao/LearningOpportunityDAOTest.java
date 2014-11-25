@@ -75,7 +75,7 @@ public class LearningOpportunityDAOTest extends BaseDAOTest {
         assertEquals("alkamiskausi fi", lo.getStartSeason().getFi());
         assertEquals("alkamiskausi sv", lo.getStartSeason().getSv());
         assertEquals("alkamiskausi en", lo.getStartSeason().getEn());
-        assertEquals(Integer.valueOf(3), lo.getPlannedDurationValue());
+        assertEquals("3", lo.getPlannedDurationValue());
         assertEquals("suunni tyyppi fi", lo.getPlannedDurationUnit().getFi());
         assertEquals("suunni tyyppi sv", lo.getPlannedDurationUnit().getSv());
         assertEquals("suunni tyyppi en", lo.getPlannedDurationUnit().getEn());

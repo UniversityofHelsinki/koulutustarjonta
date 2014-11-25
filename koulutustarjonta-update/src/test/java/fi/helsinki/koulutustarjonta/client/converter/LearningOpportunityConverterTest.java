@@ -36,7 +36,7 @@ public class LearningOpportunityConverterTest extends AbstractClientConverterTes
         assertNotNull(lo.getDegreeProgram());
         assertEquals(Integer.valueOf(2015), lo.getStartYear());
         assertNotNull(lo.getStartSeason());
-        assertEquals(Integer.valueOf(2), lo.getPlannedDurationValue());
+        assertEquals("2", lo.getPlannedDurationValue());
         assertNotNull(lo.getPlannedDurationUnit());
         assertEquals(Integer.valueOf(120), lo.getCreditValue());
         assertNotNull(lo.getCreditUnit());

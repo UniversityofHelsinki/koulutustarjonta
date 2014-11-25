@@ -30,7 +30,7 @@ public class LearningOpportunityDTO {
     @JsonProperty("alkamiskausi")
     private I18NDTO startSeason;
     @JsonProperty("suunniteltu_kesto_arvo")
-    private Integer plannedDurationValue;
+    private String plannedDurationValue;
     @JsonProperty("suunniteltu_kesto_yksikko")
     private I18NDTO plannedDurationUnit;
     @JsonProperty("opintojen_laajuus_arvo")
