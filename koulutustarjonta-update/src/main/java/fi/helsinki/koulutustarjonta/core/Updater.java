@@ -72,6 +72,6 @@ public class Updater {
             }
         });
 
-        LOG.debug("Data update completed, update took %d seconds", (System.currentTimeMillis() - t1) / 1000);
+        LOG.debug(String.format("Data update completed, update took %d seconds", (System.currentTimeMillis() - t1) / 1000));
     }
 }
