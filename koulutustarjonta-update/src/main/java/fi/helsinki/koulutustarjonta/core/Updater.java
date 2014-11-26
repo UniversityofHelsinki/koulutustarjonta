@@ -42,6 +42,7 @@ public class Updater {
 
     public void update() {
         LOG.debug("Update data");
+        long t1 = System.currentTimeMillis();
         List<String> organizationOids = organisaatioClient.resolveFacultyOids("1.2.246.562.10.39218317368");
         organizationOids.forEach(organizationOid -> {
             Organization organization = null;
@@ -70,6 +71,7 @@ public class Updater {
                 }
             }
         });
-        LOG.debug("Data update completed");
+
+        LOG.debug("Data update completed, update took %d seconds", (System.currentTimeMillis() - t1) / 1000);
     }
 }
