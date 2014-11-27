@@ -19,7 +19,7 @@ dependencies {
     compile "org.antlr:stringtemplate:$stringtemplateVersion"
     testCompile "junit:junit:$junitVersion"
     testCompile "org.mockito:mockito-core:$mockitoVersion"
-    testCompile "io.dropwizard:dropwizard-testing:dropwizardVersion"
-    testCompile "io.dropwizard:dropwizard-core:dropwizardVersion"
+    testCompile "io.dropwizard:dropwizard-testing:$dropwizardVersion"
+    testCompile "io.dropwizard:dropwizard-core:$dropwizardVersion"
     compile files("../lib/ojdbc7.jar")
 }
