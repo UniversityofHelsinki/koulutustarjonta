@@ -4,12 +4,22 @@ subprojects {
     group = 'fi.helsinki.koulutustarjonta'
     version = '1.0-SNAPSHOT'
 
+    ext {
+        dropwizardVersion = '0.7.0'
+        sundialVersion = '1.1.3'
+        junitVersion = '4.11'
+        mockitoVersion = '1.9.5'
+        modelmapperVersion = '0.7.1'
+        stringtemplateVersion = '3.2.1'
+        lombokVersion = '1.14.4'
+    }
+
     repositories {
         mavenCentral()
     }
 
     dependencies {
-        compile "org.projectlombok:lombok:1.14.4"
+        compile "org.projectlombok:lombok:$lombokVersion"
     }
 
     test {

@@ -9,22 +9,17 @@ test {
     systemProperty 'db.passwd', project.hasProperty('db.passwd') ? project.getProperty('db.passwd') : 'koultarj'
 }
 
-repositories {
-    mavenCentral()
-}
-
 buildscript {
     dependencies {
     }
 }
 
 dependencies {
-    compile 'io.dropwizard:dropwizard-jdbi:0.7.0'
-    compile 'org.antlr:stringtemplate:3.2.1'
-    testCompile 'junit:junit:4.11'
-    testCompile 'org.mockito:mockito-core:1.9.5'
-    testCompile 'com.h2database:h2:1.4.178'
-    testCompile 'io.dropwizard:dropwizard-testing:0.7.0'
-    testCompile 'io.dropwizard:dropwizard-core:0.7.0'
-    compile files('../lib/ojdbc7.jar')
+    compile "io.dropwizard:dropwizard-jdbi:$dropwizardVersion"
+    compile "org.antlr:stringtemplate:$stringtemplateVersion"
+    testCompile "junit:junit:$junitVersion"
+    testCompile "org.mockito:mockito-core:$mockitoVersion"
+    testCompile "io.dropwizard:dropwizard-testing:dropwizardVersion"
+    testCompile "io.dropwizard:dropwizard-core:dropwizardVersion"
+    compile files("../lib/ojdbc7.jar")
 }
