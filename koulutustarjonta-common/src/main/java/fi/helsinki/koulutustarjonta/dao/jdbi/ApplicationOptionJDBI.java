@@ -27,16 +27,17 @@ public interface ApplicationOptionJDBI extends Transactional<ApplicationOptionJD
             "hakukelp_kuvaus_fi=:hakukelp_kuvaus_fi, hakukelp_kuvaus_sv=:hakukelp_kuvaus_sv, hakukelp_kuvaus_en=:hakukelp_kuvaus_en, " +
             "lisatiedot_fi=:lisatiedot_fi, lisatiedot_sv=:lisatiedot_sv, lisatiedot_en=:lisatiedot_en, " +
             "valintaper_fi=:valintaper_fi, valintaper_sv=:valintaper_sv, valintaper_en=:valintaper_en, " +
-            "sorakuvaus_fi=:sorakuvaus_fi, sorakuvaus_sv=:sorakuvaus_sv, sorakuvaus_en=:sorakuvaus_en, id_haku=:id_haku " +
+            "sorakuvaus_fi=:sorakuvaus_fi, sorakuvaus_sv=:sorakuvaus_sv, sorakuvaus_en=:sorakuvaus_en, " +
+            "id_haku=:id_haku, id_hakuaika=:id_hakuaika " +
             "WHEN NOT MATCHED THEN INSERT " +
             "(id, nimi_fi, nimi_sv, nimi_en, aloituspaikat, aloituspaikat_fi, aloituspaikat_sv, " +
             "aloituspaikat_en, hakukelp_kuvaus_fi, hakukelp_kuvaus_sv, hakukelp_kuvaus_en, " +
             "lisatiedot_fi, lisatiedot_sv, lisatiedot_en, valintaper_fi, valintaper_sv, valintaper_en, " +
-            "sorakuvaus_fi, sorakuvaus_sv, sorakuvaus_en, id_haku) " +
+            "sorakuvaus_fi, sorakuvaus_sv, sorakuvaus_en, id_haku, id_hakuaika) " +
             "VALUES (:id, :nimi_fi, :nimi_sv, :nimi_en, :aloituspaikat, :aloituspaikat_fi, :aloituspaikat_sv, " +
             ":aloituspaikat_en, :hakukelp_kuvaus_fi, :hakukelp_kuvaus_sv, :hakukelp_kuvaus_en, " +
             ":lisatiedot_fi, :lisatiedot_sv, :lisatiedot_en, :valintaper_fi, :valintaper_sv, :valintaper_en, " +
-            ":sorakuvaus_fi, :sorakuvaus_sv, :sorakuvaus_en, :id_haku)")
+            ":sorakuvaus_fi, :sorakuvaus_sv, :sorakuvaus_en, :id_haku, :id_hakuaika)")
     void upsert(@BindApplicationOption ApplicationOption applicationOption);
 
     @SqlQuery("select  " +

@@ -80,6 +80,7 @@ public class ApplicationOptionResourceTest {
         assertNotNull(actual.getRequirements());
         DTOTestUtil.i18NDTOsEqual(expected.getRequirements().get(0), actual.getRequirements().get(0));
         assertEquals(expected.getApplicationSystem(), actual.getApplicationSystem());
+        assertEquals(expected.getApplicationPeriod(), actual.getApplicationPeriod());
         assertEquals(expected.getTranslations().size(), actual.getTranslations().size());
     }
 

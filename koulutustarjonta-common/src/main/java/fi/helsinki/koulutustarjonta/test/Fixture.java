@@ -94,6 +94,7 @@ public class Fixture {
         r.setDescription(new I18N("requirement fi", "requirement sv", "requirement en"));
         ao.setRequirements(Lists.newArrayList(r));
         ao.setApplicationSystem("haku_id1");
+        ao.setApplicationPeriod("hakuaika_id1");
         return ao;
     }
 

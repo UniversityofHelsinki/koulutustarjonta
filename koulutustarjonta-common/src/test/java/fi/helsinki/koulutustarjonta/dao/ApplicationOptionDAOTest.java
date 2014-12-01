@@ -136,6 +136,7 @@ public class ApplicationOptionDAOTest extends BaseDAOTest {
         assertEquals("hakukelp sv", requirement.getDescription().getSv());
         assertEquals("hakukelp en", requirement.getDescription().getEn());
         assertEquals("haku_id1", ao.getApplicationSystem());
+        assertEquals("hakuaika_id1", ao.getApplicationPeriod());
     }
 
     @Test(expected = ResourceNotFound.class)
@@ -203,6 +204,7 @@ public class ApplicationOptionDAOTest extends BaseDAOTest {
         Requirement fixtureRequirement = fixture1.getRequirements().get(0);
         i18NEquals(fixtureRequirement.getDescription(), requirement.getDescription());
         assertEquals(fixture1.getApplicationSystem(), ao.getApplicationSystem());
+        assertEquals(fixture1.getApplicationPeriod(), ao.getApplicationPeriod());
     }
 
 

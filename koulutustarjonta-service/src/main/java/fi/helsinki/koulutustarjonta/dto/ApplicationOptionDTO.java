@@ -41,6 +41,8 @@ public class ApplicationOptionDTO {
     private List<I18NDTO> requirements;
     @JsonProperty("haku")
     private String applicationSystem;
+    @JsonProperty("hakuaika_id")
+    private String applicationPeriod;
     @JsonProperty("kuvauskielet")
     private List<String> translations;
 }

@@ -26,5 +26,5 @@ public class ApplicationOption {
     private List<Attachment> attachments;//liitteet
     private List<Requirement> requirements;//hakukelpoisuusvaatimukset
     private String applicationSystem;//haku
-
+    private String applicationPeriod;//hakuaika
 }
