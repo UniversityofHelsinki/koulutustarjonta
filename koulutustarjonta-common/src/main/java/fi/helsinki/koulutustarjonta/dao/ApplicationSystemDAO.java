@@ -27,15 +27,27 @@ public class ApplicationSystemDAO {
     public void save(ApplicationSystem as) {
         LOG.debug(String.format("Saving application system %s", as.getOid()));
         jdbi.begin();
-        jdbi.upsertApplicationSystem(as);
-        jdbi.upsertApplicationPeriods(as.getApplicationPeriods(),
-                as.getOid());
-        jdbi.removeDeletedApplicationPeriods(as.getOid(),
-                as.getApplicationPeriods().stream()
-                        .map(period -> period.getId())
-                        .collect(Collectors.toList())
-        );
-        jdbi.commit();
+        LOG.debug("Transaction begun");
+        try {
+            jdbi.upsertApplicationSystem(as);
+            LOG.debug("Application system upserted");
+            jdbi.upsertApplicationPeriods(as.getApplicationPeriods(),
+                    as.getOid());
+            LOG.debug("Application periods added");
+            List<String> currentApplicationPeriodIds = as.getApplicationPeriods()
+                    .stream()
+                    .map(period -> period.getId())
+                    .collect(Collectors.toList());
+            jdbi.clearDeletedApplicationPeriodsFromApplicationOptions(as.getOid(), currentApplicationPeriodIds);
+            jdbi.removeDeletedApplicationPeriods(as.getOid(), currentApplicationPeriodIds);
+            LOG.debug("ApplicationPeriods deleted");
+            jdbi.commit();
+        }
+        catch (Exception e) {
+            jdbi.rollback();
+            throw e;
+        }
+        LOG.debug("Transaction completed");
     }
 
     public ApplicationSystem findByOid(String oid) throws ResourceNotFound {
