@@ -48,7 +48,7 @@ public class ApplicationOptionConverter extends BaseConverter {
         ao.setApplicationSystem(content.get("hakuOid").textValue());
 
         if (content.has("hakuaikaId")) {
-            ao.setApplicationPeriod(content.get("hakuaikaId").textValue());
+            ao.setApplicationPeriodId(content.get("hakuaikaId").textValue());
         }
 
         return ao;

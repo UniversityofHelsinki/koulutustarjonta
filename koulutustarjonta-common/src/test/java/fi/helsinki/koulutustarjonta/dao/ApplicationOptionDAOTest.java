@@ -136,7 +136,24 @@ public class ApplicationOptionDAOTest extends BaseDAOTest {
         assertEquals("hakukelp sv", requirement.getDescription().getSv());
         assertEquals("hakukelp en", requirement.getDescription().getEn());
         assertEquals("haku_id1", ao.getApplicationSystem());
-        assertEquals("hakuaika_id1", ao.getApplicationPeriod());
+        ApplicationPeriod ap = ao.getApplicationPeriod();
+        assertNotNull(ap);
+        assertEquals("hakuaika_id1", ap.getId());
+        assertEquals("hakuaika nimi fi", ap.getName().getFi());
+        assertEquals("hakuaika nimi sv", ap.getName().getSv());
+        assertEquals("hakuaika nimi en", ap.getName().getEn());
+        Calendar apStarts = getZeroCalendar();
+        apStarts.set(Calendar.YEAR, 2015);
+        apStarts.set(Calendar.MONTH, Calendar.JANUARY);
+        apStarts.set(Calendar.DATE, 1);
+        apStarts.set(Calendar.HOUR_OF_DAY, 15);
+        Calendar apEnds = getZeroCalendar();
+        apEnds.set(Calendar.YEAR, 2015);
+        apEnds.set(Calendar.MONTH, Calendar.FEBRUARY);
+        apEnds.set(Calendar.DATE, 1);
+        apEnds.set(Calendar.HOUR_OF_DAY, 15);
+        assertEquals(apStarts.getTime(), ap.getStarts());
+        assertEquals(apEnds.getTime(), ap.getEnds());
     }
 
     @Test(expected = ResourceNotFound.class)
@@ -204,8 +221,23 @@ public class ApplicationOptionDAOTest extends BaseDAOTest {
         Requirement fixtureRequirement = fixture1.getRequirements().get(0);
         i18NEquals(fixtureRequirement.getDescription(), requirement.getDescription());
         assertEquals(fixture1.getApplicationSystem(), ao.getApplicationSystem());
-        assertEquals(fixture1.getApplicationPeriod(), ao.getApplicationPeriod());
+        ApplicationPeriod ap = ao.getApplicationPeriod();
+        assertNotNull(ap);
+        assertEquals("hakuaika_id1", ap.getId());
+        assertEquals("hakuaika nimi fi", ap.getName().getFi());
+        assertEquals("hakuaika nimi sv", ap.getName().getSv());
+        assertEquals("hakuaika nimi en", ap.getName().getEn());
+        Calendar apStarts = getZeroCalendar();
+        apStarts.set(Calendar.YEAR, 2015);
+        apStarts.set(Calendar.MONTH, Calendar.JANUARY);
+        apStarts.set(Calendar.DATE, 1);
+        apStarts.set(Calendar.HOUR_OF_DAY, 15);
+        Calendar apEnds = getZeroCalendar();
+        apEnds.set(Calendar.YEAR, 2015);
+        apEnds.set(Calendar.MONTH, Calendar.FEBRUARY);
+        apEnds.set(Calendar.DATE, 1);
+        apEnds.set(Calendar.HOUR_OF_DAY, 15);
+        assertEquals(apStarts.getTime(), ap.getStarts());
+        assertEquals(apEnds.getTime(), ap.getEnds());
     }
-
-
 }

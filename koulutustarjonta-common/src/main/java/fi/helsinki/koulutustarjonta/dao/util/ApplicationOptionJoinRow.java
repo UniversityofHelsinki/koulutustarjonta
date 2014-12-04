@@ -15,4 +15,5 @@ public class ApplicationOptionJoinRow {
     private final ExamEvent examEvent;
     private final Attachment attachment;
     private final Requirement requirement;
+    private final ApplicationPeriod applicationPeriod;
 }

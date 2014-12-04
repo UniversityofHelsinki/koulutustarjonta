@@ -80,7 +80,7 @@ public class ApplicationOptionResourceTest {
         assertNotNull(actual.getRequirements());
         DTOTestUtil.i18NDTOsEqual(expected.getRequirements().get(0), actual.getRequirements().get(0));
         assertEquals(expected.getApplicationSystem(), actual.getApplicationSystem());
-        assertEquals(expected.getApplicationPeriod(), actual.getApplicationPeriod());
+        applicationPeriodDTOsEqual(expected.getApplicationPeriod(), actual.getApplicationPeriod());
         assertEquals(expected.getTranslations().size(), actual.getTranslations().size());
     }
 
@@ -116,5 +116,12 @@ public class ApplicationOptionResourceTest {
         assertEquals(expected.getStreet(), actual.getStreet());
         assertEquals(expected.getPostalCode(), actual.getPostalCode());
         assertEquals(expected.getPostOffice(), actual.getPostOffice());
+    }
+
+    private void applicationPeriodDTOsEqual(ApplicationPeriodDTO expected, ApplicationPeriodDTO actual) {
+        assertEquals(expected.getId(), actual.getId());
+        DTOTestUtil.i18NDTOsEqual(expected.getName(), actual.getName());
+        assertEquals(expected.getStarts(), actual.getStarts());
+        assertEquals(expected.getEnds(), actual.getEnds());
     }
 }

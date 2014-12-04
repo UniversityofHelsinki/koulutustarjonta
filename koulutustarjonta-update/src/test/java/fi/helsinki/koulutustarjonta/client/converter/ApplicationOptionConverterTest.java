@@ -72,7 +72,6 @@ public class ApplicationOptionConverterTest extends AbstractClientConverterTest 
         List<Attachment> attachments = ao.getAttachments();
         assertNotNull(attachments);
         assertEquals(6, attachments.size());
-        assertEquals("457400", ao.getApplicationPeriod());
+        assertEquals("457400", ao.getApplicationPeriodId());
     }
-
 }

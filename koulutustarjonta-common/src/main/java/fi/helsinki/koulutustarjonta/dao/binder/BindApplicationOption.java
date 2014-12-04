@@ -35,7 +35,7 @@ public @interface BindApplicationOption {
                     BindUtil.bindI18N(q, "valintaper", ao.getSelectionCriteria());
                     BindUtil.bindI18N(q, "sorakuvaus", ao.getSora());
                     q.bind("id_haku", ao.getApplicationSystem());
-                    q.bind("id_hakuaika", ao.getApplicationPeriod());
+                    q.bind("id_hakuaika", ao.getApplicationPeriodId());
                 }
 
             };

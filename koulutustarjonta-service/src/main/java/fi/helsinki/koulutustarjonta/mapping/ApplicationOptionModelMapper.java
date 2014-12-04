@@ -7,6 +7,7 @@ import fi.helsinki.koulutustarjonta.dto.I18NDTO;
 import org.modelmapper.AbstractConverter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
+import org.modelmapper.convention.MatchingStrategies;
 
 /**
  * @author Hannu Lyytikainen
@@ -14,6 +15,7 @@ import org.modelmapper.PropertyMap;
 public class ApplicationOptionModelMapper extends ModelMapper {
     public ApplicationOptionModelMapper(String apiEndpoint) {
         super();
+        this.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         this.addConverter(new RequirementConverter());
         this.addMappings(new ApplicationOptionMap(apiEndpoint));
     }

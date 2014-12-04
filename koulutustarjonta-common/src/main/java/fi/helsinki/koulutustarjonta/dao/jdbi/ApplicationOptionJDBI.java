@@ -40,7 +40,7 @@ public interface ApplicationOptionJDBI extends Transactional<ApplicationOptionJD
             ":sorakuvaus_fi, :sorakuvaus_sv, :sorakuvaus_en, :id_haku, :id_hakuaika)")
     void upsert(@BindApplicationOption ApplicationOption applicationOption);
 
-    @SqlQuery("select  " +
+    @SqlQuery("SELECT  " +
             "h.*,  " +
             "v.id as v_id, v.kieli as v_kieli, v.tyyppi as v_tyyppi,  v.kuvaus as v_kuvaus, " +
             "ak.id as ak_id, ak.alkaa as ak_alkaa, ak.loppuu as ak_loppuu, " +
@@ -50,17 +50,21 @@ public interface ApplicationOptionJDBI extends Transactional<ApplicationOptionJD
             "l.kuvaus as l_kuvaus, l.osoite as l_osoite, l.postinumero as l_postinumero, " +
             "l.ptoimipaikka as l_ptoimipaikka, " +
             "hk.id as hk_id, hk.kuvaus_fi as hk_kuvaus_fi, " +
-            "hk.kuvaus_sv as hk_kuvaus_sv, hk.kuvaus_en as hk_kuvaus_en " +
-            "from hakukohde h " +
-            "left join " +
+            "hk.kuvaus_sv as hk_kuvaus_sv, hk.kuvaus_en as hk_kuvaus_en, " +
+            "ha.id as ha_id, ha.nimi_fi as ha_nimi_fi, ha.nimi_sv as ha_nimi_sv, ha.nimi_en as ha_nimi_en, " +
+            "ha.alkaa as ha_alkaa, ha.loppuu as ha_loppuu " +
+            "FROM hakukohde h " +
+            "LEFT JOIN " +
             "valintakoe v on v.id_hakukohde = h.id " +
-            "left join " +
+            "LEFT JOIN " +
             "valintakoe_ak ak on ak.id_valintakoe = v.id " +
-            "left join " +
+            "LEFT JOIN " +
             "liite l on l.id_hakukohde = h.id " +
-            "left join " +
+            "LEFT JOIN " +
             "hakukelp hk on hk.id_hakukohde = h.id " +
-            "where h.id = :id")
+            "LEFT JOIN " +
+            "hakuaika ha on ha.id = h.id_hakuaika " +
+            "WHERE h.id = :id")
     @Mapper(ApplicationOptionJoinRowMapper.class)
     List<ApplicationOptionJoinRow> findJoinRowsById(@Bind("id") String id);
 
@@ -74,16 +78,20 @@ public interface ApplicationOptionJDBI extends Transactional<ApplicationOptionJD
             "l.kuvaus as l_kuvaus, l.osoite as l_osoite, l.postinumero as l_postinumero, " +
             "l.ptoimipaikka as l_ptoimipaikka, " +
             "hk.id as hk_id, hk.kuvaus_fi as hk_kuvaus_fi, " +
-            "hk.kuvaus_sv as hk_kuvaus_sv, hk.kuvaus_en as hk_kuvaus_en " +
-            "from hakukohde h " +
-            "left join " +
+            "hk.kuvaus_sv as hk_kuvaus_sv, hk.kuvaus_en as hk_kuvaus_en, " +
+            "ha.id as ha_id, ha.nimi_fi as ha_nimi_fi, ha.nimi_sv as ha_nimi_sv, ha.nimi_en as ha_nimi_en, " +
+            "ha.alkaa as ha_alkaa, ha.loppuu as ha_loppuu " +
+            "FROM hakukohde h " +
+            "LEFT JOIN " +
             "valintakoe v on v.id_hakukohde = h.id " +
-            "left join " +
+            "LEFT JOIN " +
             "valintakoe_ak ak on ak.id_valintakoe = v.id " +
-            "left join " +
+            "LEFT JOIN " +
             "liite l on l.id_hakukohde = h.id " +
-            "left join " +
-            "hakukelp hk on hk.id_hakukohde = h.id ")
+            "LEFT JOIN " +
+            "hakukelp hk on hk.id_hakukohde = h.id " +
+            "LEFT JOIN " +
+            "hakuaika ha on ha.id = h.id_hakuaika")
     @Mapper(ApplicationOptionJoinRowMapper.class)
     List<ApplicationOptionJoinRow> findJoinRows();
 

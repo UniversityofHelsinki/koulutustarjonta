@@ -19,6 +19,7 @@ public class ApplicationOptionJoinRowMapper implements ResultSetMapper<Applicati
     private final ExamEventMapper eventMapper;
     private final AttachmentMapper attachmentMapper;
     private final RequirementMapper requirementMapper;
+    private final ApplicationPeriodMapper applicationPeriodMapper;
 
 
     public ApplicationOptionJoinRowMapper() {
@@ -26,6 +27,7 @@ public class ApplicationOptionJoinRowMapper implements ResultSetMapper<Applicati
         this.eventMapper = new ExamEventMapper();
         this.attachmentMapper = new AttachmentMapper();
         this.requirementMapper = new RequirementMapper();
+        this.applicationPeriodMapper = new ApplicationPeriodMapper();
     }
 
     @Override
@@ -40,11 +42,11 @@ public class ApplicationOptionJoinRowMapper implements ResultSetMapper<Applicati
         ao.setSelectionCriteria(resolveI18N(r, "valintaper"));
         ao.setSora(resolveI18N(r, "sorakuvaus"));
         ao.setApplicationSystem(r.getString("id_haku"));
-        ao.setApplicationPeriod(r.getString("id_hakuaika"));
         Exam exam = examMapper.map(index, r, ctx);
         ExamEvent event = eventMapper.map(index, r, ctx);
         Attachment attachment = attachmentMapper.map(index, r, ctx);
-        Requirement requirement = requirementMapper.map(index, r,ctx);
-        return new ApplicationOptionJoinRow(ao, exam, event, attachment, requirement);
+        Requirement requirement = requirementMapper.map(index, r, ctx);
+        ApplicationPeriod applicationPeriod = applicationPeriodMapper.map(index, r, ctx);
+        return new ApplicationOptionJoinRow(ao, exam, event, attachment, requirement, applicationPeriod);
     }
 }

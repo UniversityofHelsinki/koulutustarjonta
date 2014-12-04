@@ -6,7 +6,7 @@ import lombok.Setter;
 import java.util.List;
 
 /**
- * Models one application option (hakukohde).
+ * Application option, links a learning opportunity to an application system
  *
  * @author Hannu Lyytikainen
  */
@@ -16,15 +16,16 @@ public class ApplicationOption {
 
     private String oid;
     private I18N name;
-    private int startingQuota;//aloituspaikat
-    private I18N startingQuotaDescription;//aloituspaikkakuvaus
-    private I18N requirementDescription;//hakukelpoisuusvaatimus kuvaus
-    private I18N additionalInfo;//lisatiedot
-    private I18N selectionCriteria;//valintaperustekuvaus
-    private I18N sora;//sora kuvaus
-    private List<Exam> exams;//valintakokeet
-    private List<Attachment> attachments;//liitteet
-    private List<Requirement> requirements;//hakukelpoisuusvaatimukset
-    private String applicationSystem;//haku
-    private String applicationPeriod;//hakuaika
+    private int startingQuota;
+    private I18N startingQuotaDescription;
+    private I18N requirementDescription;
+    private I18N additionalInfo;
+    private I18N selectionCriteria;
+    private I18N sora;
+    private List<Exam> exams;
+    private List<Attachment> attachments;
+    private List<Requirement> requirements;
+    private String applicationSystem;
+    private ApplicationPeriod applicationPeriod;// for saving
+    private String applicationPeriodId;// for fetching
 }

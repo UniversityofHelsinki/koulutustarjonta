@@ -94,18 +94,13 @@ public class Fixture {
         r.setDescription(new I18N("requirement fi", "requirement sv", "requirement en"));
         ao.setRequirements(Lists.newArrayList(r));
         ao.setApplicationSystem("haku_id1");
-        ao.setApplicationPeriod("hakuaika_id1");
+        ao.setApplicationPeriod(applicationPeriod("hakuaika_id1"));
+        ao.setApplicationPeriodId("hakuaika_id1");
         return ao;
     }
 
     public static ApplicationSystem applicationSystem(String oid) {
-
-        Calendar apStartsCal = Calendar.getInstance();
-        apStartsCal.set(Calendar.MILLISECOND, 0);
-        Date apStarts = apStartsCal.getTime();
-        Date apEnds = new Date(apStarts.getTime() + 3600000L);
-
-        ApplicationPeriod ap = new ApplicationPeriod("ap id", new I18N("ap name fi", "ap name sv", "ap name en"), apStarts, apEnds);
+        ApplicationPeriod ap = applicationPeriod("ap id");
 
         Season applicationSeason = new Season("K", new I18N("a season fi", "a season sv", "a season en"));
         Season educationSeason = new Season("S", new I18N("e season fi", "e season sv", "e season en"));
@@ -116,6 +111,15 @@ public class Fixture {
                 2015, applicationSeason, 2016, educationSeason,
                 "www.applicationform.url", Lists.newArrayList(ap));
         return as;
+    }
+
+    public static ApplicationPeriod applicationPeriod(String id) {
+        Calendar apStartsCal = Calendar.getInstance();
+        apStartsCal.set(Calendar.MILLISECOND, 0);
+        Date apStarts = apStartsCal.getTime();
+        Date apEnds = new Date(apStarts.getTime() + 3600000L);
+
+        return new ApplicationPeriod(id, new I18N("ap name fi", "ap name sv", "ap name en"), apStarts, apEnds);
     }
 
     public static Organization organization(String oid) {

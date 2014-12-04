@@ -54,6 +54,7 @@ public class ApplicationOptionObjectGraphBuilder {
                 .collect(toList());
         ao.setRequirements(requirements);
 
+        ao.setApplicationPeriod(joinRows.get(0).getApplicationPeriod());
         return ao;
     }
 
