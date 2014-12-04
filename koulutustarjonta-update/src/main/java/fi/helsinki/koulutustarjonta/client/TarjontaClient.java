@@ -162,9 +162,7 @@ public class TarjontaClient {
 
     public ApplicationOption getApplicationOption(String oid) {
         LOG.debug(String.format("Fetching application option with oid %s", oid));
-        JsonNode applicationOptionJson = applicationOptionResource.path(oid)
-                .get(new GenericType<JsonNode>() {});
-
+        JsonNode applicationOptionJson = getApplicationOptionJson(oid);
         return applicationOptionConverter.convert(applicationOptionJson);
     }
 
@@ -186,15 +184,22 @@ public class TarjontaClient {
 
         return applicationOptionConverter.resolveOids(result)
                 .stream()
-                .filter(oid -> isApplicationOptionReleased(oid))
+                .map(oid -> getApplicationOptionJson(oid))
+                .filter(apiResult -> statusOk(apiResult) && isApplicationOptionReleased(apiResult))
+                .map(apiResult -> applicationOptionConverter.resolveOid(apiResult))
                 .collect(Collectors.toList());
     }
 
-    private boolean isApplicationOptionReleased(String oid) {
-        JsonNode result = applicationOptionResource
-                .path(oid)
+    private JsonNode getApplicationOptionJson(String oid) {
+        return applicationOptionResource.path(oid)
                 .get(new GenericType<JsonNode>() {});
-        return applicationOptionConverter.isApplicationOptionReleased(result);
     }
 
+    private boolean statusOk(JsonNode apiResult) {
+        return apiResult.get("status").textValue().equals("OK");
+    }
+
+    private boolean isApplicationOptionReleased(JsonNode apiResult) {
+        return applicationOptionConverter.isApplicationOptionReleased(apiResult);
+    }
 }

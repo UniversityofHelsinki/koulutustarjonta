@@ -78,6 +78,15 @@ public class ApplicationOptionConverter extends BaseConverter {
 
     }
 
+    /**
+     * Resolves an application option oid from a resource returned by OPH API.
+     * @param apiResult json doc
+     * @return oid
+     */
+    public String resolveOid(JsonNode apiResult) {
+        return resolveApplicationOptionContent(apiResult).get("oid").textValue();
+    }
+
     private JsonNode resolveApplicationOptionContent(JsonNode apiCallResult) {
         return apiCallResult.get("result");
     }
