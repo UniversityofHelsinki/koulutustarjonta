@@ -1,8 +1,8 @@
 import com.github.jengelman.gradle.plugins.shadow.transformers.ServiceFileTransformer
 
 apply plugin: 'application'
-apply plugin: 'rpm'
 apply plugin: 'com.github.johnrengelman.shadow'
+apply from: '../rpm.gradle'
 
 mainClassName = 'fi.helsinki.koulutustarjonta.KotaUpdateApplication'
 
@@ -21,17 +21,6 @@ shadowJar {
     exclude 'META-INF/*.DSA'
 }
 
-buildscript {
-    repositories {
-        mavenCentral()
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.netflix.nebula:gradle-ospackage-plugin:1.9.1'
-        classpath 'com.github.jengelman.gradle.plugins:shadow:1.1.0'
-    }
-}
-
 dependencies {
     compile "io.dropwizard:dropwizard-core:$dropwizardVersion"
     compile "io.dropwizard:dropwizard-client:$dropwizardVersion"
@@ -45,46 +34,5 @@ dependencies {
 }
 
 run {
-    args 'server', 'update-config.yml'
-}
-
-task rpm(type: Rpm, dependsOn: 'shadowJar') {
-    packageName = 'koulutustarjonta-update'
-    release = commitHash()
-    arch = NOARCH
-    os = LINUX
-    summary = "Koulutustarjonta Update"
-    description ''
-    user = "koultarj"
-
-    preInstall = file('src/deploy/rpm/pre_install')
-    postInstall = file('src/deploy/rpm/post_install')
-    preUninstall = file('src/deploy/rpm/pre_uninstall')
-
-    into '/opt/koulutustarjonta-update'
-
-    //application executable
-    from("build/libs") {
-        include "koulutustarjonta-update-" + version + ".jar"
-        //remove version from file to avoid having to redo config files on every release
-        rename { String fileName ->
-            fileName.replace("-$version", '')
-        }
-    }
-
-    //configuration file
-    from('src/deploy/config') {
-        fileType = CONFIG
-        into '/'
-        // insert db configuration parameters
-        expand(db_url: project.hasProperty('db.url') ? project.getProperty('db.url') : "",
-                db_user: project.hasProperty('db.user') ? project.getProperty('db.user') : "",
-                db_passwd: project.hasProperty('db.passwd') ? project.getProperty('db.passwd') : "")
-    }
-
-    // Upstart file for RHEL
-    from('src/deploy/upstart') {
-        fileType = CONFIG
-        into '/'
-    }
+    args 'server', 'config/dev/koulutustarjonta-update-config.yml'
 }

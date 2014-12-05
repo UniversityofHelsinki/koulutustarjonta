@@ -1,3 +1,13 @@
+server:
+  adminMinThreads: 1
+  adminMaxThreads: 64
+  applicationConnectors:
+    - type: http
+      port: 9090
+  adminConnectors:
+    - type: http
+      port: 9091
+
 # Logging settings.
 logging:
 
@@ -7,11 +17,12 @@ logging:
   # specific log levels
   loggers:
     "fi.helsinki.koulutustarjonta": DEBUG
+    "org.skife.jdbi": DEBUG
 
   appenders:
     - type: file
-      currentLogFilename: ./logs/koulutustarjonta-service.log
-      archivedLogFilenamePattern: ./logs/koulutustarjonta-service-%d.log.gz
+      currentLogFilename: /opt/koulutustarjonta-update/log/koulutustarjonta-update.log
+      archivedLogFilenamePattern: /opt/koulutustarjonta-update/log/archive/koulutustarjonta-update-%d.log.gz
       archivedFileCount: 15
       timeZone: UTC
 
@@ -20,13 +31,13 @@ database:
   driverClass: oracle.jdbc.OracleDriver
 
   # the username
-  user: koultarj
+  user: ${db_user}
 
   # the password
-  password: koultarj
+  password: ${db_passwd}
 
   # the JDBC URL
-  url: jdbc:oracle:thin:@10.10.10.10:1521:XE
+  url: ${db_url}
 
   # any properties specific to your JDBC driver:
   properties:
@@ -56,4 +67,27 @@ database:
   # the minimum amount of time an connection must sit idle in the pool before it is eligible for eviction
   minIdleTime: 1 minute
 
-apiEndpoint: http://10.10.10.10:8080
+tarjontaClient:
+  timeout: 10000ms
+  connectionTimeout: 10000ms
+  baseUrl: https://od.helsinki.fi/tarjonta-service/rest/v1/
+
+organisaatioClient:
+  timeout: 10000ms
+  connectionTimeout: 10000ms
+  baseUrl: https://od.helsinki.fi/organisaatio-service/rest/
+
+koodistoClient:
+  timeout: 10000ms
+  connectionTimeout: 10000ms
+  baseUrl: https://od.helsinki.fi/koodisto-service/rest/json/
+
+sundial:
+  thread-pool-size: 5
+  shutdown-on-unload: true
+  wait-on-shutdown: false
+  start-delay-seconds: 0
+  start-scheduler-on-load: true
+  global-lock-on-load: false
+
+updateCron: 0 0 15 * * ?

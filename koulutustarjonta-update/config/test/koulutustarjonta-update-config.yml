@@ -17,11 +17,12 @@ logging:
   # specific log levels
   loggers:
     "fi.helsinki.koulutustarjonta": DEBUG
+    "org.skife.jdbi": DEBUG
 
   appenders:
     - type: file
-      currentLogFilename: ./logs/koulutustarjonta-update.log
-      archivedLogFilenamePattern: ./logs/koulutustarjonta-update-%d.log.gz
+      currentLogFilename: /opt/koulutustarjonta-update/log/koulutustarjonta-update.log
+      archivedLogFilenamePattern: /opt/koulutustarjonta-update/log/archive/koulutustarjonta-update-%d.log.gz
       archivedFileCount: 15
       timeZone: UTC
 

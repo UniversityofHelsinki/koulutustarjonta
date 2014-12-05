@@ -17,14 +17,11 @@ logging:
   # specific log levels
   loggers:
     "fi.helsinki.koulutustarjonta": DEBUG
-    "org.skife.jdbi": DEBUG
 
   appenders:
-    - type: file
-      currentLogFilename: ./logs/koulutustarjonta-update.log
-      archivedLogFilenamePattern: ./logs/koulutustarjonta-update-%d.log.gz
-      archivedFileCount: 15
-      timeZone: UTC
+    - type: console
+      threshold: ALL
+      target: stdout
 
 database:
   # the name of your JDBC driver

@@ -2,7 +2,7 @@ subprojects {
     apply plugin: 'java'
     sourceCompatibility = '1.8'
     group = 'fi.helsinki.koulutustarjonta'
-    version = '1.0-SNAPSHOT'
+    version = commitHash()
 
     ext {
         dropwizardVersion = '0.7.0'
@@ -12,6 +12,17 @@ subprojects {
         modelmapperVersion = '0.7.1'
         stringtemplateVersion = '3.2.1'
         lombokVersion = '1.14.4'
+    }
+
+    buildscript {
+        repositories {
+            mavenCentral()
+            jcenter()
+        }
+        dependencies {
+            classpath 'com.netflix.nebula:gradle-ospackage-plugin:1.9.1'
+            classpath 'com.github.jengelman.gradle.plugins:shadow:1.1.0'
+        }
     }
 
     repositories {
