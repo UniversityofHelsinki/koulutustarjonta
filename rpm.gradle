@@ -1,8 +1,9 @@
 apply plugin: 'rpm'
 
-task rpm(type: Rpm, dependsOn: 'shadowJar') {
+task rpm(type: Rpm) {
     def rootFolder = "/opt/$project.name"
-    def env = project.getProperty('env')
+    def env = project.hasProperty('env') ? project.getProperty('env') : "";
+    println("ENV: " + env)
 
     packageName = project.name
     arch = NOARCH
