@@ -57,7 +57,7 @@ By default, tests are run agains local database runnin in Vagrant virtual machin
 Building RPMs
 -------------
 ```
-./gradlew clean rpm -Pdb.url=<jdbc url> -Pdb.user=<db user> -Pdb.passwd=<db password> -Papi.endpoint=<api endpoint>
+./gradlew clean rpm -Pdb.url=<jdbc url> -Pdb.user=<db user> -Pdb.passwd=<db password> -Papi.endpoint=<api endpoint> -Penv=<evnironment: dev|test|prod>
 ```
 
 Deployment
