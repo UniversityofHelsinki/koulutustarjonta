@@ -2,9 +2,10 @@ apply plugin: 'rpm'
 
 task rpm(type: Rpm) {
     def rootFolder = "/opt/$project.name"
-    def env = project.hasProperty('env') ? project.getProperty('env') : "";
+    def env = project.hasProperty('env') ? project.getProperty('env') : "dev";
 
     packageName = project.name
+    release = env
     arch = NOARCH
     os = LINUX
     summary = project.name
