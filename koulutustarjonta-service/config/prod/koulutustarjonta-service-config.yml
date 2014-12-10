@@ -4,14 +4,10 @@ logging:
   # The default level of all loggers. Can be OFF, ERROR, WARN, INFO, DEBUG, TRACE, or ALL.
   level: INFO
 
-  # specific log levels
-  loggers:
-    "fi.helsinki.koulutustarjonta": DEBUG
-
   appenders:
     - type: file
-      currentLogFilename: /opt/koulutustarjonta-update/log/koulutustarjonta-service.log
-      archivedLogFilenamePattern: /opt/koulutustarjonta-update/log/archive/koulutustarjonta-service-%d.log.gz
+      currentLogFilename: /opt/koulutustarjonta-service/log/koulutustarjonta-service.log
+      archivedLogFilenamePattern: /opt/koulutustarjonta-service/log/archive/koulutustarjonta-service-%d.log.gz
       archivedFileCount: 15
       timeZone: UTC
 

@@ -14,11 +14,6 @@ logging:
   # The default level of all loggers. Can be OFF, ERROR, WARN, INFO, DEBUG, TRACE, or ALL.
   level: INFO
 
-  # specific log levels
-  loggers:
-    "fi.helsinki.koulutustarjonta": DEBUG
-    "org.skife.jdbi": DEBUG
-
   appenders:
     - type: file
       currentLogFilename: /opt/koulutustarjonta-update/log/koulutustarjonta-update.log
