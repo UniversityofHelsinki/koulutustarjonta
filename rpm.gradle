@@ -6,7 +6,7 @@ task rpm(type: Rpm) {
 
     packageName = project.name
     release = env
-    arch = NOARCH
+    arch = X86_64
     os = LINUX
     summary = project.name
     description = "University of Helsinkig : Koulutustarjonta : $project.name"
