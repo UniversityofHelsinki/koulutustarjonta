@@ -29,13 +29,20 @@ public class OrganizationDAO {
     public void save(Organization organization) {
         LOG.debug(String.format("Saving organization %s", organization.getOid()));
         jdbi.begin();
-        jdbi.upsert(organization);
-        List<ContactInfo> combinedContactInfos = Lists.newArrayList(organization.getContactInfos());
-        combinedContactInfos.addAll(organization.getApplicantServices());
-        jdbi.upsertContactInfos(combinedContactInfos, organization.getOid());
-        jdbi.removeDeletedContactInfos(organization.getOid(), combinedContactInfos.stream()
-                .map(info -> info.getOid()).collect(toList()));
-        jdbi.commit();
+        try {
+            jdbi.upsert(organization);
+            List<ContactInfo> combinedContactInfos = Lists.newArrayList(organization.getContactInfos());
+            combinedContactInfos.addAll(organization.getApplicantServices());
+            jdbi.upsertContactInfos(combinedContactInfos, organization.getOid());
+            jdbi.removeDeletedContactInfos(organization.getOid(), combinedContactInfos.stream()
+                    .map(info -> info.getOid()).collect(toList()));
+            jdbi.commit();
+        }
+        catch (Exception e) {
+            LOG.warn("Failed to save organization, rolling back");
+            jdbi.rollback();
+            throw e;
+        }
     }
 
     public Organization findByOid(String oid) throws ResourceNotFound {

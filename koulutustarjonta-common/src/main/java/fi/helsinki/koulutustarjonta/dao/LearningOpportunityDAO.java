@@ -27,27 +27,33 @@ public class LearningOpportunityDAO {
     public void save(LearningOpportunity learningOpportunity) {
         LOG.debug(String.format("Saving learning opportunity %s", learningOpportunity.getOid()));
         jdbi.begin();
-        jdbi.upsert(learningOpportunity);
-        jdbi.insertTeachingLanguages(learningOpportunity.getTeachingLanguages());
-        jdbi.removeTeachingLanguagesFromLearningOpportunity(learningOpportunity.getOid());
-        jdbi.addTeachingLanguagesToLearningOpportunity(learningOpportunity.getOid(),
-                learningOpportunity.getTeachingLanguages()
-                        .stream()
-                        .map(x -> x.getLang())
-                        .collect(Collectors.toList())
-        );
-        if (learningOpportunity.getApplicationOptions() != null && !learningOpportunity.getApplicationOptions().isEmpty()) {
-            LOG.debug(String.format("Adding application options to learning opportunity %s", learningOpportunity.getApplicationOptions().toString()));
-            jdbi.addApplicationOptions(learningOpportunity.getOid(), learningOpportunity.getApplicationOptions());
-            jdbi.removeDeletedApplicationOptions(learningOpportunity.getOid(), learningOpportunity.getApplicationOptions());
+        try {
+            jdbi.upsert(learningOpportunity);
+            jdbi.insertTeachingLanguages(learningOpportunity.getTeachingLanguages());
+            jdbi.removeTeachingLanguagesFromLearningOpportunity(learningOpportunity.getOid());
+            jdbi.addTeachingLanguagesToLearningOpportunity(learningOpportunity.getOid(),
+                    learningOpportunity.getTeachingLanguages()
+                            .stream()
+                            .map(x -> x.getLang())
+                            .collect(Collectors.toList())
+            );
+            if (learningOpportunity.getApplicationOptions() != null && !learningOpportunity.getApplicationOptions().isEmpty()) {
+                LOG.debug(String.format("Adding application options to learning opportunity %s", learningOpportunity.getApplicationOptions().toString()));
+                jdbi.addApplicationOptions(learningOpportunity.getOid(), learningOpportunity.getApplicationOptions());
+                jdbi.removeDeletedApplicationOptions(learningOpportunity.getOid(), learningOpportunity.getApplicationOptions());
+            }
+            if (learningOpportunity.getParents() != null) {
+                jdbi.addParents(learningOpportunity.getOid(), learningOpportunity.getParents());
+            }
+            if (learningOpportunity.getChildren() != null) {
+                jdbi.addChildren(learningOpportunity.getOid(), learningOpportunity.getChildren());
+            }
+            jdbi.commit();
+        } catch (Exception e) {
+            LOG.warn("Failed to save learning opportunity, rolling back");
+            jdbi.rollback();
+            throw e;
         }
-        if (learningOpportunity.getParents() != null) {
-            jdbi.addParents(learningOpportunity.getOid(), learningOpportunity.getParents());
-        }
-        if (learningOpportunity.getChildren() != null) {
-            jdbi.addChildren(learningOpportunity.getOid(), learningOpportunity.getChildren());
-        }
-        jdbi.commit();
     }
 
     public List<LearningOpportunity> findAll() {

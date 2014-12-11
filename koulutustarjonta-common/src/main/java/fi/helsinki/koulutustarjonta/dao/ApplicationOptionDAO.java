@@ -26,21 +26,27 @@ public class ApplicationOptionDAO {
     public void save(ApplicationOption applicationOption) {
         LOG.debug(String.format("Saving application option %s", applicationOption.getOid()));
         jdbi.begin();
-        jdbi.upsert(applicationOption);
-        if (applicationOption.getExams() != null) {
-            jdbi.upsertExams(applicationOption.getExams(), applicationOption.getOid());
-            applicationOption.getExams().forEach(exam -> jdbi.upsertExamEvents(exam.getEvents(), exam.getOid()));
+        try {
+            jdbi.upsert(applicationOption);
+            if (applicationOption.getExams() != null) {
+                jdbi.upsertExams(applicationOption.getExams(), applicationOption.getOid());
+                applicationOption.getExams().forEach(exam -> jdbi.upsertExamEvents(exam.getEvents(), exam.getOid()));
+            }
+            if (applicationOption.getAttachments() != null) {
+                jdbi.removeAttachments(applicationOption.getOid());
+                jdbi.insertAttachments(applicationOption.getAttachments(), applicationOption.getOid());
+            }
+            if (applicationOption.getRequirements() != null) {
+                jdbi.removeRequirements(applicationOption.getOid());
+                jdbi.insertRequirements(applicationOption.getRequirements(),
+                        applicationOption.getOid());
+            }
+            jdbi.commit();
+        } catch (Exception e) {
+            LOG.warn("Failed to save application option, rolling back");
+            jdbi.rollback();
+            throw e;
         }
-        if (applicationOption.getAttachments() != null) {
-            jdbi.removeAttachments(applicationOption.getOid());
-            jdbi.insertAttachments(applicationOption.getAttachments(), applicationOption.getOid());
-        }
-        if (applicationOption.getRequirements() != null) {
-            jdbi.removeRequirements(applicationOption.getOid());
-            jdbi.insertRequirements(applicationOption.getRequirements(),
-                    applicationOption.getOid());
-        }
-        jdbi.commit();
     }
 
     public ApplicationOption findByOid(String oid) throws ResourceNotFound {
