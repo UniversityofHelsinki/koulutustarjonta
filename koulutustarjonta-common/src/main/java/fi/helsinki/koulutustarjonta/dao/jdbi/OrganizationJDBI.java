@@ -11,7 +11,7 @@ import org.skife.jdbi.v2.sqlobject.SqlBatch;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;
 import org.skife.jdbi.v2.sqlobject.SqlUpdate;
 import org.skife.jdbi.v2.sqlobject.customizers.BatchChunkSize;
-import org.skife.jdbi.v2.sqlobject.customizers.Mapper;
+import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapper;
 import org.skife.jdbi.v2.sqlobject.mixins.Transactional;
 import org.skife.jdbi.v2.sqlobject.stringtemplate.UseStringTemplate3StatementLocator;
 import org.skife.jdbi.v2.unstable.BindIn;
@@ -22,14 +22,13 @@ import java.util.List;
  * @author Hannu Lyytikainen
  */
 @UseStringTemplate3StatementLocator("/db/sql/templates/OrganizationJDBI.sql.stg")
+@RegisterMapper(OrganizationJoinRowMapper.class)
 public interface OrganizationJDBI extends Transactional<OrganizationJDBI> {
 
     @SqlQuery
-    @Mapper(OrganizationJoinRowMapper.class)
     List<OrganizationJoinRow> findByOid(@Bind("id") String oid);
 
     @SqlQuery
-    @Mapper(OrganizationJoinRowMapper.class)
     List<OrganizationJoinRow> findAll();
 
     @SqlUpdate
