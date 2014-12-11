@@ -58,7 +58,7 @@ def commitHash() {
         }
         catch (Exception e) {
             println("Could not execute git command, couldn't resolve hash")
-            hash = null;
+            hash = "noversion";
         }
     } else {
         hash = hash[0..6]
