@@ -99,12 +99,13 @@ public class LearningOpportunityConverter extends BaseConverter {
     }
 
     private TeachingLanguage resolveTeachingLanguage(JsonNode langNode) {
+
         if (langNode == null) {
             return null;
         }
         else {
             return new TeachingLanguage(langNode.get("arvo").textValue().toLowerCase(),
-                    convertToI18N(langNode.get("meta")));
+                    resolveMetaLangName(langNode));
         }
     }
 

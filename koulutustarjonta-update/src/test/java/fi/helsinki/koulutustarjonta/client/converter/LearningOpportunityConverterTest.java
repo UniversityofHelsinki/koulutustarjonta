@@ -3,10 +3,12 @@ package fi.helsinki.koulutustarjonta.client.converter;
 import com.fasterxml.jackson.databind.JsonNode;
 import fi.helsinki.koulutustarjonta.client.KoodistoClient;
 import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
+import fi.helsinki.koulutustarjonta.domain.TeachingLanguage;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -40,8 +42,7 @@ public class LearningOpportunityConverterTest extends AbstractClientConverterTes
         assertNotNull(lo.getPlannedDurationUnit());
         assertEquals(Integer.valueOf(120), lo.getCreditValue());
         assertNotNull(lo.getCreditUnit());
-        assertNotNull(lo.getTeachingLanguages());
-        assertEquals(3, lo.getTeachingLanguages().size());
+        validateTeachingLanguages(lo.getTeachingLanguages());
         assertNotNull(lo.getGoals());
         assertNotNull(lo.getStructure());
         assertNotNull(lo.getPostgraduateStudies());
@@ -57,5 +58,29 @@ public class LearningOpportunityConverterTest extends AbstractClientConverterTes
         assertNotNull(lo.getResearch());
         assertNotNull(lo.getThesis());
         assertEquals("1.2.246.562.10.94639300915", lo.getProvider());
+    }
+
+    private void validateTeachingLanguages(List<TeachingLanguage> teachnigLanguages) {
+        assertNotNull(teachnigLanguages);
+        assertEquals(3, teachnigLanguages.size());
+        teachnigLanguages.forEach(tl -> {
+                    if (tl.getLang().equals("fi")) {
+                        assertEquals("suomi", tl.getName().getFi());
+                        assertEquals("finska", tl.getName().getSv());
+                        assertEquals("Finnish", tl.getName().getEn());
+                    }
+                    if (tl.getLang().equals("sv")) {
+                        assertEquals("ruotsi", tl.getName().getFi());
+                        assertEquals("svenska", tl.getName().getSv());
+                        assertEquals("Swedish", tl.getName().getEn());
+                    }
+                    if (tl.getLang().equals("en")) {
+                        assertEquals("englanti", tl.getName().getFi());
+                        assertEquals("engelska", tl.getName().getSv());
+                        assertEquals("English", tl.getName().getEn());
+                    }
+                }
+        );
+
     }
 }
