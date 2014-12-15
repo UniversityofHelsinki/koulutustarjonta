@@ -6,3 +6,4 @@ build
 **/logs
 oracle/*.zip
 oracle/Disk1
+.DS_Store
