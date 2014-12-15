@@ -45,4 +45,5 @@ public class KotaUpdateConfiguration extends Configuration {
     @NotNull
     @JsonProperty("updateCron")
     private String updateCron;
+
 }

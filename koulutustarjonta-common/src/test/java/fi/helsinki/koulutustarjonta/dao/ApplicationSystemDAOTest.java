@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 /**
  * @author Hannu Lyytikainen
@@ -25,8 +26,10 @@ public class ApplicationSystemDAOTest extends BaseDAOTest {
 
     ApplicationSystemDAO dao;
     final String asOid1 = "as_oid_1";
+    final String asOid2 = "as_oid_2";
     final String populatedAsOid = "haku_id1";
-    final ApplicationSystem fixture1 = Fixture.applicationSystem(asOid1);
+    final ApplicationSystem withApplicationForm = Fixture.applicationSystemWithApplicationForm(asOid1);
+    final ApplicationSystem withoutApplicationForm = Fixture.applicationSystemWithoutApplicationForm(asOid2);
 
     @Before
     public void init() {
@@ -36,8 +39,10 @@ public class ApplicationSystemDAOTest extends BaseDAOTest {
     @After
     public void destroy() {
         Handle h = dbi.open();
-        h.execute("DELETE FROM hakuaika WHERE id_haku = ?", fixture1.getOid());
-        h.execute("DELETE FROM haku WHERE id = ?", fixture1.getOid());
+        h.execute("DELETE FROM hakuaika WHERE id_haku = ?", withApplicationForm.getOid());
+        h.execute("DELETE FROM haku WHERE id = ?", withApplicationForm.getOid());
+        h.execute("DELETE FROM hakuaika WHERE id_haku = ?", withoutApplicationForm.getOid());
+        h.execute("DELETE FROM haku WHERE id = ?", withoutApplicationForm.getOid());
         dbi.close(h);
     }
 
@@ -63,15 +68,22 @@ public class ApplicationSystemDAOTest extends BaseDAOTest {
     }
 
     @Test
-    public void testInsert() throws ResourceNotFound {
-        dao.save(fixture1);
-        ApplicationSystem as = dao.findByOid(fixture1.getOid());
-        applicationSystemsEqual(fixture1, as);
+    public void testInsertWithApplicationForm() throws ResourceNotFound {
+        dao.save(withApplicationForm);
+        ApplicationSystem as = dao.findByOid(withApplicationForm.getOid());
+        applicationSystemsEqual(withApplicationForm, as);
+    }
+
+    @Test
+    public void testInsertWithoutApplicationForm() throws ResourceNotFound {
+        dao.save(withoutApplicationForm);
+        ApplicationSystem as = dao.findByOid(withoutApplicationForm.getOid());
+        applicationSystemsEqual(withoutApplicationForm, as);
     }
 
     @Test
     public void testUpdate() throws ResourceNotFound {
-        ApplicationSystem fixture2 = Fixture.applicationSystem(populatedAsOid);
+        ApplicationSystem fixture2 = Fixture.applicationSystemWithApplicationForm(populatedAsOid);
         dao.save(fixture2);
         ApplicationSystem as = dao.findByOid(fixture2.getOid());
         applicationSystemsEqual(fixture2, as);
@@ -80,6 +92,7 @@ public class ApplicationSystemDAOTest extends BaseDAOTest {
     private void applicationSystemsEqual(ApplicationSystem expected, ApplicationSystem actual) {
         assertNotNull(actual);
         assertEquals(expected.getOid(), actual.getOid());
+        assertEquals(expected.getOpintopolkuFormUrl(), actual.getOpintopolkuFormUrl());
         i18NEquals(expected.getName(), actual.getName());
         i18NEquals(expected.getApplicationMethod(), actual.getApplicationMethod());
         assertEquals(expected.getApplicationYear(), actual.getApplicationYear());
@@ -118,6 +131,7 @@ public class ApplicationSystemDAOTest extends BaseDAOTest {
         assertEquals("koul alk kausi sv", as.getEducationStartSeason().getName().getSv());
         assertEquals("koul alk kausi en", as.getEducationStartSeason().getName().getEn());
         assertEquals("hakulomake url", as.getApplicationFormUrl());
+        assertNull(as.getOpintopolkuFormUrl());
         assertNotNull(as.getApplicationPeriods());
         assertEquals(1, as.getApplicationPeriods().size());
         ApplicationPeriod ap = as.getApplicationPeriods().get(0);
@@ -138,10 +152,6 @@ public class ApplicationSystemDAOTest extends BaseDAOTest {
         ends.set(Calendar.HOUR_OF_DAY, 15);
         assertEquals(starts.getTime(), ap.getStarts());
         assertEquals(ends.getTime(), ap.getEnds());
-
     }
-
-
-
 
 }

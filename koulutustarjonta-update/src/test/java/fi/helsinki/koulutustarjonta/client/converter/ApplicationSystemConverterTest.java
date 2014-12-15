@@ -2,6 +2,7 @@ package fi.helsinki.koulutustarjonta.client.converter;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import fi.helsinki.koulutustarjonta.client.KoodistoClient;
+import fi.helsinki.koulutustarjonta.config.OpintopolkuConfiguration;
 import fi.helsinki.koulutustarjonta.domain.ApplicationPeriod;
 import fi.helsinki.koulutustarjonta.domain.ApplicationSystem;
 import fi.helsinki.koulutustarjonta.domain.Code;
@@ -13,6 +14,7 @@ import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.when;
 
@@ -21,12 +23,14 @@ import static org.mockito.Mockito.when;
  */
 public class ApplicationSystemConverterTest extends AbstractClientConverterTest {
 
-    JsonNode fixture;
+    JsonNode withApplicationFormFixture;
+    JsonNode withoutApplicationFormFixture;
     ApplicationSystemConverter converter;
 
     @Before
     public void init() throws IOException {
         KoodistoClient koodistoClient = mockKoodistoClient();
+        OpintopolkuConfiguration opintopolku = mockOpintopolku();
 
         Code applicationMethod = new Code();
         applicationMethod.setName(new I18N("hakutapa fi", "hakutapa sv", "hakutapa en"));
@@ -42,13 +46,14 @@ public class ApplicationSystemConverterTest extends AbstractClientConverterTest 
         educationStartSeason.setName(new I18N("edu season fi", "edu season sv", "edu season en"));
         when(koodistoClient.getCode(eq("kausi_k#1"))).thenReturn(educationStartSeason);
 
-        converter = new ApplicationSystemConverter(koodistoClient);
-        fixture = fixture("fixtures/haku.json");
+        converter = new ApplicationSystemConverter(koodistoClient, opintopolku);
+        withApplicationFormFixture = fixture("fixtures/haku_with_application_form.json");
+        withoutApplicationFormFixture = fixture("fixtures/haku_without_application_form.json");
     }
 
     @Test
-    public void testConvert() {
-        ApplicationSystem as = converter.convert(fixture);
+    public void testConvertWithApplicationForm() {
+        ApplicationSystem as = converter.convert(withApplicationFormFixture);
         assertNotNull(as);
         assertEquals("1.2.246.562.29.31035368682", as.getOid());
         assertEquals("Haku avoimessa", as.getName().getFi());
@@ -68,6 +73,7 @@ public class ApplicationSystemConverterTest extends AbstractClientConverterTest 
         assertEquals("edu season sv", as.getEducationStartSeason().getName().getSv());
         assertEquals("edu season en", as.getEducationStartSeason().getName().getEn());
         assertEquals("http://www.helsinki.fi/ml/lomakkeet/opintooikeus.pdf", as.getApplicationFormUrl());
+        assertNull(as.getOpintopolkuFormUrl());
         assertNotNull(as.getApplicationPeriods());
         ApplicationPeriod ap = as.getApplicationPeriods().get(0);
         assertNotNull(ap);
@@ -77,6 +83,13 @@ public class ApplicationSystemConverterTest extends AbstractClientConverterTest 
         assertEquals("hakuaika en", ap.getName().getEn());
         assertEquals(1410152404012L, ap.getStarts().getTime());
         assertEquals(1411387241418L, ap.getEnds().getTime());
+    }
+
+    @Test
+    public void testConvertWithoutApplicationForm() {
+        ApplicationSystem as = converter.convert(withoutApplicationFormFixture);
+        assertNull(as.getApplicationFormUrl());
+        assertEquals("https://koulutus.opintopolku.fi/haku-app/lomake/1.2.246.562.29.31035368682", as.getOpintopolkuFormUrl());
     }
 }
 

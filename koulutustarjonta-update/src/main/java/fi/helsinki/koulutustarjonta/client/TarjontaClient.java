@@ -8,6 +8,7 @@ import fi.helsinki.koulutustarjonta.client.converter.ApplicationOptionConverter;
 import fi.helsinki.koulutustarjonta.client.converter.ApplicationSystemConverter;
 import fi.helsinki.koulutustarjonta.client.converter.LearningOpportunityConverter;
 import fi.helsinki.koulutustarjonta.client.converter.SearchResultConverter;
+import fi.helsinki.koulutustarjonta.config.OpintopolkuConfiguration;
 import fi.helsinki.koulutustarjonta.domain.ApplicationOption;
 import fi.helsinki.koulutustarjonta.domain.ApplicationSystem;
 import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
@@ -37,12 +38,13 @@ public class TarjontaClient {
     private SearchResultConverter searchResultConverter;
 
     public TarjontaClient(WebResource learningOpportunityResource, WebResource applicationOptionResource,
-                          WebResource applicationSystemResource, WebResource linkResource, KoodistoClient koodistoClient) {
+                          WebResource applicationSystemResource, WebResource linkResource, KoodistoClient koodistoClient,
+                          OpintopolkuConfiguration opintopolku) {
         this.learningOpportunitResource = learningOpportunityResource;
         this.applicationOptionResource = applicationOptionResource;
         this.applicationOptionConverter = new ApplicationOptionConverter(koodistoClient);
         this.applicationSystemResource = applicationSystemResource;
-        this.applicationSystemConverter = new ApplicationSystemConverter(koodistoClient);
+        this.applicationSystemConverter = new ApplicationSystemConverter(koodistoClient, opintopolku);
         this.learningOpportunityConverter = new LearningOpportunityConverter(koodistoClient);
         this.searchResultConverter = new SearchResultConverter();
         this.linkResource = linkResource;

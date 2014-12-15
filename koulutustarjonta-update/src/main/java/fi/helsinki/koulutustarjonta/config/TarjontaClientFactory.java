@@ -10,6 +10,9 @@ import io.dropwizard.client.JerseyClientConfiguration;
 import io.dropwizard.setup.Environment;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
 /**
  * @author Hannu Lyytikainen
  */
@@ -28,6 +31,11 @@ public class TarjontaClientFactory extends JerseyClientConfiguration {
         return baseUrl;
     }
 
+    @Valid
+    @NotNull
+    @JsonProperty("opintopolku")
+    private OpintopolkuConfiguration opintopolku = new OpintopolkuConfiguration();
+
     @JsonProperty
     public void setBaseUrl(String baseUrl) {
         this.baseUrl = baseUrl;
@@ -42,7 +50,12 @@ public class TarjontaClientFactory extends JerseyClientConfiguration {
         WebResource applicationSystemResource = client.resource(String.format("%s%s", baseUrl, APPLICATION_SYSTEM_PATH));
         WebResource linkResource = client.resource(String.format("%s%s", baseUrl, LINK_PATH));
 
-        return new TarjontaClient(learningOpportunityResource, applicationOptionResource, applicationSystemResource, linkResource, koodistoClient);
+        return new TarjontaClient(learningOpportunityResource,
+                applicationOptionResource,
+                applicationSystemResource,
+                linkResource,
+                koodistoClient,
+                opintopolku);
 
     }
 }

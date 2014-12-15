@@ -21,5 +21,6 @@ public class ApplicationSystem {
     private int educationStartYear;
     private Season educationStartSeason;
     private String applicationFormUrl;
+    private String opintopolkuFormUrl;
     private List<ApplicationPeriod> applicationPeriods;
 }
