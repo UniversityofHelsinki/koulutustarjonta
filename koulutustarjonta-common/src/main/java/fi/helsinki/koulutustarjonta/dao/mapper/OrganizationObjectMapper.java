@@ -12,7 +12,7 @@ import static java.util.stream.Collectors.toList;
 /**
  * @author Hannu Lyytikainen
  */
-public class OrganizationObjectBuilder {
+public class OrganizationObjectMapper {
 
     public static Organization buildOne(List<OrganizationJoinRow> joinRows) {
         return build(joinRows).get(0);

@@ -2,7 +2,7 @@ package fi.helsinki.koulutustarjonta.dao;
 
 import fi.helsinki.koulutustarjonta.dao.exception.ResourceNotFound;
 import fi.helsinki.koulutustarjonta.dao.jdbi.ApplicationSystemJDBI;
-import fi.helsinki.koulutustarjonta.dao.mapper.ApplicationSystemObjectBuilder;
+import fi.helsinki.koulutustarjonta.dao.mapper.ApplicationSystemObjectMapper;
 import fi.helsinki.koulutustarjonta.dao.util.ApplicationSystemJoinRow;
 import fi.helsinki.koulutustarjonta.domain.ApplicationSystem;
 import org.slf4j.Logger;
@@ -53,11 +53,11 @@ public class ApplicationSystemDAO {
             throw new ResourceNotFound(ApplicationSystem.class, oid);
         }
         else {
-            return ApplicationSystemObjectBuilder.buildOne(rows);
+            return ApplicationSystemObjectMapper.buildOne(rows);
         }
     }
 
     public List<ApplicationSystem> findAll() {
-        return ApplicationSystemObjectBuilder.build(jdbi.findAll());
+        return ApplicationSystemObjectMapper.build(jdbi.findAll());
     }
 }

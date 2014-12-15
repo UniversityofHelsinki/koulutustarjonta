@@ -11,7 +11,7 @@ import static java.util.stream.Collectors.toList;
 /**
  * @author Hannu Lyytikainen
  */
-public class ApplicationOptionObjectGraphBuilder {
+public class ApplicationOptionObjectMapper {
 
     public static List<ApplicationOption> build(List<ApplicationOptionJoinRow> joinRows) {
         List<ApplicationOption> aos = joinRows.stream()

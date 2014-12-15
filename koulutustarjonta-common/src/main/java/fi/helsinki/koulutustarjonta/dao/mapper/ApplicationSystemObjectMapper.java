@@ -12,7 +12,7 @@ import static java.util.stream.Collectors.toList;
 /**
  * @author Hannu Lyytikainen
  */
-public class ApplicationSystemObjectBuilder {
+public class ApplicationSystemObjectMapper {
 
     public static ApplicationSystem buildOne(List<ApplicationSystemJoinRow> rows) {
         return build(rows).get(0);

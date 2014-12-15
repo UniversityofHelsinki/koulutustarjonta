@@ -3,7 +3,7 @@ package fi.helsinki.koulutustarjonta.dao;
 import com.google.common.collect.Lists;
 import fi.helsinki.koulutustarjonta.dao.exception.ResourceNotFound;
 import fi.helsinki.koulutustarjonta.dao.jdbi.OrganizationJDBI;
-import fi.helsinki.koulutustarjonta.dao.mapper.OrganizationObjectBuilder;
+import fi.helsinki.koulutustarjonta.dao.mapper.OrganizationObjectMapper;
 import fi.helsinki.koulutustarjonta.dao.util.OrganizationJoinRow;
 import fi.helsinki.koulutustarjonta.domain.ContactInfo;
 import fi.helsinki.koulutustarjonta.domain.Organization;
@@ -50,10 +50,10 @@ public class OrganizationDAO {
         if (joinRows.size() == 0) {
             throw new ResourceNotFound(Organization.class, oid);
         }
-        return OrganizationObjectBuilder.buildOne(joinRows);
+        return OrganizationObjectMapper.buildOne(joinRows);
     }
 
     public List<Organization> findAll() {
-        return OrganizationObjectBuilder.build(jdbi.findAll());
+        return OrganizationObjectMapper.build(jdbi.findAll());
     }
 }

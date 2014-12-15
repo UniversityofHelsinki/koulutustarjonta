@@ -15,7 +15,7 @@ import static java.util.stream.Collectors.toList;
  *
  * @author Hannu Lyytikainen
  */
-public class LearningOpportunityObjectGraphBuilder {
+public class LearningOpportunityObjectMapper {
     public static List<LearningOpportunity> build(List<LearningOpportunityJoinRow> joinRows) {
         return joinRows.stream()
                 .collect(Collectors.groupingBy(row -> row.getLearningOpportunity().getOid()))
