@@ -32,7 +32,7 @@ public class ApplicationSystemJoinRowMapper implements ResultSetMapper<Applicati
                 r.getString("id"), MapperUtil.resolveI18N(r, "nimi"),
                 MapperUtil.resolveI18N(r, "hakutapa"), r.getInt("hakukausi_vuosi"),
                 applicationSeason, r.getInt("koul_alk_vuosi"), educationSeason,
-                r.getString("hakulomake_url"), null);
+                r.getString("hakulomake_url"), r.getString("opintopolku_hakulomake_url"), null);
         ApplicationPeriod ap = applicationPeriodMapper.map(index, r, ctx);
 
         return new ApplicationSystemJoinRow(as, ap);

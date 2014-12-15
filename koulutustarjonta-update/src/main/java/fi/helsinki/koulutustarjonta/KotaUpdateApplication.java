@@ -56,14 +56,11 @@ public class KotaUpdateApplication extends Application<KotaUpdateConfiguration> 
         final TarjontaClient tarjontaClient = configuration.getTarjontaClientFactory().build(environment, koodistoClient);
         final OrganisaatioClient organisaatioClient = configuration.getOrganisaatioClientFactory().build(environment, koodistoClient);
 
-
-
         final Updater updater = new Updater(tarjontaClient, organisaatioClient,
                 learningOpportunityDAO, applicationOptionDAO, applicationSystemDAO, organizationDAO);
         environment.admin().addTask(new UpdateTask("update"));
         final UpdateResource updateResource = new UpdateResource(updater);
         environment.jersey().register(updateResource);
-
 
         // Sundial
         SundialManager sm = new SundialManager(configuration.getSundial(), environment, updater, configuration.getUpdateCron());

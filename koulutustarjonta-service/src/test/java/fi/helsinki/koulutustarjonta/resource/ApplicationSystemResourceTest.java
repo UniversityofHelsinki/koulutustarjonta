@@ -27,7 +27,7 @@ public class ApplicationSystemResourceTest {
 
     private static final String AS_OID = "as_oid";
     private static final ApplicationSystemDAO dao = mock(ApplicationSystemDAO.class);
-    private final ApplicationSystem applicationSystem = Fixture.applicationSystem(AS_OID);
+    private final ApplicationSystem applicationSystem = Fixture.applicationSystemWithApplicationForm(AS_OID);
     private final ModelMapper modelMapper = new ApplicationSystemModelMapper();
 
     @ClassRule

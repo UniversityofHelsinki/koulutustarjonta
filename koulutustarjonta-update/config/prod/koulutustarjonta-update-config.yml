@@ -66,6 +66,8 @@ tarjontaClient:
   timeout: 10000ms
   connectionTimeout: 10000ms
   baseUrl: https://od.helsinki.fi/tarjonta-service/rest/v1/
+  opintopolku:
+    baseUrl: https://opintopolku.fi
 
 organisaatioClient:
   timeout: 10000ms

@@ -23,7 +23,7 @@ DELETE FROM hakuaika
 WHERE id_haku = 'haku_id1';
 
 DELETE FROM haku
-WHERE id = 'haku_id1';
+WHERE id = 'haku_id1' OR id = 'as_oid_2';
 
 -- koulutus
 DELETE FROM koulutus_sisaltyvyys

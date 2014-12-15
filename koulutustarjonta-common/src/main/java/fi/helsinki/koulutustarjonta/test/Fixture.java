@@ -99,18 +99,38 @@ public class Fixture {
         return ao;
     }
 
-    public static ApplicationSystem applicationSystem(String oid) {
+    public static ApplicationSystem applicationSystemWithApplicationForm(String oid) {
         ApplicationPeriod ap = applicationPeriod("ap id");
+        Season applicationSeason = applicationSeason();
+        Season educationSeason = educationSeason();
 
-        Season applicationSeason = new Season("K", new I18N("a season fi", "a season sv", "a season en"));
-        Season educationSeason = new Season("S", new I18N("e season fi", "e season sv", "e season en"));
-
-        ApplicationSystem as = new ApplicationSystem(oid,
+        return new ApplicationSystem(oid,
                 new I18N("as name fi", "as name sv", "as name en"),
                 new I18N("method fi", "method sv", "method en"),
                 2015, applicationSeason, 2016, educationSeason,
-                "www.applicationform.url", Lists.newArrayList(ap));
-        return as;
+                "www.applicationform.url", null,
+                Lists.newArrayList(ap));
+    }
+
+    public static ApplicationSystem applicationSystemWithoutApplicationForm(String oid) {
+        ApplicationPeriod ap = applicationPeriod("ap id 2");
+        Season applicationSeason = applicationSeason();
+        Season educationSeason = educationSeason();
+
+        return new ApplicationSystem(oid,
+                new I18N("as name fi", "as name sv", "as name en"),
+                new I18N("method fi", "method sv", "method en"),
+                2015, applicationSeason, 2016, educationSeason,
+                null, "https://koulutus.opintopolku.fi/haku-app/lomake/" + oid,
+                Lists.newArrayList(ap));
+    }
+
+    private static Season applicationSeason() {
+        return new Season("K", new I18N("a season fi", "a season sv", "a season en"));
+    }
+
+    private static Season educationSeason() {
+        return new Season("S", new I18N("e season fi", "e season sv", "e season en"));
     }
 
     public static ApplicationPeriod applicationPeriod(String id) {
@@ -166,4 +186,5 @@ public class Fixture {
                         )
         );
     }
+
 }
