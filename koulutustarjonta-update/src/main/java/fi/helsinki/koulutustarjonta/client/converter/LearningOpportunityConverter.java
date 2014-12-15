@@ -44,7 +44,6 @@ public class LearningOpportunityConverter extends BaseConverter {
         lo.setStructure(convertMetaTextsToI18N(komoInfo.get("KOULUTUKSEN_RAKENNE")));
         lo.setPostgraduateStudies(convertMetaTextsToI18N(komoInfo.get("JATKOOPINTO_MAHDOLLISUUDET")));
         lo.setCompetency(convertMetaTextsToI18N(komoInfo.get("PATEVYYS")));
-        lo.setTranslations(resolveTranslations(komoInfo.get("TAVOITTEET")));
 
         //komoto info
         JsonNode komotoInfo = content.get("kuvausKomoto");
@@ -74,17 +73,6 @@ public class LearningOpportunityConverter extends BaseConverter {
 
     private JsonNode resolveContent(JsonNode apiCallResult) {
         return apiCallResult.get("result");
-    }
-
-    private List<String> resolveTranslations(JsonNode goals) {
-        if (goals == null) {
-            return null;
-        }
-        else {
-            return Lists.newArrayList(goals.get("meta")).parallelStream()
-                    .map(elem -> elem.get("kieliArvo").textValue().toLowerCase())
-                    .collect(Collectors.toList());
-        }
     }
 
     private List<TeachingLanguage> resolveTeachingLanguages(JsonNode node) {

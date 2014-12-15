@@ -20,7 +20,7 @@ public class LearningOpportunityMapper implements ResultSetMapper<LearningOpport
                 resolveI18N(r, "tutkintoohjelma"), r.getInt("alkamisvuosi"), resolveI18N(r, "alkamiskausi"),
                 r.getString("suunni_kesto"), resolveI18N(r, "suunni_tyyppi"),
                 r.getInt("laajuus"), resolveI18N(r, "laajuus_tyyppi"),
-                null, null, resolveI18N(r, "tavoitteet"), resolveI18N(r, "rakenne"),
+                null, resolveI18N(r, "tavoitteet"), resolveI18N(r, "rakenne"),
                 resolveI18N(r, "mahdollisuudet"), resolveI18N(r, "patevyys"), resolveI18N(r, "lisat_opkiel"),
                 resolveI18N(r, "yhteistyo"), resolveI18N(r, "paaaineval"), resolveI18N(r, "kansval"),
                 resolveI18N(r, "sijtyo"), resolveI18N(r, "sisalto"), resolveI18N(r, "tutkpaino"),

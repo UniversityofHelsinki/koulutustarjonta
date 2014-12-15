@@ -77,8 +77,6 @@ public class LearningOpportunityConverterTest extends AbstractClientConverterTes
         assertEquals("<p>Kemian opiskelijana voit valmistua filos", lo.getCompetency().getFi());
         assertEquals("<p>Studerande i kemi kan avlägga filosofie ", lo.getCompetency().getSv());
         assertEquals("<p>As a student of chemistry, you can quali", lo.getCompetency().getEn());
-        assertNotNull(lo.getTranslations());
-        assertEquals(3, lo.getTranslations().size());
         assertNotNull(lo.getLanguageInfo());
         assertEquals("<p>Opetuskielinä ovat pääsääntöisesti suom", lo.getLanguageInfo().getFi());
         assertEquals("<p>Undervisningsspråken är i ", lo.getLanguageInfo().getSv());

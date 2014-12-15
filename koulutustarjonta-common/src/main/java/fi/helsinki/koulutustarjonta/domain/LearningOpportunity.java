@@ -27,7 +27,6 @@ public class LearningOpportunity {
     private Integer creditValue;//laajuus arvo
     private I18N creditUnit;//laajuus yksikko
     private List<TeachingLanguage> teachingLanguages;//opetuskielet
-    private List<String> translations;//kuvauskielet
     private I18N goals;//tavoitteet
     private I18N structure;//rakenne
     private I18N postgraduateStudies;//jatko-opinnot
