@@ -60,6 +60,7 @@ public class ApplicationSystemResourceTest {
         assertNotNull(actual.getEducationStartSeason());
         seasonDTOsEqual(expected.getEducationStartSeason(), actual.getEducationStartSeason());
         assertEquals(expected.getApplicationFormUrl(), actual.getApplicationFormUrl());
+        assertEquals(expected.getOpintopolkuFormUrl(), actual.getOpintopolkuFormUrl());
         ApplicationPeriodDTO expectedAP = expected.getApplicationPeriods().get(0);
         ApplicationPeriodDTO actualAP = actual.getApplicationPeriods().get(0);
         assertNotNull(actualAP);
