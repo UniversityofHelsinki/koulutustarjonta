@@ -27,7 +27,7 @@ public class ApplicationSystemResourceTest {
 
     private static final String AS_OID = "as_oid";
     private static final ApplicationSystemDAO dao = mock(ApplicationSystemDAO.class);
-    private final ApplicationSystem applicationSystem = Fixture.applicationSystem(AS_OID);
+    private final ApplicationSystem applicationSystem = Fixture.applicationSystemWithApplicationForm(AS_OID);
     private final ModelMapper modelMapper = new ApplicationSystemModelMapper();
 
     @ClassRule
@@ -60,6 +60,7 @@ public class ApplicationSystemResourceTest {
         assertNotNull(actual.getEducationStartSeason());
         seasonDTOsEqual(expected.getEducationStartSeason(), actual.getEducationStartSeason());
         assertEquals(expected.getApplicationFormUrl(), actual.getApplicationFormUrl());
+        assertEquals(expected.getOpintopolkuFormUrl(), actual.getOpintopolkuFormUrl());
         ApplicationPeriodDTO expectedAP = expected.getApplicationPeriods().get(0);
         ApplicationPeriodDTO actualAP = actual.getApplicationPeriods().get(0);
         assertNotNull(actualAP);

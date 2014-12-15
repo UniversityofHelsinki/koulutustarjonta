@@ -3,6 +3,7 @@ package fi.helsinki.koulutustarjonta.client.converter;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fi.helsinki.koulutustarjonta.client.KoodistoClient;
+import fi.helsinki.koulutustarjonta.config.OpintopolkuConfiguration;
 import fi.helsinki.koulutustarjonta.domain.Code;
 import io.dropwizard.testing.FixtureHelpers;
 import org.mockito.invocation.InvocationOnMock;
@@ -54,5 +55,12 @@ public abstract class AbstractClientConverterTest {
         return koodistoClient;
     }
 
+    protected OpintopolkuConfiguration mockOpintopolku() {
+        OpintopolkuConfiguration opintopolku = mock(OpintopolkuConfiguration.class);
+
+        when(opintopolku.getBaseUrl()).thenReturn("https://koulutus.opintopolku.fi");
+
+        return opintopolku;
+    }
 
 }

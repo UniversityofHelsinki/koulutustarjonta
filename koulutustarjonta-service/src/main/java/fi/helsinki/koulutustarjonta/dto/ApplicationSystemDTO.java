@@ -32,6 +32,8 @@ public class ApplicationSystemDTO {
     private SeasonDTO educationStartSeason;
     @JsonProperty("hakulomake_url")
     private String applicationFormUrl;
+    @JsonProperty("opintopolku_hakulomake_url")
+    private String opintopolkuFormUrl;
     @JsonProperty("hakuajat")
     private List<ApplicationPeriodDTO> applicationPeriods;
     @JsonProperty("kuvauskielet")

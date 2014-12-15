@@ -2,11 +2,15 @@ package fi.helsinki.koulutustarjonta.core;
 
 import fi.helsinki.koulutustarjonta.client.OrganisaatioClient;
 import fi.helsinki.koulutustarjonta.client.TarjontaClient;
+import fi.helsinki.koulutustarjonta.config.OpintopolkuConfiguration;
 import fi.helsinki.koulutustarjonta.dao.ApplicationOptionDAO;
 import fi.helsinki.koulutustarjonta.dao.ApplicationSystemDAO;
 import fi.helsinki.koulutustarjonta.dao.LearningOpportunityDAO;
 import fi.helsinki.koulutustarjonta.dao.OrganizationDAO;
-import fi.helsinki.koulutustarjonta.domain.*;
+import fi.helsinki.koulutustarjonta.domain.ApplicationOption;
+import fi.helsinki.koulutustarjonta.domain.ApplicationSystem;
+import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
+import fi.helsinki.koulutustarjonta.domain.Organization;
 import fi.helsinki.koulutustarjonta.exception.DataUpdateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,9 +59,9 @@ public class Updater {
                     applicationOptionOids.forEach(aoOid -> {
                         ApplicationOption ao = tarjontaClient.getApplicationOption(aoOid);
                         ApplicationSystem as = tarjontaClient.getApplicationSystem(ao.getApplicationSystem());
-                        if (ao.getApplicationPeriodId() == null) {
-                            ao.setApplicationPeriodId(as.getApplicationPeriods().get(0).getId());
-                        }
+
+                        handleAoPeriod(ao, as);
+
                         applicationSystemDAO.save(as);
                         applicationOptionDAO.save(ao);
                     });
@@ -73,5 +77,11 @@ public class Updater {
         });
 
         LOG.debug(String.format("Data update completed, update took %d seconds", (System.currentTimeMillis() - t1) / 1000));
+    }
+
+    private void handleAoPeriod(ApplicationOption ao, ApplicationSystem as) {
+        if (ao.getApplicationPeriodId() == null) {
+            ao.setApplicationPeriodId(as.getApplicationPeriods().get(0).getId());
+        }
     }
 }
