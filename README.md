@@ -30,8 +30,7 @@ cd /src
 ```
 Run database migration to create tables
 ```
-./gradlew clean :koulutustarjonta-service:shadowJar
-java -jar koulutustarjonta-service/build/libs/koulutustarjonta-service-1.0-SNAPSHOT.jar db migrate koulutustarjonta-service/service-config.yml
+./gradlew update
 ```
 Start up the applications
 ```
