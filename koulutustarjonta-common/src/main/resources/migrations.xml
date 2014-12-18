@@ -5,5 +5,5 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
 
-    <includeAll path="db/migrations"/>
+    <includeAll path="koulutustarjonta-common/src/main/resources/db/migrations"/>
 </databaseChangeLog>

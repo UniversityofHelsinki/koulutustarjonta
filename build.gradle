@@ -1,3 +1,34 @@
+apply plugin: 'liquibase'
+
+// build params
+ext {
+    dbUrl = project.hasProperty('db.url') ? project.getProperty('db.url') : 'jdbc:oracle:thin:@10.10.10.10:1521:XE'
+    dbUser = project.hasProperty('db.user') ? project.getProperty('db.user') : 'koultarj'
+    dbPasswd = project.hasProperty('db.passwd') ? project.getProperty('db.passwd') : 'koultarj'
+    apiEndpoint = project.hasProperty('api.endpoint') ? project.getProperty('api.endpoint') : "http://10.10.10.10:8080"
+}
+
+liquibase {
+    activities {
+        main {
+            changeLogFile 'koulutustarjonta-common/src/main/resources/migrations.xml'
+            url project.dbUrl
+            username project.dbUser
+            password project.dbPasswd
+        }
+    }
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'net.saliman:gradle-liquibase-plugin:1.0.0'
+        classpath files("lib/ojdbc7.jar")
+    }
+}
+
 subprojects {
     apply plugin: 'java'
     sourceCompatibility = '1.8'

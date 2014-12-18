@@ -24,7 +24,6 @@ shadowJar {
 
 dependencies {
     compile "io.dropwizard:dropwizard-core:$dropwizardVersion"
-    compile "io.dropwizard:dropwizard-migrations:$dropwizardVersion"
     compile "org.modelmapper:modelmapper:$modelmapperVersion"
     compile project(":koulutustarjonta-common")
     compile files("../lib/ojdbc7.jar")

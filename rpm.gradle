@@ -32,10 +32,10 @@ task rpm(type: Rpm) {
         fileType = CONFIG
         into rootFolder + '/config/'
         // insert db configuration parameters
-        expand(db_url: project.hasProperty('db.url') ? project.getProperty('db.url') : "",
-                db_user: project.hasProperty('db.user') ? project.getProperty('db.user') : "",
-                db_passwd: project.hasProperty('db.passwd') ? project.getProperty('db.passwd') : "",
-                api_endpoint: project.hasProperty('api.endpoint') ? project.getProperty('api.endpoint') : "")
+        expand(db_url: project.dbUrl,
+                db_user: project.dbUser,
+                db_passwd: project.dbPasswd,
+                api_endpoint: project.apiEndpoint)
     }
 
     // Upstart file for RHEL
