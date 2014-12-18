@@ -1,0 +1,8 @@
+# servers that run koulutustarjonta applications i.e. service-server and update-server groups combined
+[application-server]
+
+# servers that run koulutustarjonta-service
+[service-server]
+
+# servers that run koulutustarjonta-update, usually just one machine
+[update-server]
