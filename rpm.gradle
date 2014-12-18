@@ -9,7 +9,7 @@ task rpm(type: Rpm) {
     arch = X86_64
     os = LINUX
     summary = project.name
-    description = "University of Helsinkig : Koulutustarjonta : $project.name"
+    description = "University of Helsinki : Koulutustarjonta : $project.name"
     user = "koultarj"
 
     preInstall = file('src/deploy/rpm/pre_install')
