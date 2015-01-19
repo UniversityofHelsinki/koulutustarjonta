@@ -20,7 +20,7 @@ public class LearningOpportunityJoinRowMapper implements ResultSetMapper<Learnin
         TeachingLanguage teachingLanguage = TeachingLanguageMapper.map(r);
         LearningOpportunity lo = new LearningOpportunity(
                 r.getString("id"), resolveI18N(r, "tutkintonimike"), resolveI18N(r, "opintoala"),
-                resolveI18N(r, "tutkintoohjelma"), r.getInt("alkamisvuosi"), resolveI18N(r, "alkamiskausi"),
+                resolveI18N(r, "tutkintoohjelma"), resolveI18N(r, "koulutusaste"), r.getInt("alkamisvuosi"), resolveI18N(r, "alkamiskausi"),
                 r.getString("suunni_kesto"), resolveI18N(r, "suunni_tyyppi"),
                 r.getInt("laajuus"), resolveI18N(r, "laajuus_tyyppi"),
                 null, resolveI18N(r, "tavoitteet"), resolveI18N(r, "rakenne"),

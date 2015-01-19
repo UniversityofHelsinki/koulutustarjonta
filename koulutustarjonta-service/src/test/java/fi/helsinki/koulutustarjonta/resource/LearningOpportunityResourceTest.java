@@ -83,6 +83,7 @@ public class LearningOpportunityResourceTest {
         DTOTestUtil.i18NDTOsEqual(expected.getContents(), actual.getContents());
         DTOTestUtil.i18NDTOsEqual(expected.getResearch(), actual.getResearch());
         DTOTestUtil.i18NDTOsEqual(expected.getThesis(), actual.getThesis());
+        DTOTestUtil.i18NDTOsEqual(expected.getEducationLevel(), actual.getEducationLevel());
         assertEquals(expected.getTeachingLanguages().size(), actual.getTeachingLanguages().size());
         assertEquals(expected.getTranslations().size(), actual.getTranslations().size());
 

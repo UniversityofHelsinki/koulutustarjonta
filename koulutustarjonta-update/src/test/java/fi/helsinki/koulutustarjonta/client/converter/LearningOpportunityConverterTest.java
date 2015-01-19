@@ -110,6 +110,11 @@ public class LearningOpportunityConverterTest extends AbstractClientConverterTes
         assertEquals("<p>Studierna avslutas med ett slutarbete", lo.getThesis().getSv());
         assertEquals("<p><span style=\"color: rgb(0,0,0);\">Th", lo.getThesis().getEn());
         assertEquals("1.2.246.562.10.94639300915", lo.getProvider());
+
+        assertNotNull(lo.getEducationLevel());
+        assertEquals("Ylempi korkeakoulututkinto", lo.getEducationLevel().getFi());
+        assertEquals("Högre högskoleexamen", lo.getEducationLevel().getSv());
+        assertEquals("Master's degree", lo.getEducationLevel().getEn());
     }
 
     private void validateTeachingLanguages(List<TeachingLanguage> teachnigLanguages) {

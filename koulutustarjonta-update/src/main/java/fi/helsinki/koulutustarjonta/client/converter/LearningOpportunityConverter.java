@@ -27,6 +27,7 @@ public class LearningOpportunityConverter extends BaseConverter {
         lo.setOid(content.get("oid").textValue());
         lo.setQualification(resolveQualification(content.get("tutkintonimikes")));
         lo.setEducationalField(resolveMetaLangName(content.get("opintoala")));
+        lo.setEducationLevel(resolveMetaLangName(content.get("koulutusaste")));
         lo.setDegreeProgram(resolveDegreeProgram(content.get("koulutusohjelma")));
         lo.setStartYear(resolveStartingYear(apiCallResult));
         lo.setStartSeason(resolveMetaLangName(content.get("koulutuksenAlkamiskausi")));

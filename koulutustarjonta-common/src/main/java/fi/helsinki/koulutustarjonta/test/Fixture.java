@@ -41,6 +41,7 @@ public class Fixture {
         lo.setApplicationOptions(Lists.newArrayList("hakukohde_id2"));
         lo.setProvider("organisaatio_id2");
         lo.setParents(Lists.newArrayList("1.2.3"));
+        lo.setEducationLevel(new I18N("education level fi", "education level sv", "education level en"));
         return lo;
     }
 

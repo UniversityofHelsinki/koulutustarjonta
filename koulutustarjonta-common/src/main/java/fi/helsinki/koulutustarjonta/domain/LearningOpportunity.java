@@ -20,6 +20,7 @@ public class LearningOpportunity {
     private I18N qualification;//tutkintonimike
     private I18N educationalField;//opintoala
     private I18N degreeProgram;//tutkintoOhjelma
+    private I18N educationLevel;//koulutusaste
     private Integer startYear;//alkamisvuosi
     private I18N startSeason;//alkamiskausi
     private String plannedDurationValue;//suunniteltu kesto arvo

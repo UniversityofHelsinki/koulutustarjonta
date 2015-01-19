@@ -23,6 +23,8 @@ public class LearningOpportunityDTO {
     private I18NDTO qualification;
     @JsonProperty("opintoala")
     private I18NDTO educationalField;
+    @JsonProperty("koulutusaste")
+    private I18NDTO educationLevel;
     @JsonProperty("tutkinto_ohjelma")
     private I18NDTO degreeProgram;;
     @JsonProperty("alkamisvuosi")

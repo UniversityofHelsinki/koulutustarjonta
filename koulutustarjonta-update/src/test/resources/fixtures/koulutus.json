@@ -48,6 +48,12 @@
           "kieliVersio" : 1,
           "kieliArvo" : "FI",
           "nimi" : "Ylempi korkeakoulututkinto"
+        },
+        "kieli_en" : {
+          "kieliUri" : "kieli_en",
+          "kieliVersio" : 1,
+          "kieliArvo" : "EN",
+          "nimi" : "Master's degree"
         }
       }
     },
