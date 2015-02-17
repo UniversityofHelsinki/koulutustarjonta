@@ -44,3 +44,8 @@ WHERE id_organisaatio = 'organisaatio_id1';
 DELETE FROM organisaatio
 WHERE id = 'organisaatio_id1'
 OR id = 'organisaatio_id2';
+
+DELETE FROM paivitys
+WHERE aloitettu = TO_DATE('2015/01/01 15:00:00', 'yyyy/mm/dd hh24:mi:ss')
+OR aloitettu = TO_DATE('2015/01/02 15:00:00', 'yyyy/mm/dd hh24:mi:ss')
+OR dbms_lob.compare(VIRHEET, '["TESTIVIRHE"]') = 0;

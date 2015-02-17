@@ -204,3 +204,9 @@ VALUES ('hakukohde_id1', '1.2.3');
 
 INSERT INTO koulutus_sisaltyvyys (id_lapsi, id_vanhempi)
 VALUES ('koulutus_id2', '1.2.3');
+
+INSERT INTO paivitys (aloitettu, tila, virheet)
+VALUES (TO_DATE('2015/01/02 15:00:00', 'yyyy/mm/dd hh24:mi:ss'), 'ERROR', '["VIRHE"]');
+
+INSERT INTO paivitys (aloitettu, tila, virheet)
+VALUES (TO_DATE('2015/01/01 15:00:00', 'yyyy/mm/dd hh24:mi:ss'), 'OK', '[]');

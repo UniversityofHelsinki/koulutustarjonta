@@ -5,14 +5,9 @@ import fi.helsinki.koulutustarjonta.client.OrganisaatioClient;
 import fi.helsinki.koulutustarjonta.client.TarjontaClient;
 import fi.helsinki.koulutustarjonta.config.KotaUpdateConfiguration;
 import fi.helsinki.koulutustarjonta.core.Updater;
-import fi.helsinki.koulutustarjonta.dao.ApplicationOptionDAO;
-import fi.helsinki.koulutustarjonta.dao.ApplicationSystemDAO;
-import fi.helsinki.koulutustarjonta.dao.LearningOpportunityDAO;
-import fi.helsinki.koulutustarjonta.dao.OrganizationDAO;
-import fi.helsinki.koulutustarjonta.dao.jdbi.ApplicationOptionJDBI;
-import fi.helsinki.koulutustarjonta.dao.jdbi.ApplicationSystemJDBI;
-import fi.helsinki.koulutustarjonta.dao.jdbi.LearningOpportunityJDBI;
-import fi.helsinki.koulutustarjonta.dao.jdbi.OrganizationJDBI;
+import fi.helsinki.koulutustarjonta.core.converter.UpdateResultConverter;
+import fi.helsinki.koulutustarjonta.dao.*;
+import fi.helsinki.koulutustarjonta.dao.jdbi.*;
 import fi.helsinki.koulutustarjonta.dao.util.OracleStatementBuilderFactory;
 import fi.helsinki.koulutustarjonta.manager.SundialManager;
 import fi.helsinki.koulutustarjonta.resource.UpdateResource;
@@ -52,12 +47,17 @@ public class KotaUpdateApplication extends Application<KotaUpdateConfiguration> 
         final ApplicationSystemDAO applicationSystemDAO = new ApplicationSystemDAO(dbi.onDemand(ApplicationSystemJDBI.class));
         final OrganizationJDBI organizationJDBI = dbi.onDemand(OrganizationJDBI.class);
         final OrganizationDAO organizationDAO = new OrganizationDAO(organizationJDBI);
+        final UpdateResultJDBI updateResultJDBI = dbi.onDemand(UpdateResultJDBI.class);
+        final UpdateResultDAO updateResultDAO = new UpdateResultDAO(updateResultJDBI);
+
         final KoodistoClient koodistoClient = configuration.getKoodistoClientFactory().build(environment);
         final TarjontaClient tarjontaClient = configuration.getTarjontaClientFactory().build(environment, koodistoClient);
         final OrganisaatioClient organisaatioClient = configuration.getOrganisaatioClientFactory().build(environment, koodistoClient);
+        final UpdateResultConverter updateResultConverter = new UpdateResultConverter();
 
         final Updater updater = new Updater(tarjontaClient, organisaatioClient,
-                learningOpportunityDAO, applicationOptionDAO, applicationSystemDAO, organizationDAO);
+                learningOpportunityDAO, applicationOptionDAO, applicationSystemDAO, organizationDAO, updateResultDAO,
+                updateResultConverter);
         environment.admin().addTask(new UpdateTask("update"));
         final UpdateResource updateResource = new UpdateResource(updater);
         environment.jersey().register(updateResource);

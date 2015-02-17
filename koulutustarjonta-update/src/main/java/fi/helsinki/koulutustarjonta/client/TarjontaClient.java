@@ -48,6 +48,11 @@ public class TarjontaClient {
         this.learningOpportunityConverter = new LearningOpportunityConverter(koodistoClient);
         this.searchResultConverter = new SearchResultConverter();
         this.linkResource = linkResource;
+
+        this.learningOpportunitResource.addFilter(new RequestLoggingFilter());
+        this.applicationOptionResource.addFilter(new RequestLoggingFilter());
+        this.applicationSystemResource.addFilter(new RequestLoggingFilter());
+        this.linkResource.addFilter(new RequestLoggingFilter());
     }
 
     public List<String> getLearningOpportunityOidsByProvider(String organizationOid) {

@@ -1,0 +1,33 @@
+group UpdateResultJDBI;
+
+
+insert() ::= <<
+
+  INSERT INTO paivitys
+    (aloitettu, tila, virheet)
+  VALUES
+    (:aloitettu, :tila, :virheet)
+
+>>
+
+findLatest() ::= <<
+
+  SELECT *
+  FROM
+    ( SELECT *
+      FROM paivitys
+      ORDER BY aloitettu DESC )
+  where ROWNUM between 1 and :limit
+
+>>
+
+findLast() ::= <<
+
+  SELECT *
+  FROM
+    ( SELECT *
+      FROM paivitys
+      ORDER BY aloitettu DESC )
+  where ROWNUM = 1
+
+>>

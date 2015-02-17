@@ -1,14 +1,8 @@
 package fi.helsinki.koulutustarjonta;
 
 import fi.helsinki.koulutustarjonta.config.KoulutustarjontaServiceConfig;
-import fi.helsinki.koulutustarjonta.dao.ApplicationOptionDAO;
-import fi.helsinki.koulutustarjonta.dao.ApplicationSystemDAO;
-import fi.helsinki.koulutustarjonta.dao.LearningOpportunityDAO;
-import fi.helsinki.koulutustarjonta.dao.OrganizationDAO;
-import fi.helsinki.koulutustarjonta.dao.jdbi.ApplicationOptionJDBI;
-import fi.helsinki.koulutustarjonta.dao.jdbi.ApplicationSystemJDBI;
-import fi.helsinki.koulutustarjonta.dao.jdbi.LearningOpportunityJDBI;
-import fi.helsinki.koulutustarjonta.dao.jdbi.OrganizationJDBI;
+import fi.helsinki.koulutustarjonta.dao.*;
+import fi.helsinki.koulutustarjonta.dao.jdbi.*;
 import fi.helsinki.koulutustarjonta.resource.*;
 import io.dropwizard.Application;
 import io.dropwizard.jdbi.DBIFactory;
@@ -44,19 +38,28 @@ public class KoulutustarjontaServiceApplication extends Application<Koulutustarj
         final LearningOpportunityJDBI learningOpportunityJDBI = dbi.onDemand(LearningOpportunityJDBI.class);
         final LearningOpportunityDAO learningOpportunityDAO = new LearningOpportunityDAO(learningOpportunityJDBI);
         final LearningOpportunityResource lor = new LearningOpportunityResource(learningOpportunityDAO, configuration.getApiEndpoint());
+
         final ApplicationOptionJDBI applicationOptionJDBI = dbi.onDemand(ApplicationOptionJDBI.class);
         final ApplicationOptionDAO applicationOptionDAO = new ApplicationOptionDAO(applicationOptionJDBI);
         final ApplicationOptionResource aor = new ApplicationOptionResource(applicationOptionDAO, configuration.getApiEndpoint());
+
         final ApplicationSystemJDBI applicationSystemJDBI = dbi.onDemand(ApplicationSystemJDBI.class);
         final ApplicationSystemDAO applicationSystemDAO = new ApplicationSystemDAO(applicationSystemJDBI);
         final ApplicationSystemResource asr = new ApplicationSystemResource(applicationSystemDAO);
+
         final OrganizationJDBI organizationJDBI = dbi.onDemand(OrganizationJDBI.class);
         final OrganizationDAO organizationDAO = new OrganizationDAO(organizationJDBI);
         final OrganizationResource or = new OrganizationResource(organizationDAO);
+
+        final UpdateResultJDBI updateResultJDBI = dbi.onDemand(UpdateResultJDBI.class);
+        final UpdateResultDAO updateResultDAO = new UpdateResultDAO(updateResultJDBI);
+        final UpdateResultResource urr = new UpdateResultResource(updateResultDAO);
+
         environment.jersey().register(lor);
         environment.jersey().register(aor);
         environment.jersey().register(asr);
         environment.jersey().register(or);
+        environment.jersey().register(urr);
         environment.jersey().register(new ResourceNotFoundExceptionMapper());
     }
 }
