@@ -37,11 +37,11 @@ public class UpdateResultResource {
 
     @GET
     @Path(value = "/tila")
-    public String lastUpdateStatus() {
+    public String getLastUpdateState() {
         UpdateResult last = updateResultDAO.findLast();
         if (last == null) {
             throw new NotFoundException();
         }
-        return last.getState().toString();
+        return String.format("Last-Run-status: %s", last.getState());
     }
 }
