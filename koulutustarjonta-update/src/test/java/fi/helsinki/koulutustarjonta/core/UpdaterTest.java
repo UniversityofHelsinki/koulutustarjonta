@@ -6,22 +6,20 @@ import fi.helsinki.koulutustarjonta.client.TarjontaClient;
 import fi.helsinki.koulutustarjonta.core.converter.UpdateResultConverter;
 import fi.helsinki.koulutustarjonta.dao.*;
 import fi.helsinki.koulutustarjonta.domain.UpdateResult;
+import fi.helsinki.koulutustarjonta.exception.DataUpdateException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.ArgumentMatcher;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Spy;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.Arrays;
 
+import static fi.helsinki.koulutustarjonta.matchers.UpdateResultMatchers.*;
 import static org.mockito.Matchers.anyObject;
 import static org.mockito.Matchers.argThat;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 
 @RunWith(MockitoJUnitRunner.class)
@@ -62,34 +60,31 @@ public class UpdaterTest {
     @Test
     public void thatUpdateResultIsSaved() {
         updater.update();
-        verify(updateResultDAO, times(1)).save(argThat(new EmptyUpdateResultMatcher()));
+        verify(updateResultDAO, times(1)).save(argThat(allOf(errorsEqual("[]"), stateEquals(UpdateResult.State.OK))));
     }
 
     @Test
-    public void thatErrorsAreSaved() {
+    public void thatGetLearningOpportunityOidsByProviderErrorsAreSaved() {
         when(organisaatioClient.resolveFacultyOids("1.2.246.562.10.39218317368")).thenReturn(Arrays.asList("1.2.3"));
         when(tarjontaClient.getLearningOpportunityOidsByProvider("1.2.3")).thenThrow(new ClientHandlerException());
 
         updater.update();
 
-        verify(updateResultDAO, times(1)).save(argThat(new OneErrorUpdateResultMatcher()));
+        verify(updateResultDAO, times(1)).save(argThat(allOf(errorsContain(
+                "[\"com.sun.jersey.api.client.ClientHandlerException"), stateEquals(UpdateResult.State.ERROR))));
     }
 
-    private class EmptyUpdateResultMatcher extends ArgumentMatcher<UpdateResult> {
+    @Test
+    public void thatResourceExceptionErrorsAreSaved() throws DataUpdateException {
+        when(organisaatioClient.resolveFacultyOids("1.2.246.562.10.39218317368")).thenReturn(Arrays.asList("1.2.3"));
+        when(tarjontaClient.getLearningOpportunityOidsByProvider("1.2.3")).thenReturn(Arrays.asList("4.5.6"));
+        when(organisaatioClient.getOrganization("1.2.3")).thenThrow(new ClientHandlerException());
 
-        @Override
-        public boolean matches(Object argument) {
-            UpdateResult updateResult = (UpdateResult) argument;
-            return updateResult.getErrors().equals("[]") && updateResult.getState().equals(UpdateResult.State.OK);
-        }
+        updater.update();
+
+        verify(updateResultDAO, times(1)).save(argThat(allOf(errorsEqual(
+                        "[\"Failed to get resource class fi.helsinki.koulutustarjonta.domain.Organization with oid 1.2.3\"]"),
+                stateEquals(UpdateResult.State.ERROR))));
     }
 
-    private class OneErrorUpdateResultMatcher extends ArgumentMatcher<UpdateResult> {
-
-        @Override
-        public boolean matches(Object argument) {
-            UpdateResult updateResult = (UpdateResult) argument;
-            return updateResult.getErrors().contains("[\"com.sun.jersey.api.client.ClientHandlerException");
-        }
-    }
 }
