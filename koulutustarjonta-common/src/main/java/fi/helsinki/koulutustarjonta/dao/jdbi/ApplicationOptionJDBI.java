@@ -31,6 +31,12 @@ public interface ApplicationOptionJDBI extends Transactional<ApplicationOptionJD
     @SqlQuery
     List<ApplicationOptionJoinRow> findJoinRows();
 
+    @SqlUpdate
+    void removeExams(@Bind("id_hakukohde") String applicationOptionOid);
+
+    @SqlUpdate
+    void removeExamEvents(@Bind("id_hakukohde") String applicationOptionOid);
+
     @SqlBatch
     @BatchChunkSize(10)
     void upsertExams(@BindExam List<Exam> exam, @Bind("id_hakukohde") String applicationOptionOid);
@@ -44,15 +50,15 @@ public interface ApplicationOptionJDBI extends Transactional<ApplicationOptionJD
 
     @SqlBatch
     @BatchChunkSize(10)
-    void insertAttachments(@BindAttachment List<Attachment> attachments, @Bind("id_hakukohde") String applicationOptionOid);
+    void insertAttachments(@BindAttachment List<Attachment> attachments, @Bind("id_hakukohde") String
+        applicationOptionOid);
 
     @SqlBatch
     @BatchChunkSize(10)
     void insertRequirements(
-            @BindRequirement List<Requirement> requirements,
-            @Bind("id_hakukohde") String applicationOptionOid);
+        @BindRequirement List<Requirement> requirements,
+        @Bind("id_hakukohde") String applicationOptionOid);
 
     @SqlUpdate
     void removeRequirements(@Bind("id_hakukohde") String applicationOptionOid);
-
 }

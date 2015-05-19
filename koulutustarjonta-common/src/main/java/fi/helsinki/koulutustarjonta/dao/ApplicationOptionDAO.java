@@ -28,6 +28,10 @@ public class ApplicationOptionDAO {
         jdbi.begin();
         try {
             jdbi.upsert(applicationOption);
+
+            jdbi.removeExamEvents(applicationOption.getOid());
+            jdbi.removeExams(applicationOption.getOid());
+
             if (applicationOption.getExams() != null) {
                 jdbi.upsertExams(applicationOption.getExams(), applicationOption.getOid());
                 applicationOption.getExams().forEach(exam -> jdbi.upsertExamEvents(exam.getEvents(), exam.getOid()));
@@ -39,7 +43,7 @@ public class ApplicationOptionDAO {
             if (applicationOption.getRequirements() != null) {
                 jdbi.removeRequirements(applicationOption.getOid());
                 jdbi.insertRequirements(applicationOption.getRequirements(),
-                        applicationOption.getOid());
+                    applicationOption.getOid());
             }
             jdbi.commit();
         } catch (Exception e) {
@@ -53,9 +57,8 @@ public class ApplicationOptionDAO {
         List<ApplicationOptionJoinRow> rows = jdbi.findJoinRowsById(oid);
         if (rows.size() == 0) {
             throw new ResourceNotFound(ApplicationOption.class, oid);
-        }
-        else {
-           return ApplicationOptionObjectMapper.build(rows).get(0);
+        } else {
+            return ApplicationOptionObjectMapper.build(rows).get(0);
         }
     }
 

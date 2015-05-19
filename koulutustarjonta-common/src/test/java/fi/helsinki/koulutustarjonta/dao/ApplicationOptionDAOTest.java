@@ -14,9 +14,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * @author Hannu Lyytikainen
@@ -45,7 +43,7 @@ public class ApplicationOptionDAOTest extends BaseDAOTest {
         h.execute("DELETE FROM hakukelp WHERE id_hakukohde = ?", fixture1.getOid());
         h.execute("DELETE FROM liite WHERE id_hakukohde = ?", fixture1.getOid());
         fixture1.getExams().forEach(
-                exam -> h.execute("DELETE FROM valintakoe_ak WHERE id_valintakoe = ?", exam.getOid()));
+            exam -> h.execute("DELETE FROM valintakoe_ak WHERE id_valintakoe = ?", exam.getOid()));
         h.execute("DELETE FROM valintakoe WHERE id_hakukohde = ?", fixture1.getOid());
         h.execute("DELETE FROM hakukohde WHERE id = ?", fixture1.getOid());
         dbi.close(h);
@@ -53,7 +51,7 @@ public class ApplicationOptionDAOTest extends BaseDAOTest {
 
     @Test
     public void testFindByOid() throws ResourceNotFound {
-        ApplicationOption ao =  dao.findByOid(aoOidPopulated);
+        ApplicationOption ao = dao.findByOid(aoOidPopulated);
         assertNotNull(ao);
         assertEquals(aoOidPopulated, ao.getOid());
         assertEquals("nimi fi", ao.getName().getFi());
@@ -212,7 +210,7 @@ public class ApplicationOptionDAOTest extends BaseDAOTest {
         assertEquals(fixtureAttachment.getDescription(), attachment.getDescription());
         Address attachmentAddress = attachment.getAddress();
         assertNotNull(attachmentAddress);
-        Address fixtureAttachmentAddress  = fixtureAttachment.getAddress();
+        Address fixtureAttachmentAddress = fixtureAttachment.getAddress();
         assertEquals(fixtureAttachmentAddress.getStreet(), attachmentAddress.getStreet());
         assertEquals(fixtureAttachmentAddress.getPostalCode(), attachmentAddress.getPostalCode());
         assertEquals(fixtureAttachmentAddress.getPostOffice(), attachmentAddress.getPostOffice());
@@ -239,5 +237,19 @@ public class ApplicationOptionDAOTest extends BaseDAOTest {
         apEnds.set(Calendar.HOUR_OF_DAY, 15);
         assertEquals(apStarts.getTime(), ap.getStarts());
         assertEquals(apEnds.getTime(), ap.getEnds());
+    }
+
+    @Test
+    public void thatOldExamsAreRemoved() throws ResourceNotFound {
+        dao.save(fixture1);
+
+        ApplicationOption applicationOption = dao.findByOid(fixture1.getOid());
+        assertFalse(applicationOption.getExams().isEmpty());
+
+        fixture1.getExams().clear();
+        dao.save(fixture1);
+
+        applicationOption = dao.findByOid(fixture1.getOid());
+        assertTrue(applicationOption.getExams().isEmpty());
     }
 }

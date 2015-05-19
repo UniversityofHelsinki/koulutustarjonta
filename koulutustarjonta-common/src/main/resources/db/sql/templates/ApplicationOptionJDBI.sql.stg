@@ -80,6 +80,21 @@ findJoinRows() ::= <<
 
 >>
 
+removeExams(applicationOptionOid) ::= <<
+
+DELETE FROM valintakoe
+WHERE id_hakukohde=:id_hakukohde
+
+>>
+
+removeExamEvents(applicationOptionOid) ::= <<
+
+DELETE FROM valintakoe_ak
+WHERE valintakoe_ak.id_valintakoe in (
+  SELECT id FROM valintakoe WHERE valintakoe.id_hakukohde=:id_hakukohde
+)
+
+>>
 
 upsertExams(exam, applicationOptionOid) ::= <<
 
