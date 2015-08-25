@@ -82,6 +82,8 @@ public class ApplicationOptionResourceTest {
         assertEquals(expected.getApplicationSystem(), actual.getApplicationSystem());
         applicationPeriodDTOsEqual(expected.getApplicationPeriod(), actual.getApplicationPeriod());
         assertEquals(expected.getTranslations().size(), actual.getTranslations().size());
+        assertNotNull(actual.getFirstTimePositions());
+        assertEquals(expected.getFirstTimePositions(), actual.getFirstTimePositions());
     }
 
     private void attachmentDTOsEqual(AttachmentDTO expected, AttachmentDTO actual) {

@@ -237,6 +237,7 @@ public class ApplicationOptionDAOTest extends BaseDAOTest {
         apEnds.set(Calendar.HOUR_OF_DAY, 15);
         assertEquals(apStarts.getTime(), ap.getStarts());
         assertEquals(apEnds.getTime(), ap.getEnds());
+        assertEquals(new Integer(2), ao.getFirstTimePositions());
     }
 
     @Test

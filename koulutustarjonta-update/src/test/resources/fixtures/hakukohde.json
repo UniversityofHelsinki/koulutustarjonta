@@ -277,7 +277,8 @@
     "kaksoisTutkinto" : false,
     "opetusKielet" : [ "kieli_en", "kieli_fi", "kieli_sv" ],
     "valintaPerusteKuvausKielet" : [ ],
-    "soraKuvausKielet" : [ ]
+    "soraKuvausKielet" : [ ],
+    "ensikertalaistenAloituspaikat" : 2
   },
   "status" : "OK",
   "accessRights" : { }

@@ -51,6 +51,10 @@ public class ApplicationOptionConverter extends BaseConverter {
             ao.setApplicationPeriodId(content.get("hakuaikaId").textValue());
         }
 
+        if (content.has("ensikertalaistenAloituspaikat")) {
+            ao.setFirstTimePositions(content.get("ensikertalaistenAloituspaikat").intValue());
+        }
+
         return ao;
     }
 

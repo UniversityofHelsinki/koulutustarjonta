@@ -28,4 +28,5 @@ public class ApplicationOption {
     private String applicationSystem;
     private ApplicationPeriod applicationPeriod;// for saving
     private String applicationPeriodId;// for fetching
+    private Integer firstTimePositions;
 }

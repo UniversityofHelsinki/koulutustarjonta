@@ -97,6 +97,7 @@ public class Fixture {
         ao.setApplicationSystem("haku_id1");
         ao.setApplicationPeriod(applicationPeriod("hakuaika_id1"));
         ao.setApplicationPeriodId("hakuaika_id1");
+        ao.setFirstTimePositions(new Integer(2));
         return ao;
     }
 
