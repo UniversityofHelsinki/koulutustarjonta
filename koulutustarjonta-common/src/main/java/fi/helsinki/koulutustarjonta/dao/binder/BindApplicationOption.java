@@ -36,6 +36,7 @@ public @interface BindApplicationOption {
                     BindUtil.bindI18N(q, "sorakuvaus", ao.getSora());
                     q.bind("id_haku", ao.getApplicationSystem());
                     q.bind("id_hakuaika", ao.getApplicationPeriodId());
+                    q.bind("ensikertalaisten_aloituspaikat", ao.getFirstTimePositions());
                 }
 
             };

@@ -42,6 +42,7 @@ public class ApplicationOptionJoinRowMapper implements ResultSetMapper<Applicati
         ao.setSelectionCriteria(resolveI18N(r, "valintaper"));
         ao.setSora(resolveI18N(r, "sorakuvaus"));
         ao.setApplicationSystem(r.getString("id_haku"));
+        ao.setFirstTimePositions(new Integer(r.getInt("ensikertalaisten_aloituspaikat")));
         Exam exam = examMapper.map(index, r, ctx);
         ExamEvent event = eventMapper.map(index, r, ctx);
         Attachment attachment = attachmentMapper.map(index, r, ctx);

@@ -45,4 +45,6 @@ public class ApplicationOptionDTO {
     private ApplicationPeriodDTO applicationPeriod;
     @JsonProperty("kuvauskielet")
     private List<String> translations;
+    @JsonProperty("ensikertalaisten_aloituspaikat")
+    private Integer firstTimePositions;
 }
