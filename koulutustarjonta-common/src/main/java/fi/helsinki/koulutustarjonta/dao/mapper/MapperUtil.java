@@ -10,6 +10,15 @@ import java.sql.SQLException;
  */
 public class MapperUtil {
 
+    public static Integer resolveInteger(ResultSet r, String field) throws SQLException {
+        Integer i = new Integer(r.getInt(field));
+        if (r.wasNull()) {
+            return null;
+        } else {
+            return i;
+        }
+    }
+
     public static I18N resolveI18N(ResultSet r, String field) throws SQLException {
         String fi = r.getString(String.format("%s_fi", field));
         String sv = r.getString(String.format("%s_sv", field));
