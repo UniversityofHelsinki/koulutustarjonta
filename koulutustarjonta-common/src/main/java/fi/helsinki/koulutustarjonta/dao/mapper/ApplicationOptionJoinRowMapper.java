@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import static fi.helsinki.koulutustarjonta.dao.mapper.MapperUtil.resolveI18N;
+import static fi.helsinki.koulutustarjonta.dao.mapper.MapperUtil.resolveInteger;
 
 /**
  * @author Hannu Lyytikainen
@@ -42,7 +43,7 @@ public class ApplicationOptionJoinRowMapper implements ResultSetMapper<Applicati
         ao.setSelectionCriteria(resolveI18N(r, "valintaper"));
         ao.setSora(resolveI18N(r, "sorakuvaus"));
         ao.setApplicationSystem(r.getString("id_haku"));
-        ao.setFirstTimePositions(new Integer(r.getInt("ensikertalaisten_aloituspaikat")));
+        ao.setFirstTimePositions(resolveInteger(r, "ensikertalaisten_aloituspaikat"));
         Exam exam = examMapper.map(index, r, ctx);
         ExamEvent event = eventMapper.map(index, r, ctx);
         Attachment attachment = attachmentMapper.map(index, r, ctx);
