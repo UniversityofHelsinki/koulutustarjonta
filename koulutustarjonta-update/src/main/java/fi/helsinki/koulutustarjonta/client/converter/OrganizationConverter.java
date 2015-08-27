@@ -43,10 +43,15 @@ public class OrganizationConverter extends BaseConverter {
                 convertToI18N(metadata.get("AIEMMIN_HANKITTU_OSAAMINEN")),
                 convertToI18N(metadata.get("KIELIOPINNOT")),
                 convertToI18N(metadata.get("TYOHARJOITTELU")),
-                new Some(convertToI18N(metadata.get("FACEBOOK")),
-                        convertToI18N(metadata.get("TWITTER")),
-                        convertToI18N(metadata.get("GOOGLE_PLUS")),
-                        convertToI18N(metadata.get("LINKED_IN"))),
+                new Some(node.get("oid").textValue(),
+                         convertToI18N(metadata.get("sosiaalinenmedia_1#1")),
+                         convertToI18N(metadata.get("sosiaalinenmedia_2#1")),
+                         convertToI18N(metadata.get("sosiaalinenmedia_3#1")),
+                         convertToI18N(metadata.get("sosiaalinenmedia_4#1")),
+                         convertToI18N(metadata.get("sosiaalinenmedia_5#1")),
+                         convertToI18N(metadata.get("sosiaalinenmedia_6#1")),
+                         convertToI18N(metadata.get("sosiaalinenmedia_7#1"))
+                ),
                 convertContactInfos(node.get("yhteystiedot"), ContactInfo.TYPE.CONTACT),
                 convertContactInfos(node.get("metadata").get("yhteystiedot"), ContactInfo.TYPE.APPLICANT)
         );

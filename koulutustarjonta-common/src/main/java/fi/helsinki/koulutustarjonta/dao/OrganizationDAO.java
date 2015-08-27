@@ -36,6 +36,9 @@ public class OrganizationDAO {
             jdbi.upsertContactInfos(combinedContactInfos, organization.getOid());
             jdbi.removeDeletedContactInfos(organization.getOid(), combinedContactInfos.stream()
                     .map(info -> info.getOid()).collect(toList()));
+
+            LOG.debug(String.format("upsert social media %s", organization.getOid()));
+            jdbi.upsertSocialMedia(Lists.newArrayList(organization.getSome()), organization.getOid());
             jdbi.commit();
         }
         catch (Exception e) {

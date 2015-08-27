@@ -6,10 +6,19 @@ findByOid(oid) ::= <<
     y.www AS y_www, y.puhelin AS y_puhelin, y.email AS y_email, y.fax AS y_fax,
     y.kaynti_osoite AS y_kaynti_osoite, y.kaynti_postinumero AS y_kaynti_postinumero,
     y.kaynti_postitoimipaikka AS y_kaynti_postitoimipaikka, y.posti_osoite AS y_posti_osoite,
-    y.posti_postinumero AS y_posti_postinumero, y.posti_postitoimipaikka AS y_posti_postitoimipaikka
+    y.posti_postinumero AS y_posti_postinumero, y.posti_postitoimipaikka AS y_posti_postitoimipaikka,
+    s.facebook_fi AS facebook_fi, s.facebook_sv AS facebook_sv, s.facebook_en AS facebook_en,
+    s.twitter_fi AS twitter_fi, s.twitter_sv AS twitter_sv, s.twitter_en AS twitter_en,
+    s.google_plus_fi AS google_plus_fi, s.google_plus_sv AS google_plus_sv, s.google_plus_en AS google_plus_en,
+    s.linkedin_fi AS linkedin_fi, s.linkedin_sv AS linkedin_sv, s.linkedin_en AS linkedin_en,
+    s.some_other_fi AS some_other_fi, s.some_other_sv AS some_other_sv, s.some_other_en AS some_other_en,
+    s.instagram_fi AS instagram_fi, s.instagram_sv AS instagram_sv, s.instagram_en AS instagram_en,
+    s.youtube_fi AS youtube_fi, s.youtube_sv AS youtube_sv, s.youtube_en AS youtube_en
     FROM organisaatio o
     LEFT JOIN
     yhteystieto y ON y.id_organisaatio = o.id
+    LEFT JOIN
+    some s ON s.id_organisaatio = o.id
     WHERE o.id = :id
 
 >>
@@ -21,10 +30,19 @@ findAll() ::= <<
     y.www AS y_www, y.puhelin AS y_puhelin, y.email AS y_email, y.fax AS y_fax,
     y.kaynti_osoite AS y_kaynti_osoite, y.kaynti_postinumero AS y_kaynti_postinumero,
     y.kaynti_postitoimipaikka AS y_kaynti_postitoimipaikka, y.posti_osoite AS y_posti_osoite,
-    y.posti_postinumero AS y_posti_postinumero, y.posti_postitoimipaikka AS y_posti_postitoimipaikka
+    y.posti_postinumero AS y_posti_postinumero, y.posti_postitoimipaikka AS y_posti_postitoimipaikka,
+    s.facebook_fi AS facebook_fi, s.facebook_sv AS facebook_sv, s.facebook_en AS facebook_en,
+    s.twitter_fi AS twitter_fi, s.twitter_sv AS twitter_sv, s.twitter_en AS twitter_en,
+    s.google_plus_fi AS google_plus_fi, s.google_plus_sv AS google_plus_sv, s.google_plus_en AS google_plus_en,
+    s.linkedin_fi AS linkedin_fi, s.linkedin_sv AS linkedin_sv, s.linkedin_en AS linkedin_en,
+    s.some_other_fi AS some_other_fi, s.some_other_sv AS some_other_sv, s.some_other_en AS some_other_en,
+    s.instagram_fi AS instagram_fi, s.instagram_sv AS instagram_sv, s.instagram_en AS instagram_en,
+    s.youtube_fi AS youtube_fi, s.youtube_sv AS youtube_sv, s.youtube_en AS youtube_en
     FROM organisaatio o
     LEFT JOIN
     yhteystieto y ON y.id_organisaatio = o.id
+    LEFT JOIN
+    some s ON s.id_organisaatio = o.id
 
 >>
 
@@ -44,11 +62,7 @@ upsert(organization) ::= <<
     vastuuhenkilot_fi=:vastuuhenkilot_fi, vastuuhenkilot_sv=:vastuuhenkilot_sv, vastuuhenkilot_en=:vastuuhenkilot_en,
     aik_kokemus_fi=:aik_kokemus_fi, aik_kokemus_sv=:aik_kokemus_sv, aik_kokemus_en=:aik_kokemus_en,
     kieliopinnot_fi=:kieliopinnot_fi, kieliopinnot_sv=:kieliopinnot_sv, kieliopinnot_en=:kieliopinnot_en,
-    tyoharjoittelu_fi=:tyoharjoittelu_fi, tyoharjoittelu_sv=:tyoharjoittelu_sv, tyoharjoittelu_en=:tyoharjoittelu_en,
-    facebook_fi=:facebook_fi, facebook_sv=:facebook_sv, facebook_en=:facebook_en,
-    twitter_fi=:twitter_fi, twitter_sv=:twitter_sv, twitter_en=:twitter_en,
-    google_plus_fi=:google_plus_fi, google_plus_sv=:google_plus_sv, google_plus_en=:google_plus_en,
-    linkedin_fi=:linkedin_fi, linkedin_sv=:linkedin_sv, linkedin_en=:linkedin_en
+    tyoharjoittelu_fi=:tyoharjoittelu_fi, tyoharjoittelu_sv=:tyoharjoittelu_sv, tyoharjoittelu_en=:tyoharjoittelu_en
     WHEN NOT MATCHED THEN INSERT
     (id, nimi_fi, nimi_sv, nimi_en, kustannukset_fi, kustannukset_sv, kustannukset_en,
     kv_koulohj_fi, kv_koulohj_sv, kv_koulohj_en, opliikkuvuus_fi, opliikkuvuus_sv, opliikkuvuus_en,
@@ -58,9 +72,8 @@ upsert(organization) ::= <<
     vuosikello_fi, vuosikello_sv, vuosikello_en, vastuuhenkilot_fi, vastuuhenkilot_sv, vastuuhenkilot_en,
     valintamenettely_fi, valintamenettely_sv, valintamenettely_en,
     aik_kokemus_fi, aik_kokemus_sv, aik_kokemus_en, kieliopinnot_fi, kieliopinnot_sv, kieliopinnot_en,
-    tyoharjoittelu_fi, tyoharjoittelu_sv, tyoharjoittelu_en,
-    facebook_fi, facebook_sv, facebook_en, twitter_fi, twitter_sv, twitter_en, google_plus_fi, google_plus_sv, google_plus_en,
-    linkedin_fi, linkedin_sv, linkedin_en)
+    tyoharjoittelu_fi, tyoharjoittelu_sv, tyoharjoittelu_en
+    )
     VALUES (:id, :nimi_fi, :nimi_sv, :nimi_en, :kustannukset_fi, :kustannukset_sv, :kustannukset_en,
     :kv_koulohj_fi, :kv_koulohj_sv, :kv_koulohj_en, :opliikkuvuus_fi, :opliikkuvuus_sv, :opliikkuvuus_en,
     :oppimisymparisto_fi, :oppimisymparisto_sv, :oppimisymparisto_en,
@@ -69,9 +82,8 @@ upsert(organization) ::= <<
     :vuosikello_fi, :vuosikello_sv, :vuosikello_en, :vastuuhenkilot_fi, :vastuuhenkilot_sv, :vastuuhenkilot_en,
     :valintamenettely_fi, :valintamenettely_sv, :valintamenettely_en,
     :aik_kokemus_fi, :aik_kokemus_sv, :aik_kokemus_en, :kieliopinnot_fi, :kieliopinnot_sv, :kieliopinnot_en,
-    :tyoharjoittelu_fi, :tyoharjoittelu_sv, :tyoharjoittelu_en, :facebook_fi, :facebook_sv, :facebook_en,
-    :twitter_fi, :twitter_sv, :twitter_en, :google_plus_fi, :google_plus_sv, :google_plus_en,
-    :linkedin_fi, :linkedin_sv, :linkedin_en)
+    :tyoharjoittelu_fi, :tyoharjoittelu_sv, :tyoharjoittelu_en
+    )
 
 >>
 
@@ -92,6 +104,39 @@ upsertContactInfos(contactInfos, id) ::= <<
 
 >>
 
+upsertSocialMedia(socialMedia, id) ::= <<
+
+  MERGE INTO some USING dual ON ( id=:id )
+    WHEN MATCHED THEN UPDATE SET
+    facebook_fi=:facebook_fi, facebook_sv=:facebook_sv, facebook_en=:facebook_en,
+    twitter_fi=:twitter_fi, twitter_sv=:twitter_sv, twitter_en=:twitter_en,
+    google_plus_fi=:google_plus_fi, google_plus_sv=:google_plus_sv, google_plus_en=:google_plus_en,
+    linkedin_fi=:linkedin_fi, linkedin_sv=:linkedin_sv, linkedin_en=:linkedin_en,
+    some_other_fi=:some_other_fi, some_other_sv=:some_other_sv, some_other_en=:some_other_en,
+    instagram_fi=:instagram_fi, instagram_sv=:instagram_sv, instagram_en=:instagram_en,
+    youtube_fi=:youtube_fi, youtube_sv=:youtube_sv, youtube_en=:youtube_en
+    WHEN NOT MATCHED THEN INSERT
+    (id,
+    facebook_fi, facebook_sv, facebook_en,
+    twitter_fi, twitter_sv, twitter_en,
+    google_plus_fi, google_plus_sv, google_plus_en,
+    linkedin_fi, linkedin_sv, linkedin_en,
+    some_other_fi, some_other_sv, some_other_en,
+    instagram_fi, instagram_sv, instagram_en,
+    youtube_fi, youtube_sv, youtube_en,
+    id_organisaatio)
+    VALUES
+    (:id,
+    :facebook_fi, :facebook_sv, :facebook_en,
+    :twitter_fi, :twitter_sv, :twitter_en,
+    :google_plus_fi, :google_plus_sv, :google_plus_en,
+    :linkedin_fi, :linkedin_sv, :linkedin_en,
+    :some_other_fi, :some_other_sv, :some_other_en,
+    :instagram_fi, :instagram_sv, :instagram_en,
+    :youtube_fi, :youtube_sv, :youtube_en,
+    :id_organisaatio)
+
+>>
 
 removeDeletedContactInfos(organizationOid, current) ::= <<
 
@@ -100,3 +145,4 @@ removeDeletedContactInfos(organizationOid, current) ::= <<
     AND id NOT IN (<current>)
 
 >>
+

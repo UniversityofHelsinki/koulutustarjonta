@@ -39,7 +39,12 @@ OR id = 'koulutus_id2';
 
 --organisaatio
 DELETE FROM yhteystieto
-WHERE id_organisaatio = 'organisaatio_id1';
+WHERE id_organisaatio = 'organisaatio_id1'
+OR id_organisaatio = 'organisaatio_id2';
+
+DELETE FROM some
+WHERE id_organisaatio = 'organisaatio_id1'
+OR id_organisaatio = 'organisaatio_id2';
 
 DELETE FROM organisaatio
 WHERE id = 'organisaatio_id1'

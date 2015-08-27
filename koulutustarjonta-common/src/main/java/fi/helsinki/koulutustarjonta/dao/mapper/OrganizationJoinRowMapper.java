@@ -30,10 +30,18 @@ public class OrganizationJoinRowMapper implements ResultSetMapper<OrganizationJo
                 MapperUtil.resolveI18N(r, "vuosikello"), MapperUtil.resolveI18N(r, "vastuuhenkilot"),
                 MapperUtil.resolveI18N(r, "valintamenettely"), MapperUtil.resolveI18N(r, "aik_kokemus"),
                 MapperUtil.resolveI18N(r, "kieliopinnot"), MapperUtil.resolveI18N(r, "tyoharjoittelu"),
-                new Some(
-                MapperUtil.resolveI18N(r, "facebook"), MapperUtil.resolveI18N(r, "twitter"),
-                MapperUtil.resolveI18N(r, "google_plus"), MapperUtil.resolveI18N(r, "linkedin")),
-                null, null);
+                new Some(r.getString("id"),
+                         MapperUtil.resolveI18N(r, "facebook"),
+                         MapperUtil.resolveI18N(r, "google_plus"),
+                         MapperUtil.resolveI18N(r, "linkedin"),
+                         MapperUtil.resolveI18N(r, "twitter"),
+                         MapperUtil.resolveI18N(r, "some_other"),
+                         MapperUtil.resolveI18N(r, "instagram"),
+                         MapperUtil.resolveI18N(r, "youtube")
+                ),
+                null,
+                null
+        );
         ContactInfo ci = contactInfoMapper.map(index, r, ctx);
         return new OrganizationJoinRow(o, ci);
     }

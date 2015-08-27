@@ -31,6 +31,20 @@ public class I18N {
         return en;
     }
 
+    public String getLang(String lang) {
+        if (!availableTranslations().contains(lang))
+            return new String();
+
+        if (lang.equals("fi"))
+            return fi;
+        else if (lang.equals("sv"))
+            return sv;
+        else if (lang.equals("en"))
+            return en;
+        else
+            return new String();
+    }
+
     public List<String> availableTranslations() {
         List<String> translations = Lists.newArrayList();
         if (fi != null) {

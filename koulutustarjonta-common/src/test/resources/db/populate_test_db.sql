@@ -7,9 +7,7 @@ saavutettavuus_fi, saavutettavuus_sv, saavutettavuus_en,
 vuosikello_fi, vuosikello_sv, vuosikello_en, vastuuhenkilot_fi, vastuuhenkilot_sv, vastuuhenkilot_en,
 valintamenettely_fi, valintamenettely_sv, valintamenettely_en,
 aik_kokemus_fi, aik_kokemus_sv, aik_kokemus_en, kieliopinnot_fi, kieliopinnot_sv, kieliopinnot_en,
-tyoharjoittelu_fi, tyoharjoittelu_sv, tyoharjoittelu_en, facebook_fi,
-facebook_sv, facebook_en, twitter_fi, twitter_sv, twitter_en, google_plus_fi, google_plus_sv, google_plus_en,
-linkedin_fi, linkedin_sv, linkedin_en)
+tyoharjoittelu_fi, tyoharjoittelu_sv, tyoharjoittelu_en)
 VALUES
 ('organisaatio_id1', 'o nimi fi', 'o nimi sv', 'o nimi en', 'kustannukset fi', 'kustannukset sv',
 'kustannukset en', 'kv fi',  'kv sv', 'kv en', 'liikkuvuus fi', 'liikkuvuus sv', 'liikkuvuus en',
@@ -18,9 +16,24 @@ VALUES
 'vuosikello fi', 'vuosikello sv', 'vuosikello en', 'vastuuhenkilot fi', 'vastuuhenkilot sv', 'vastuuhenkilot en',
 'valintamenettely fi', 'valintamenettely sv', 'valintamenettely en',
 'aik kokemus fi', 'aik kokemus sv', 'aik kokemus en', 'kieliopinnot fi', 'kieliopinnot sv', 'kieliopinnot en',
-'tyoharjoittelu fi', 'tyoharjoittelu sv', 'tyoharjoittelu en',
-'face fi', 'face sv', 'face en', 'twitter fi', 'twitter sv', 'twitter en', 'plus fi', 'plus sv', 'plus en',
-'linkedin fi', 'linkedin sv', 'linkedin en');
+'tyoharjoittelu fi', 'tyoharjoittelu sv', 'tyoharjoittelu en');
+
+INSERT INTO some
+(id, facebook_fi, facebook_sv, facebook_en,
+twitter_fi, twitter_sv, twitter_en,
+google_plus_fi, google_plus_sv, google_plus_en,
+linkedin_fi, linkedin_sv, linkedin_en,
+some_other_fi, some_other_sv, some_other_en,
+instagram_fi, instagram_sv, instagram_en,
+youtube_fi, youtube_sv, youtube_en, id_organisaatio)
+VALUES ( 'someid1',
+'face fi', 'face sv', 'face en',
+'twitter fi', 'twitter sv', 'twitter en',
+'plus fi', 'plus sv', 'plus en',
+'linkedin fi', 'linkedin sv', 'linkedin en',
+'some_other fi', 'some_other sv', 'some_other en',
+'instagram fi', 'instagram sv', 'instagram en',
+'youtube fi', 'youtube sv', 'youtube en', 'organisaatio_id1' );
 
 INSERT INTO yhteystieto
 (id, tyyppi, kieli, www, puhelin, email, fax, kaynti_osoite, kaynti_postinumero, kaynti_postitoimipaikka,
@@ -74,6 +87,23 @@ INSERT INTO organisaatio
 (id, nimi_fi, nimi_sv, nimi_en)
 VALUES
 ('organisaatio_id2', 'o nimi fi', 'o nimi sv', 'o nimi en');
+
+INSERT INTO some
+(id, facebook_fi, facebook_sv, facebook_en,
+ twitter_fi, twitter_sv, twitter_en,
+ google_plus_fi, google_plus_sv, google_plus_en,
+ linkedin_fi, linkedin_sv, linkedin_en,
+ some_other_fi, some_other_sv, some_other_en,
+ instagram_fi, instagram_sv, instagram_en,
+ youtube_fi, youtube_sv, youtube_en, id_organisaatio)
+VALUES ( 'someid2',
+'face fi', 'face sv', 'face en',
+'twitter fi', 'twitter sv', 'twitter en',
+'plus fi', 'plus sv', 'plus en',
+'linkedin fi', 'linkedin sv', 'linkedin en',
+'some_other fi', 'some_other sv', 'some_other en',
+'instagram fi', 'instagram sv', 'instagram en',
+'youtube fi', 'youtube sv', 'youtube en', 'organisaatio_id2' );
 
 -- haku
 INSERT INTO haku

@@ -159,10 +159,15 @@ public class Fixture {
                 new I18N("pervious fi", "previous sv", "previous en"),
                 new I18N("language fi", "language sv", "language en"),
                 new I18N("internship fi", "internship sv", "internship en"),
-                new Some(new I18N("facebook fi", "facebook sv", "facebook en"),
-                        new I18N("twitter fi", "twitter sv", "twitter en"),
+                new Some(oid,
+                        new I18N("facebook fi", "facebook sv", "facebook en"),
                         new I18N("google plus fi", "google plus sv", "google plus en"),
-                        new I18N("linkedin fi", "linkedin sv", "linkedin en")),
+                        new I18N("linkedin fi", "linkedin sv", "linkedin en"),
+                        new I18N("twitter fi", "twitter sv", "twitter en"),
+                        new I18N("other fi", "other sv", "other en"),
+                        new I18N("instagram fi", "instagram sv", "instagram en"),
+                        new I18N("youtube fi", "youtube sv", "youtube en")
+                ),
                 Lists.newArrayList(
 
                         new ContactInfo("contact oid 1", ContactInfo.TYPE.CONTACT, "fi", "c www fi",

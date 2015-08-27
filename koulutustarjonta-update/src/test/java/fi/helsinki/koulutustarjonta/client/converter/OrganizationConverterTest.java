@@ -76,18 +76,22 @@ public class OrganizationConverterTest extends AbstractClientConverterTest {
         assertEquals("<p>Matemaattis-luonnontieteellisen tiedekunnan tutkintoihin</p>", o.getInternship().getFi());
         assertEquals("<p>Examina vid Matematisk-naturvetenskapliga fakulteten innehåller</p>", o.getInternship().getSv());
         assertEquals("<p>tyoharjoittelu en</p>", o.getInternship().getEn());
-        assertEquals("https://twitter.com/UHFacultyofScifi", o.getSome().getTwitter().getFi());
-        assertEquals("https://twitter.com/UHFacultyofScisv", o.getSome().getTwitter().getSv());
-        assertEquals("https://twitter.com/UHFacultyofScien", o.getSome().getTwitter().getEn());
+        assertEquals("https://twitter.fi/helsinkiuni", o.getSome().getTwitter().getFi());
+        assertEquals("https://twitter.sv/helsinkiuni", o.getSome().getTwitter().getSv());
+        assertEquals("https://twitter.en/helsinkiuni", o.getSome().getTwitter().getEn());
         assertEquals("https://www.facebook.com/ml.tiedekuntafi", o.getSome().getFacebook().getFi());
         assertEquals("https://www.facebook.com/ml.tiedekuntasv", o.getSome().getFacebook().getSv());
         assertEquals("https://www.facebook.com/ml.tiedekuntaen", o.getSome().getFacebook().getEn());
-        assertEquals("https://www.linkedin.fi", o.getSome().getLinkedIn().getFi());
-        assertEquals("https://www.linkedin.sv", o.getSome().getLinkedIn().getSv());
-        assertEquals("https://www.linkedin.en", o.getSome().getLinkedIn().getEn());
         assertEquals("https://www.googleplus.fi", o.getSome().getGooglePlus().getFi());
         assertEquals("https://www.googleplus.sv", o.getSome().getGooglePlus().getSv());
         assertEquals("https://www.googleplus.en", o.getSome().getGooglePlus().getEn());
+        assertEquals("http://www.youtube.fi", o.getSome().getYoutube().getFi());
+        assertEquals("http://www.youtube.sv", o.getSome().getYoutube().getSv());
+        assertEquals("http://www.youtube.en", o.getSome().getYoutube().getEn());
+        assertEquals("http://www.other.fi", o.getSome().getOther().getFi());
+        assertEquals("http://www.other.sv", o.getSome().getOther().getSv());
+        assertEquals("http://www.other.en", o.getSome().getOther().getEn());
+
         List<ContactInfo> applicantServices = o.getApplicantServices();
         assertNotNull(applicantServices);
         validateApplicantServices(applicantServices);
