@@ -16,10 +16,17 @@ import lombok.Setter;
 public class SomeDTO {
     @JsonProperty("facebook")
     private I18NDTO facebook;
-    @JsonProperty("twitter")
-    private I18NDTO twitter;
     @JsonProperty("google_plus")
     private I18NDTO googlePlus;
     @JsonProperty("linkedin")
     private I18NDTO linkedIn;
+    @JsonProperty("twitter")
+    private I18NDTO twitter;
+    @JsonProperty("some_other")
+    private I18NDTO someOther;
+    @JsonProperty("instagram")
+    private I18NDTO instagram;
+    @JsonProperty("youtube")
+    private I18NDTO youtube;
+
 }

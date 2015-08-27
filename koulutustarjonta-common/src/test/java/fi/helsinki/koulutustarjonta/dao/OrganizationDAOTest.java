@@ -4,12 +4,14 @@ import fi.helsinki.koulutustarjonta.dao.exception.ResourceNotFound;
 import fi.helsinki.koulutustarjonta.dao.jdbi.OrganizationJDBI;
 import fi.helsinki.koulutustarjonta.domain.ContactInfo;
 import fi.helsinki.koulutustarjonta.domain.Organization;
+import fi.helsinki.koulutustarjonta.domain.Some;
 import fi.helsinki.koulutustarjonta.test.Fixture;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.skife.jdbi.v2.Handle;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -37,6 +39,7 @@ public class OrganizationDAOTest extends BaseDAOTest {
     public void destroy() {
         Handle h = dbi.open();
         h.execute("DELETE FROM yhteystieto WHERE id_organisaatio = ?", fixture.getOid());
+        h.execute("DELETE FROM some WHERE id_organisaatio = ?", fixture.getOid());
         h.execute("DELETE FROM organisaatio WHERE id = ?", fixture.getOid());
         dbi.close(h);
     }
@@ -88,6 +91,9 @@ public class OrganizationDAOTest extends BaseDAOTest {
         i18NEquals(fixture.getSome().getTwitter(), o.getSome().getTwitter());
         i18NEquals(fixture.getSome().getGooglePlus(), o.getSome().getGooglePlus());
         i18NEquals(fixture.getSome().getLinkedIn(), o.getSome().getLinkedIn());
+        i18NEquals(fixture.getSome().getOther(), o.getSome().getOther());
+        i18NEquals(fixture.getSome().getInstagram(), o.getSome().getInstagram());
+        i18NEquals(fixture.getSome().getYoutube(), o.getSome().getYoutube());
         contactInfosEqual(filterLang(fixture.getContactInfos(), "fi"), filterLang(o.getContactInfos(), "fi"));
         contactInfosEqual(filterLang(fixture.getContactInfos(), "sv"), filterLang(o.getContactInfos(), "sv"));
         contactInfosEqual(filterLang(fixture.getContactInfos(), "en"), filterLang(o.getContactInfos(), "en"));
@@ -158,20 +164,9 @@ public class OrganizationDAOTest extends BaseDAOTest {
         assertEquals("tyoharjoittelu fi", o.getInternship().getFi());
         assertEquals("tyoharjoittelu sv", o.getInternship().getSv());
         assertEquals("tyoharjoittelu en", o.getInternship().getEn());
-        assertEquals("face fi", o.getSome().getFacebook().getFi());
-        assertEquals("face sv", o.getSome().getFacebook().getSv());
-        assertEquals("face en", o.getSome().getFacebook().getEn());
-        assertEquals("twitter fi", o.getSome().getTwitter().getFi());
-        assertEquals("twitter sv", o.getSome().getTwitter().getSv());
-        assertEquals("twitter en", o.getSome().getTwitter().getEn());
-        assertEquals("plus fi", o.getSome().getGooglePlus().getFi());
-        assertEquals("plus sv", o.getSome().getGooglePlus().getSv());
-        assertEquals("plus en", o.getSome().getGooglePlus().getEn());
-        assertEquals("linkedin fi", o.getSome().getLinkedIn().getFi());
-        assertEquals("linkedin sv", o.getSome().getLinkedIn().getSv());
-        assertEquals("linkedin en", o.getSome().getLinkedIn().getEn());
         verifyContactInfosAgainstPopulatedData(o.getContactInfos());
         verifyApplicantServicesAgainstPopulatedData(o.getApplicantServices());
+        verifySocialMediaAgainstPopulatedData(o.getSome());
     }
 
     private void verifyContactInfosAgainstPopulatedData(List<ContactInfo> contactInfos) {
@@ -274,4 +269,18 @@ public class OrganizationDAOTest extends BaseDAOTest {
         assertEquals("applicant post numb en", asEn.getPostalAddress().getPostalCode());
         assertEquals("applicant post office en", asEn.getPostalAddress().getPostOffice());
     }
+
+    private void verifySocialMediaAgainstPopulatedData(Some some) {
+        assertNotNull(some);
+        for (String lang : Arrays.asList("fi", "sv", "en")) {
+            assertEquals("face " + lang, some.getFacebook().getLang(lang));
+            assertEquals("twitter " + lang, some.getTwitter().getLang(lang));
+            assertEquals("plus " + lang, some.getGooglePlus().getLang(lang));
+            assertEquals("linkedin " + lang, some.getLinkedIn().getLang(lang));
+            assertEquals("some_other " + lang, some.getOther().getLang(lang));
+            assertEquals("instagram " + lang, some.getInstagram().getLang(lang));
+            assertEquals("youtube " + lang, some.getYoutube().getLang(lang));
+        }
+    }
+
 }

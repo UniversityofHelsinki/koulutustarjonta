@@ -10,20 +10,10 @@
       },
       "VAPAA_AIKA" : {
       },
-      "LINKED_IN" : {
-          "kieli_fi#1" : "https://www.linkedin.fi",
-          "kieli_sv#1" : "https://www.linkedin.sv",
-          "kieli_en#1" : "https://www.linkedin.en"
-      },
-      "FACEBOOK" : {
-        "kieli_fi#1" : "https://www.facebook.com/ml.tiedekuntafi",
-        "kieli_sv#1" : "https://www.facebook.com/ml.tiedekuntasv",
-        "kieli_en#1" : "https://www.facebook.com/ml.tiedekuntaen"
-      },
-      "TWITTER" : {
-        "kieli_fi#1" : "https://twitter.com/UHFacultyofScifi",
-        "kieli_sv#1" : "https://twitter.com/UHFacultyofScisv",
-        "kieli_en#1" : "https://twitter.com/UHFacultyofScien"
+      "sosiaalinenmedia_4#1": {
+        "kieli_fi#1": "https://twitter.fi/helsinkiuni",
+        "kieli_sv#1": "https://twitter.sv/helsinkiuni",
+        "kieli_en#1": "https://twitter.en/helsinkiuni"
       },
       "RAHOITUS" : {
       },
@@ -33,6 +23,17 @@
           "kieli_fi#1": "<p>aikaisemmin hankittu osaaminen fi</p>",
           "kieli_sv#1": "<p>aikaisemmin hankittu osaaminen sv</p>",
           "kieli_en#1": "<p>aikaisemmin hankittu osaaminen en</p>"
+      },
+      "sosiaalinenmedia_3#1": { },
+      "sosiaalinenmedia_7#1": {
+        "kieli_fi#1": "http://www.youtube.fi",
+        "kieli_sv#1": "http://www.youtube.sv",
+        "kieli_en#1": "http://www.youtube.en"
+      },
+      "sosiaalinenmedia_5#1": {
+        "kieli_fi#1": "http://www.other.fi",
+        "kieli_sv#1": "http://www.other.sv",
+        "kieli_en#1": "http://www.other.en"
       },
       "MUU" : {
       },
@@ -53,11 +54,6 @@
       },
       "OPISKELIJARUOKAILU" : {
       },
-      "GOOGLE_PLUS" : {
-          "kieli_fi#1" : "https://www.googleplus.fi",
-          "kieli_sv#1" : "https://www.googleplus.sv",
-          "kieli_en#1" : "https://www.googleplus.en"
-      },
       "TIETOA_ASUMISESTA" : {
       },
       "ESTEETOMYYS" : {
@@ -66,6 +62,16 @@
         "kieli_en#1" : "<p>esteettomyys en</p>"
       },
       "TERVEYDENHUOLTOPALVELUT" : {
+      },
+      "sosiaalinenmedia_1#1": {
+        "kieli_fi#1": "https://www.facebook.com/ml.tiedekuntafi",
+        "kieli_sv#1": "https://www.facebook.com/ml.tiedekuntasv",
+        "kieli_en#1": "https://www.facebook.com/ml.tiedekuntaen"
+      },
+      "sosiaalinenmedia_2#1": {
+        "kieli_fi#1": "https://www.googleplus.fi",
+        "kieli_sv#1": "https://www.googleplus.sv",
+        "kieli_en#1": "https://www.googleplus.en"
       },
       "VASTUUHENKILOT" : {
           "kieli_fi#1": "<p>vastuuhenkilot fi</p>",

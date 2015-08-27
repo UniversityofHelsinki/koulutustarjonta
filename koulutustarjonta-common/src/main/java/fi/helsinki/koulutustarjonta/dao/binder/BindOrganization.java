@@ -41,11 +41,6 @@ public @interface BindOrganization {
                     BindUtil.bindI18N(q, "aik_kokemus", o.getPreviouslyGainedExperience());
                     BindUtil.bindI18N(q, "kieliopinnot", o.getLanguageStudies());
                     BindUtil.bindI18N(q, "tyoharjoittelu", o.getInternship());
-                    Some s = o.getSome();
-                    BindUtil.bindI18N(q, "facebook", s.getFacebook());
-                    BindUtil.bindI18N(q, "twitter", s.getTwitter());
-                    BindUtil.bindI18N(q, "google_plus", s.getGooglePlus());
-                    BindUtil.bindI18N(q, "linkedin", s.getLinkedIn());
                 }
 
             };
