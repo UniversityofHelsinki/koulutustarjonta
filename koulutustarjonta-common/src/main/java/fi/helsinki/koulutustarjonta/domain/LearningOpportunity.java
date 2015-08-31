@@ -44,4 +44,5 @@ public class LearningOpportunity {
     private String provider;//tarjoaja
     private List<String> parents;
     private List<String> children;
+    private List<I18N> keywords;
 }

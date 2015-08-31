@@ -1,6 +1,7 @@
 package fi.helsinki.koulutustarjonta.dao.mapper;
 
 import fi.helsinki.koulutustarjonta.dao.util.LearningOpportunityJoinRow;
+import fi.helsinki.koulutustarjonta.domain.I18N;
 import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
 import fi.helsinki.koulutustarjonta.domain.TeachingLanguage;
 
@@ -21,40 +22,53 @@ public class LearningOpportunityObjectMapper {
                 .collect(Collectors.groupingBy(row -> row.getLearningOpportunity().getOid()))
                 .values().stream()
                 .map(list -> resolveLearningOpportunity(list))
-                .collect(Collectors.<LearningOpportunity>toList());
+                .collect(Collectors.<LearningOpportunity>toList()
+        );
     }
 
     private static LearningOpportunity resolveLearningOpportunity(List<LearningOpportunityJoinRow> rows) {
         LearningOpportunity lo = rows.get(0).getLearningOpportunity();
         lo.setTeachingLanguages(rows.stream()
-                .collect(Collectors.groupingBy(row -> row.getTeachingLanguage().getLang()))
-                .values()
-                .stream()
-                .map(list -> resolveTeachingLanguage(list))
-                .collect(toList()));
+                        .collect(Collectors.groupingBy(row -> row.getTeachingLanguage().getLang()))
+                        .values()
+                        .stream()
+                        .map(list -> resolveTeachingLanguage(list))
+                        .collect(toList())
+        );
+
         lo.setApplicationOptions(rows
                 .stream()
                 .map(row -> row.getApplicationOptionOid())
                 .distinct()
-                .collect(toList()));
+                .collect(toList())
+        );
+
+        lo.setKeywords(rows.stream()
+                        .filter(row -> row.getKeyword() != null)
+                        .map(x -> x.getKeyword())
+                        .collect(toList())
+        );
 
         lo.setParents(rows
-        .stream()
-        .filter(row -> row.getParentOid() != null)
-        .map(row -> row.getParentOid())
-        .distinct()
-        .collect(toList()));
+            .stream()
+            .filter(row -> row.getParentOid() != null)
+            .map(row -> row.getParentOid())
+            .distinct()
+            .collect(toList())
+        );
 
         lo.setChildren(rows
                 .stream()
                 .filter(row -> row.getChildOid() != null)
                 .map(row -> row.getChildOid())
                 .distinct()
-                .collect(toList()));
+                .collect(toList())
+        );
         return lo;
     }
 
     private static TeachingLanguage resolveTeachingLanguage(List<LearningOpportunityJoinRow> rows) {
         return rows.get(0).getTeachingLanguage();
     }
+
 }

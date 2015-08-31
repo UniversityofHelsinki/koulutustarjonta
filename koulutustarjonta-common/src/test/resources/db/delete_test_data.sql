@@ -37,6 +37,10 @@ DELETE FROM KOULUTUS
 WHERE id = '1.2.3'
 OR id = 'koulutus_id2';
 
+DELETE FROM aiheet
+WHERE id_koulutus = '1.2.3'
+OR id_koulutus = 'koulutus_id2';
+
 --organisaatio
 DELETE FROM yhteystieto
 WHERE id_organisaatio = 'organisaatio_id1'

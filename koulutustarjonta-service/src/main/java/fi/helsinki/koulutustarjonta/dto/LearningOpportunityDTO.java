@@ -2,6 +2,7 @@ package fi.helsinki.koulutustarjonta.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import fi.helsinki.koulutustarjonta.domain.I18N;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -75,4 +76,6 @@ public class LearningOpportunityDTO {
     private List<String> parents;
     @JsonProperty("sisaltaa_koulutukset")
     private List<String> children;
+    @JsonProperty("aiheet")
+    private List<I18NDTO> keywords;
 }

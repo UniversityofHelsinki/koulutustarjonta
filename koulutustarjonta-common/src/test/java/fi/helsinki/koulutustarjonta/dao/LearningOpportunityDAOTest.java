@@ -3,6 +3,7 @@ package fi.helsinki.koulutustarjonta.dao;
 import com.google.common.collect.Lists;
 import fi.helsinki.koulutustarjonta.dao.exception.ResourceNotFound;
 import fi.helsinki.koulutustarjonta.dao.jdbi.LearningOpportunityJDBI;
+import fi.helsinki.koulutustarjonta.domain.I18N;
 import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
 import fi.helsinki.koulutustarjonta.domain.TeachingLanguage;
 import fi.helsinki.koulutustarjonta.test.Fixture;
@@ -48,6 +49,7 @@ public class LearningOpportunityDAOTest extends BaseDAOTest {
         h.execute(String.format("DELETE FROM hakukohde_koulutus WHERE id_koulutus = '%s'", oid2));
         h.execute(String.format("DELETE FROM KOULUTUS_OPETUSKIELI WHERE id_koulutus = '%s'", oid2));
         h.execute(String.format("DELETE FROM KOULUTUS WHERE id = '%s'", oid2));
+        h.execute(String.format("DELETE FROM aiheet WHERE id_koulutus = '%s'", oid2));
         dbi.close(h);
     }
 
@@ -119,6 +121,13 @@ public class LearningOpportunityDAOTest extends BaseDAOTest {
         assertEquals("opinnaytetyo fi", lo.getThesis().getFi());
         assertEquals("opinnaytetyo sv", lo.getThesis().getSv());
         assertEquals("opinnaytetyo en", lo.getThesis().getEn());
+
+        List<I18N> i = lo.getKeywords();
+        assertNotNull(i);
+        assertEquals("aihe fi", i.get(0).getFi());
+        assertEquals("aihe sv", i.get(0).getSv());
+        assertEquals("aihe en", i.get(0).getEn());
+
         List<TeachingLanguage> teachingLangs = lo.getTeachingLanguages();
         assertNotNull(teachingLangs);
         assertEquals(2, teachingLangs.size());

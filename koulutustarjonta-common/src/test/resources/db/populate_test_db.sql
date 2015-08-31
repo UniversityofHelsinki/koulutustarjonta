@@ -35,6 +35,8 @@ VALUES ( 'someid1',
 'instagram fi', 'instagram sv', 'instagram en',
 'youtube fi', 'youtube sv', 'youtube en', 'organisaatio_id1' );
 
+
+
 INSERT INTO yhteystieto
 (id, tyyppi, kieli, www, puhelin, email, fax, kaynti_osoite, kaynti_postinumero, kaynti_postitoimipaikka,
 posti_osoite, posti_postinumero, posti_postitoimipaikka, id_organisaatio)
@@ -234,6 +236,14 @@ VALUES ('hakukohde_id1', '1.2.3');
 
 INSERT INTO koulutus_sisaltyvyys (id_lapsi, id_vanhempi)
 VALUES ('koulutus_id2', '1.2.3');
+
+INSERT INTO aiheet
+(id_koulutus, nimi_fi, nimi_sv, nimi_en)
+VALUES('1.2.3'
+      ,'aihe fi'
+      ,'aihe sv'
+      ,'aihe en'
+);
 
 INSERT INTO paivitys (aloitettu, tila, virheet)
 VALUES (TO_DATE('2015/01/02 15:00:00', 'yyyy/mm/dd hh24:mi:ss'), 'ERROR', '["VIRHE"]');

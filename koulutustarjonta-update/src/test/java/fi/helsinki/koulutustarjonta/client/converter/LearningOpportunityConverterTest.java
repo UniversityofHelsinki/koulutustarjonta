@@ -2,6 +2,7 @@ package fi.helsinki.koulutustarjonta.client.converter;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import fi.helsinki.koulutustarjonta.client.KoodistoClient;
+import fi.helsinki.koulutustarjonta.domain.I18N;
 import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
 import fi.helsinki.koulutustarjonta.domain.TeachingLanguage;
 import org.junit.Before;
@@ -70,9 +71,9 @@ public class LearningOpportunityConverterTest extends AbstractClientConverterTes
         assertEquals("<p>Studerande i kemi kan avlägga filosofie magi", lo.getStructure().getSv());
         assertEquals("<p>As a student of chemistry, you can qualify ", lo.getStructure().getEn());
         assertNotNull(lo.getPostgraduateStudies());
-        assertEquals("<p>Hyvin suoritettu kemian maisterin tutkinto " ,lo.getPostgraduateStudies().getFi());
-        assertEquals("<p>En magisterexamen i kemi med goda vitsord " ,lo.getPostgraduateStudies().getSv());
-        assertEquals("<p>For students planning an academic career, " ,lo.getPostgraduateStudies().getEn());
+        assertEquals("<p>Hyvin suoritettu kemian maisterin tutkinto ", lo.getPostgraduateStudies().getFi());
+        assertEquals("<p>En magisterexamen i kemi med goda vitsord ", lo.getPostgraduateStudies().getSv());
+        assertEquals("<p>For students planning an academic career, ", lo.getPostgraduateStudies().getEn());
         assertNotNull(lo.getCompetency());
         assertEquals("<p>Kemian opiskelijana voit valmistua filos", lo.getCompetency().getFi());
         assertEquals("<p>Studerande i kemi kan avlägga filosofie ", lo.getCompetency().getSv());
@@ -110,6 +111,14 @@ public class LearningOpportunityConverterTest extends AbstractClientConverterTes
         assertEquals("<p>Studierna avslutas med ett slutarbete", lo.getThesis().getSv());
         assertEquals("<p><span style=\"color: rgb(0,0,0);\">Th", lo.getThesis().getEn());
         assertEquals("1.2.246.562.10.94639300915", lo.getProvider());
+
+        assertNotNull(lo.getKeywords());
+        assertEquals(1, lo.getKeywords().size());
+        I18N kw = lo.getKeywords().get(0);
+        assertNotNull(kw);
+        assertEquals("Kemia", kw.getFi());
+        assertEquals("Kemi", kw.getSv());
+        assertEquals("Chemistry", kw.getEn());
 
         assertNotNull(lo.getEducationLevel());
         assertEquals("Ylempi korkeakoulututkinto", lo.getEducationLevel().getFi());

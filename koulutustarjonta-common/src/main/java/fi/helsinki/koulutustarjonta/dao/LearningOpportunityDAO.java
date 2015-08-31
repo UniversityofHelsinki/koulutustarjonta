@@ -4,6 +4,7 @@ import fi.helsinki.koulutustarjonta.dao.exception.ResourceNotFound;
 import fi.helsinki.koulutustarjonta.dao.jdbi.LearningOpportunityJDBI;
 import fi.helsinki.koulutustarjonta.dao.mapper.LearningOpportunityObjectMapper;
 import fi.helsinki.koulutustarjonta.dao.util.LearningOpportunityJoinRow;
+import fi.helsinki.koulutustarjonta.domain.I18N;
 import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,6 +32,11 @@ public class LearningOpportunityDAO {
             jdbi.upsert(learningOpportunity);
             jdbi.insertTeachingLanguages(learningOpportunity.getTeachingLanguages());
             jdbi.removeTeachingLanguagesFromLearningOpportunity(learningOpportunity.getOid());
+            for (I18N i : learningOpportunity.getKeywords()) {
+                LOG.debug(String.format("Saving field %s", i.getFi()));
+                jdbi.addKeywordToLearningOpportunity(learningOpportunity.getOid(), i.getFi(), i.getSv(), i.getEn());
+                LOG.debug(String.format("Done saving field %s", i.getFi()));
+            }
             jdbi.addTeachingLanguagesToLearningOpportunity(learningOpportunity.getOid(),
                     learningOpportunity.getTeachingLanguages()
                             .stream()

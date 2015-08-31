@@ -24,7 +24,7 @@ public class LearningOpportunityMapper implements ResultSetMapper<LearningOpport
                 resolveI18N(r, "mahdollisuudet"), resolveI18N(r, "patevyys"), resolveI18N(r, "lisat_opkiel"),
                 resolveI18N(r, "yhteistyo"), resolveI18N(r, "paaaineval"), resolveI18N(r, "kansval"),
                 resolveI18N(r, "sijtyo"), resolveI18N(r, "sisalto"), resolveI18N(r, "tutkpaino"),
-                resolveI18N(r, "opinnaytetyo"), null, null, null, null
+                resolveI18N(r, "opinnaytetyo"), null, null, null, null, null
         );
         return lo;
     }

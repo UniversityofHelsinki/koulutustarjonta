@@ -38,6 +38,13 @@ public interface LearningOpportunityJDBI extends Transactional<LearningOpportuni
     @BatchChunkSize(10)
     void insertTeachingLanguages(@BindTeachingLanguage List<TeachingLanguage> teachingLanguage);
 
+    @SqlUpdate
+    void addKeywordToLearningOpportunity(@Bind("id_koulutus") String learningOpportunityId,
+                                         @Bind("keyword_fi") String kw_fi,
+                                         @Bind("keyword_sv") String kw_sv,
+                                         @Bind("keyword_en") String kw_en
+    );
+
     @SqlBatch
     @BatchChunkSize(10)
     void addTeachingLanguagesToLearningOpportunity(@Bind("id_koulutus") String learningOpportunityId,

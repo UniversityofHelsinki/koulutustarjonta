@@ -57,6 +57,8 @@ public class LearningOpportunityConverter extends BaseConverter {
         lo.setResearch(convertMetaTextsToI18N(komotoInfo.get("TUTKIMUKSEN_PAINOPISTEET")));
         lo.setThesis(convertMetaTextsToI18N(komotoInfo.get("LOPPUKOEVAATIMUKSET")));
 
+        lo.setKeywords(resolveKeywords(content.get("aihees")));
+
         return lo;
     }
 
@@ -105,6 +107,17 @@ public class LearningOpportunityConverter extends BaseConverter {
         else {
             JsonNode texts = node.get("tekstis");
             return convertToI18N(texts);
+        }
+    }
+
+    private List<I18N> resolveKeywords(JsonNode node) {
+        if (node == null) {
+            return null;
+        }
+        else {
+            return Lists.newArrayList(node.get("meta")).parallelStream()
+                    .map(elem -> resolveMetaLangName(elem))
+                    .collect(Collectors.toList());
         }
     }
 

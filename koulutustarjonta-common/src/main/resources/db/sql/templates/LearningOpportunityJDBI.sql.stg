@@ -55,7 +55,8 @@ findAllJoinRows() ::= <<
   SELECT k.*, ok.kieli as opetuskieli_kieli,
     ok.selite_fi AS opetuskieli_selite_fi, ok.selite_sv AS opetuskieli_selite_sv,
     ok.selite_en AS opetuskieli_selite_en, hk.id_hakukohde AS hakukohde_id,
-    l.id_lapsi AS id_lapsi, v.id_vanhempi AS id_vanhempi
+    l.id_lapsi AS id_lapsi, v.id_vanhempi AS id_vanhempi,
+    a.nimi_fi as aihe_fi, a.nimi_sv as aihe_sv, a.nimi_en as aihe_en
     FROM koulutus k
     LEFT JOIN
     koulutus_opetuskieli ko ON k.id = ko.id_koulutus
@@ -67,6 +68,8 @@ findAllJoinRows() ::= <<
     koulutus_sisaltyvyys l ON k.id = l.id_vanhempi
     LEFT JOIN
     koulutus_sisaltyvyys v ON k.id = v.id_lapsi
+    LEFT JOIN
+    aiheet a ON k.id = a.id_koulutus
 
 >>
 
@@ -75,7 +78,8 @@ findJoinRowsById(id) ::= <<
   SELECT k.*, ok.kieli as opetuskieli_kieli,
     ok.selite_fi as opetuskieli_selite_fi, ok.selite_sv as opetuskieli_selite_sv,
     ok.selite_en as opetuskieli_selite_en, hk.id_hakukohde AS hakukohde_id,
-    l.id_lapsi AS id_lapsi, v.id_vanhempi AS id_vanhempi
+    l.id_lapsi AS id_lapsi, v.id_vanhempi AS id_vanhempi,
+    a.nimi_fi as aihe_fi, a.nimi_sv as aihe_sv, a.nimi_en as aihe_en
     FROM koulutus k
     LEFT JOIN
     koulutus_opetuskieli ko on k.id = ko.id_koulutus
@@ -87,10 +91,11 @@ findJoinRowsById(id) ::= <<
     koulutus_sisaltyvyys l ON k.id = l.id_vanhempi
     LEFT JOIN
     koulutus_sisaltyvyys v ON k.id = v.id_lapsi
+    LEFT JOIN
+    aiheet a ON k.id = a.id_koulutus
     WHERE k.id = :id
 
 >>
-
 
 insertTeachingLanguages(teachingLanguages) ::= <<
 
@@ -108,7 +113,6 @@ addTeachingLanguagesToLearningOpportunity(learningOpportunityOid, teachingLangua
 
 >>
 
-
 removeTeachingLanguagesFromLearningOpportunity(learningOpportunityOid) ::= <<
 
   DELETE FROM koulutus_opetuskieli
@@ -116,6 +120,12 @@ removeTeachingLanguagesFromLearningOpportunity(learningOpportunityOid) ::= <<
 
 >>
 
+addKeywordToLearningOpportunity(learningOpportunityOid, kw_fi, kw_sv, kw_en) ::= <<
+
+  INSERT INTO aiheet (id_koulutus, nimi_fi, nimi_sv, nimi_en)
+    VALUES (:id_koulutus, :keyword_fi, :keyword_sv, :keyword_en)
+
+>>
 
 addApplicationOptions(learningOpportunityOid, applicationOptionOids) ::= <<
 
