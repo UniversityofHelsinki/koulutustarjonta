@@ -32,6 +32,8 @@ public class LearningOpportunityDAO {
             jdbi.upsert(learningOpportunity);
             jdbi.insertTeachingLanguages(learningOpportunity.getTeachingLanguages());
             jdbi.removeTeachingLanguagesFromLearningOpportunity(learningOpportunity.getOid());
+            jdbi.removeKeywordsFromLearningOpportunity(learningOpportunity.getOid());
+
             for (I18N i : learningOpportunity.getKeywords()) {
                 LOG.debug(String.format("Saving field %s", i.getFi()));
                 jdbi.addKeywordToLearningOpportunity(learningOpportunity.getOid(), i.getFi(), i.getSv(), i.getEn());

@@ -45,6 +45,8 @@ public interface LearningOpportunityJDBI extends Transactional<LearningOpportuni
                                          @Bind("keyword_en") String kw_en
     );
 
+
+
     @SqlBatch
     @BatchChunkSize(10)
     void addTeachingLanguagesToLearningOpportunity(@Bind("id_koulutus") String learningOpportunityId,
@@ -52,6 +54,9 @@ public interface LearningOpportunityJDBI extends Transactional<LearningOpportuni
 
     @SqlUpdate
     void removeTeachingLanguagesFromLearningOpportunity(@Bind("id") String learningOpportunityId);
+
+    @SqlUpdate
+    void removeKeywordsFromLearningOpportunity(@Bind("id") String learningOpportunityId);
 
     @SqlBatch
     @BatchChunkSize(10)

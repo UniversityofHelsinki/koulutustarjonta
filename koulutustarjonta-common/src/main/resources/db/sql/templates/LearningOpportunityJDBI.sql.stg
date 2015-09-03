@@ -127,6 +127,13 @@ addKeywordToLearningOpportunity(learningOpportunityOid, kw_fi, kw_sv, kw_en) ::=
 
 >>
 
+removeKeywordsFromLearningOpportunity(learningOpportunityOid) ::= <<
+
+  DELETE FROM aiheet
+    WHERE id_koulutus = :id
+
+>>
+
 addApplicationOptions(learningOpportunityOid, applicationOptionOids) ::= <<
 
   MERGE INTO hakukohde_koulutus USING dual ON (id_koulutus = :id_koulutus AND id_hakukohde = :id_hakukohde)
