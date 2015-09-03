@@ -37,6 +37,7 @@ public class ApplicationSystemObjectMapper {
                 .map(r -> resolveApplicationPeriod(r))
                 .collect(toList());
         as.setApplicationPeriods(aps);
+
         return as;
     }
 

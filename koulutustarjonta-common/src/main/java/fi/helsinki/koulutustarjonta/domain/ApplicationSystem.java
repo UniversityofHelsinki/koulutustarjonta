@@ -20,7 +20,6 @@ public class ApplicationSystem {
     private Season applicationSeason;
     private int educationStartYear;
     private Season educationStartSeason;
-    private String applicationFormUrl;
-    private String opintopolkuFormUrl;
+    private String formUrl;
     private List<ApplicationPeriod> applicationPeriods;
 }

@@ -72,8 +72,7 @@ public class ApplicationSystemConverterTest extends AbstractClientConverterTest 
         assertEquals("edu season fi", as.getEducationStartSeason().getName().getFi());
         assertEquals("edu season sv", as.getEducationStartSeason().getName().getSv());
         assertEquals("edu season en", as.getEducationStartSeason().getName().getEn());
-        assertEquals("http://www.helsinki.fi/ml/lomakkeet/opintooikeus.pdf", as.getApplicationFormUrl());
-        assertNull(as.getOpintopolkuFormUrl());
+        assertEquals("http://www.helsinki.fi/ml/lomakkeet/opintooikeus.pdf", as.getFormUrl());
         assertNotNull(as.getApplicationPeriods());
         ApplicationPeriod ap = as.getApplicationPeriods().get(0);
         assertNotNull(ap);
@@ -88,8 +87,7 @@ public class ApplicationSystemConverterTest extends AbstractClientConverterTest 
     @Test
     public void testConvertWithoutApplicationForm() {
         ApplicationSystem as = converter.convert(withoutApplicationFormFixture);
-        assertNull(as.getApplicationFormUrl());
-        assertEquals("https://koulutus.opintopolku.fi/haku-app/lomake/1.2.246.562.29.31035368682", as.getOpintopolkuFormUrl());
+        assertNull(as.getFormUrl());
     }
 }
 

@@ -33,18 +33,17 @@ upsertApplicationSystem(applicationSystem) ::= <<
     hakukausi_fi=:hakukausi_fi, hakukausi_sv=:hakukausi_sv, hakukausi_en=:hakukausi_en,
     koul_alk_vuosi=:koul_alk_vuosi, koul_alk_kausi_arvo=:koul_alk_kausi_arvo,
     koul_alk_kausi_fi=:koul_alk_kausi_fi, koul_alk_kausi_sv=:koul_alk_kausi_sv,
-    koul_alk_kausi_en=:koul_alk_kausi_en, hakulomake_url = :hakulomake_url,
-    opintopolku_hakulomake_url = :opintopolku_hakulomake_url
+    koul_alk_kausi_en=:koul_alk_kausi_en, hakulomake_url = :hakulomake_url
     WHEN NOT MATCHED THEN INSERT
     (id, nimi_fi, nimi_sv, nimi_en, hakutapa_fi, hakutapa_sv, hakutapa_en,
     hakukausi_vuosi, hakukausi_arvo, hakukausi_fi, hakukausi_sv, hakukausi_en,
     koul_alk_vuosi, koul_alk_kausi_arvo, koul_alk_kausi_fi, koul_alk_kausi_sv,
-    koul_alk_kausi_en, hakulomake_url, opintopolku_hakulomake_url)
+    koul_alk_kausi_en, hakulomake_url)
     VALUES
     (:id, :nimi_fi, :nimi_sv, :nimi_en, :hakutapa_fi, :hakutapa_sv, :hakutapa_en,
     :hakukausi_vuosi, :hakukausi_arvo, :hakukausi_fi, :hakukausi_sv, :hakukausi_en,
     :koul_alk_vuosi, :koul_alk_kausi_arvo, :koul_alk_kausi_fi, :koul_alk_kausi_sv,
-    :koul_alk_kausi_en, :hakulomake_url, :opintopolku_hakulomake_url)
+    :koul_alk_kausi_en, :hakulomake_url)
 
 >>
 

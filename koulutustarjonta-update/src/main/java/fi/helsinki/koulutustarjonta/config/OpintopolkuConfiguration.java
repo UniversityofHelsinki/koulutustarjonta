@@ -9,5 +9,8 @@ import lombok.Setter;
 public class OpintopolkuConfiguration {
     @JsonProperty("baseUrl")
     private String baseUrl;
-
+    @JsonProperty("baseUrl_sv")
+    private String baseUrl_sv;
+    @JsonProperty("baseUrl_en")
+    private String baseUrl_en;
 }

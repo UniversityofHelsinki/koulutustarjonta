@@ -1,12 +1,12 @@
 package fi.helsinki.koulutustarjonta.mapping;
 
 import fi.helsinki.koulutustarjonta.domain.ApplicationSystem;
+import fi.helsinki.koulutustarjonta.domain.I18N;
 import fi.helsinki.koulutustarjonta.dto.ApplicationSystemDTO;
+import fi.helsinki.koulutustarjonta.dto.I18NDTO;
 import org.modelmapper.AbstractConverter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
-
-import static org.modelmapper.Conditions.isNull;
 
 /**
  * @author Hannu Lyytikainen
@@ -22,14 +22,31 @@ public class ApplicationSystemModelMapper extends ModelMapper {
         @Override
         protected void configure() {
             map().setTranslations(source.getName().availableTranslations());
-            using(new UrlConverter()).map(source).setApplicationFormUrl(null);
+            using(new UrlConverter()).map(source).setFormUrl(null);
         }
     }
 
-    class UrlConverter extends AbstractConverter<ApplicationSystem, String> {
+    class UrlConverter extends AbstractConverter<ApplicationSystem, I18NDTO> {
         @Override
-        protected String convert(ApplicationSystem source) {
-            return source.getOpintopolkuFormUrl() != null ? source.getOpintopolkuFormUrl() : source.getApplicationFormUrl();
+        protected I18NDTO convert(ApplicationSystem source) {
+            String s = source.getFormUrl();
+
+            if (s != null) {
+                return new I18NDTO(s, s, s);
+            }
+            else {
+                return opintopolkuUrl(source.getOid());
+            }
+
         }
+
+        private I18NDTO opintopolkuUrl(String oid) {
+            return new I18NDTO(
+                    String.format("%s/haku-app/lomake/%s", "https://opintopolku.fi", oid),
+                    String.format("%s/haku-app/lomake/%s", "https://studieinfo.fi", oid),
+                    String.format("%s/haku-app/lomake/%s", "https://studyinfo.fi", oid)
+            );
+        }
+
     }
 }

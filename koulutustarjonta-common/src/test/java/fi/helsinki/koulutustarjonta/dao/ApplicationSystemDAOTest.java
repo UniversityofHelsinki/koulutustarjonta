@@ -92,7 +92,7 @@ public class ApplicationSystemDAOTest extends BaseDAOTest {
     private void applicationSystemsEqual(ApplicationSystem expected, ApplicationSystem actual) {
         assertNotNull(actual);
         assertEquals(expected.getOid(), actual.getOid());
-        assertEquals(expected.getOpintopolkuFormUrl(), actual.getOpintopolkuFormUrl());
+        assertEquals(expected.getFormUrl(), actual.getFormUrl());
         i18NEquals(expected.getName(), actual.getName());
         i18NEquals(expected.getApplicationMethod(), actual.getApplicationMethod());
         assertEquals(expected.getApplicationYear(), actual.getApplicationYear());
@@ -130,8 +130,7 @@ public class ApplicationSystemDAOTest extends BaseDAOTest {
         assertEquals("koul alk kausi fi", as.getEducationStartSeason().getName().getFi());
         assertEquals("koul alk kausi sv", as.getEducationStartSeason().getName().getSv());
         assertEquals("koul alk kausi en", as.getEducationStartSeason().getName().getEn());
-        assertEquals("hakulomake url", as.getApplicationFormUrl());
-        assertNull(as.getOpintopolkuFormUrl());
+        assertEquals("hakulomake url", as.getFormUrl());
         assertNotNull(as.getApplicationPeriods());
         assertEquals(1, as.getApplicationPeriods().size());
         ApplicationPeriod ap = as.getApplicationPeriods().get(0);

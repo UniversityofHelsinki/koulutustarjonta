@@ -1,6 +1,7 @@
 package fi.helsinki.koulutustarjonta.dao.binder;
 
 import fi.helsinki.koulutustarjonta.domain.ApplicationSystem;
+
 import org.apache.log4j.Logger;
 import org.skife.jdbi.v2.SQLStatement;
 import org.skife.jdbi.v2.sqlobject.Binder;
@@ -9,6 +10,7 @@ import org.skife.jdbi.v2.sqlobject.BindingAnnotation;
 
 import java.lang.annotation.*;
 import java.sql.Types;
+
 
 /**
  * @author Hannu Lyytikainen
@@ -48,8 +50,7 @@ public @interface BindApplicationSystem {
                         q.bind("koul_alk_kausi_arvo", as.getEducationStartSeason().getValue());
                         BindUtil.bindI18N(q, "koul_alk_kausi", as.getEducationStartSeason().getName());
                     }
-                    q.bind("hakulomake_url", as.getApplicationFormUrl());
-                    q.bind("opintopolku_hakulomake_url", as.getOpintopolkuFormUrl());
+                    q.bind("hakulomake_url", as.getFormUrl());
                 }
             };
         }

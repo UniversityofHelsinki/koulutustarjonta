@@ -4,10 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.collect.Lists;
 import fi.helsinki.koulutustarjonta.client.KoodistoClient;
 import fi.helsinki.koulutustarjonta.config.OpintopolkuConfiguration;
-import fi.helsinki.koulutustarjonta.domain.ApplicationPeriod;
-import fi.helsinki.koulutustarjonta.domain.ApplicationSystem;
-import fi.helsinki.koulutustarjonta.domain.Code;
-import fi.helsinki.koulutustarjonta.domain.Season;
+import fi.helsinki.koulutustarjonta.domain.*;
 
 import java.util.Date;
 import java.util.List;
@@ -53,18 +50,18 @@ public class ApplicationSystemConverter extends BaseConverter {
                 applicationSeason,
                 root.get("koulutuksenAlkamisVuosi").intValue(),
                 educationStartsSeason,
-                getApplicationFormUrl(root),
-                getOpintopolkuFormUrl(root),
+                getFormUrl(root),
                 periods
         );
     }
 
-    private String getApplicationFormUrl(JsonNode root) {
-        return hasApplicationForm(root) ? root.get("hakulomakeUri").textValue() : null;
-    }
-
-    private String getOpintopolkuFormUrl(JsonNode root) {
-        return !hasApplicationForm(root) ? String.format("%s/haku-app/lomake/%s", this.opintopolku.getBaseUrl(), root.get("oid").textValue()) : null;
+    private String getFormUrl(JsonNode root) {
+        if (hasApplicationForm(root)) {
+            return root.get("hakulomakeUri").textValue();
+        }
+        else {
+            return null;
+        }
     }
 
     private boolean hasApplicationForm(JsonNode root) {

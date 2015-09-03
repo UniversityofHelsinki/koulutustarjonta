@@ -74,6 +74,9 @@ public class BaseDAOTest {
     }
 
     public void i18NEquals(I18N expected, I18N actual) {
+        if (expected == null && actual == null )
+            return;
+
         assertEquals(expected.getFi(), actual.getFi());
         assertEquals(expected.getSv(), actual.getSv());
         assertEquals(expected.getEn(), actual.getEn());

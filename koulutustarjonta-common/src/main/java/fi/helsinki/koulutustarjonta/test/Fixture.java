@@ -107,12 +107,17 @@ public class Fixture {
         Season applicationSeason = applicationSeason();
         Season educationSeason = educationSeason();
 
-        return new ApplicationSystem(oid,
+        return new ApplicationSystem(
+                oid,
                 new I18N("as name fi", "as name sv", "as name en"),
                 new I18N("method fi", "method sv", "method en"),
-                2015, applicationSeason, 2016, educationSeason,
-                "www.applicationform.url", null,
-                Lists.newArrayList(ap));
+                2015,
+                applicationSeason,
+                2016,
+                educationSeason,
+                "www.applicationform.url",
+                Lists.newArrayList(ap)
+        );
     }
 
     public static ApplicationSystem applicationSystemWithoutApplicationForm(String oid) {
@@ -120,12 +125,17 @@ public class Fixture {
         Season applicationSeason = applicationSeason();
         Season educationSeason = educationSeason();
 
-        return new ApplicationSystem(oid,
+        return new ApplicationSystem(
+                oid,
                 new I18N("as name fi", "as name sv", "as name en"),
                 new I18N("method fi", "method sv", "method en"),
-                2015, applicationSeason, 2016, educationSeason,
-                null, "https://koulutus.opintopolku.fi/haku-app/lomake/" + oid,
-                Lists.newArrayList(ap));
+                2015,
+                applicationSeason,
+                2016,
+                educationSeason,
+                null,
+                Lists.newArrayList(ap)
+        );
     }
 
     private static Season applicationSeason() {
