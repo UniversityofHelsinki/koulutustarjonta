@@ -6,6 +6,10 @@ import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
 import fi.helsinki.koulutustarjonta.domain.TeachingLanguage;
 
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
@@ -24,6 +28,11 @@ public class LearningOpportunityObjectMapper {
                 .map(list -> resolveLearningOpportunity(list))
                 .collect(Collectors.<LearningOpportunity>toList()
         );
+    }
+
+    private static <T> Predicate<T> distinctByKey(Function<? super T,Object> keyExtractor) {
+        Map<Object,Boolean> seen = new ConcurrentHashMap<>();
+        return t -> seen.putIfAbsent(keyExtractor.apply(t), Boolean.TRUE) == null;
     }
 
     private static LearningOpportunity resolveLearningOpportunity(List<LearningOpportunityJoinRow> rows) {
@@ -46,6 +55,7 @@ public class LearningOpportunityObjectMapper {
         lo.setKeywords(rows.stream()
                         .filter(row -> row.getKeyword() != null)
                         .map(x -> x.getKeyword())
+                        .filter(distinctByKey(row -> row.getFi()))
                         .collect(toList())
         );
 
