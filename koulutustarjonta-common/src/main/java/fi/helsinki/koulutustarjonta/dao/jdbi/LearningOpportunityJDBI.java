@@ -2,8 +2,7 @@ package fi.helsinki.koulutustarjonta.dao.jdbi;
 
 import fi.helsinki.koulutustarjonta.dao.binder.BindLearningOpportunity;
 import fi.helsinki.koulutustarjonta.dao.binder.BindTeachingLanguage;
-import fi.helsinki.koulutustarjonta.dao.mapper.LearningOpportunityJoinRowMapper;
-import fi.helsinki.koulutustarjonta.dao.util.LearningOpportunityJoinRow;
+import fi.helsinki.koulutustarjonta.dao.mapper.LearningOpportunityMapper;
 import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
 import fi.helsinki.koulutustarjonta.domain.TeachingLanguage;
 import org.skife.jdbi.v2.sqlobject.Bind;
@@ -22,17 +21,17 @@ import java.util.List;
  * @author Hannu Lyytikainen
  */
 @UseStringTemplate3StatementLocator("/db/sql/templates/LearningOpportunityJDBI.sql.stg")
-@RegisterMapper(LearningOpportunityJoinRowMapper.class)
+@RegisterMapper(LearningOpportunityMapper.class)
 public interface LearningOpportunityJDBI extends Transactional<LearningOpportunityJDBI> {
 
     @SqlUpdate
     void upsert(@BindLearningOpportunity LearningOpportunity learningOpportunity);
 
     @SqlQuery
-    List<LearningOpportunityJoinRow> findAllJoinRows();
+    List<LearningOpportunity> findAllJoinRows();
 
     @SqlQuery
-    List<LearningOpportunityJoinRow> findJoinRowsById(@Bind("id") String id);
+    List<LearningOpportunity> findJoinRowsById(@Bind("id") String id);
 
     @SqlBatch
     @BatchChunkSize(10)
@@ -44,8 +43,6 @@ public interface LearningOpportunityJDBI extends Transactional<LearningOpportuni
                                          @Bind("keyword_sv") String kw_sv,
                                          @Bind("keyword_en") String kw_en
     );
-
-
 
     @SqlBatch
     @BatchChunkSize(10)

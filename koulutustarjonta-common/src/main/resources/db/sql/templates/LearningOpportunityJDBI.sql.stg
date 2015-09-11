@@ -52,48 +52,104 @@ upsert(learningOpportunity) ::= <<
 
 findAllJoinRows() ::= <<
 
-  SELECT k.*, ok.kieli as opetuskieli_kieli,
-    ok.selite_fi AS opetuskieli_selite_fi, ok.selite_sv AS opetuskieli_selite_sv,
-    ok.selite_en AS opetuskieli_selite_en, hk.id_hakukohde AS hakukohde_id,
-    l.id_lapsi AS id_lapsi, v.id_vanhempi AS id_vanhempi,
-    a.nimi_fi as aihe_fi, a.nimi_sv as aihe_sv, a.nimi_en as aihe_en
-    FROM koulutus k
-    LEFT JOIN
-    koulutus_opetuskieli ko ON k.id = ko.id_koulutus
-    LEFT JOIN
-    opetuskieli ok ON ok.id = ko.id_opetuskieli
-    LEFT JOIN
-    hakukohde_koulutus hk ON k.id = hk.id_koulutus
-    LEFT JOIN
-    koulutus_sisaltyvyys l ON k.id = l.id_vanhempi
-    LEFT JOIN
-    koulutus_sisaltyvyys v ON k.id = v.id_lapsi
-    LEFT JOIN
-    aiheet a ON k.id = a.id_koulutus
+  SELECT
+    k.*,
+    ok.kieli as kieli,
+    hk.id_hakukohde AS hakukohde_id,
+    l.id_lapsi AS id_lapsi,
+    v.id_vanhempi AS id_vanhempi,
+    a.aihe as aihe
+  FROM koulutus k
+  LEFT JOIN
+    (SELECT
+      ko.id_koulutus,
+      listagg(ok.kieli || '#' || ok.selite_fi || '#' || ok.selite_sv || '#' || ok.selite_en, '|') within group (order by id_koulutus) as kieli
+    FROM
+      opetuskieli ok
+     INNER JOIN
+      koulutus_opetuskieli ko ON ok.id = ko.id_opetuskieli
+    GROUP BY id_koulutus
+    ) ok on k.id = id_koulutus
+  LEFT JOIN
+    (SELECT
+      hk.id_koulutus,
+      listagg(hk.id_hakukohde, '|') within group (order by id_koulutus) as id_hakukohde
+     FROM hakukohde_koulutus hk
+     GROUP BY id_koulutus
+    ) hk ON k.id = hk.id_koulutus
+  LEFT JOIN
+    (SELECT
+      v.id_vanhempi,
+      listagg(v.id_lapsi, '|') within group (order by id_lapsi) as id_lapsi
+      FROM koulutus_sisaltyvyys v
+      GROUP by v.id_vanhempi
+    ) l ON k.id = l.id_vanhempi
+  LEFT JOIN
+    (SELECT
+      v.id_lapsi,
+      listagg(v.id_vanhempi, '|') within group (order by id_vanhempi) as id_vanhempi
+     FROM koulutus_sisaltyvyys v
+     GROUP by v.id_lapsi
+     ) v ON k.id = v.id_lapsi
+  LEFT JOIN
+    (SELECT
+       a.id_koulutus,
+       listagg(a.nimi_fi || '#' || a.nimi_sv || '#' || a.nimi_en, '|') within group (order by id_koulutus) as aihe
+     FROM aiheet a
+     GROUP BY a.id_koulutus
+    ) a ON k.id = a.id_koulutus
 
 >>
 
 findJoinRowsById(id) ::= <<
 
-  SELECT k.*, ok.kieli as opetuskieli_kieli,
-    ok.selite_fi as opetuskieli_selite_fi, ok.selite_sv as opetuskieli_selite_sv,
-    ok.selite_en as opetuskieli_selite_en, hk.id_hakukohde AS hakukohde_id,
-    l.id_lapsi AS id_lapsi, v.id_vanhempi AS id_vanhempi,
-    a.nimi_fi as aihe_fi, a.nimi_sv as aihe_sv, a.nimi_en as aihe_en
-    FROM koulutus k
-    LEFT JOIN
-    koulutus_opetuskieli ko on k.id = ko.id_koulutus
-    LEFT JOIN
-    opetuskieli ok on ok.id = ko.id_opetuskieli
-    LEFT JOIN
-    hakukohde_koulutus hk ON k.id = hk.id_koulutus
-    LEFT JOIN
-    koulutus_sisaltyvyys l ON k.id = l.id_vanhempi
-    LEFT JOIN
-    koulutus_sisaltyvyys v ON k.id = v.id_lapsi
-    LEFT JOIN
-    aiheet a ON k.id = a.id_koulutus
-    WHERE k.id = :id
+  SELECT
+    k.*,
+    ok.kieli as kieli,
+    hk.id_hakukohde AS hakukohde_id,
+    l.id_lapsi AS id_lapsi,
+    v.id_vanhempi AS id_vanhempi,
+    a.aihe as aihe
+  FROM koulutus k
+  LEFT JOIN
+    (SELECT
+      ko.id_koulutus,
+      listagg(ok.kieli || '#' || ok.selite_fi || '#' || ok.selite_sv || '#' || ok.selite_en, '|') within group (order by id_koulutus) as kieli
+    FROM
+      opetuskieli ok
+     INNER JOIN
+      koulutus_opetuskieli ko ON ok.id = ko.id_opetuskieli
+    GROUP BY id_koulutus
+    ) ok on k.id = id_koulutus
+  LEFT JOIN
+    (SELECT
+      hk.id_koulutus,
+      listagg(hk.id_hakukohde, '|') within group (order by id_koulutus) as id_hakukohde
+     FROM hakukohde_koulutus hk
+     GROUP BY id_koulutus
+    ) hk ON k.id = hk.id_koulutus
+  LEFT JOIN
+    (SELECT
+      v.id_vanhempi,
+      listagg(v.id_lapsi, '|') within group (order by id_lapsi) as id_lapsi
+      FROM koulutus_sisaltyvyys v
+      GROUP by v.id_vanhempi
+    ) l ON k.id = l.id_vanhempi
+  LEFT JOIN
+    (SELECT
+      v.id_lapsi,
+      listagg(v.id_vanhempi, '|') within group (order by id_vanhempi) as id_vanhempi
+     FROM koulutus_sisaltyvyys v
+     GROUP by v.id_lapsi
+     ) v ON k.id = v.id_lapsi
+  LEFT JOIN
+    (SELECT
+       a.id_koulutus,
+       listagg(a.nimi_fi || '#' || a.nimi_sv || '#' || a.nimi_en, '|') within group (order by id_koulutus) as aihe
+     FROM aiheet a
+     GROUP BY a.id_koulutus
+    ) a ON k.id = a.id_koulutus
+  WHERE k.id = :id
 
 >>
 

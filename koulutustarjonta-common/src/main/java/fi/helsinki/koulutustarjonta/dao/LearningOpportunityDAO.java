@@ -2,8 +2,6 @@ package fi.helsinki.koulutustarjonta.dao;
 
 import fi.helsinki.koulutustarjonta.dao.exception.ResourceNotFound;
 import fi.helsinki.koulutustarjonta.dao.jdbi.LearningOpportunityJDBI;
-import fi.helsinki.koulutustarjonta.dao.mapper.LearningOpportunityObjectMapper;
-import fi.helsinki.koulutustarjonta.dao.util.LearningOpportunityJoinRow;
 import fi.helsinki.koulutustarjonta.domain.I18N;
 import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
 import org.slf4j.Logger;
@@ -65,16 +63,15 @@ public class LearningOpportunityDAO {
     }
 
     public List<LearningOpportunity> findAll() {
-        return LearningOpportunityObjectMapper.build(jdbi.findAllJoinRows());
+        return jdbi.findAllJoinRows();
     }
 
     public LearningOpportunity findById(String id) throws ResourceNotFound {
-        List<LearningOpportunityJoinRow> rows = jdbi.findJoinRowsById(id);
-        if (rows.size() == 0) {
+        List<LearningOpportunity> rows = jdbi.findJoinRowsById(id);
+
+        if (rows == null || rows.size() != 1)
             throw new ResourceNotFound(LearningOpportunity.class, id);
-        }
-        else {
-            return LearningOpportunityObjectMapper.build(rows).get(0);
-        }
+        else
+            return rows.get(0);
     }
 }
