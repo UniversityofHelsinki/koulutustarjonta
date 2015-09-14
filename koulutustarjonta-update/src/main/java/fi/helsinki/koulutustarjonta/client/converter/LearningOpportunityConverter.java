@@ -128,9 +128,9 @@ public class LearningOpportunityConverter extends BaseConverter {
         else {
             JsonNode texts = node.get("meta");
             return new I18N(
-                    texts.get("kieli_fi").get("nimi").textValue(),
-                    texts.get("kieli_sv").get("nimi").textValue(),
-                    texts.get("kieli_en").get("nimi").textValue()
+                    texts.get("kieli_fi").get("nimi").textValue().replace('|', ' ').replace('#', ' '),
+                    texts.get("kieli_sv").get("nimi").textValue().replace('|', ' ').replace('#', ' '),
+                    texts.get("kieli_en").get("nimi").textValue().replace('|', ' ').replace('#', ' ')
             );
         }
     }
