@@ -4,8 +4,8 @@ import fi.helsinki.koulutustarjonta.domain.I18N;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
+import com.google.common.collect.Lists;
 
 /**
  * @author Hannu Lyytikainen
@@ -33,8 +33,8 @@ public class MapperUtil {
     }
 
 
-    public static ArrayList<I18N> resolveI18NList(ResultSet r, String field) throws SQLException {
-        ArrayList<I18N> i = new ArrayList<I18N>();
+    public static List<I18N> resolveI18NList(ResultSet r, String field) throws SQLException {
+        List<I18N> i = Lists.newArrayList();
         String src = r.getString(field);
 
         if (src == null)
@@ -52,14 +52,13 @@ public class MapperUtil {
         return i;
     }
 
-    public static ArrayList<String> resolveStringList(ResultSet r, String field) throws  SQLException {
+    public static List<String> resolveStringList(ResultSet r, String field) throws SQLException {
         String s = r.getString(field);
 
         if (s == null) {
-            return new ArrayList<String>();
+            return Lists.newArrayList();
         } else {
-            return new ArrayList<String>(Arrays.asList(s.split("\\|")));
-
+            return Lists.newArrayList(s.split("\\|"));
         }
     }
 }

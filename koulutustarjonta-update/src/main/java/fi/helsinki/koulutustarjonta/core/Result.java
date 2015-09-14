@@ -1,14 +1,14 @@
 package fi.helsinki.koulutustarjonta.core;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Lists;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Result {
 
     private long started;
-    private List<String> errors = new ArrayList<>();
+    private List<String> errors = Lists.newArrayList();
 
     public Result(long started) {
         this.started = started;

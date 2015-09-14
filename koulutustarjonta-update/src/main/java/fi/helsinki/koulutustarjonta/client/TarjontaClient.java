@@ -15,7 +15,6 @@ import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -70,7 +69,7 @@ public class TarjontaClient {
                     .collect(toList());
         }
         else {
-            return new ArrayList<>();
+            return Lists.newArrayList();
         }
     }
 
@@ -88,7 +87,7 @@ public class TarjontaClient {
                     .collect(toList());
         }
         else {
-            return new ArrayList<>();
+            return Lists.newArrayList();
         }
     }
 

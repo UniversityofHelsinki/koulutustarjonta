@@ -1,5 +1,6 @@
 package fi.helsinki.koulutustarjonta.dao;
 
+import com.google.common.collect.Lists;
 import fi.helsinki.koulutustarjonta.dao.exception.ResourceNotFound;
 import fi.helsinki.koulutustarjonta.dao.jdbi.OrganizationJDBI;
 import fi.helsinki.koulutustarjonta.domain.ContactInfo;
@@ -11,7 +12,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.skife.jdbi.v2.Handle;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -272,15 +272,30 @@ public class OrganizationDAOTest extends BaseDAOTest {
 
     private void verifySocialMediaAgainstPopulatedData(Some some) {
         assertNotNull(some);
-        for (String lang : Arrays.asList("fi", "sv", "en")) {
-            assertEquals("face " + lang, some.getFacebook().getLang(lang));
-            assertEquals("twitter " + lang, some.getTwitter().getLang(lang));
-            assertEquals("plus " + lang, some.getGooglePlus().getLang(lang));
-            assertEquals("linkedin " + lang, some.getLinkedIn().getLang(lang));
-            assertEquals("some_other " + lang, some.getOther().getLang(lang));
-            assertEquals("instagram " + lang, some.getInstagram().getLang(lang));
-            assertEquals("youtube " + lang, some.getYoutube().getLang(lang));
-        }
+        assertEquals("face " + "fi", some.getFacebook().getLang("fi"));
+        assertEquals("twitter " + "fi", some.getTwitter().getLang("fi"));
+        assertEquals("plus " + "fi", some.getGooglePlus().getLang("fi"));
+        assertEquals("linkedin " + "fi", some.getLinkedIn().getLang("fi"));
+        assertEquals("some_other " + "fi", some.getOther().getLang("fi"));
+        assertEquals("instagram " + "fi", some.getInstagram().getLang("fi"));
+        assertEquals("youtube " + "fi", some.getYoutube().getLang("fi"));
+
+        assertEquals("face " + "sv", some.getFacebook().getLang("sv"));
+        assertEquals("twitter " + "sv", some.getTwitter().getLang("sv"));
+        assertEquals("plus " + "sv", some.getGooglePlus().getLang("sv"));
+        assertEquals("linkedin " + "sv", some.getLinkedIn().getLang("sv"));
+        assertEquals("some_other " + "sv", some.getOther().getLang("sv"));
+        assertEquals("instagram " + "sv", some.getInstagram().getLang("sv"));
+        assertEquals("youtube " + "sv", some.getYoutube().getLang("sv"));
+
+        assertEquals("face " + "en", some.getFacebook().getLang("en"));
+        assertEquals("twitter " + "en", some.getTwitter().getLang("en"));
+        assertEquals("plus " + "en", some.getGooglePlus().getLang("en"));
+        assertEquals("linkedin " + "en", some.getLinkedIn().getLang("en"));
+        assertEquals("some_other " + "en", some.getOther().getLang("en"));
+        assertEquals("instagram " + "en", some.getInstagram().getLang("en"));
+        assertEquals("youtube " + "en", some.getYoutube().getLang("en"));
+
     }
 
 }

@@ -5,9 +5,9 @@ import fi.helsinki.koulutustarjonta.domain.TeachingLanguage;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.util.List;
+import com.google.common.collect.Lists;
 
 import static fi.helsinki.koulutustarjonta.dao.mapper.MapperUtil.resolveI18N;
 
@@ -17,7 +17,7 @@ import static fi.helsinki.koulutustarjonta.dao.mapper.MapperUtil.resolveI18N;
 public class TeachingLanguageMapper {
 
     public static List<TeachingLanguage> map(ResultSet r) throws SQLException {
-        List<TeachingLanguage> res = new ArrayList<TeachingLanguage>();
+        List<TeachingLanguage> res = Lists.newArrayList();
 
         for (String s : r.getString("kieli").split("\\|")) {
             res.add(sToTeachingLanguage(s));
@@ -27,7 +27,7 @@ public class TeachingLanguageMapper {
     }
 
     public static TeachingLanguage sToTeachingLanguage(String src) {
-        List<String> split = new ArrayList<String>(Arrays.asList(src.split("#")));
+        List<String> split = Lists.newArrayList(src.split("#"));
 
         if (split.size() != 4)
             return null;
