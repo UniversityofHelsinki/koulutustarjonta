@@ -21,7 +21,7 @@ public class Fixture {
         lo.setStartSeason(new I18N("season fi new", "season sv new", "season en new"));
         lo.setPlannedDurationValue("5");
         lo.setPlannedDurationUnit(new I18N("duration fi new", "duration sv new", "duration en new"));
-        lo.setCreditValue(200);
+        lo.setCreditValue("200");
         lo.setCreditUnit(new I18N("credits fi new", "credits sv new", "credits en new"));
         lo.setStructure(new I18N("structure fi new", "struckture sv new", "structure en new"));
         lo.setGoals(new I18N("goald fi new", "goals sv new", "goald en new"));

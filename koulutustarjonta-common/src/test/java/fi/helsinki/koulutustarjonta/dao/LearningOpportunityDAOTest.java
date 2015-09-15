@@ -81,7 +81,7 @@ public class LearningOpportunityDAOTest extends BaseDAOTest {
         assertEquals("suunni tyyppi fi", lo.getPlannedDurationUnit().getFi());
         assertEquals("suunni tyyppi sv", lo.getPlannedDurationUnit().getSv());
         assertEquals("suunni tyyppi en", lo.getPlannedDurationUnit().getEn());
-        assertEquals(Integer.valueOf(120), lo.getCreditValue());
+        assertEquals("180+120", lo.getCreditValue());
         assertEquals("laajuus tyyppi fi", lo.getCreditUnit().getFi());
         assertEquals("laajuus tyyppi sv", lo.getCreditUnit().getSv());
         assertEquals("laajuus tyyppi en", lo.getCreditUnit().getEn());

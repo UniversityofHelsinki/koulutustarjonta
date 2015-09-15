@@ -29,7 +29,7 @@ public class LearningOpportunityMapper implements ResultSetMapper<LearningOpport
                 resolveI18N(r, "alkamiskausi"),
                 r.getString("suunni_kesto"),
                 resolveI18N(r, "suunni_tyyppi"),
-                r.getInt("laajuus"),
+                r.getString("laajuus"),
                 resolveI18N(r, "laajuus_tyyppi"),
                 TeachingLanguageMapper.map(r),
                 resolveI18N(r, "tavoitteet"),

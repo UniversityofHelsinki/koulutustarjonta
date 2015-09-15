@@ -1,0 +1,957 @@
+{
+  "result": {
+    "toteutustyyppi": "KORKEAKOULUTUS",
+    "modified": 1441353749800,
+    "modifiedBy": "1.2.246.562.24.97747275774",
+    "oid": "1.2.246.562.17.40093664023",
+    "version": 30,
+    "koulutuskoodi": {
+      "uri": "koulutus_742703",
+      "versio": 4,
+      "arvo": "742703",
+      "nimi": "Fil. maist., ympäristötiede",
+      "meta": {
+        "kieli_sv": {
+          "kieliUri": "kieli_sv",
+          "kieliVersio": 1,
+          "kieliArvo": "SV",
+          "nimi": "Fil. mag., miljövetenskap"
+        },
+        "kieli_en": {
+          "kieliUri": "kieli_en",
+          "kieliVersio": 1,
+          "kieliArvo": "EN",
+          "nimi": "MSc, Environmental Science"
+        },
+        "kieli_fi": {
+          "kieliUri": "kieli_fi",
+          "kieliVersio": 1,
+          "kieliArvo": "FI",
+          "nimi": "Fil. maist., ympäristötiede"
+        }
+      }
+    },
+    "koulutusaste": {
+      "uri": "koulutusasteoph2002_72",
+      "versio": 1,
+      "arvo": "72",
+      "nimi": "Ylempi korkeakoulututkinto",
+      "meta": {
+        "kieli_sv": {
+          "kieliUri": "kieli_sv",
+          "kieliVersio": 1,
+          "kieliArvo": "SV",
+          "nimi": "Högre högskoleexamen"
+        },
+        "kieli_en": {
+          "kieliUri": "kieli_en",
+          "kieliVersio": 1,
+          "kieliArvo": "EN",
+          "nimi": "Master's degree"
+        },
+        "kieli_fi": {
+          "kieliUri": "kieli_fi",
+          "kieliVersio": 1,
+          "kieliArvo": "FI",
+          "nimi": "Ylempi korkeakoulututkinto"
+        }
+      }
+    },
+    "koulutusala": {
+      "uri": "koulutusalaoph2002_6",
+      "versio": 1,
+      "arvo": "6",
+      "nimi": "Luonnonvara- ja ympäristöala",
+      "meta": {
+        "kieli_sv": {
+          "kieliUri": "kieli_sv",
+          "kieliVersio": 1,
+          "kieliArvo": "SV",
+          "nimi": "Naturbruk och miljöområdet"
+        },
+        "kieli_en": {
+          "kieliUri": "kieli_en",
+          "kieliVersio": 1,
+          "kieliArvo": "EN",
+          "nimi": "Natural Resources and the Environment"
+        },
+        "kieli_fi": {
+          "kieliUri": "kieli_fi",
+          "kieliVersio": 1,
+          "kieliArvo": "FI",
+          "nimi": "Luonnonvara- ja ympäristöala"
+        }
+      }
+    },
+    "opintoala": {
+      "uri": "opintoalaoph2002_605",
+      "versio": 1,
+      "arvo": "605",
+      "nimi": "Luonto- ja ympäristöala",
+      "meta": {
+        "kieli_sv": {
+          "kieliUri": "kieli_sv",
+          "kieliVersio": 1,
+          "kieliArvo": "SV",
+          "nimi": "Natur- och miljöområdet"
+        },
+        "kieli_en": {
+          "kieliUri": "kieli_en",
+          "kieliVersio": 1,
+          "kieliArvo": "EN",
+          "nimi": "Nature and the environment"
+        },
+        "kieli_fi": {
+          "kieliUri": "kieli_fi",
+          "kieliVersio": 1,
+          "kieliArvo": "FI",
+          "nimi": "Luonto- ja ympäristöala"
+        }
+      }
+    },
+    "tutkinto": {
+      "uri": "tutkinto_702",
+      "versio": 1,
+      "arvo": "702",
+      "nimi": "Filosofian maisteri",
+      "meta": {
+        "kieli_sv": {
+          "kieliUri": "kieli_sv",
+          "kieliVersio": 1,
+          "kieliArvo": "SV",
+          "nimi": "Filosofie magister"
+        },
+        "kieli_en": {
+          "kieliUri": "kieli_en",
+          "kieliVersio": 1,
+          "kieliArvo": "EN",
+          "nimi": "Master of Science"
+        },
+        "kieli_fi": {
+          "kieliUri": "kieli_fi",
+          "kieliVersio": 1,
+          "kieliArvo": "FI",
+          "nimi": "Filosofian maisteri"
+        }
+      }
+    },
+    "eqf": {
+      "uri": "eqf_7",
+      "versio": 1,
+      "arvo": "7",
+      "nimi": "Taso 7",
+      "meta": {
+        "kieli_sv": {
+          "kieliUri": "kieli_sv",
+          "kieliVersio": 1,
+          "kieliArvo": "SV",
+          "nimi": "Nivå 7"
+        },
+        "kieli_en": {
+          "kieliUri": "kieli_en",
+          "kieliVersio": 1,
+          "kieliArvo": "EN",
+          "nimi": "Level 7"
+        },
+        "kieli_fi": {
+          "kieliUri": "kieli_fi",
+          "kieliVersio": 1,
+          "kieliArvo": "FI",
+          "nimi": "Taso 7"
+        }
+      }
+    },
+    "nqf": {
+      "uri": "",
+      "versio": -1,
+      "arvo": "",
+      "nimi": ""
+    },
+    "opintojenLaajuusyksikko": {
+      "uri": "opintojenlaajuusyksikko_2",
+      "versio": 1,
+      "arvo": "2",
+      "nimi": "opintopistettä",
+      "meta": {
+        "kieli_sv": {
+          "kieliUri": "kieli_sv",
+          "kieliVersio": 1,
+          "kieliArvo": "SV",
+          "nimi": "studiepoäng"
+        },
+        "kieli_en": {
+          "kieliUri": "kieli_en",
+          "kieliVersio": 1,
+          "kieliArvo": "EN",
+          "nimi": "ECTS credits"
+        },
+        "kieli_fi": {
+          "kieliUri": "kieli_fi",
+          "kieliVersio": 1,
+          "kieliArvo": "FI",
+          "nimi": "opintopistettä"
+        }
+      }
+    },
+    "koulutustyyppi": {
+      "uri": "koulutustyyppi_3",
+      "versio": 2,
+      "arvo": "3",
+      "nimi": "Korkeakoulutus",
+      "meta": {
+        "kieli_sv": {
+          "kieliUri": "kieli_sv",
+          "kieliVersio": 1,
+          "kieliArvo": "SV",
+          "nimi": "Högskoleexamen"
+        },
+        "kieli_fi": {
+          "kieliUri": "kieli_fi",
+          "kieliVersio": 1,
+          "kieliArvo": "FI",
+          "nimi": "Korkeakoulutus"
+        }
+      }
+    },
+    "ohjelmas": {
+      "uris": {}
+    },
+    "moduulityyppi": "KORKEAKOULUTUS",
+    "komoOid": "1.2.246.562.13.44535516502",
+    "komotoOid": "1.2.246.562.17.40093664023",
+    "organisaatio": {
+      "oid": "1.2.246.562.10.41941575486",
+      "nimi": "Helsingin yliopisto, Bio- ja ympäristötieteellinen tiedekunta",
+      "nimet": []
+    },
+    "koulutusohjelma": {
+      "meta": {
+        "kieli_sv": {
+          "uri": "kieli_sv",
+          "versio": 1,
+          "arvo": "SV",
+          "nimi": "ruotsi",
+          "meta": {
+            "kieli_sv": {
+              "kieliUri": "kieli_sv",
+              "kieliVersio": 1,
+              "kieliArvo": "SV",
+              "nimi": "svenska"
+            },
+            "kieli_en": {
+              "kieliUri": "kieli_en",
+              "kieliVersio": 1,
+              "kieliArvo": "EN",
+              "nimi": "Swedish"
+            },
+            "kieli_fi": {
+              "kieliUri": "kieli_fi",
+              "kieliVersio": 1,
+              "kieliArvo": "FI",
+              "nimi": "ruotsi"
+            }
+          }
+        },
+        "kieli_en": {
+          "uri": "kieli_en",
+          "versio": 1,
+          "arvo": "EN",
+          "nimi": "englanti",
+          "meta": {
+            "kieli_sv": {
+              "kieliUri": "kieli_sv",
+              "kieliVersio": 1,
+              "kieliArvo": "SV",
+              "nimi": "engelska"
+            },
+            "kieli_en": {
+              "kieliUri": "kieli_en",
+              "kieliVersio": 1,
+              "kieliArvo": "EN",
+              "nimi": "English"
+            },
+            "kieli_fi": {
+              "kieliUri": "kieli_fi",
+              "kieliVersio": 1,
+              "kieliArvo": "FI",
+              "nimi": "englanti"
+            }
+          }
+        },
+        "kieli_fi": {
+          "uri": "kieli_fi",
+          "versio": 1,
+          "arvo": "FI",
+          "nimi": "suomi",
+          "meta": {
+            "kieli_sv": {
+              "kieliUri": "kieli_sv",
+              "kieliVersio": 1,
+              "kieliArvo": "SV",
+              "nimi": "finska"
+            },
+            "kieli_en": {
+              "kieliUri": "kieli_en",
+              "kieliVersio": 1,
+              "kieliArvo": "EN",
+              "nimi": "Finnish"
+            },
+            "kieli_fi": {
+              "kieliUri": "kieli_fi",
+              "kieliVersio": 1,
+              "kieliArvo": "FI",
+              "nimi": "suomi"
+            }
+          }
+        }
+      },
+      "tekstis": {
+        "kieli_sv": "Akvatiska vetenskaper, filosofie magister",
+        "kieli_en": "",
+        "kieli_fi": "Akvaattiset tieteet, filosofian maisteri"
+      }
+    },
+    "tunniste": "123",
+    "tila": "JULKAISTU",
+    "koulutusmoduuliTyyppi": "TUTKINTO",
+    "kuvausKomo": {
+      "JATKOOPINTO_MAHDOLLISUUDET": {
+        "meta": {
+          "kieli_sv": {
+            "kieliUri": "kieli_sv",
+            "kieliVersio": 1,
+            "kieliArvo": "SV"
+          },
+          "kieli_fi": {
+            "kieliUri": "kieli_fi",
+            "kieliVersio": 1,
+            "kieliArvo": "FI"
+          }
+        },
+        "tekstis": {
+          "kieli_sv": "<p><span lang=\"SV\">Utbildningsprogrammet för akvatiska vetenskaper har traditionellt haft goda kontakter med statens forskningsinstitut och företag inom vattenbranschen, vilket garanterar studenterna goda möjligheter till praktikplatser och påbyggnadsutbildning i samarbete mellan universitetet och forskningsinstitut. </span><span lang=\"SV\">Efter magisterstadiet kan man övergå till forskarstudier, som leder till en filosofie doktorsexamen.</span></p>",
+          "kieli_fi": "<p>Akvaattisilla tieteillä on perinteisesti hyvät yhteydet valtion tutkimuslaitoksiin ja vesialan yrityksiin, mikä takaa opiskelijoille hyvät mahdollisuudet harjoittelupaikkoihin ja erinomaiset edellytykset yliopiston ja tutkimuslaitosten välisiin jatko-opintoihin. Maisterivaiheen jälkeen on mahdollista siirtyä jatko-opintoihin, joista valmistuu filosofian tohtoriksi.</p>"
+        }
+      },
+      "KOULUTUKSEN_RAKENNE": {
+        "meta": {
+          "kieli_sv": {
+            "kieliUri": "kieli_sv",
+            "kieliVersio": 1,
+            "kieliArvo": "SV"
+          },
+          "kieli_fi": {
+            "kieliUri": "kieli_fi",
+            "kieliVersio": 1,
+            "kieliArvo": "FI"
+          }
+        },
+        "tekstis": {
+          "kieli_sv": "<p><span lang=\"SV\">Filosofie magisterexamen (120 sp) består beroende på specialiseringslinje av följande studier:</span></p> <ul> <li><span lang=\"SV\">fördjupade studier (80–86 sp, inklusive en pro gradu-avhandling på 40 sp)</span></li> <li><span lang=\"SV\">valfria studier och biämnesstudier (33–39 sp)</span></li> <li><span lang=\"SV\">övriga studier 1 sp.</span>  </li> </ul> <p>Obs! Det finns olika examensfordringar i <span lang=\"SV\">inriktningsalternativet för ämneslärare. Närmare information om examensfordringarna finns i <a href=\"http://www.helsinki.fi/bio/opiskelu/opinto-oppaat.htm\">fakultetens studieguide</a>. </span>        </p>",
+          "kieli_fi": "<p>Filosofian maisterin tutkinto (120 op) koostuu erikoistumislinjasta riippuen seuraavista opinnoista:</p> <ul> <li>Syventävät opinnot (80–86 op, josta pro gradu -työn osuus 40 op)</li> <li>Valinnaiset opinnot ja sivuaineopinnot (33–39 op)</li> <li>Muut opinnot 1 op</li> </ul> <p>Huom! aineenopettajan suuntautumisvaihtoehdossa tutkintovaatimukset poikkeavat hieman muista tutkintovaatimuksista. Tarkemmin tutkintovaatimuksiin voit tutustua <a href=\"http://www.helsinki.fi/bio/opiskelu/opinto-oppaat.htm\">tiedekunnan opinto-oppaasta</a>.</p>"
+        }
+      },
+      "TAVOITTEET": {
+        "meta": {
+          "kieli_sv": {
+            "kieliUri": "kieli_sv",
+            "kieliVersio": 1,
+            "kieliArvo": "SV"
+          },
+          "kieli_fi": {
+            "kieliUri": "kieli_fi",
+            "kieliVersio": 1,
+            "kieliArvo": "FI"
+          }
+        },
+        "tekstis": {
+          "kieli_sv": "<p><span lang=\"SV\">Målet för filosofie magisterexamen i utbildningsprogrammet för akvatiska vetenskaper är att</span></p> <ul> <li><span lang=\"SV\">ge dig goda insikter i det specialområde som du valt (fisk- och fiskeribiologi, limnologi eller marinbiologi) och förutsättningar att tillämpa det du lärt dig</span></li> <li><span lang=\"SV\">ge dig de färdigheter du behöver för att självständigt använda forskningsmetoderna inom området</span></li> <li><span lang=\"SV\">ge dig förutsättningar att arbeta som expert och utvecklare inom ditt specialområde och de goda kommunikativa färdigheter och språkkunskaper som behövs för uppdraget</span></li> <li><span lang=\"SV\">förbereda dig för vetenskaplig påbyggnadsutbildning.</span></li> </ul>",
+          "kieli_fi": "<p>Pia testaa tiedonsiirtoa 4.9.2015.</p> <p>Filosofian maisterin (FM) tutkinnon tavoitteena akvaattisten tieteiden koulutusohjelmassa on:</p> <ul> <li>Saada valitsemasi akvaattisten tieteiden erikoisalan (kala- ja kalastusbiologia, limnologia tai meribiologia) hyvä tuntemus ja valmiudet soveltaa oppimiasi tietoja</li> <li>Saada valmiudet käyttää alan tutkimusmenetelmiä itsenäisesti</li> <li>Saada valmiudet toimia työelämässä oman erikoisalasi asiantuntijana ja kehittäjä­nä, minkä pohjana on hyvä viestintä- ja kielitaito</li> <li>Valmentaa tieteelliseen jatkokoulutukseen</li> </ul>"
+        }
+      },
+      "PATEVYYS": {
+        "meta": {
+          "kieli_fi": {
+            "kieliUri": "kieli_fi",
+            "kieliVersio": 1,
+            "kieliArvo": "FI"
+          }
+        },
+        "tekstis": {
+          "kieli_fi": ""
+        }
+      }
+    },
+    "kuvausKomoto": {
+      "KANSAINVALISTYMINEN": {
+        "meta": {
+          "kieli_sv": {
+            "kieliUri": "kieli_sv",
+            "kieliVersio": 1,
+            "kieliArvo": "SV"
+          },
+          "kieli_fi": {
+            "kieliUri": "kieli_fi",
+            "kieliVersio": 1,
+            "kieliArvo": "FI"
+          }
+        },
+        "tekstis": {
+          "kieli_sv": "<p><span lang=\"SV\">Många studenter i marinbiologi kompletterar sina kunskaper om oceanerna genom att söka till internationellt studentutbyte till en högskola som forskar i oceanografi. </span><span lang=\"SV\">Studenter i marinbiologi har också deltagit i enskilda fältkurser utomlands (t.ex. en kurs om tidvattensstränder). </span><span lang=\"SV\">Akvatiska vetenskaper ordnar också regelbundet internationella kurser (t.ex. en kurs om isforskning på Östersjön) i samarbete med utländska universitet.</span></p> <p><span lang=\"SV\">Vid ämnesenheten akvatiska vetenskaper arbetar många forskningsgrupper som för ett nära forskningssamarbete med utländska forskningsinstitut.</span></p>",
+          "kieli_fi": "<p>Valtameriosaamisen täydentämiseksi meribiologian opiskelijoista suuri osa hakeutuu opintojensa aikana kansainväliseen opiskelijavaihtoon valtameritutkimusta tekeviin korkeakouluihin. Meribiologian opiskelijat ovat myös osallistuneet yksittäisille ulkomaisille kenttäkursseille (esim. Vuorovesirantojen kenttäkurssi). Akvaattisissa tieteissä järjestetään myös säännöllisesti kansainvälisiä kursseja (esim. Itämeren jäätutkimuskurssi) yhteistyössä ulkomaisten yliopistojen kanssa.</p> <p>Akvaattisissa tieteissä toimii useita tutkimusryhmiä, jotka tekevät tiivistä tutkimusyhteistyötä ulkomaisten tutkimuslaitosten kanssa.</p>"
+        }
+      },
+      "SISALTO": {
+        "meta": {
+          "kieli_sv": {
+            "kieliUri": "kieli_sv",
+            "kieliVersio": 1,
+            "kieliArvo": "SV"
+          },
+          "kieli_fi": {
+            "kieliUri": "kieli_fi",
+            "kieliVersio": 1,
+            "kieliArvo": "FI"
+          }
+        },
+        "tekstis": {
+          "kieli_sv": "<p><span lang=\"SV\">Den som har utexaminerats som magister i akvatiska vetenskaper har en helhetsuppfattning om vattenekosystemens struktur och kausalitetsförhållanden och hur människan påverkar dem. Den utexaminerade har mångvetenskaplig problemlösningsförmåga och de metodiska färdigheter som krävs för att samla in och hantera mångvetenskapligt material.</span></p> <p><span lang=\"SV\">I magisterstudierna fördjupar du de baskunskaper du fick i kandidatstudierna och övar dig bl.a. i experimentell forskning, att skapa modeller, i statistisk analys av forskningsmaterial och vetenskapligt skrivande. </span><span lang=\"SV\">Studierna innehåller föreläsningar, fält- och laboratoriekurser, räkneövningar och litteraturtentamina. </span><span lang=\"SV\">Till studierna hör också praktik. </span><span lang=\"SV\">I magisterstudierna lär du dig att tillämpa och använda forskning t.ex. i uppföljning, vård och restaurering av vattendrag. </span><span lang=\"SV\">I magisterskedet kan du rikta in dig på en av tre specialiseringslinjer.</span></p> <p><span lang=\"SV\">Målet för undervisningen i fisk- och fiskeribiologi är att studenterna sätter in sig i fiskarnas biologi och ekologi, fiskproduktion, vård av fiskbestånden och forskningsmetoder inom området. </span><span lang=\"SV\">Studierna betonar främst biologi, men de omfattar också de matematiska metoder som behövs inom disciplinen. </span><span lang=\"SV\">Dessutom rekommenderas det att man inkluderar t.ex. miljöekonomi i sina studier.</span></p> <p><span lang=\"SV\">Limnologi är läran om inlandsvattnens ekologi, fenomen som sker i och anknyter till vattnen och deras inbördes orsakssamband. </span><span lang=\"SV\">De främsta undervisningsområdena för limnologin är inlandsvattnens fysik, kemi och biologi samt skydd av vattendrag. </span><span lang=\"SV\">Interaktionen mellan vattendragens miljö och organismvärld är en av de viktigaste problemställningarna inom limnologin.</span></p> <p><span lang=\"SV\">I magisterstudierna i marinbiologi lär du dig förstå Östersjöns och andra havsområdens ekosystem som helhet och deras funktioner, och att bedöma hur människan påverkar dem. </span><span lang=\"SV\">Den här kunskapen kan tillämpas i skyddet av Östersjön och andra havsområden. </span><span lang=\"SV\">På specialiseringslinjen marinbiologi ligger tyngdpunkten på Östersjöns ekosystem, men oceanerna och i synnerhet de arktiska områdena är också starkt representerade både i forskningen och i undervisningen. </span><span lang=\"SV\">På praktiska fältkurser lär du dig att använda och tillämpa den kunskap du fick i kandidatskedet.</span>  </p>",
+          "kieli_fi": "<p>Akvaattisista tieteistä valmistuvalla maisterivaiheen opiskelijalla on kokonaisnäkemys vesiekosysteemin rakenteesta ja syy-seuraussuhteista sekä ihmisen vaikutuksesta niihin, menetelmälliset valmiudet kerätä ja käsitellä monitieteellisiä aineistoja sekä monitieteellinen ongelmanratkaisukyky.</p> <p>Maisteriopinnoissa syvennetään kandiopinnoissa hankittuja perustaitoja ja perehdytään mm. kokeelliseen tutkimukseen, mallitukseen, tutkimusaineistojen tilastolliseen analysointiin sekä tieteelliseen kirjoittamiseen. Opinnot sisältävät luentoja, kenttä- ja laboratoriokursseja, laskuharjoituksia sekä kirjatenttejä. Opintoihin kuuluu myös alaan liittyvä harjoittelu. Maisteriopintojen avulla opitaan soveltamaan ja hyödyntämään tutkimustietoa esimerkiksi vesistöjen seurannassa, hoidossa ja kunnostuksessa.  Maisterivaiheessa opiskelija voi suuntautua oman kiinnostuksensa mukaan jollekin kolmesta erikoistumislinjasta.</p> <p><strong>Kala- ja kalastusbiologia</strong>n opetuksen tavoitteena on syvällinen perehtyminen kalojen biologiaan, ekologiaan ja kalantuotantoon, kalakantojen hoitoon sekä alaan liittyviin tutkimusmenetelmiin. Opetuksen pääpaino on biologiassa, mutta opinnot sisältävät myös alalla tarvittavia matemaattisia menetelmiä. Lisäksi opintoihin on suositeltavaa sisällyttää esimerkiksi ympäristöekonomian opintoja.</p> <p><strong>Limnologia</strong> on oppi sisävesien luonnontaloudesta, vesistöissä tapahtuvista ja vesistöihin liittyvistä ilmiöistä sekä niiden välisistä syy-yhteyksistä. Limnologian opetusalana on ensisijaisesti sisävesien fysiikka, kemia ja biologia sekä vesistöjen suojelu. Vesien elämän ympäristön ja sen eliömaailman välinen vuorovaikutus on limnologian keskeisintä problematiikkaa.</p> <p><strong>Meribiologian</strong> maisterivaiheessa opit ymmärtämään Itämeren ja muiden merialueiden ekosysteemien kokonaisuutta ja toimintaa, sekä arvioimaan ihmisen vaikutuksen siihen. Tätä tietoa voidaan hyödyntää Itämeren ja muiden merialueiden suojelussa. Meribiologian erikoistumislinjalla pääpaino on Itämeren ekosysteemissä, mutta valtameret ja etenkin arktiset alueet ovat vahvasti mukana sekä tutkimuksessa että opetuksessa. Meribiologian maisterivaiheessa opit käyttämään ja soveltamaan kandidaattivaiheessa opittua tietoa käytännön kenttäkursseilla. </p>"
+        }
+      },
+      "LOPPUKOEVAATIMUKSET": {
+        "meta": {
+          "kieli_sv": {
+            "kieliUri": "kieli_sv",
+            "kieliVersio": 1,
+            "kieliArvo": "SV"
+          },
+          "kieli_fi": {
+            "kieliUri": "kieli_fi",
+            "kieliVersio": 1,
+            "kieliArvo": "FI"
+          }
+        },
+        "tekstis": {
+          "kieli_sv": "<p><span lang=\"SV\">Som slutarbete skriver du en pro gradu-avhandling som i regel består av en experimentell del och kritisk granskning av resultatet utgående från relevant litteratur. </span><span lang=\"SV\">I pro gradu-avhandlingen visar du förmåga till vetenskapligt tänkande, att du behärskar forskningsmetoderna inom området, att du är insatt i ämnet för avhandlingen och att du behärskar vetenskaplig kommunikation inom ditt ämnesområde.</span></p> <p><span lang=\"SV\">Närmare anvisningar för arbetet med pro gradu-avhandlingen: </span><a href=\"http://www.helsinki.fi/bio/fakulteten/studier/avhandlingar.html\">http://www.helsinki.fi/bio/fakulteten/studier/avhandlingar.html</a></p>",
+          "kieli_fi": "<p>Opintojesi lopputyönä teet pro gradu -tutkielman, joka useimmiten koostuu kokeellisesta osasta ja sen kriittisestä tarkastelusta tutkimusaiheeseen liittyvän kirjallisuuden avulla. Pro gradu -tutkielman avulla osoitat pystyväsi tieteelliseen ajatteluun, hallitsevasi alan tutkimusmenetelmät, perehtyneisyyden tutkielman aiheeseen ja kyvyn tieteelliseen viestintään omalla alalla.</p> <p>Tarkempi pro gradu -työn ohjeistus: <a href=\"http://www.helsinki.fi/bio/opiskelu/tutkielma.htm\" rel=\"nofollow\">http://www.helsinki.fi/bio/opiskelu/tutkielma.htm</a></p> <p> </p>"
+        }
+      },
+      "TUTKIMUKSEN_PAINOPISTEET": {
+        "meta": {
+          "kieli_sv": {
+            "kieliUri": "kieli_sv",
+            "kieliVersio": 1,
+            "kieliArvo": "SV"
+          },
+          "kieli_fi": {
+            "kieliUri": "kieli_fi",
+            "kieliVersio": 1,
+            "kieliArvo": "FI"
+          }
+        },
+        "tekstis": {
+          "kieli_sv": "<ul> <li><span lang=\"SV\">Forskning på ekosystemnivå (t.ex. övergödning och restaurering av sjöar eller kvävets kretslopp i vattenpelaren och sedimentet).</span></li> <li><span lang=\"SV\">Forskning på samhällsnivå (t.ex. forskning om algsamhällen i strandzonen och organismsamhällen i vatten, is och sediment).</span></li> <li><span lang=\"SV\">Artforskning (t.ex. hur spridningen av nya fiskarter förändrar ekosystemen i sjöarna eller beskrivning av nya algarter).</span></li> <li><span lang=\"SV\">Växelverkan mellan samhälle och ekosystem (t.ex. riskanalys av oljeolyckor eller fiskekvoter).</span></li> </ul>",
+          "kieli_fi": "<ul> <li> <p>ekosysteemitason tutkimus (esim. järvien rehevöityminen ja kunnostus tai typen kierto vesipatsaassa ja sedimentissä)</p> </li> <li> <p>yhteisötason tutkimus (esim. rantavyöhykkeen leväyhteisöjen, veden, jään ja sedimentin eliöyhteisöjen tutkimus)</p> </li> <li> <p>lajistotutkimus (esim. miten uusien kalalajien leviäminen muuttaa järviekosysteemin toimintaa tai uusien levälajien kuvaaminen)</p> </li> <li> <p>yhteiskunnan ja ekosysteemien väliset vuorovaikutussuhteet (esim. öljyonnettomuuksien riskianalyysit tai kalastuskiintiöt)</p> </li> </ul>"
+        }
+      },
+      "YHTEISTYO_MUIDEN_TOIMIJOIDEN_KANSSA": {
+        "meta": {
+          "kieli_sv": {
+            "kieliUri": "kieli_sv",
+            "kieliVersio": 1,
+            "kieliArvo": "SV"
+          },
+          "kieli_fi": {
+            "kieliUri": "kieli_fi",
+            "kieliVersio": 1,
+            "kieliArvo": "FI"
+          }
+        },
+        "tekstis": {
+          "kieli_sv": "<p><span lang=\"SV\">Utbildningsprogrammet för akvatiska vetenskaper har också traditionellt haft goda kontakter med statens forskningsinstitut, såsom Finlands miljöcentral (SYKE) och Havscentret, Vilt- och fiskeriforskningsinstitutet (VFFI) och företag inom vattenbranschen, vilket garanterar studenterna goda möjligheter till praktik- och arbetsplatser.</span></p>",
+          "kieli_fi": "<p>Akvaattisilla tieteillä on perinteisesti hyvät yhteydet valtion tutkimuslaitoksiin, kuten Suomen ympäristökeskukseen (SYKE) ja sen Merikeskukseen, Riista- ja kalatalouden tutkimuslaitokseen (RKTL) sekä vesialan yrityksiin, mikä takaa opiskelijoille hyvät mahdollisuudet harjoittelupaikkoihin ja pysyviin työpaikkoihin.</p>"
+        }
+      },
+      "MAKSULLISUUS": {
+        "meta": {
+          "kieli_fi": {
+            "kieliUri": "kieli_fi",
+            "kieliVersio": 1,
+            "kieliArvo": "FI"
+          }
+        },
+        "tekstis": {
+          "kieli_fi": ""
+        }
+      },
+      "LISATIETOA_OPETUSKIELISTA": {
+        "meta": {
+          "kieli_sv": {
+            "kieliUri": "kieli_sv",
+            "kieliVersio": 1,
+            "kieliArvo": "SV"
+          },
+          "kieli_fi": {
+            "kieliUri": "kieli_fi",
+            "kieliVersio": 1,
+            "kieliArvo": "FI"
+          }
+        },
+        "tekstis": {
+          "kieli_sv": "<p><span lang=\"SV\">Undervisningen i magisterskedet ges i regel på finska, men vissa fördjupade kurser ges också på engelska. </span><span lang=\"SV\">Tenter och pro gradu-avhandlingen kan skrivas på finska, svenska eller engelska.</span></p>",
+          "kieli_fi": "<p>Maisterivaiheen opetus on pääsääntöisesti suomenkielistä, mutta joitain syventäviä kursseja järjestetään myös englanniksi. Tentit ja pro gradu -työn voit tehdä suomeksi, ruotsiksi tai englanniksi.</p>"
+        }
+      },
+      "SIJOITTUMINEN_TYOELAMAAN": {
+        "meta": {
+          "kieli_sv": {
+            "kieliUri": "kieli_sv",
+            "kieliVersio": 1,
+            "kieliArvo": "SV"
+          },
+          "kieli_fi": {
+            "kieliUri": "kieli_fi",
+            "kieliVersio": 1,
+            "kieliArvo": "FI"
+          }
+        },
+        "tekstis": {
+          "kieli_sv": "<p><span lang=\"SV\">Från utbildningsprogrammet för akvatiska vetenskaper utexamineras vattenexperter för arbete inom forskning, administration och företag, samt lärare för skolor och högskolor. </span><span lang=\"SV\">Studier i akvatiska vetenskaper är också nyttiga bl.a. för journalister och informatörer. </span><span lang=\"SV\">Våra studenter har också haft framgång som egenföretagare.</span></p> <p><span lang=\"SV\">Den expertis om fiskar och fiskerinäringen som universitetet ger behövs bl.a. i fiskeriforskningen och undervisningen, fiskeriförvaltningen, skötseln och skyddet av fiskevatten, fiskerinäringens föreningsverksamhet, rådgivning och information i anknytning till fiskerinäringen, vattenbruk och andra uppgifter i anknytning till fiskerinäringen.</span></p> <p><span lang=\"SV\">Limnolog är en yrkesbenämning och limnologer arbetar med många olika slag av expertuppgifter, t.ex. vid miljöcentraler, för kommuner och städer och i konsultföretag i Finland och utomlands.</span> </p>",
+          "kieli_fi": "<p>Akvaattisisten tieteiden koulutusohjelmasta valmistuu vesialan asiantuntijoita tutkimuksen ja hallinnon aloille sekä yrityksiin, opettajia kouluihin ja korkeakouluihin. Akvaattisten tieteiden opinnot tukevat myös hyvin esim. toimittajan ja tiedottajan työtä. Opiskelijamme ovat myös menestyneet hyvin yksityisyrittäjinä alansa erikoisosaajina.</p> <p>Yliopistossa saatavaa kaloihin ja kalatalouteen liittyvää asiantuntemusta tarvitaan mm. kalantutkimuksessa ja -opetuksessa, kalataloushallinnossa, kalavesien hoidossa ja -suojelussa, kalatalouden järjestötoiminnassa, kalatalousneuvonnassa, vesiviljelyssä sekä muissa kalatalouteen liittyvissä työtehtävissä.</p> <p>Limnologi on ammattinimike ja limnologeja työskentelee monenlaisissa asiantuntijatehtävissä esimerkiksi ympäristökeskuksissa, kuntien ja kaupunkien palveluksessa sekä konsulttiyrityksissä niin Suomessa kuin ulkomaillakin.</p>"
+        }
+      },
+      "PAAAINEEN_VALINTA": {
+        "meta": {
+          "kieli_sv": {
+            "kieliUri": "kieli_sv",
+            "kieliVersio": 1,
+            "kieliArvo": "SV"
+          },
+          "kieli_fi": {
+            "kieliUri": "kieli_fi",
+            "kieliVersio": 1,
+            "kieliArvo": "FI"
+          }
+        },
+        "tekstis": {
+          "kieli_sv": "<p><span lang=\"SV\">I magisterskedet väljer du specialiseringslinje (fisk- och fiskeribiologi, limnologi eller marinbiologi). Du fördjupar dina kunskaper i ämnena inom specialiseringslinjen och du kan själv påverka din utveckling till expert. </span><span lang=\"SV\">Man behöver inte söka till en specialiseringslinje, utan du kan välja linje efter eget intresse. I utbildningsprogrammet för akvatiska vetenskaper kan du också söka till ämneslärarutbildning, dvs. bli biologilärare.</span> Ansökningen till ämneslärarutbildningen sker under studietiden.</p> <p><span lang=\"SV\">Du kan också söka till magisterstudier i akvatiska vetenskaper via den separata antagningen på grundval av kandidatstudier i andra ämnen (också utanför Helsingfors universitet) eller en lämplig yrkeshögskoleexamen. </span><span lang=\"SV\">Då gör man vid ämnesenheten upp en studieplan med kompletterande kandidatstudier i akvatiska vetenskaper till stöd för magisterstudierna. </span><span lang=\"SV\">Mer information om den separata antagningen: </span><a href=\"http://www.helsinki.fi/bio/fakulteten/ansokning/magisterexamen.html\">http://www.helsinki.fi/bio/fakulteten/ansokning/magisterexamen.html</a></p>",
+          "kieli_fi": "<p>Maisterivaiheessa valitset erikoistumislinjan (kala- ja kalastusbiologia, limnologia tai meribiologia), syvennät tietämystäsi tästä erikoistumislinjasta ja pystyt siten itse vaikuttamaan siihen millainen alasi erikoisasiantuntija sinusta kehittyy. Erikoistumislinjalle ei tarvitse pyrkiä, vaan voit valita sen oman kiinnostuksesi mukaan.   </p> <p>Akvaattisissa tieteissä voit myös hakea aineenopettajakoulutukseen eli tähdätä biologian opettajaksi. Haku tapahtuu opintojen aikana.</p> <p>Voit myös erillisvalinnan kautta tulla opiskelemaan akvaattisten tieteiden maisteriopintoja muiden oppiaineiden (myös Helsingin yliopiston ulkopuolelta) kandidaattiopintojen tai alalle soveltuvan ammattikorkeakoulututkinnon jälkeen. Tällöin oppiaineessa suunnitellaan täydentävät akvaattisten tieteiden kandivaiheen opinnot tukemaan opintojasi. Lisätietoa erillisvalinnasta: <a href=\"http://www.helsinki.fi/bio/hakeminen/maisteri_oikeus.html\" rel=\"nofollow\">http://www.helsinki.fi/bio/hakeminen/maisteri_oikeus.html</a></p>"
+        }
+      }
+    },
+    "suunniteltuKestoArvo": "2",
+    "suunniteltuKestoTyyppi": {
+      "uri": "suunniteltukesto_01",
+      "versio": 1,
+      "arvo": "01",
+      "nimi": "vuotta",
+      "meta": {
+        "kieli_sv": {
+          "kieliUri": "kieli_sv",
+          "kieliVersio": 1,
+          "kieliArvo": "SV",
+          "nimi": "år"
+        },
+        "kieli_en": {
+          "kieliUri": "kieli_en",
+          "kieliVersio": 1,
+          "kieliArvo": "EN",
+          "nimi": "years"
+        },
+        "kieli_fi": {
+          "kieliUri": "kieli_fi",
+          "kieliVersio": 1,
+          "kieliArvo": "FI",
+          "nimi": "vuotta"
+        }
+      }
+    },
+    "koulutuksenAlkamiskausi": {
+      "uri": "kausi_s",
+      "versio": 1,
+      "arvo": "S",
+      "nimi": "Syksy",
+      "meta": {
+        "kieli_sv": {
+          "kieliUri": "kieli_sv",
+          "kieliVersio": 1,
+          "kieliArvo": "SV",
+          "nimi": "Höst"
+        },
+        "kieli_en": {
+          "kieliUri": "kieli_en",
+          "kieliVersio": 1,
+          "kieliArvo": "EN",
+          "nimi": "Autumn"
+        },
+        "kieli_fi": {
+          "kieliUri": "kieli_fi",
+          "kieliVersio": 1,
+          "kieliArvo": "FI",
+          "nimi": "Syksy"
+        }
+      }
+    },
+    "koulutuksenAlkamisvuosi": 2015,
+    "koulutuksenAlkamisPvms": [],
+    "opetuskielis": {
+      "meta": {
+        "kieli_fi": {
+          "uri": "kieli_fi",
+          "versio": 1,
+          "arvo": "FI",
+          "nimi": "suomi",
+          "meta": {
+            "kieli_sv": {
+              "kieliUri": "kieli_sv",
+              "kieliVersio": 1,
+              "kieliArvo": "SV",
+              "nimi": "finska"
+            },
+            "kieli_en": {
+              "kieliUri": "kieli_en",
+              "kieliVersio": 1,
+              "kieliArvo": "EN",
+              "nimi": "Finnish"
+            },
+            "kieli_fi": {
+              "kieliUri": "kieli_fi",
+              "kieliVersio": 1,
+              "kieliArvo": "FI",
+              "nimi": "suomi"
+            }
+          }
+        }
+      },
+      "uris": {
+        "kieli_fi": 1
+      }
+    },
+    "opetusmuodos": {
+      "meta": {
+        "opetusmuotokk_1": {
+          "uri": "opetusmuotokk_1",
+          "versio": 1,
+          "arvo": "1",
+          "nimi": "Ohjattu opiskelu",
+          "meta": {
+            "kieli_sv": {
+              "kieliUri": "kieli_sv",
+              "kieliVersio": 1,
+              "kieliArvo": "SV",
+              "nimi": "Handledda studier"
+            },
+            "kieli_en": {
+              "kieliUri": "kieli_en",
+              "kieliVersio": 1,
+              "kieliArvo": "EN",
+              "nimi": "Supervised learning"
+            },
+            "kieli_fi": {
+              "kieliUri": "kieli_fi",
+              "kieliVersio": 1,
+              "kieliArvo": "FI",
+              "nimi": "Ohjattu opiskelu"
+            }
+          }
+        }
+      },
+      "uris": {
+        "opetusmuotokk_1": 1
+      }
+    },
+    "opetusAikas": {
+      "meta": {
+        "opetusaikakk_1": {
+          "uri": "opetusaikakk_1",
+          "versio": 1,
+          "arvo": "1",
+          "nimi": "Päiväopetus",
+          "meta": {
+            "kieli_sv": {
+              "kieliUri": "kieli_sv",
+              "kieliVersio": 1,
+              "kieliArvo": "SV",
+              "nimi": "Dagundervisning"
+            },
+            "kieli_en": {
+              "kieliUri": "kieli_en",
+              "kieliVersio": 1,
+              "kieliArvo": "EN",
+              "nimi": "Day time teaching"
+            },
+            "kieli_fi": {
+              "kieliUri": "kieli_fi",
+              "kieliVersio": 1,
+              "kieliArvo": "FI",
+              "nimi": "Päiväopetus"
+            }
+          }
+        }
+      },
+      "uris": {
+        "opetusaikakk_1": 1
+      }
+    },
+    "opetusPaikkas": {
+      "meta": {
+        "opetuspaikkakk_1": {
+          "uri": "opetuspaikkakk_1",
+          "versio": 1,
+          "arvo": "1",
+          "nimi": "Lähiopetus",
+          "meta": {
+            "kieli_sv": {
+              "kieliUri": "kieli_sv",
+              "kieliVersio": 1,
+              "kieliArvo": "SV",
+              "nimi": "Närundervisning"
+            },
+            "kieli_en": {
+              "kieliUri": "kieli_en",
+              "kieliVersio": 1,
+              "kieliArvo": "EN",
+              "nimi": "Contact teaching"
+            },
+            "kieli_fi": {
+              "kieliUri": "kieli_fi",
+              "kieliVersio": 1,
+              "kieliArvo": "FI",
+              "nimi": "Lähiopetus"
+            }
+          }
+        }
+      },
+      "uris": {
+        "opetuspaikkakk_1": 1
+      }
+    },
+    "opintojenLaajuusarvo": {
+      "uri": "opintojenlaajuus_180120",
+      "versio": 1,
+      "arvo": "180+120",
+      "nimi": "180+120",
+      "meta": {
+        "kieli_sv": {
+          "kieliUri": "kieli_sv",
+          "kieliVersio": 1,
+          "kieliArvo": "SV",
+          "nimi": "180+120"
+        },
+        "kieli_en": {
+          "kieliUri": "kieli_en",
+          "kieliVersio": 1,
+          "kieliArvo": "EN",
+          "nimi": "180+120"
+        },
+        "kieli_fi": {
+          "kieliUri": "kieli_fi",
+          "kieliVersio": 1,
+          "kieliArvo": "FI",
+          "nimi": "180+120"
+        }
+      }
+    },
+    "opetusJarjestajat": [],
+    "opetusTarjoajat": [
+      "1.2.246.562.10.45501388404",
+      "1.2.246.562.10.41941575486"
+    ],
+    "ammattinimikkeet": {
+      "uris": {}
+    },
+    "aihees": {
+      "meta": {
+        "aiheet_52": {
+          "uri": "aiheet_52",
+          "versio": 1,
+          "arvo": " 52",
+          "nimi": "Muu luonnontieteiden alan koulutus",
+          "meta": {
+            "kieli_sv": {
+              "kieliUri": "kieli_sv",
+              "kieliVersio": 1,
+              "kieliArvo": "SV",
+              "nimi": "Övrig utbildning inom det naturvetenskapliga området"
+            },
+            "kieli_en": {
+              "kieliUri": "kieli_en",
+              "kieliVersio": 1,
+              "kieliArvo": "EN",
+              "nimi": "Other education in natural sciences"
+            },
+            "kieli_fi": {
+              "kieliUri": "kieli_fi",
+              "kieliVersio": 1,
+              "kieliArvo": "FI",
+              "nimi": "Muu luonnontieteiden alan koulutus"
+            }
+          }
+        },
+        "aiheet_44": {
+          "uri": "aiheet_44",
+          "versio": 1,
+          "arvo": " 44",
+          "nimi": "Biologia",
+          "meta": {
+            "kieli_sv": {
+              "kieliUri": "kieli_sv",
+              "kieliVersio": 1,
+              "kieliArvo": "SV",
+              "nimi": "Biologi"
+            },
+            "kieli_en": {
+              "kieliUri": "kieli_en",
+              "kieliVersio": 1,
+              "kieliArvo": "EN",
+              "nimi": "Biology"
+            },
+            "kieli_fi": {
+              "kieliUri": "kieli_fi",
+              "kieliVersio": 1,
+              "kieliArvo": "FI",
+              "nimi": "Biologia"
+            }
+          }
+        },
+        "aiheet_53": {
+          "uri": "aiheet_53",
+          "versio": 1,
+          "arvo": " 53",
+          "nimi": "Opetus- ja kasvatustyö",
+          "meta": {
+            "kieli_sv": {
+              "kieliUri": "kieli_sv",
+              "kieliVersio": 1,
+              "kieliArvo": "SV",
+              "nimi": "Undervisning och fostran"
+            },
+            "kieli_en": {
+              "kieliUri": "kieli_en",
+              "kieliVersio": 1,
+              "kieliArvo": "EN",
+              "nimi": "Teaching and education"
+            },
+            "kieli_fi": {
+              "kieliUri": "kieli_fi",
+              "kieliVersio": 1,
+              "kieliArvo": "FI",
+              "nimi": "Opetus- ja kasvatustyö"
+            }
+          }
+        },
+        "aiheet_110": {
+          "uri": "aiheet_110",
+          "versio": 1,
+          "arvo": "110",
+          "nimi": "Kalatalous",
+          "meta": {
+            "kieli_sv": {
+              "kieliUri": "kieli_sv",
+              "kieliVersio": 1,
+              "kieliArvo": "SV",
+              "nimi": "Fiskeri"
+            },
+            "kieli_en": {
+              "kieliUri": "kieli_en",
+              "kieliVersio": 1,
+              "kieliArvo": "EN",
+              "nimi": "Fishery"
+            },
+            "kieli_fi": {
+              "kieliUri": "kieli_fi",
+              "kieliVersio": 1,
+              "kieliArvo": "FI",
+              "nimi": "Kalatalous"
+            }
+          }
+        },
+        "aiheet_106": {
+          "uri": "aiheet_106",
+          "versio": 1,
+          "arvo": "106",
+          "nimi": "Luonto- ja ympäristöala",
+          "meta": {
+            "kieli_sv": {
+              "kieliUri": "kieli_sv",
+              "kieliVersio": 1,
+              "kieliArvo": "SV",
+              "nimi": "Natur- och miljöområdet"
+            },
+            "kieli_en": {
+              "kieliUri": "kieli_en",
+              "kieliVersio": 1,
+              "kieliArvo": "EN",
+              "nimi": "Nature and the environment"
+            },
+            "kieli_fi": {
+              "kieliUri": "kieli_fi",
+              "kieliVersio": 1,
+              "kieliArvo": "FI",
+              "nimi": "Luonto- ja ympäristöala"
+            }
+          }
+        }
+      },
+      "uris": {
+        "aiheet_52": 1,
+        "aiheet_44": 1,
+        "aiheet_53": 1,
+        "aiheet_110": 1,
+        "aiheet_106": 1
+      }
+    },
+    "parents": [],
+    "children": [
+      "1.2.246.562.13.99582164176"
+    ],
+    "hintaString": "",
+    "opintojenMaksullisuus": false,
+    "isAvoimenYliopistonKoulutus": false,
+    "oppiaineet": [],
+    "extraParams": {},
+    "yhteyshenkilos": [],
+    "pohjakoulutusvaatimukset": {
+      "uris": {}
+    },
+    "tutkintonimikes": {
+      "meta": {
+        "tutkintonimikekk_702": {
+          "uri": "tutkintonimikekk_702",
+          "versio": 1,
+          "arvo": "702",
+          "nimi": "Filosofian maisteri",
+          "meta": {
+            "kieli_sv": {
+              "kieliUri": "kieli_sv",
+              "kieliVersio": 1,
+              "kieliArvo": "SV",
+              "nimi": "Filosofie magister"
+            },
+            "kieli_en": {
+              "kieliUri": "kieli_en",
+              "kieliVersio": 1,
+              "kieliArvo": "EN",
+              "nimi": "Master of Science"
+            },
+            "kieli_fi": {
+              "kieliUri": "kieli_fi",
+              "kieliVersio": 1,
+              "kieliArvo": "FI",
+              "nimi": "Filosofian maisteri"
+            }
+          }
+        }
+      },
+      "uris": {
+        "tutkintonimikekk_702": 1
+      }
+    },
+    "opintojenRakenneKuvas": {},
+    "koulutuksenTunnisteOid": "1.2.246.562.13.44535516502",
+    "koulutusasteTyyppi": "KORKEAKOULUTUS"
+  },
+  "accessRights": {},
+  "status": "OK"
+}

@@ -37,7 +37,7 @@ public class LearningOpportunityDTO {
     @JsonProperty("suunniteltu_kesto_yksikko")
     private I18NDTO plannedDurationUnit;
     @JsonProperty("opintojen_laajuus_arvo")
-    private Integer creditValue;
+    private String creditValue;
     @JsonProperty("opintojen_laajuus_yksikko")
     private I18NDTO creditUnit;
     @JsonProperty("opetuskielet")

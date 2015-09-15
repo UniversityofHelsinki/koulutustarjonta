@@ -25,7 +25,7 @@ public class LearningOpportunity {
     private I18N startSeason;//alkamiskausi
     private String plannedDurationValue;//suunniteltu kesto arvo
     private I18N plannedDurationUnit;//suunniteltu kesto yksikko
-    private Integer creditValue;//laajuus arvo
+    private String creditValue;//laajuus arvo
     private I18N creditUnit;//laajuus yksikko
     private List<TeachingLanguage> teachingLanguages;//opetuskielet
     private I18N goals;//tavoitteet

@@ -21,12 +21,14 @@ public class LearningOpportunityConverterTest extends AbstractClientConverterTes
 
     LearningOpportunityConverter converter;
     JsonNode fixture;
+    JsonNode fixture2;
 
     @Before
     public void init() throws IOException {
         KoodistoClient koodistoClient = mockKoodistoClient();
         converter = new LearningOpportunityConverter(koodistoClient);
         fixture = fixture("fixtures/koulutus.json");
+        fixture2 = fixture("fixtures/koulutus_laajuus.json");
     }
 
     @Test
@@ -56,7 +58,7 @@ public class LearningOpportunityConverterTest extends AbstractClientConverterTes
         assertEquals("vuotta", lo.getPlannedDurationUnit().getFi());
         assertEquals("år", lo.getPlannedDurationUnit().getSv());
         assertEquals("years", lo.getPlannedDurationUnit().getEn());
-        assertEquals(Integer.valueOf(120), lo.getCreditValue());
+        assertEquals("120", lo.getCreditValue());
         assertNotNull(lo.getCreditUnit());
         assertEquals("opintopistettä", lo.getCreditUnit().getFi());
         assertEquals("poäng", lo.getCreditUnit().getSv());
@@ -124,6 +126,9 @@ public class LearningOpportunityConverterTest extends AbstractClientConverterTes
         assertEquals("Ylempi korkeakoulututkinto", lo.getEducationLevel().getFi());
         assertEquals("Högre högskoleexamen", lo.getEducationLevel().getSv());
         assertEquals("Master's degree", lo.getEducationLevel().getEn());
+
+        LearningOpportunity lo2 = converter.convert(fixture2);
+        assertEquals("180+120", lo2.getCreditValue());
     }
 
     private void validateTeachingLanguages(List<TeachingLanguage> teachnigLanguages) {
