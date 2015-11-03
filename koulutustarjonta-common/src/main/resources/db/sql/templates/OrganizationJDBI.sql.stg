@@ -92,7 +92,7 @@ upsertContactInfos(contactInfos, id) ::= <<
 
   MERGE INTO yhteystieto USING dual ON ( id=:id )
     WHEN MATCHED THEN UPDATE SET
-    tyyppi=:tyyppi, kieli:=kieli, www:=www, puhelin=:puhelin, email=:email, fax=:fax,
+    tyyppi=:tyyppi, kieli=:kieli, www=:www, puhelin=:puhelin, email=:email, fax=:fax,
     kaynti_osoite=:kaynti_osoite, kaynti_postinumero=:kaynti_postinumero, kaynti_postitoimipaikka=:kaynti_postitoimipaikka,
     posti_osoite=:posti_osoite, posti_postinumero=:posti_postinumero, posti_postitoimipaikka=:posti_postitoimipaikka
     WHEN NOT MATCHED THEN INSERT
