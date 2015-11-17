@@ -25,6 +25,7 @@ public class ApplicationSystemConverterTest extends AbstractClientConverterTest 
 
     JsonNode withApplicationFormFixture;
     JsonNode withoutApplicationFormFixture;
+    JsonNode withuafApplicationFormFixture;
     ApplicationSystemConverter converter;
 
     @Before
@@ -49,6 +50,7 @@ public class ApplicationSystemConverterTest extends AbstractClientConverterTest 
         converter = new ApplicationSystemConverter(koodistoClient, opintopolku);
         withApplicationFormFixture = fixture("fixtures/haku_with_application_form.json");
         withoutApplicationFormFixture = fixture("fixtures/haku_without_application_form.json");
+        withuafApplicationFormFixture = fixture("fixtures/haku_with_uaf_application_form.json");
     }
 
     @Test
@@ -73,6 +75,7 @@ public class ApplicationSystemConverterTest extends AbstractClientConverterTest 
         assertEquals("edu season sv", as.getEducationStartSeason().getName().getSv());
         assertEquals("edu season en", as.getEducationStartSeason().getName().getEn());
         assertEquals("http://www.helsinki.fi/ml/lomakkeet/opintooikeus.pdf", as.getFormUrl());
+        assertEquals(false, as.isSystemApplicationForm());
         assertNotNull(as.getApplicationPeriods());
         ApplicationPeriod ap = as.getApplicationPeriods().get(0);
         assertNotNull(ap);
@@ -88,6 +91,15 @@ public class ApplicationSystemConverterTest extends AbstractClientConverterTest 
     public void testConvertWithoutApplicationForm() {
         ApplicationSystem as = converter.convert(withoutApplicationFormFixture);
         assertNull(as.getFormUrl());
+        assertEquals(true, as.isSystemApplicationForm());
+    }
+
+    @Test
+    public void testConverterWithuafApplicationForm() {
+        ApplicationSystem as = converter.convert(withuafApplicationFormFixture);
+        assertEquals(false, as.isSystemApplicationForm());
+        String opintopolku_url = String.format("https://opintopolku.fi/hakuperusteet/ao/%s", as.getOid());
+        assertEquals(opintopolku_url, as.getFormUrl());
     }
 }
 

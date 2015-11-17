@@ -116,6 +116,7 @@ public class Fixture {
                 2016,
                 educationSeason,
                 "www.applicationform.url",
+                true,
                 Lists.newArrayList(ap)
         );
     }
@@ -134,6 +135,7 @@ public class Fixture {
                 2016,
                 educationSeason,
                 null,
+                false,
                 Lists.newArrayList(ap)
         );
     }

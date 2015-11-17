@@ -1,43 +1,65 @@
 {
-  "result" : {
-    "modified" : 1403763829567,
-    "modifiedBy" : "1.2.246.562.24.97747275774",
-    "oid" : "1.2.246.562.29.31035368682",
-    "hakukausiUri" : "kausi_s#1",
-    "hakukausiVuosi" : 2014,
-    "hakutapaUri" : "hakutapa_02#1",
-    "hakutyyppiUri" : "hakutyyppi_01#1",
-    "kohdejoukkoUri" : "haunkohdejoukko_12#1",
-    "koulutuksenAlkamisVuosi" : 2015,
-    "koulutuksenAlkamiskausiUri" : "kausi_k#1",
-    "tila" : "JULKAISTU",
-    "sijoittelu" : false,
-    "jarjestelmanHakulomake" : false,
-    "hakuaikas" : [ {
-      "hakuaikaId" : "228749",
-      "nimet" : {
-        "kieli_fi" : "hakuaika fi",
-        "kieli_sv" : "hakuaika sv",
-        "kieli_en" : "hakuaika en"
-      },
-      "alkuPvm" : 1410152404012,
-      "loppuPvm" : 1411387241418
-    } ],
-    "hakukohdeOids" : [ "1.2.246.562.20.96395730326", "1.2.246.562.20.98159006992", "1.2.246.562.20.15630524138", "1.2.246.562.20.97214898831", "1.2.246.562.20.92573201339" ],
-    "nimi" : {
-      "kieli_sv" : "Ansökan",
-      "kieli_en" : "Application system",
-      "kieli_fi" : "Haku avoimessa"
+    "result":{
+        "modified":1446204968081,
+        "modifiedBy":"1.2.246.562.24.51528502945",
+        "oid":"1.2.246.562.29.93936401533",
+        "hakukausiUri":"kausi_k#1",
+        "hakukausiVuosi":2016,
+        "hakutapaUri":"hakutapa_02#1",
+        "hakutyyppiUri":"hakutyyppi_01#1",
+        "kohdejoukkoUri":"haunkohdejoukko_12#1",
+        "koulutuksenAlkamisVuosi":2016,
+        "koulutuksenAlkamiskausiUri":"kausi_s#1",
+        "tila":"JULKAISTU",
+        "ylioppilastutkintoAntaaHakukelpoisuuden":false,
+        "hakukohdeOidsYlioppilastutkintoAntaaHakukelpoisuuden":[],
+        "sijoittelu":false,
+        "jarjestelmanHakulomake":true,
+        "hakuaikas":[{
+          "hakuaikaId":"3143277",
+          "alkuPvm":1460955600000,
+          "loppuPvm":1462363200000,
+          "nimet":{
+            "kieli_sv":"",
+            "kieli_en":"",
+            "kieli_fi":""
+            }
+         }],
+        "hakukohdeOids":[
+          "1.2.246.562.20.82847377429", "1.2.246.562.20.16942809902", "1.2.246.562.20.27915156957",
+          "1.2.246.562.20.98514563083", "1.2.246.562.20.72520109421", "1.2.246.562.20.21821529167",
+          "1.2.246.562.20.78063707232", "1.2.246.562.20.33409874048", "1.2.246.562.20.35722614274",
+          "1.2.246.562.20.45474923674", "1.2.246.562.20.29609091318", "1.2.246.562.20.891494048510",
+          "1.2.246.562.20.83524719461", "1.2.246.562.20.93667720275", "1.2.246.562.20.11388540079",
+          "1.2.246.562.20.59690616772","1.2.246.562.20.69553194544","1.2.246.562.20.39953125364",
+          "1.2.246.562.20.51773964898","1.2.246.562.20.521816883510","1.2.246.562.20.66067161332",
+          "1.2.246.562.20.36124678321","1.2.246.562.20.74529317419","1.2.246.562.20.26486580371",
+          "1.2.246.562.20.58043129467","1.2.246.562.20.50410280064","1.2.246.562.20.36319582643",
+          "1.2.246.562.20.32535811668","1.2.246.562.20.93394481597","1.2.246.562.20.57381208941",
+          "1.2.246.562.20.88990869443","1.2.246.562.20.84133063903","1.2.246.562.20.12184354558",
+          "1.2.246.562.20.37160241792","1.2.246.562.20.77867809756","1.2.246.562.20.60290177306",
+          "1.2.246.562.20.70099885652","1.2.246.562.20.112534685710","1.2.246.562.20.36811191828",
+          "1.2.246.562.20.78244228108","1.2.246.562.20.24653969956","1.2.246.562.20.64236053068",
+          "1.2.246.562.20.58782692923","1.2.246.562.20.90843525677"
+        ],
+        "nimi":{
+          "kieli_sv":"Ansökan på basis av öppna universitetsstudier, våren 2016 (Helsingfors universitet, humanistiska fakulteten)",
+          "kieli_en":"",
+          "kieli_fi":"Haku avoimessa yliopistossa opintoja suorittaneille, kevät 2016 (Helsingin yliopisto, humanistinen tiedekunta)"
+        },
+          "maxHakukohdes":3,
+          "organisaatioOids":["1.2.246.562.10.61397511793","1.2.246.562.10.53814745062"],
+          "tarjoajaOids":["1.2.246.562.10.61397511793","1.2.246.562.10.53814745062"],
+          "usePriority":false,
+          "sisaltyvatHaut":[],
+          "organisaatioryhmat":[],
+          "koulutusmoduuliTyyppi":"TUTKINTO",
+          "maksumuuriKaytossa":false
     },
-    "maxHakukohdes" : 0,
-    "organisaatioOids" : [ "1.2.246.562.10.39218317368" ],
-    "tarjoajaOids" : [ "1.2.246.562.10.39218317368", "1.2.246.562.10.94639300915" ],
-    "usePriority" : true
-  },
-  "status" : "OK",
-  "accessRights" : {
-    "update" : false,
-    "delete" : false,
-    "create" : false
-  }
+    "status" : "OK",
+    "accessRights" : {
+      "update" : false,
+      "delete" : false,
+      "create" : false
+    }
 }
