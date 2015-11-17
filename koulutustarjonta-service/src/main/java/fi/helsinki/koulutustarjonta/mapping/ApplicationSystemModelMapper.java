@@ -31,13 +31,15 @@ public class ApplicationSystemModelMapper extends ModelMapper {
         protected I18NDTO convert(ApplicationSystem source) {
             String s = source.getFormUrl();
 
-            if (s != null) {
+            if (s == null && source.isSystemApplicationForm()) {
+                return opintopolkuUrl(source.getOid());
+            }
+            else if (s != null && !s.isEmpty()) {
                 return new I18NDTO(s, s, s);
             }
             else {
-                return opintopolkuUrl(source.getOid());
+                return new I18NDTO(null, null, null);
             }
-
         }
 
         private I18NDTO opintopolkuUrl(String oid) {
@@ -47,6 +49,5 @@ public class ApplicationSystemModelMapper extends ModelMapper {
                     String.format("%s/haku-app/lomake/%s", "https://studyinfo.fi", oid)
             );
         }
-
     }
 }

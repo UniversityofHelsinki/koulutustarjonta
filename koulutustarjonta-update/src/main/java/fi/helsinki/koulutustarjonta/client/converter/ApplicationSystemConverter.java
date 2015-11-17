@@ -51,15 +51,17 @@ public class ApplicationSystemConverter extends BaseConverter {
                 root.get("koulutuksenAlkamisVuosi").intValue(),
                 educationStartsSeason,
                 getFormUrl(root),
+                isSystemApplicationForm(root),
                 periods
         );
     }
 
     private String getFormUrl(JsonNode root) {
-        if (hasApplicationForm(root)) {
+        if (!isSystemApplicationForm(root) && hasApplicationForm(root) && isRedirectLink(root)) {
+            return String.format("https://opintopolku.fi/hakuperusteet/ao/%s", root.get("oid").textValue());
+        } else if (hasApplicationForm(root)) {
             return root.get("hakulomakeUri").textValue();
-        }
-        else {
+        } else {
             return null;
         }
     }
@@ -67,6 +69,12 @@ public class ApplicationSystemConverter extends BaseConverter {
     private boolean hasApplicationForm(JsonNode root) {
         return root.hasNonNull("hakulomakeUri");
     }
+
+    private boolean isSystemApplicationForm(JsonNode root) {
+        return root.get("jarjestelmanHakulomake").booleanValue();
+    }
+
+    private boolean isRedirectLink(JsonNode root) { return root.get("hakulomakeUri").textValue().contains("redirect"); }
 
     private ApplicationPeriod convertApplicationPeriod(JsonNode node) {
         return new ApplicationPeriod(

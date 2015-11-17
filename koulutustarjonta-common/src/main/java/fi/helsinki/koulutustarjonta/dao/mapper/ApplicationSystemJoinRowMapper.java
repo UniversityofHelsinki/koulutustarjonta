@@ -38,6 +38,7 @@ public class ApplicationSystemJoinRowMapper implements ResultSetMapper<Applicati
                 r.getInt("koul_alk_vuosi"),
                 educationSeason,
                 r.getString("hakulomake_url"),
+                r.getBoolean("jarj_hakulomake"),
                 null
         );
 

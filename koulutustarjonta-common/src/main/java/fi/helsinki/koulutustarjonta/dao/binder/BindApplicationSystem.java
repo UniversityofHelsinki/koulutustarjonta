@@ -51,6 +51,7 @@ public @interface BindApplicationSystem {
                         BindUtil.bindI18N(q, "koul_alk_kausi", as.getEducationStartSeason().getName());
                     }
                     q.bind("hakulomake_url", as.getFormUrl());
+                    q.bind("jarj_hakulomake", as.isSystemApplicationForm());
                 }
             };
         }
