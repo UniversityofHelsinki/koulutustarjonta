@@ -1,0 +1,50 @@
+{
+  "accessRights": {
+    "update":false,
+    "delete":false,
+    "create":false
+  },
+  "result": {
+    "modified":1446129430923,
+    "modifiedBy":"1.2.246.562.24.62192615574",
+    "oid":"1.2.246.562.29.61505478364",
+    "hakukausiUri":"kausi_k#1",
+    "hakukausiVuosi":2016,
+    "hakutapaUri":"hakutapa_02#1",
+    "hakulomakeUri":"https://uaf.it.helsinki.fi/funima/op/redirect",
+    "hakutyyppiUri":"hakutyyppi_01#1",
+    "kohdejoukkoUri":"haunkohdejoukko_12#1",
+    "koulutuksenAlkamisVuosi":2016,
+    "koulutuksenAlkamiskausiUri":"kausi_s#1",
+    "tila":"JULKAISTU",
+    "ylioppilastutkintoAntaaHakukelpoisuuden":false,
+    "hakukohdeOidsYlioppilastutkintoAntaaHakukelpoisuuden":[],
+    "sijoittelu":false,
+    "jarjestelmanHakulomake":false,
+    "hakuaikas":[{
+      "hakuaikaId":"3139429",
+      "alkuPvm":1448949648567,
+      "loppuPvm":1453899600000,
+      "nimet":{
+        "kieli_sv":"",
+        "kieli_en":"",
+        "kieli_fi":""
+      }
+    }],
+    "hakukohdeOids":["1.2.246.562.20.36900143334"],
+    "nimi":{
+      "kieli_sv":"Application for Master's programmes  in English, spring 2016 (University of Helsinki, Faculty of Medicine)",
+      "kieli_en":"Application for Master's programmes  in English, spring 2016 (University of Helsinki, Faculty of Medicine)",
+      "kieli_fi":"Application for Master's programmes  in English, spring 2016 (University of Helsinki, Faculty of Medicine)"
+    },
+    "maxHakukohdes":0,
+    "organisaatioOids":["1.2.246.562.10.39218317368","1.2.246.562.10.94997228401"],
+    "tarjoajaOids":["1.2.246.562.10.39218317368","1.2.246.562.10.94997228401"],
+    "usePriority":false,
+    "sisaltyvatHaut":[],
+    "organisaatioryhmat":["1.2.246.562.28.53212985798"],
+    "koulutusmoduuliTyyppi":"TUTKINTO",
+    "maksumuuriKaytossa":true
+  },
+  "status":"OK"
+}

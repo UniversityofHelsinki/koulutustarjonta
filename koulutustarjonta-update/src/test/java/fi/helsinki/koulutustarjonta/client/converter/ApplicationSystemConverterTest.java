@@ -74,8 +74,6 @@ public class ApplicationSystemConverterTest extends AbstractClientConverterTest 
         assertEquals("edu season fi", as.getEducationStartSeason().getName().getFi());
         assertEquals("edu season sv", as.getEducationStartSeason().getName().getSv());
         assertEquals("edu season en", as.getEducationStartSeason().getName().getEn());
-        assertEquals("http://www.helsinki.fi/ml/lomakkeet/opintooikeus.pdf", as.getFormUrl());
-        assertEquals(false, as.isSystemApplicationForm());
         assertNotNull(as.getApplicationPeriods());
         ApplicationPeriod ap = as.getApplicationPeriods().get(0);
         assertNotNull(ap);
@@ -90,7 +88,7 @@ public class ApplicationSystemConverterTest extends AbstractClientConverterTest 
     @Test
     public void testConvertWithoutApplicationForm() {
         ApplicationSystem as = converter.convert(withoutApplicationFormFixture);
-        assertNull(as.getFormUrl());
+        assertEquals("system", as.getFormUrl());
         assertEquals(true, as.isSystemApplicationForm());
     }
 
