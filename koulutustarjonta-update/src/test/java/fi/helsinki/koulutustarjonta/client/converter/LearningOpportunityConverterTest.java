@@ -1,6 +1,7 @@
 package fi.helsinki.koulutustarjonta.client.converter;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.google.common.collect.Lists;
 import fi.helsinki.koulutustarjonta.client.KoodistoClient;
 import fi.helsinki.koulutustarjonta.domain.I18N;
 import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
@@ -112,7 +113,7 @@ public class LearningOpportunityConverterTest extends AbstractClientConverterTes
         assertEquals("<p>Opintojesi lopputyönä teet pro gradu ", lo.getThesis().getFi());
         assertEquals("<p>Studierna avslutas med ett slutarbete", lo.getThesis().getSv());
         assertEquals("<p><span style=\"color: rgb(0,0,0);\">Th", lo.getThesis().getEn());
-        assertEquals("1.2.246.562.10.94639300915", lo.getProvider());
+        assertEquals(Lists.newArrayList("1.2.246.562.10.445049088710","1.2.246.562.10.41941575486"), lo.getProvider());
 
         assertNotNull(lo.getKeywords());
         assertEquals(1, lo.getKeywords().size());
