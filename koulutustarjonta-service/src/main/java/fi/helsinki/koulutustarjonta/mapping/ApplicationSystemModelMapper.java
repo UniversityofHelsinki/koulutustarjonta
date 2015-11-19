@@ -38,7 +38,7 @@ public class ApplicationSystemModelMapper extends ModelMapper {
                 return new I18NDTO(s, s, s);
             }
             else {
-                return new I18NDTO(null, null, null);
+                return new I18NDTO("", "", "");
             }
         }
 
