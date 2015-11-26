@@ -58,3 +58,6 @@ DELETE FROM paivitys
 WHERE aloitettu = TO_DATE('2015/01/01 15:00:00', 'yyyy/mm/dd hh24:mi:ss')
 OR aloitettu = TO_DATE('2015/01/02 15:00:00', 'yyyy/mm/dd hh24:mi:ss')
 OR dbms_lob.compare(VIRHEET, '["TESTIVIRHE"]') = 0;
+
+DELETE FROM koulutus_tarjoajat
+WHERE id_koulutus = '1.2.3';
