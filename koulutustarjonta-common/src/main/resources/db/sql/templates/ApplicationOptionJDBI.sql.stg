@@ -11,16 +11,18 @@ upsert(applicationOption) ::= <<
     lisatiedot_fi=:lisatiedot_fi, lisatiedot_sv=:lisatiedot_sv, lisatiedot_en=:lisatiedot_en,
     valintaper_fi=:valintaper_fi, valintaper_sv=:valintaper_sv, valintaper_en=:valintaper_en,
     sorakuvaus_fi=:sorakuvaus_fi, sorakuvaus_sv=:sorakuvaus_sv, sorakuvaus_en=:sorakuvaus_en,
-    id_haku=:id_haku, id_hakuaika=:id_hakuaika, ensikertalaisten_aloituspaikat=:ensikertalaisten_aloituspaikat
+    id_haku=:id_haku, id_hakuaika=:id_hakuaika, ensikertalaisten_aloituspaikat=:ensikertalaisten_aloituspaikat,
+    hakulomake_url=:hakulomake_url
     WHEN NOT MATCHED THEN INSERT
     (id, nimi_fi, nimi_sv, nimi_en, aloituspaikat, aloituspaikat_fi, aloituspaikat_sv,
     aloituspaikat_en, hakukelp_kuvaus_fi, hakukelp_kuvaus_sv, hakukelp_kuvaus_en,
     lisatiedot_fi, lisatiedot_sv, lisatiedot_en, valintaper_fi, valintaper_sv, valintaper_en,
-    sorakuvaus_fi, sorakuvaus_sv, sorakuvaus_en, id_haku, id_hakuaika, ensikertalaisten_aloituspaikat)
+    sorakuvaus_fi, sorakuvaus_sv, sorakuvaus_en, id_haku, id_hakuaika, ensikertalaisten_aloituspaikat,
+    hakulomake_url)
     VALUES (:id, :nimi_fi, :nimi_sv, :nimi_en, :aloituspaikat, :aloituspaikat_fi, :aloituspaikat_sv,
     :aloituspaikat_en, :hakukelp_kuvaus_fi, :hakukelp_kuvaus_sv, :hakukelp_kuvaus_en,
     :lisatiedot_fi, :lisatiedot_sv, :lisatiedot_en, :valintaper_fi, :valintaper_sv, :valintaper_en,
-    :sorakuvaus_fi, :sorakuvaus_sv, :sorakuvaus_en, :id_haku, :id_hakuaika, :ensikertalaisten_aloituspaikat)
+    :sorakuvaus_fi, :sorakuvaus_sv, :sorakuvaus_en, :id_haku, :id_hakuaika, :ensikertalaisten_aloituspaikat, :hakulomake_url)
 
 >>
 

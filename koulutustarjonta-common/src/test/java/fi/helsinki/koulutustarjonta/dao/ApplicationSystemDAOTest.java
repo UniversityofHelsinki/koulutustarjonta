@@ -151,6 +151,7 @@ public class ApplicationSystemDAOTest extends BaseDAOTest {
         ends.set(Calendar.HOUR_OF_DAY, 15);
         assertEquals(starts.getTime(), ap.getStarts());
         assertEquals(ends.getTime(), ap.getEnds());
+        assertEquals(false, as.isSystemApplicationForm());
     }
 
 }

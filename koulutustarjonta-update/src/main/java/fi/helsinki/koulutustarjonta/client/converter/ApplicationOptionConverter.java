@@ -46,6 +46,7 @@ public class ApplicationOptionConverter extends BaseConverter {
                 .map(attach -> attachmentConverter.convert(attach))
                 .collect(Collectors.toList()));
         ao.setApplicationSystem(content.get("hakuOid").textValue());
+        ao.setFormUrl(createFormUrl(content.get("oid").textValue()));
 
         if (content.has("hakuaikaId")) {
             ao.setApplicationPeriodId(content.get("hakuaikaId").textValue());
@@ -93,6 +94,10 @@ public class ApplicationOptionConverter extends BaseConverter {
 
     private JsonNode resolveApplicationOptionContent(JsonNode apiCallResult) {
         return apiCallResult.get("result");
+    }
+
+    private String createFormUrl(String oid) {
+        return String.format("https://opintopolku.fi/hakuperusteet/ao/%s", oid);
     }
 
 }

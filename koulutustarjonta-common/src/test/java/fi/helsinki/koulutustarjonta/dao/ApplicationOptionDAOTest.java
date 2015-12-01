@@ -152,6 +152,8 @@ public class ApplicationOptionDAOTest extends BaseDAOTest {
         apEnds.set(Calendar.HOUR_OF_DAY, 15);
         assertEquals(apStarts.getTime(), ap.getStarts());
         assertEquals(apEnds.getTime(), ap.getEnds());
+        String opintopolku_url = String.format("https://opintopolku.fi/hakuperusteet/ao/%s", ao.getOid());
+        assertEquals(opintopolku_url, ao.getFormUrl());
     }
 
     @Test(expected = ResourceNotFound.class)
