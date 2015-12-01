@@ -71,7 +71,7 @@ public class LearningOpportunityDTO {
     @JsonProperty("hakukohteet")
     private List<String> applicationOptions;
     @JsonProperty("tarjoaja")
-    private List<String> provider;
+    private String provider;
     @JsonProperty("sisaltyy_koulutuksiin")
     private List<String> parents;
     @JsonProperty("sisaltaa_koulutukset")

@@ -48,6 +48,7 @@ public @interface BindLearningOpportunity {
                     BindUtil.bindI18N(q, "tutkpaino", lo.getResearch());
                     BindUtil.bindI18N(q, "opinnaytetyo", lo.getThesis());
                     BindUtil.bindI18N(q, "koulutusaste", lo.getEducationLevel());
+                    q.bind("id_organisaatio", lo.getProvider());
                 }
             };
         }

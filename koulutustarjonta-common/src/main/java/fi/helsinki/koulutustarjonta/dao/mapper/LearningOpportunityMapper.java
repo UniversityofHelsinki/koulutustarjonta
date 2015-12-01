@@ -45,7 +45,7 @@ public class LearningOpportunityMapper implements ResultSetMapper<LearningOpport
                 resolveI18N(r, "tutkpaino"),
                 resolveI18N(r, "opinnaytetyo"),
                 resolveStringList(r, "hakukohde_id"),
-                resolveStringList(r, "tarjoaja_id"),
+                r.getString("id_organisaatio"),
                 resolveStringList(r, "id_vanhempi"),
                 resolveStringList(r, "id_lapsi"),
                 resolveI18NList(r, "aihe")

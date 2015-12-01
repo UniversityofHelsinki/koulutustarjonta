@@ -70,8 +70,4 @@ public interface LearningOpportunityJDBI extends Transactional<LearningOpportuni
     @SqlBatch
     @BatchChunkSize(10)
     void addChildren(@Bind("id_vanhempi") String parentOid, @Bind("id_lapsi") List<String> childOids);
-
-    @SqlBatch
-    @BatchChunkSize(10)
-    void addProviders(@Bind("id_koulutus") String learningOpportunityOid, @Bind("id_tarjoaja") List<String> providers);
 }

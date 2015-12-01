@@ -36,7 +36,7 @@ public class LearningOpportunityConverter extends BaseConverter {
         lo.setCreditValue(content.get("opintojenLaajuusarvo").get("arvo").textValue());
         lo.setCreditUnit(resolveMetaLangName(content.get("opintojenLaajuusyksikko")));
         lo.setTeachingLanguages(resolveTeachingLanguages(content.get("opetuskielis")));
-        lo.setProvider(resolveProviders(content));
+        lo.setProvider(content.get("organisaatio").get("oid").textValue());
 
         //komo info
         JsonNode komoInfo = content.get("kuvausKomo");
@@ -76,12 +76,6 @@ public class LearningOpportunityConverter extends BaseConverter {
 
     private JsonNode resolveContent(JsonNode apiCallResult) {
         return apiCallResult.get("result");
-    }
-
-    private List<String> resolveProviders(JsonNode node) {
-        return Lists.newArrayList(node.get("opetusTarjoajat")).parallelStream()
-                .map(elem -> elem.textValue())
-                .collect(Collectors.toList());
     }
 
     private List<TeachingLanguage> resolveTeachingLanguages(JsonNode node) {

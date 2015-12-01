@@ -15,7 +15,6 @@ import org.skife.jdbi.v2.Handle;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -136,8 +135,7 @@ public class LearningOpportunityDAOTest extends BaseDAOTest {
         assertNotNull(applicationOptions);
         assertEquals(1, applicationOptions.size());
         assertEquals("hakukohde_id1", applicationOptions.get(0));
-        assertEquals(Lists.newArrayList("organisaatio_id1"), lo.getProvider());
-
+        assertEquals("organisaatio_id1", lo.getProvider());
         assertEquals(0, lo.getParents().size());
         assertNotNull(lo.getChildren());
         assertEquals(1, lo.getChildren().size());
@@ -201,6 +199,7 @@ public class LearningOpportunityDAOTest extends BaseDAOTest {
 
         assertEquals(expected.getApplicationOptions().size(), actual.getApplicationOptions().size());
         assertEquals(expected.getApplicationOptions().get(0), actual.getApplicationOptions().get(0));
+        assertEquals(expected.getProvider(), actual.getProvider());
     }
 
 
