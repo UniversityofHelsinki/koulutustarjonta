@@ -37,6 +37,7 @@ public @interface BindApplicationOption {
                     q.bind("id_haku", ao.getApplicationSystem());
                     q.bind("id_hakuaika", ao.getApplicationPeriodId());
                     q.bind("ensikertalaisten_aloituspaikat", ao.getFirstTimePositions());
+                    q.bind("hakulomake_url", ao.getFormUrl());
                 }
 
             };
