@@ -47,4 +47,6 @@ public class ApplicationOptionDTO {
     private List<String> translations;
     @JsonProperty("ensikertalaisten_aloituspaikat")
     private Integer firstTimePositions;
+    @JsonProperty("hakulomake_url")
+    private String formUrl;
 }
