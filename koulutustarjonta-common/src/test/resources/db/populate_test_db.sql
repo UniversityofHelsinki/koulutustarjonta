@@ -112,12 +112,12 @@ INSERT INTO haku
 (id, nimi_fi, nimi_sv, nimi_en, hakutapa_fi, hakutapa_sv, hakutapa_en,
 hakukausi_vuosi, hakukausi_arvo, hakukausi_fi, hakukausi_sv, hakukausi_en,
 koul_alk_vuosi, koul_alk_kausi_arvo, koul_alk_kausi_fi, koul_alk_kausi_sv,
-koul_alk_kausi_en, hakulomake_url, opintopolku_hakulomake_url)
+koul_alk_kausi_en, hakulomake_url, opintopolku_hakulomake_url, jarj_hakulomake)
 VALUES
 ('haku_id1', 'haku nimi fi', 'haku nimi sv', 'haku nimi en', 'hakutapa fi', 'hakutapa sv', 'hakutapa en',
 2015, 'K', 'hakukausi fi', 'hakukausi sv', 'hakukausi en',
 2016, 'S', 'koul alk kausi fi', 'koul alk kausi sv',
-'koul alk kausi en', 'hakulomake url', null);
+'koul alk kausi en', 'hakulomake url', null, 0);
 
 INSERT INTO hakuaika
 (id, nimi_fi, nimi_sv, nimi_en, alkaa, loppuu, id_haku)
