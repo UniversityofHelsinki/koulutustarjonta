@@ -49,6 +49,7 @@ public class ApplicationOptionJoinRowMapper implements ResultSetMapper<Applicati
         Attachment attachment = attachmentMapper.map(index, r, ctx);
         Requirement requirement = requirementMapper.map(index, r, ctx);
         ApplicationPeriod applicationPeriod = applicationPeriodMapper.map(index, r, ctx);
+        ao.setFormUrl(r.getString("hakulomake_url"));
         return new ApplicationOptionJoinRow(ao, exam, event, attachment, requirement, applicationPeriod);
     }
 }
