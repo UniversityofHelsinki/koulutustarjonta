@@ -63,7 +63,7 @@ public class ApplicationOptionModelMapper extends ModelMapper {
             if (!systemApplicationForm && source.getAsFormUrl() != null) {
                 String s = String.format("https://opintopolku.fi/hakuperusteet/ao/%s", source.getOid());
                 return new I18NDTO(s,s,s);
-            } else if (source.getAsFormUrl() == null && systemApplicationForm) {
+            } else if (source.getAsFormUrl() != null && systemApplicationForm) {
                 return opintopolkuUrl(source.getApplicationSystem());
             } else {
                 return new I18NDTO("", "", "");
