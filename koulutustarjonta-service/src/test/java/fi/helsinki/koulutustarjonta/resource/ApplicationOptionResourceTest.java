@@ -84,6 +84,7 @@ public class ApplicationOptionResourceTest {
         assertEquals(expected.getTranslations().size(), actual.getTranslations().size());
         assertNotNull(actual.getFirstTimePositions());
         assertEquals(expected.getFirstTimePositions(), actual.getFirstTimePositions());
+        //assertEquals(expected.getAoFormUrl(), actual.getAoFormUrl());
     }
 
     private void attachmentDTOsEqual(AttachmentDTO expected, AttachmentDTO actual) {

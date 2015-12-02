@@ -46,7 +46,7 @@ public class ApplicationOptionConverter extends BaseConverter {
                 .map(attach -> attachmentConverter.convert(attach))
                 .collect(Collectors.toList()));
         ao.setApplicationSystem(content.get("hakuOid").textValue());
-        ao.setFormUrl(createFormUrl(content.get("oid").textValue()));
+        ao.setAoFormUrl(null);
 
         if (content.has("hakuaikaId")) {
             ao.setApplicationPeriodId(content.get("hakuaikaId").textValue());

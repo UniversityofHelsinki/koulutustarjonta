@@ -57,10 +57,8 @@ public class ApplicationSystemConverter extends BaseConverter {
     }
 
     private String getFormUrl(JsonNode root) {
-        if (!isSystemApplicationForm(root) && hasApplicationForm(root)) {
-            return String.format("https://opintopolku.fi/hakuperusteet/ao/%s", root.get("oid").textValue());
-        } else if (isSystemApplicationForm(root) && !hasApplicationForm(root)) {
-            return String.format("system");
+        if (hasApplicationForm(root)) {
+            return root.get("hakulomakeUri").textValue();
         } else {
             return null;
         }

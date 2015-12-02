@@ -38,7 +38,9 @@ findJoinRowsById(id) ::= <<
     hk.id as hk_id, hk.kuvaus_fi as hk_kuvaus_fi,
     hk.kuvaus_sv as hk_kuvaus_sv, hk.kuvaus_en as hk_kuvaus_en,
     ha.id as ha_id, ha.nimi_fi as ha_nimi_fi, ha.nimi_sv as ha_nimi_sv, ha.nimi_en as ha_nimi_en,
-    ha.alkaa as ha_alkaa, ha.loppuu as ha_loppuu
+    ha.alkaa as ha_alkaa, ha.loppuu as ha_loppuu,
+    haku.hakulomake_url as haku_url,
+    haku.jarj_hakulomake as haku_jarj
     FROM hakukohde h
     LEFT JOIN
     valintakoe v on v.id_hakukohde = h.id
@@ -50,7 +52,10 @@ findJoinRowsById(id) ::= <<
     hakukelp hk on hk.id_hakukohde = h.id
     LEFT JOIN
     hakuaika ha on ha.id = h.id_hakuaika
+    LEFT JOIN
+    haku on haku.id = h.id_haku
     WHERE h.id = :id
+
 
 >>
 
@@ -67,7 +72,9 @@ findJoinRows() ::= <<
     hk.id as hk_id, hk.kuvaus_fi as hk_kuvaus_fi,
     hk.kuvaus_sv as hk_kuvaus_sv, hk.kuvaus_en as hk_kuvaus_en,
     ha.id as ha_id, ha.nimi_fi as ha_nimi_fi, ha.nimi_sv as ha_nimi_sv, ha.nimi_en as ha_nimi_en,
-    ha.alkaa as ha_alkaa, ha.loppuu as ha_loppuu
+    ha.alkaa as ha_alkaa, ha.loppuu as ha_loppuu,
+    haku.hakulomake_url as haku_url,
+    haku.jarj_hakulomake as haku_jarj
     FROM hakukohde h
     LEFT JOIN
     valintakoe v on v.id_hakukohde = h.id
@@ -79,6 +86,8 @@ findJoinRows() ::= <<
     hakukelp hk on hk.id_hakukohde = h.id
     LEFT JOIN
     hakuaika ha on ha.id = h.id_hakuaika
+    LEFT JOIN
+    haku on haku.id = h.id_haku
 
 >>
 

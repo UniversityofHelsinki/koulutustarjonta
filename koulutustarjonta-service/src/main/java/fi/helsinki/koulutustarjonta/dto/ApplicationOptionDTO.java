@@ -48,5 +48,5 @@ public class ApplicationOptionDTO {
     @JsonProperty("ensikertalaisten_aloituspaikat")
     private Integer firstTimePositions;
     @JsonProperty("hakulomake_url")
-    private String formUrl;
+    private I18NDTO aoFormUrl;
 }

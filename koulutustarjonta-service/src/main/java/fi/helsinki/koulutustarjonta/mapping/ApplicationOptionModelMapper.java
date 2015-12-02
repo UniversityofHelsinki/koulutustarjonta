@@ -4,6 +4,7 @@ import fi.helsinki.koulutustarjonta.domain.ApplicationOption;
 import fi.helsinki.koulutustarjonta.domain.Requirement;
 import fi.helsinki.koulutustarjonta.dto.ApplicationOptionDTO;
 import fi.helsinki.koulutustarjonta.dto.I18NDTO;
+import javafx.application.Application;
 import org.modelmapper.AbstractConverter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
@@ -38,6 +39,7 @@ public class ApplicationOptionModelMapper extends ModelMapper {
         protected void configure() {
             map().setTranslations(source.getSelectionCriteria().availableTranslations());
             using(applicationSystemOidConverter).map().setApplicationSystem(source.getApplicationSystem());
+            using(new UrlConverter()).map(source).setAoFormUrl(null);
         }
     }
 
@@ -53,4 +55,29 @@ public class ApplicationOptionModelMapper extends ModelMapper {
             return String.format("%s/haku/%s", apiEndpoint, source);
         }
     }
+
+    class UrlConverter extends AbstractConverter<ApplicationOption, I18NDTO> {
+        @Override
+        protected I18NDTO convert(ApplicationOption source) {
+            boolean systemApplicationForm = source.isAsSystemApplicationForm();
+            if (!systemApplicationForm) {
+                String s = String.format("https://opintopolku.fi/hakuperusteet/ao/%s", source.getOid());
+                return new I18NDTO(s,s,s);
+            } else if (!source.getAoFormUrl().isEmpty()) {
+                return opintopolkuUrl(source.getApplicationSystem());
+            } else {
+                return new I18NDTO("", "", "");
+            }
+        }
+
+        private I18NDTO opintopolkuUrl(String oid) {
+            return new I18NDTO(
+                    String.format("%s/haku-app/lomake/%s", "https://opintopolku.fi", oid),
+                    String.format("%s/haku-app/lomake/%s", "https://studieinfo.fi", oid),
+                    String.format("%s/haku-app/lomake/%s", "https://studyinfo.fi", oid)
+            );
+        }
+    }
+
+
 }

@@ -31,7 +31,7 @@ public class ApplicationSystemModelMapper extends ModelMapper {
         protected I18NDTO convert(ApplicationSystem source) {
             String s = source.getFormUrl();
 
-            if ( s != null && s.equals("system")) {
+            if ( s != null && source.isSystemApplicationForm()) {
                 return opintopolkuUrl(source.getOid());
             }
             else if (s != null && !s.isEmpty()) {

@@ -88,7 +88,7 @@ public class ApplicationSystemConverterTest extends AbstractClientConverterTest 
     @Test
     public void testConvertWithoutApplicationForm() {
         ApplicationSystem as = converter.convert(withoutApplicationFormFixture);
-        assertEquals("system", as.getFormUrl());
+        assertNull(as.getFormUrl());
         assertEquals(true, as.isSystemApplicationForm());
     }
 
@@ -96,8 +96,7 @@ public class ApplicationSystemConverterTest extends AbstractClientConverterTest 
     public void testConverterWithuafApplicationForm() {
         ApplicationSystem as = converter.convert(withuafApplicationFormFixture);
         assertEquals(false, as.isSystemApplicationForm());
-        String opintopolku_url = String.format("https://opintopolku.fi/hakuperusteet/ao/%s", as.getOid());
-        assertEquals(opintopolku_url, as.getFormUrl());
+        assertEquals("https://uaf.it.helsinki.fi/funima/op/redirect", as.getFormUrl());
     }
 }
 

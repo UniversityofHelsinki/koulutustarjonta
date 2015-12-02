@@ -29,5 +29,7 @@ public class ApplicationOption {
     private ApplicationPeriod applicationPeriod;// for saving
     private String applicationPeriodId;// for fetching
     private Integer firstTimePositions;
-    private String formUrl;
+    private String aoFormUrl;
+    private String asFormUrl;
+    private boolean asSystemApplicationForm;
 }

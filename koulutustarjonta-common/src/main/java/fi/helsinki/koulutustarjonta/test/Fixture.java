@@ -99,6 +99,7 @@ public class Fixture {
         ao.setApplicationPeriod(applicationPeriod("hakuaika_id1"));
         ao.setApplicationPeriodId("hakuaika_id1");
         ao.setFirstTimePositions(new Integer(2));
+        ao.setAoFormUrl("https://opintopolku-url");
         return ao;
     }
 
