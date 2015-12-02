@@ -57,7 +57,7 @@ public class ApplicationSystemConverter extends BaseConverter {
     }
 
     private String getFormUrl(JsonNode root) {
-        if (hasApplicationForm(root)) {
+        if (hasApplicationForm(root) && !isSystemApplicationForm(root)) {
             return root.get("hakulomakeUri").textValue();
         } else {
             return null;
