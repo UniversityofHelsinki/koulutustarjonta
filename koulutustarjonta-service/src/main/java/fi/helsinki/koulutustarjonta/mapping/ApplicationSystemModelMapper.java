@@ -1,7 +1,6 @@
 package fi.helsinki.koulutustarjonta.mapping;
 
 import fi.helsinki.koulutustarjonta.domain.ApplicationSystem;
-import fi.helsinki.koulutustarjonta.domain.I18N;
 import fi.helsinki.koulutustarjonta.dto.ApplicationSystemDTO;
 import fi.helsinki.koulutustarjonta.dto.I18NDTO;
 import org.modelmapper.AbstractConverter;
@@ -31,10 +30,10 @@ public class ApplicationSystemModelMapper extends ModelMapper {
         protected I18NDTO convert(ApplicationSystem source) {
             String s = source.getFormUrl();
 
-            if ( s != null ) {
+            if ( s != null && s == "system" ) {
                 return opintopolkuUrl(source.getOid());
             }
-            else if (s != null && !s.isEmpty()) {
+            else if (s != null) {
                 return new I18NDTO(s, s, s);
             }
             else {

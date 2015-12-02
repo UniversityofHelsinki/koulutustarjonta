@@ -88,7 +88,7 @@ public class ApplicationSystemConverterTest extends AbstractClientConverterTest 
     @Test
     public void testConvertWithoutApplicationForm() {
         ApplicationSystem as = converter.convert(withoutApplicationFormFixture);
-        assertNull(as.getFormUrl());
+        assertEquals("system", as.getFormUrl());
         assertEquals(true, as.isSystemApplicationForm());
     }
 
