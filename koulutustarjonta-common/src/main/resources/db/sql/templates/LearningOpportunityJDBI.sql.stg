@@ -22,7 +22,6 @@ upsert(learningOpportunity) ::= <<
     sisalto_fi = :sisalto_fi, sisalto_sv = :sisalto_sv, sisalto_en = :sisalto_en,
     tutkpaino_fi = :tutkpaino_fi, tutkpaino_sv = :tutkpaino_sv, tutkpaino_en = :tutkpaino_en,
     opinnaytetyo_fi = :opinnaytetyo_fi, opinnaytetyo_sv = :opinnaytetyo_sv, opinnaytetyo_en = :opinnaytetyo_en,
-    id_organisaatio = :id_organisaatio,
     koulutusaste_fi = :koulutusaste_fi, koulutusaste_sv = :koulutusaste_sv, koulutusaste_en = :koulutusaste_en
     WHEN NOT MATCHED THEN INSERT
     (id,  tutkintonimike_fi, tutkintonimike_sv, tutkintonimike_en, opintoala_fi, opintoala_sv, opintoala_en,
@@ -33,7 +32,7 @@ upsert(learningOpportunity) ::= <<
     lisat_opkiel_fi, lisat_opkiel_sv, lisat_opkiel_en, yhteistyo_fi, yhteistyo_sv, yhteistyo_en,
     paaaineval_fi, paaaineval_sv, paaaineval_en, kansval_fi, kansval_sv, kansval_en,
     sijtyo_fi, sijtyo_sv, sijtyo_en, sisalto_fi, sisalto_sv, sisalto_en,
-    tutkpaino_fi, tutkpaino_sv, tutkpaino_en, opinnaytetyo_fi, opinnaytetyo_sv, opinnaytetyo_en, id_organisaatio,
+    tutkpaino_fi, tutkpaino_sv, tutkpaino_en, opinnaytetyo_fi, opinnaytetyo_sv, opinnaytetyo_en,
     koulutusaste_fi, koulutusaste_sv, koulutusaste_en)
     VALUES (:id,  :tutkintonimike_fi, :tutkintonimike_sv, :tutkintonimike_en,
     :opintoala_fi, :opintoala_sv, :opintoala_en, :tutkintoohjelma_fi, :tutkintoohjelma_sv, :tutkintoohjelma_en,
@@ -44,7 +43,7 @@ upsert(learningOpportunity) ::= <<
     :yhteistyo_fi, :yhteistyo_sv, :yhteistyo_en, :paaaineval_fi, :paaaineval_sv, :paaaineval_en,
     :kansval_fi, :kansval_sv, :kansval_en, :sijtyo_fi, :sijtyo_sv, :sijtyo_en,
     :sisalto_fi, :sisalto_sv, :sisalto_en, :tutkpaino_fi, :tutkpaino_sv, :tutkpaino_en,
-    :opinnaytetyo_fi, :opinnaytetyo_sv, :opinnaytetyo_en, :id_organisaatio,
+    :opinnaytetyo_fi, :opinnaytetyo_sv, :opinnaytetyo_en,
     :koulutusaste_fi, :koulutusaste_sv, :koulutusaste_en)
 
 >>
@@ -52,10 +51,11 @@ upsert(learningOpportunity) ::= <<
 
 findAllJoinRows() ::= <<
 
-  SELECT
+SELECT
     k.*,
     ok.kieli as kieli,
     hk.id_hakukohde AS hakukohde_id,
+    kt.id_tarjoaja AS tarjoaja_id,
     l.id_lapsi AS id_lapsi,
     v.id_vanhempi AS id_vanhempi,
     a.aihe as aihe
@@ -77,6 +77,13 @@ findAllJoinRows() ::= <<
      FROM hakukohde_koulutus hk
      GROUP BY id_koulutus
     ) hk ON k.id = hk.id_koulutus
+  LEFT JOIN
+    (SELECT
+      kt.id_koulutus,
+      listagg(kt.id_tarjoaja, '|') within group (order by id_koulutus) as id_tarjoaja
+     FROM koulutus_tarjoajat kt
+     GROUP BY id_koulutus
+    ) kt ON k.id = kt.id_koulutus
   LEFT JOIN
     (SELECT
       v.id_vanhempi,
@@ -107,6 +114,7 @@ findJoinRowsById(id) ::= <<
     k.*,
     ok.kieli as kieli,
     hk.id_hakukohde AS hakukohde_id,
+    kt.id_tarjoaja AS tarjoaja_id,
     l.id_lapsi AS id_lapsi,
     v.id_vanhempi AS id_vanhempi,
     a.aihe as aihe
@@ -128,6 +136,13 @@ findJoinRowsById(id) ::= <<
      FROM hakukohde_koulutus hk
      GROUP BY id_koulutus
     ) hk ON k.id = hk.id_koulutus
+ LEFT JOIN
+    (SELECT
+      kt.id_koulutus,
+      listagg(kt.id_tarjoaja, '|') within group (order by id_koulutus) as id_tarjoaja
+     FROM koulutus_tarjoajat kt
+     GROUP BY id_koulutus
+    ) kt ON k.id = kt.id_koulutus
   LEFT JOIN
     (SELECT
       v.id_vanhempi,
@@ -236,3 +251,15 @@ addChildren(parentOid, childOids) ::= <<
     WHERE k.id = :id_lapsi)
 
 >>
+
+addProviders(learningOpportunityOid, providerOid) ::= <<
+
+    MERGE INTO koulutus_tarjoajat
+    USING dual
+    ON (id_koulutus = :id_koulutus AND id_tarjoaja = :id_tarjoaja)
+    WHEN NOT MATCHED THEN
+    INSERT (id_koulutus, id_tarjoaja) VALUES (:id_koulutus, :id_tarjoaja)
+
+>>
+
+

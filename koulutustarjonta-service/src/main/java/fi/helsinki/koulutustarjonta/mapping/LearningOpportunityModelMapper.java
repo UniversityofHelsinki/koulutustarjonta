@@ -55,7 +55,7 @@ public class LearningOpportunityModelMapper extends ModelMapper {
         }
     }
 
-    private class OrganizationOidConverter extends AbstractConverter<String, String> {
+    private class OrganizationOidConverter extends AbstractConverter<List<String>, List<String>> {
         final String apiEndpoint;
 
         private OrganizationOidConverter(String apiEndpoint) {
@@ -63,8 +63,15 @@ public class LearningOpportunityModelMapper extends ModelMapper {
         }
 
         @Override
-        protected String convert(String source) {
-            return String.format("%s/organisaatio/%s", apiEndpoint, source);
+        protected List<String> convert(List<String> source) {
+            if (source == null || source.isEmpty()) {
+                return null;
+            }
+            else {
+                return source.stream()
+                        .map(lo -> String.format("%s/organisaatio/%s", apiEndpoint, lo))
+                        .collect(Collectors.toList());
+            }
         }
     }
 

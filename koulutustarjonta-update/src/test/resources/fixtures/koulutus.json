@@ -200,6 +200,7 @@
       "nimi" : "Helsingin yliopisto, Matemaattis-luonnontieteellinen tiedekunta",
       "nimet" : [ ]
     },
+    "opetusTarjoajat": ["1.2.246.562.10.445049088710","1.2.246.562.10.41941575486"],
     "koulutusohjelma" : {
       "meta" : {
         "kieli_sv" : {

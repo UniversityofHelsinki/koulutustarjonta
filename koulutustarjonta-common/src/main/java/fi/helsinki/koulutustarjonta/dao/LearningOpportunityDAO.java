@@ -54,6 +54,9 @@ public class LearningOpportunityDAO {
             if (learningOpportunity.getChildren() != null) {
                 jdbi.addChildren(learningOpportunity.getOid(), learningOpportunity.getChildren());
             }
+            if (learningOpportunity.getProvider() != null) {
+                jdbi.addProviders(learningOpportunity.getOid(), learningOpportunity.getProvider());
+            }
             jdbi.commit();
         } catch (Exception e) {
             LOG.warn("Failed to save learning opportunity, rolling back");
