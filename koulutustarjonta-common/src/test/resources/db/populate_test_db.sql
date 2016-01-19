@@ -252,3 +252,9 @@ VALUES (TO_DATE('2015/01/02 15:00:00', 'yyyy/mm/dd hh24:mi:ss'), 'ERROR', '["VIR
 
 INSERT INTO paivitys (aloitettu, tila, virheet)
 VALUES (TO_DATE('2015/01/01 15:00:00', 'yyyy/mm/dd hh24:mi:ss'), 'OK', '[]');
+
+INSERT INTO koulutus_tarjoajat (id_koulutus, id_tarjoaja)
+VALUES ('1.2.3', 'organisaatio_id1');
+
+INSERT INTO koulutus_tarjoajat (id_koulutus, id_tarjoaja)
+VALUES ('1.2.3', 'organisaatio_id2');
