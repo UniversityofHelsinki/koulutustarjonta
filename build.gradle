@@ -34,6 +34,11 @@ subprojects {
     sourceCompatibility = '1.8'
     group = 'fi.helsinki.koulutustarjonta'
     version = commitHash()
+    compileJava.options.encoding = 'UTF-8'
+
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
 
     ext {
         dropwizardVersion = '0.7.0'
