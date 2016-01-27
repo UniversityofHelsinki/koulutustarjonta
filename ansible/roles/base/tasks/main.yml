@@ -5,7 +5,6 @@
       with_items:
       - glibc
       - libstdc++
-      - libgcc_s.so.1
       tags:
         - base
 
