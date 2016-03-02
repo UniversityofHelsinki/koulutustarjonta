@@ -73,6 +73,10 @@ tarjontaClient:
   baseUrl: https://od.helsinki.fi/dev/tarjonta-service/rest/v1/
   opintopolku:
     baseUrl: https://koulutus.opintopolku.fi
+  organizationNameIgnore:
+    - Avoin yliopisto
+    - Open University
+    - Öppna universitetet
 
 organisaatioClient:
   timeout: 10000ms
