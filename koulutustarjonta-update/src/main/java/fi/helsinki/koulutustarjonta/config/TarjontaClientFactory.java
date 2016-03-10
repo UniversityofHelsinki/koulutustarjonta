@@ -12,8 +12,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author Hannu Lyytikainen
@@ -38,9 +36,6 @@ public class TarjontaClientFactory extends JerseyClientConfiguration {
     @JsonProperty("opintopolku")
     private OpintopolkuConfiguration opintopolku = new OpintopolkuConfiguration();
 
-    @JsonProperty("organizationNameIgnore")
-    private List<String> organizationNameIgnore;
-
     @JsonProperty
     public void setBaseUrl(String baseUrl) {
         this.baseUrl = baseUrl;
@@ -55,15 +50,12 @@ public class TarjontaClientFactory extends JerseyClientConfiguration {
         WebResource applicationSystemResource = client.resource(String.format("%s%s", baseUrl, APPLICATION_SYSTEM_PATH));
         WebResource linkResource = client.resource(String.format("%s%s", baseUrl, LINK_PATH));
 
-        List<String> ignoreList = organizationNameIgnore.stream().map(String::toLowerCase).collect(Collectors.toList());
-
         return new TarjontaClient(learningOpportunityResource,
                 applicationOptionResource,
                 applicationSystemResource,
                 linkResource,
                 koodistoClient,
-                opintopolku,
-                ignoreList);
+                opintopolku);
 
     }
 }

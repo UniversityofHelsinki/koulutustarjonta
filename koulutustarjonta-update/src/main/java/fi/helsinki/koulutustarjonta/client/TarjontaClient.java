@@ -1,6 +1,5 @@
 package fi.helsinki.koulutustarjonta.client;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.collect.Lists;
 import com.sun.jersey.api.client.GenericType;
@@ -28,19 +27,18 @@ public class TarjontaClient {
 
     private static final Logger LOG = LoggerFactory.getLogger(TarjontaClient.class);
 
-    private final WebResource learningOpportunitResource;
-    private final WebResource applicationOptionResource;
-    private final WebResource applicationSystemResource;
-    private final WebResource linkResource;
-    private final ApplicationOptionConverter applicationOptionConverter;
-    private final ApplicationSystemConverter applicationSystemConverter;
-    private final LearningOpportunityConverter learningOpportunityConverter;
-    private final SearchResultConverter searchResultConverter;
-    private final List<String> ignoreList;
+    private WebResource learningOpportunitResource;
+    private WebResource applicationOptionResource;
+    private WebResource applicationSystemResource;
+    private WebResource linkResource;
+    private ApplicationOptionConverter applicationOptionConverter;
+    private ApplicationSystemConverter applicationSystemConverter;
+    private LearningOpportunityConverter learningOpportunityConverter;
+    private SearchResultConverter searchResultConverter;
 
     public TarjontaClient(WebResource learningOpportunityResource, WebResource applicationOptionResource,
                           WebResource applicationSystemResource, WebResource linkResource, KoodistoClient koodistoClient,
-                          OpintopolkuConfiguration opintopolku, List<String> ignoreList) {
+                          OpintopolkuConfiguration opintopolku) {
         this.learningOpportunitResource = learningOpportunityResource;
         this.applicationOptionResource = applicationOptionResource;
         this.applicationOptionConverter = new ApplicationOptionConverter(koodistoClient);
@@ -54,7 +52,6 @@ public class TarjontaClient {
         this.applicationOptionResource.addFilter(new RequestLoggingFilter());
         this.applicationSystemResource.addFilter(new RequestLoggingFilter());
         this.linkResource.addFilter(new RequestLoggingFilter());
-        this.ignoreList = ignoreList;
     }
 
     public List<String> getLearningOpportunityOidsByProvider(String organizationOid) {
@@ -76,18 +73,6 @@ public class TarjontaClient {
         }
     }
 
-    private boolean shouldIgnoreSearchResult(JsonNode searchResult) {
-        JsonNode name = searchResult.get("nimi");
-        if(name == null) return false;
-        List<String> names = Lists.newArrayList(name.get("fi"),name.get("en"),name.get("sv"))
-                .stream()
-                .filter(JsonNode::isTextual)
-                .map(JsonNode::textValue).collect(Collectors.toList());
-        return names.stream()
-                .anyMatch(organizationName -> ignoreList.stream()
-                        .anyMatch(ignoredWord -> ignoredWord.equalsIgnoreCase(organizationName)));
-    }
-
     public List<String> getApplicationOptionOidsByProvider(String organizationOid) {
         LOG.debug(String.format("Searching application options with organization %s", organizationOid));
         JsonNode searchResult = applicationOptionResource.path("search")
@@ -95,7 +80,6 @@ public class TarjontaClient {
                 .queryParam("tila", "JULKAISTU")
                 .get(new GenericType<JsonNode>() {})
                 .get("result").get("tulokset");
-        if(shouldIgnoreSearchResult(searchResult)) return Lists.newArrayList(); //KOTA-166, filter avoin yliopisto
         if (searchResult.size() > 0) {
             return Lists.newArrayList(searchResult.get(0).get("tulokset"))
                     .parallelStream()
