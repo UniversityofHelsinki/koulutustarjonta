@@ -78,6 +78,8 @@ organisaatioClient:
   timeout: 10000ms
   connectionTimeout: 10s
   baseUrl: https://od.helsinki.fi/dev/organisaatio-service/rest/
+  organisaatioOidIgnore:
+        - 1.2.246.562.10.74168867104
 
 koodistoClient:
   timeout: 10000ms

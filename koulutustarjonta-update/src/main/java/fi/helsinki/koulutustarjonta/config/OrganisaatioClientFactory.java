@@ -10,6 +10,9 @@ import io.dropwizard.client.JerseyClientConfiguration;
 import io.dropwizard.setup.Environment;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Hannu Lyytikainen
  */
@@ -26,6 +29,9 @@ public class OrganisaatioClientFactory extends JerseyClientConfiguration {
     }
 
     @JsonProperty
+    public List<String> organisaatioOidIgnore;
+
+    @JsonProperty
     public void setBaseUrl(String baseUrl) {
         this.baseUrl = baseUrl;
     }
@@ -36,8 +42,11 @@ public class OrganisaatioClientFactory extends JerseyClientConfiguration {
                 .using(this)
                 .build(this.getClass().toString());
         WebResource organizationResource = client.resource(String.format("%s%s", baseUrl, ORGANIZATION_PATH));
-
-        return new OrganisaatioClient(organizationResource, koodistoClient);
+        List<String> ignoreOids = new ArrayList<>();
+        if(organisaatioOidIgnore != null) {
+            ignoreOids.addAll(organisaatioOidIgnore);
+        }
+        return new OrganisaatioClient(organizationResource, koodistoClient, ignoreOids);
 
     }
 }
