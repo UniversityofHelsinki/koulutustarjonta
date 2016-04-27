@@ -48,10 +48,9 @@ public class LearningOpportunityMapper implements ResultSetMapper<LearningOpport
                 resolveStringList(r, "tarjoaja_id"),
                 resolveStringList(r, "id_vanhempi"),
                 resolveStringList(r, "id_lapsi"),
-                resolveI18NList(r, "aihe")
+                resolveI18NList(r, "aihe"),
+                null
         );
-
     }
-
 }
 

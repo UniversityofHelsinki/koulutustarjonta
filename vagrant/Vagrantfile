@@ -5,30 +5,28 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+    config.vm.network "forwarded_port", guest: 1098, host: 9697
+    config.vm.define "koulutustarjonta" do |koulutustarjonta|
+        koulutustarjonta.vm.box = "bento/centos-6.7"
 
-  config.vm.define "koulutustarjonta" do |koulutustarjonta|
+        koulutustarjonta.vm.network :private_network, ip: "10.10.10.10"
 
-  koulutustarjonta.vm.box = "chef/centos-6.6"
+        # Sync source code directories from host to guest
+        case RUBY_PLATFORM
+        when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
+            # Fix Windows file rights, otherwise Ansible tries to execute files
+            koulutustarjonta.vm.synced_folder "../", "/src", :mount_options => ["dmode=777","fmode=666"]
+        else
+            # Basic VM synced folder mount
+            koulutustarjonta.vm.synced_folder "../", "/src"
+        end
 
-  koulutustarjonta.vm.network :private_network, ip: "10.10.10.10"
-
-    # Sync source code directories from host to guest
-    case RUBY_PLATFORM
-    when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
-      # Fix Windows file rights, otherwise Ansible tries to execute files
-      koulutustarjonta.vm.synced_folder "../", "/src", :mount_options => ["dmode=777","fmode=666"]
-    else
-      # Basic VM synced folder mount
-      koulutustarjonta.vm.synced_folder "../", "/src"
+        # Ansible provisioning
+        koulutustarjonta.vm.provision "ansible" do |ansible|
+            ansible.playbook = "../ansible/dev-local-server.yml"
+            ansible.inventory_path = "vagrant-inventory"
+            ansible.limit = 'all'
+        end
     end
-
-  # Ansible provisioning
-  koulutustarjonta.vm.provision "ansible" do |ansible|
-    ansible.playbook = "../ansible/dev-local-server.yml"
-    ansible.inventory_path = "vagrant-inventory"
-    ansible.limit = 'all'
-  end
-
-  end
   
 end

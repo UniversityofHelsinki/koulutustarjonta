@@ -3,13 +3,13 @@ package fi.helsinki.koulutustarjonta.client.converter;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.collect.Lists;
 import fi.helsinki.koulutustarjonta.client.KoodistoClient;
-import fi.helsinki.koulutustarjonta.domain.I18N;
-import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
-import fi.helsinki.koulutustarjonta.domain.TeachingLanguage;
+import fi.helsinki.koulutustarjonta.domain.*;
+import oracle.jdbc.pool.OraclePooledConnection;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -21,20 +21,20 @@ import static org.junit.Assert.assertNotNull;
 public class LearningOpportunityConverterTest extends AbstractClientConverterTest {
 
     LearningOpportunityConverter converter;
-    JsonNode fixture;
-    JsonNode fixture2;
+    JsonNode koulutusFixture;
+    JsonNode koulutusLaajuusFixture;
 
     @Before
     public void init() throws IOException {
         KoodistoClient koodistoClient = mockKoodistoClient();
         converter = new LearningOpportunityConverter(koodistoClient);
-        fixture = fixture("fixtures/koulutus.json");
-        fixture2 = fixture("fixtures/koulutus_laajuus.json");
+        koulutusFixture = fixture("fixtures/koulutus.json");
+        koulutusLaajuusFixture = fixture("fixtures/koulutus_laajuus.json");
     }
 
     @Test
     public void testConvert() {
-        LearningOpportunity lo = converter.convert(fixture);
+        LearningOpportunity lo = converter.convert(koulutusFixture);
         assertNotNull(lo);
         assertEquals("1.2.246.562.17.17939899864", lo.getOid());
         assertNotNull(lo.getQualification());
@@ -128,7 +128,16 @@ public class LearningOpportunityConverterTest extends AbstractClientConverterTes
         assertEquals("Högre högskoleexamen", lo.getEducationLevel().getSv());
         assertEquals("Master's degree", lo.getEducationLevel().getEn());
 
-        LearningOpportunity lo2 = converter.convert(fixture2);
+        LOContact cinfo = new LOContact(
+                "Testi Testaaja",
+                "Testaaja",
+                "testi.testaaja@email.com",
+                "123456789",
+                Arrays.asList("FI", "EN"),
+                LOContact.Type.CONTACT_PERSON);
+        assertEquals(Arrays.asList(cinfo), lo.getContactInfos());
+
+        LearningOpportunity lo2 = converter.convert(koulutusLaajuusFixture);
         assertEquals("180+120", lo2.getCreditValue());
     }
 

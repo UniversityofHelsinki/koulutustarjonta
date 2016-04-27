@@ -4,11 +4,17 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.collect.Lists;
 import fi.helsinki.koulutustarjonta.client.KoodistoClient;
 import fi.helsinki.koulutustarjonta.domain.I18N;
+import fi.helsinki.koulutustarjonta.domain.LOContact;
 import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
 import fi.helsinki.koulutustarjonta.domain.TeachingLanguage;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 /**
  * @author Hannu Lyytikainen
@@ -59,8 +65,33 @@ public class LearningOpportunityConverter extends BaseConverter {
 
         lo.setKeywords(resolveKeywords(content.get("aihees")));
 
+
+        JsonNode contacts = content.get("yhteyshenkilos");
+        if(contacts != null) {
+            List<LOContact> contactInfos = resolveContactInfos(contacts.elements());
+            lo.setContactInfos(contactInfos);
+        }
         return lo;
     }
+
+    private List<LOContact> resolveContactInfos(Iterator<JsonNode> yhteyshenkilos) {
+        List<LOContact> contacts = new ArrayList<>();
+        yhteyshenkilos.forEachRemaining(node -> {
+            JsonNode kielet = node.get("kielet");
+            List<String> languages = new ArrayList<>();
+            kielet.iterator().forEachRemaining(lang -> languages.add(lang.asText()));
+            contacts.add(new LOContact(
+                node.get("nimi").asText(),
+                node.get("titteli").asText(),
+                node.get("sahkoposti").asText(),
+                node.get("puhelin").asText(),
+                languages,
+                LOContact.Type.CONTACT_PERSON));
+        });
+        return contacts;
+    }
+
+
 
     public String resolveKomoOid(JsonNode apiCallResult) {
         return resolveContent(apiCallResult).get("komoOid").textValue();

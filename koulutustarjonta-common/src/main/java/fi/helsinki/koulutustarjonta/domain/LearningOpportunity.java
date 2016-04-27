@@ -45,4 +45,5 @@ public class LearningOpportunity {
     private List<String> parents;
     private List<String> children;
     private List<I18N> keywords;
+    private List<LOContact> contactInfos; //yhteyshenkilos
 }

@@ -844,7 +844,15 @@
       "arvo" : "",
       "nimi" : ""
     },
-    "yhteyshenkilos" : [ ],
+    "yhteyshenkilos" : [
+      { "nimi": "Testi Testaaja",
+        "titteli": "Testaaja",
+        "sahkoposti": "testi.testaaja@email.com",
+        "puhelin": "123456789",
+        "kielet": ["FI", "EN"],
+        "henkiloTyyppi": "YHTEYSHENKILO"
+      }
+    ],
     "pohjakoulutusvaatimukset" : {
       "uris" : { }
     },
