@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author Hannu Lyytikainen
@@ -51,9 +52,11 @@ public class Updater {
             handleAllOrganizations(result);
         } catch (Exception exception) {
             result.addError(ExceptionUtils.getStackTrace(exception));
+            LOG.error("Error handling all organizations", exception);
         }
 
         UpdateResult updateResult = updateResultConverter.toUpdateResult(result);
+        LOG.info(updateResult.toString());
         updateResultDAO.save(updateResult);
 
         LOG.debug(String.format("Data update completed, update took %d seconds", (System.currentTimeMillis() - started) / 1000));
@@ -65,9 +68,11 @@ public class Updater {
             try {
                 handleOrganization(organizationOid);
             } catch (ResourceException resourceException) {
+                LOG.error("Error handling organization " + organizationOid, resourceException);
                 result.addError(String.format("Failed to get resource %s with oid %s", resourceException.getClazz(),
                         resourceException.getOid()));
             } catch (Exception exception) {
+                LOG.error("Error handling organization " + organizationOid, exception);
                 result.addError(ExceptionUtils.getFullStackTrace(exception));
             }
         });
@@ -127,6 +132,7 @@ public class Updater {
                 return clazz.cast(organisaatioClient.getOrganization(oid));
             }
         } catch (Exception exception) {
+            LOG.error(String.format("Error getting resource %s with OID %s",clazz.toString(), oid), exception);
             throw new ResourceException(oid, clazz);
         }
     }

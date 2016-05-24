@@ -2,6 +2,7 @@ package fi.helsinki.koulutustarjonta.dao;
 
 import com.google.common.collect.Lists;
 import fi.helsinki.koulutustarjonta.dao.exception.ResourceNotFound;
+import fi.helsinki.koulutustarjonta.dao.jdbi.LOContactJDBI;
 import fi.helsinki.koulutustarjonta.dao.jdbi.LearningOpportunityJDBI;
 import fi.helsinki.koulutustarjonta.domain.I18N;
 import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
@@ -20,6 +21,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author Hannu Lyytikainen
@@ -40,7 +42,7 @@ public class LearningOpportunityDAOTest extends BaseDAOTest {
         String user = System.getProperty("db.user");
         String passwd = System.getProperty("db.passwd");
         dbi = new DBI(url, user, passwd);
-        dao = new LearningOpportunityDAO(dbi.onDemand(LearningOpportunityJDBI.class));
+        dao = new LearningOpportunityDAO(dbi.onDemand(LearningOpportunityJDBI.class), dbi.onDemand(LOContactJDBI.class));
     }
 
     @After
@@ -122,6 +124,9 @@ public class LearningOpportunityDAOTest extends BaseDAOTest {
         assertEquals("opinnaytetyo fi", lo.getThesis().getFi());
         assertEquals("opinnaytetyo sv", lo.getThesis().getSv());
         assertEquals("opinnaytetyo en", lo.getThesis().getEn());
+
+        assertNotNull("Contact info should not be null",lo.getContactInfos());
+        assertEquals("Contact info should have one entry", 1, lo.getContactInfos().size());
 
         List<I18N> i = lo.getKeywords();
         assertNotNull(i);

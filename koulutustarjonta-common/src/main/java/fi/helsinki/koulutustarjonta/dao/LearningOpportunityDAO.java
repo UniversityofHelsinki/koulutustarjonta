@@ -1,8 +1,10 @@
 package fi.helsinki.koulutustarjonta.dao;
 
 import fi.helsinki.koulutustarjonta.dao.exception.ResourceNotFound;
+import fi.helsinki.koulutustarjonta.dao.jdbi.LOContactJDBI;
 import fi.helsinki.koulutustarjonta.dao.jdbi.LearningOpportunityJDBI;
 import fi.helsinki.koulutustarjonta.domain.I18N;
+import fi.helsinki.koulutustarjonta.domain.LOContact;
 import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,9 +20,11 @@ public class LearningOpportunityDAO {
     private static final Logger LOG = LoggerFactory.getLogger(LearningOpportunityDAO.class);
 
     final LearningOpportunityJDBI jdbi;
+    final LOContactJDBI contactJDBI;
 
-    public LearningOpportunityDAO(LearningOpportunityJDBI jdbi) {
+    public LearningOpportunityDAO(LearningOpportunityJDBI jdbi, LOContactJDBI loContactJDBI) {
         this.jdbi = jdbi;
+        this.contactJDBI = loContactJDBI;
     }
 
     public void save(LearningOpportunity learningOpportunity) {
@@ -57,10 +61,30 @@ public class LearningOpportunityDAO {
             if (learningOpportunity.getProvider() != null) {
                 jdbi.addProviders(learningOpportunity.getOid(), learningOpportunity.getProvider());
             }
+
             jdbi.commit();
         } catch (Exception e) {
-            LOG.warn("Failed to save learning opportunity, rolling back");
+            LOG.warn("Failed to save learning opportunity, rolling back", e);
             jdbi.rollback();
+
+            throw e;
+        }
+
+        contactJDBI.begin();
+        try {
+            contactJDBI.removeByLearningOpportunityID(learningOpportunity.getOid());
+            if (learningOpportunity.getContactInfos() != null && !learningOpportunity.getContactInfos().isEmpty()) {
+                learningOpportunity.getContactInfos()
+                        .forEach(loContact -> {
+                            LOG.debug(String.format("Saving LO contact info %s", loContact.toString()));
+                            contactJDBI.insert(loContact, learningOpportunity.getOid());
+
+                        });
+            }
+            contactJDBI.commit();
+        } catch (Exception e) {
+            LOG.warn("Failed to save learning opportunity, rolling back", e);
+            contactJDBI.rollback();
             throw e;
         }
     }
@@ -74,7 +98,12 @@ public class LearningOpportunityDAO {
 
         if (rows == null || rows.size() != 1)
             throw new ResourceNotFound(LearningOpportunity.class, id);
-        else
-            return rows.get(0);
+        else{
+            LearningOpportunity learningOpportunity = rows.get(0);
+            List<LOContact> byLOId = contactJDBI.findByLOId(learningOpportunity.getOid());
+            LOG.debug(byLOId.toString());
+            learningOpportunity.setContactInfos(byLOId);
+            return learningOpportunity;
+        }
     }
 }

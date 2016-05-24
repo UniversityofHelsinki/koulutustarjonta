@@ -1,0 +1,18 @@
+group LOContactJDBI;
+
+insert(locontact, loid) ::= <<
+  INSERT INTO KOULUTUS_YHTEYSTIETO(NIMI, EMAIL, PUHELINNUMERO, TYYPPI, KOULUTUS_ID, TITTELI, KIELI)
+  VALUES (:nimi, :email, :puhelinnumero, :tyyppi, :loid, :titteli, :kieli)
+>>
+
+findByLOId(oid_lo) ::= <<
+  SELECT * FROM KOULUTUS_YHTEYSTIETO K
+  WHERE K.KOULUTUS_ID = :oid_lo
+>>
+
+removeByLearningOpportunityID(loid) ::= <<
+
+  DELETE FROM KOULUTUS_YHTEYSTIETO c
+  WHERE c.KOULUTUS_ID = :loid
+
+>>

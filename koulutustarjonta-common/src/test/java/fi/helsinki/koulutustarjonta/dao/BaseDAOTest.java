@@ -34,6 +34,10 @@ public class BaseDAOTest {
         String user = System.getProperty("db.user");
         String passwd = System.getProperty("db.passwd");
 
+        LOG.info(String.format("DB url %s", url));
+        LOG.info(String.format("DB user %s", user));
+
+
         TimeZone tz = TimeZone.getTimeZone("EET");
         TimeZone.setDefault(tz);
 
@@ -66,8 +70,9 @@ public class BaseDAOTest {
             LOG.debug(String.format("Executing sql command \n%s", command));
             try {
                 dataSource.getConnection().prepareStatement(command).execute();
-            } catch (SQLException e) {
-                e.printStackTrace();
+            } catch (Exception e) {
+
+                LOG.error(String.format("Error executing sql file, command %s", command), e);
                 throw new RuntimeException(e);
             }
         });

@@ -41,7 +41,8 @@ public class LearningOpportunityResource {
     @GET
     @Path("/{oid}")
     public LearningOpportunityDTO getLearningOpportunity(@PathParam("oid") String oid) throws ResourceNotFound {
-        return modelMapper.map(learningOpportunityDAO.findById(oid), LearningOpportunityDTO.class);
+        LearningOpportunity byId = learningOpportunityDAO.findById(oid);
+        return modelMapper.map(byId, LearningOpportunityDTO.class);
     }
 
 }

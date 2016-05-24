@@ -7,7 +7,11 @@ import fi.helsinki.koulutustarjonta.domain.I18N;
 import fi.helsinki.koulutustarjonta.domain.LOContact;
 import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
 import fi.helsinki.koulutustarjonta.domain.TeachingLanguage;
+import org.apache.log4j.Logger;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -21,6 +25,7 @@ import java.util.stream.StreamSupport;
  */
 public class LearningOpportunityConverter extends BaseConverter {
 
+    private static final Logger log = Logger.getLogger(LearningOpportunityConverter.class);
 
     public LearningOpportunityConverter(KoodistoClient koodistoClient) {
         super(koodistoClient);
@@ -71,6 +76,22 @@ public class LearningOpportunityConverter extends BaseConverter {
             List<LOContact> contactInfos = resolveContactInfos(contacts.elements());
             lo.setContactInfos(contactInfos);
         }
+
+        JsonNode hintaJson= content.get("hintaString");
+        BigDecimal price = BigDecimal.ZERO;
+
+        if(hintaJson != null) {
+            String hintaString = hintaJson.asText();
+            if(hintaString != null && !hintaString.isEmpty()) {
+                try {
+                    price = new BigDecimal(hintaString);
+                } catch (Exception e) {
+                    log.warn(String.format("Error converting hintaString '%s'", hintaString), e); ;
+                }
+            }
+        }
+        lo.setPrice(price);
+
         return lo;
     }
 
@@ -79,14 +100,17 @@ public class LearningOpportunityConverter extends BaseConverter {
         yhteyshenkilos.forEachRemaining(node -> {
             JsonNode kielet = node.get("kielet");
             List<String> languages = new ArrayList<>();
-            kielet.iterator().forEachRemaining(lang -> languages.add(lang.asText()));
-            contacts.add(new LOContact(
-                node.get("nimi").asText(),
-                node.get("titteli").asText(),
-                node.get("sahkoposti").asText(),
-                node.get("puhelin").asText(),
-                languages,
-                LOContact.Type.CONTACT_PERSON));
+            if(kielet != null) {
+                kielet.iterator().forEachRemaining(lang -> languages.add(lang.asText()));
+            }
+            contacts.add(LOContact.builder()
+                    .name(node.get("nimi") == null ? "" : node.get("nimi").asText())
+                    .title(node.get("titteli") == null ? "" : node.get("titteli").asText())
+                    .email(node.get("sahkoposti") == null ? "" : node.get("sahkoposti").asText())
+                    .phoneNumber(node.get("puhelin") == null ? "" : node.get("puhelin").asText())
+                    .languages(languages)
+                    .contactType(node.get("henkiloTyyppi") == null ? "" : node.get("henkiloTyyppi").asText())
+                    .build());
         });
         return contacts;
     }

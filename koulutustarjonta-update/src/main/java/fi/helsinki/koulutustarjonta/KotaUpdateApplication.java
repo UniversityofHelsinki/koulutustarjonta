@@ -41,7 +41,8 @@ public class KotaUpdateApplication extends Application<KotaUpdateConfiguration> 
         final DBI dbi = factory.build(environment, configuration.getDataSourceFactory(), "oracle");
         dbi.setStatementBuilderFactory(new OracleStatementBuilderFactory());
         final LearningOpportunityJDBI jdbi = dbi.onDemand(LearningOpportunityJDBI.class);
-        final LearningOpportunityDAO learningOpportunityDAO = new LearningOpportunityDAO(jdbi);
+        final LOContactJDBI loContactJDBI = dbi.onDemand(LOContactJDBI.class);
+        final LearningOpportunityDAO learningOpportunityDAO = new LearningOpportunityDAO(jdbi,loContactJDBI);
         final ApplicationOptionJDBI applicationOptionJDBI = dbi.onDemand(ApplicationOptionJDBI.class);
         final ApplicationOptionDAO applicationOptionDAO = new ApplicationOptionDAO(applicationOptionJDBI);
         final ApplicationSystemDAO applicationSystemDAO = new ApplicationSystemDAO(dbi.onDemand(ApplicationSystemJDBI.class));

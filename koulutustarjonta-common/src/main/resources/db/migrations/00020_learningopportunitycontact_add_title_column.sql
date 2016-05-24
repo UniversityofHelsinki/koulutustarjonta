@@ -1,0 +1,11 @@
+--liquibase formatted sql
+
+--changeset jonimake:20
+
+ALTER TABLE KOULUTUS_YHTEYSTIETO
+ADD (TITLE VARCHAR2(100 CHAR));
+
+--changeset jonimake:20.1
+
+ALTER TABLE KOULUTUS_YHTEYSTIETO
+RENAME COLUMN TITLE TO TITTELI;

@@ -5,6 +5,7 @@ import com.sun.jersey.api.client.GenericType;
 import fi.helsinki.koulutustarjonta.dao.LearningOpportunityDAO;
 import fi.helsinki.koulutustarjonta.dao.exception.ResourceNotFound;
 import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
+import fi.helsinki.koulutustarjonta.dto.LOContactDTO;
 import fi.helsinki.koulutustarjonta.dto.LearningOpportunityDTO;
 import fi.helsinki.koulutustarjonta.dto.TeachingLanguageDTO;
 import fi.helsinki.koulutustarjonta.mapping.LearningOpportunityModelMapper;
@@ -18,6 +19,8 @@ import org.modelmapper.ModelMapper;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import static org.mockito.Mockito.*;
 
 /**
@@ -47,6 +50,8 @@ public class LearningOpportunityResourceTest {
         LearningOpportunityDTO response = resources.client().resource(String.format("/koulutus/%s", oid))
                 .get(LearningOpportunityDTO.class);
         LearningOpportunityDTO expected = modelMapper.map(learningOpportunity, LearningOpportunityDTO.class);
+        assertTrue("Failure setting up expected result, missing loContact", expected.getLoContacts() != null);
+        assertEquals("Failure setting up expected result, missing loContact", 1,expected.getLoContacts().size());
         learningOpportunityDTOsEqual(expected, response);
         verify(dao).findById(oid);
     }
@@ -95,6 +100,11 @@ public class LearningOpportunityResourceTest {
         assertEquals(expected.getApplicationOptions().size(), actual.getApplicationOptions().size());
         assertEquals(expected.getApplicationOptions().get(0), actual.getApplicationOptions().get(0));
         assertEquals(expected.getProvider(), actual.getProvider());
+
+        List<LOContactDTO> expectedLoContacts = expected.getLoContacts();
+        List<LOContactDTO> actualLoContacts = actual.getLoContacts();
+
+        assertEquals("Contacts didn't match", expectedLoContacts, actualLoContacts);
 
     }
 }

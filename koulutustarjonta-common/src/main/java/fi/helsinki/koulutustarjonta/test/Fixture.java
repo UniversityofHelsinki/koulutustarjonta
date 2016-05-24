@@ -3,8 +3,10 @@ package fi.helsinki.koulutustarjonta.test;
 import com.google.common.collect.Lists;
 import fi.helsinki.koulutustarjonta.domain.*;
 
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Hannu Lyytikainen
@@ -43,7 +45,24 @@ public class Fixture {
         lo.setParents(Lists.newArrayList("1.2.3"));
         lo.setEducationLevel(new I18N("education level fi", "education level sv", "education level en"));
         lo.setKeywords(Lists.newArrayList(new I18N("aihe fi", "aihe sv", "aihe en")));
+
+
+        lo.setContactInfos(Arrays.asList(getLoContact()));
         return lo;
+    }
+
+    private static LOContact getLoContact() {
+        LOContact c = LOContact.builder()
+                .id(1l)
+                .email("testaaja@gmail.com")
+                .name("testi")
+                .title("testaaja")
+                .phoneNumber("123456789")
+                .languages(Arrays.asList("FI","EN"))
+                .contactType("yhteyshenkilo")
+                .build();
+                //new LOContact(1l, "testi", "testaaja@gmail.com","123456789",Arrays.asList("FI", "EN"), "yhteyshenkilo");
+        return c;
     }
 
     public static ApplicationOption applicationOption(String oid) {

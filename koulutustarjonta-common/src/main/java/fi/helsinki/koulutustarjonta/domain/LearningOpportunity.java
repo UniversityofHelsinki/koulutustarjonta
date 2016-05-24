@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -46,4 +47,5 @@ public class LearningOpportunity {
     private List<String> children;
     private List<I18N> keywords;
     private List<LOContact> contactInfos; //yhteyshenkilos
+    private BigDecimal price; //hinta
 }

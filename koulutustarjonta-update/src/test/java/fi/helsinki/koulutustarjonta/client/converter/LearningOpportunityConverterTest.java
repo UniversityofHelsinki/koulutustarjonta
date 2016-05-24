@@ -128,13 +128,13 @@ public class LearningOpportunityConverterTest extends AbstractClientConverterTes
         assertEquals("Högre högskoleexamen", lo.getEducationLevel().getSv());
         assertEquals("Master's degree", lo.getEducationLevel().getEn());
 
-        LOContact cinfo = new LOContact(
-                "Testi Testaaja",
-                "Testaaja",
-                "testi.testaaja@email.com",
-                "123456789",
-                Arrays.asList("FI", "EN"),
-                LOContact.Type.CONTACT_PERSON);
+        LOContact cinfo = LOContact.builder()
+                .name("Testi Testaaja")
+                .title("Testaaja")
+                .email("testi.testaaja@email.com")
+                .phoneNumber("123456789")
+                .languages(Arrays.asList("FI", "EN"))
+                .contactType("YHTEYSHENKILO").build();
         assertEquals(Arrays.asList(cinfo), lo.getContactInfos());
 
         LearningOpportunity lo2 = converter.convert(koulutusLaajuusFixture);

@@ -36,7 +36,8 @@ public class KoulutustarjontaServiceApplication extends Application<Koulutustarj
         final DBI dbi = factory.build(environment, configuration.getDatabase(), "oracle");
 
         final LearningOpportunityJDBI learningOpportunityJDBI = dbi.onDemand(LearningOpportunityJDBI.class);
-        final LearningOpportunityDAO learningOpportunityDAO = new LearningOpportunityDAO(learningOpportunityJDBI);
+        final LOContactJDBI loContactJDBI = dbi.onDemand(LOContactJDBI.class);
+        final LearningOpportunityDAO learningOpportunityDAO = new LearningOpportunityDAO(learningOpportunityJDBI,loContactJDBI);
         final LearningOpportunityResource lor = new LearningOpportunityResource(learningOpportunityDAO, configuration.getApiEndpoint());
 
         final ApplicationOptionJDBI applicationOptionJDBI = dbi.onDemand(ApplicationOptionJDBI.class);
