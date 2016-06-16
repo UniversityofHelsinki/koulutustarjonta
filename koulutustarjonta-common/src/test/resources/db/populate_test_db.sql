@@ -258,3 +258,6 @@ VALUES ('1.2.3', 'organisaatio_id1');
 
 INSERT INTO koulutus_tarjoajat (id_koulutus, id_tarjoaja)
 VALUES ('1.2.3', 'organisaatio_id2');
+
+INSERT INTO KOULUTUS_YHTEYSTIETO (KOULUTUS_ID, NIMI, EMAIL, PUHELINNUMERO, TYYPPI, TITTELI, KIELI)
+VALUES ('1.2.3', 'testi nimi', 'testi@email.com', '123456789', 'YHTEYSHENKILÖ', 'CEO', 'FI|EN');

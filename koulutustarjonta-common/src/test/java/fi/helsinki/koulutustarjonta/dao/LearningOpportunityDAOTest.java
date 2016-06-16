@@ -37,7 +37,7 @@ public class LearningOpportunityDAOTest extends BaseDAOTest {
     final List<String> oids = Lists.newArrayList(populatedOid1, oid2);
 
     @Before
-    public void init() throws IOException, SQLException {
+    public void init() throws Exception {
         String url = System.getProperty("db.url");
         String user = System.getProperty("db.user");
         String passwd = System.getProperty("db.passwd");
@@ -46,10 +46,11 @@ public class LearningOpportunityDAOTest extends BaseDAOTest {
     }
 
     @After
-    public void close() throws SQLException, IOException {
+    public void close() throws Exception {
         Handle h = dbi.open();
         h.execute(String.format("DELETE FROM koulutus_sisaltyvyys WHERE id_lapsi = '%s'", oid2));
         h.execute(String.format("DELETE FROM hakukohde_koulutus WHERE id_koulutus = '%s'", oid2));
+        h.execute(String.format("DELETE FROM KOULUTUS_YHTEYSTIETO WHERE KOULUTUS_ID = '%s'", oid2));
         h.execute(String.format("DELETE FROM KOULUTUS_OPETUSKIELI WHERE id_koulutus = '%s'", oid2));
         h.execute(String.format("DELETE FROM KOULUTUS WHERE id = '%s'", oid2));
         h.execute(String.format("DELETE FROM aiheet WHERE id_koulutus = '%s'", oid2));
@@ -57,13 +58,13 @@ public class LearningOpportunityDAOTest extends BaseDAOTest {
     }
 
     @Test
-    public void testFindAll() {
+    public void testFindAll() throws Exception {
         List<LearningOpportunity> los = dao.findAll();
         assertNotNull(los);
     }
 
     @Test
-    public void testFindById() throws ResourceNotFound {
+    public void testFindById() throws Exception {
         LearningOpportunity lo = dao.findById(populatedOid1);
         assertNotNull(lo);
         assertEquals(populatedOid1, lo.getOid());
@@ -149,13 +150,13 @@ public class LearningOpportunityDAOTest extends BaseDAOTest {
     }
 
     @Test(expected = ResourceNotFound.class)
-    public void testNotFound() throws ResourceNotFound {
+    public void testNotFound() throws Exception {
         dao.findById("invalidid");
 
     }
 
     @Test
-    public void testInsert() throws ResourceNotFound {
+    public void testInsert() throws Exception {
         LearningOpportunity lo = Fixture.learningOpportunity(oid2);
         dao.save(lo);
         LearningOpportunity fetched = dao.findById(oid2);
@@ -164,7 +165,7 @@ public class LearningOpportunityDAOTest extends BaseDAOTest {
     }
 
     @Test
-    public void testUpdate() throws ResourceNotFound {
+    public void testUpdate() throws Exception {
         LearningOpportunity lo = Fixture.learningOpportunity(populatedOid1);
         dao.save(lo);
         LearningOpportunity fetched = dao.findById(populatedOid1);

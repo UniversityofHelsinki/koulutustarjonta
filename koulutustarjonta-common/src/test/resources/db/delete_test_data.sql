@@ -33,6 +33,10 @@ DELETE FROM KOULUTUS_OPETUSKIELI
 WHERE id_koulutus = '1.2.3'
 OR id_koulutus = 'koulutus_id2';
 
+DELETE FROM KOULUTUS_YHTEYSTIETO
+WHERE KOULUTUS_ID = '1.2.3'
+OR KOULUTUS_ID = 'koulutus_id2';
+
 DELETE FROM KOULUTUS
 WHERE id = '1.2.3'
 OR id = 'koulutus_id2';

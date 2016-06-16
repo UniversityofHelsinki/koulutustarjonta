@@ -29,7 +29,7 @@ public class BaseDAOTest {
     DBI dbi;
 
     @Before
-    public void baseInit() throws IOException, SQLException {
+    public void baseInit() throws Exception {
         String url = System.getProperty("db.url");
         String user = System.getProperty("db.user");
         String passwd = System.getProperty("db.passwd");
@@ -53,12 +53,12 @@ public class BaseDAOTest {
     }
 
     @After
-    public void baseDestroy() throws IOException, SQLException {
+    public void baseDestroy() throws Exception {
         executeSqlFile(ds, "db/delete_test_data.sql");
         ds.close();
     }
 
-    private void executeSqlFile(DataSource dataSource, String file) throws IOException {
+    private void executeSqlFile(DataSource dataSource, String file) throws Exception {
 
         String populate = Resources.toString(Resources.getResource(file), Charsets.UTF_8).trim();
         Iterable<String> populateCommands = Splitter.on(';')
