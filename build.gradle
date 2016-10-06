@@ -19,6 +19,7 @@ liquibase {
     }
 }
 
+
 buildscript {
     repositories {
         mavenCentral()
