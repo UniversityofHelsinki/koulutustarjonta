@@ -65,3 +65,10 @@ After RPMs have been built, the two applications can be deployed using ansible
 ```
  ansible-playbook -i <inventory file> ansible/application-server-apps.yml -U <sudo user> -u <remote user>
 ```
+
+Test environment
+----------------
+Test environment doesn't update database automatically, it instead has to be updated by hand using command
+```
+./gradlew update -Pdb.url=jdbc:oracle:thin:@laukku.it.helsinki.fi:1521:tikeuni -Pdb.user=<db user> -Pdb.passwd=<db password>
+```
