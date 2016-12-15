@@ -262,4 +262,10 @@ addProviders(learningOpportunityOid, providerOid) ::= <<
 
 >>
 
+removeProviders(learningOpportunityOid) ::= <<
+
+    DELETE FROM 
+
+>>
+
 
