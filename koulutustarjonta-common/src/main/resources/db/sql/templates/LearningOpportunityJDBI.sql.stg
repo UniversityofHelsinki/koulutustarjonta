@@ -48,6 +48,12 @@ upsert(learningOpportunity) ::= <<
 
 >>
 
+delete(learningOpportunityOid) ::= <<
+
+  DELETE FROM koulutus
+    WHERE id = :learningOpportunityOid
+
+>>
 
 findAllJoinRows() ::= <<
 

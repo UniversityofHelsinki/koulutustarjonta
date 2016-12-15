@@ -10,6 +10,7 @@ import fi.helsinki.koulutustarjonta.exception.DataUpdateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -35,6 +36,8 @@ public class OrganisaatioClient {
 
     public Organization getOrganization(String oid) throws DataUpdateException{
         LOG.debug(String.format("Fetching organization with oid %s", oid));
+        URI uri = organizationResource.getURI();
+        LOG.debug(uri.toString());
         JsonNode node = organizationResource.path(oid)
                 .get(new GenericType<JsonNode>() {});
 

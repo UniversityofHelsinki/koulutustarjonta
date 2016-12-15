@@ -4,6 +4,7 @@ import fi.helsinki.koulutustarjonta.client.OrganisaatioClient;
 import fi.helsinki.koulutustarjonta.client.TarjontaClient;
 import fi.helsinki.koulutustarjonta.core.converter.UpdateResultConverter;
 import fi.helsinki.koulutustarjonta.dao.*;
+import fi.helsinki.koulutustarjonta.dao.jdbi.LearningOpportunityJDBI;
 import fi.helsinki.koulutustarjonta.domain.*;
 import fi.helsinki.koulutustarjonta.exception.DataUpdateException;
 import fi.helsinki.koulutustarjonta.exception.ResourceException;
@@ -11,7 +12,10 @@ import org.apache.commons.lang.exception.ExceptionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -88,6 +92,22 @@ public class Updater {
             saveApplicationOptions(applicationOptionOids);
             saveLearningOpportunities(learningOpportunityOids);
         }
+        deleteObsoleteLearningOpportunities(learningOpportunityOids);
+
+    }
+
+    //Deletes learning opportunities, which Oid is not part of the list given as parameter
+    private void deleteObsoleteLearningOpportunities(List<String> learningOpportunityOids) {
+        List<String> toBeDeleted = new ArrayList<String>();
+        //Convert to set for faster search
+        Set<String> learningOpportunityOidsSet = new java.util.HashSet<String>(learningOpportunityOids);
+        List<LearningOpportunity> allLearningOpportunityOids = this.learningOpportunityDAO.findAll()
+        allLearningOpportunityOids.forEach(loOid -> {
+            if(!learningOpportunityOidsSet.contains(loOid)){
+                toBeDeleted.add(loOid);
+            }
+        });
+        delete_all_TODO(toBeDeleted);
     }
 
     private void saveOrganization(String organizationOid) throws DataUpdateException {

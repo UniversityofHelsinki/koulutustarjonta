@@ -23,7 +23,8 @@ import java.util.List;
 @UseStringTemplate3StatementLocator("/db/sql/templates/LearningOpportunityJDBI.sql.stg")
 @RegisterMapper(LearningOpportunityMapper.class)
 public interface LearningOpportunityJDBI extends Transactional<LearningOpportunityJDBI> {
-
+    @SqlUpdate
+    void delete()
     @SqlUpdate
     void upsert(@BindLearningOpportunity LearningOpportunity learningOpportunity);
 

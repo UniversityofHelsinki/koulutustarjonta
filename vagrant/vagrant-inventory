@@ -1,8 +1,8 @@
 [application-server]
-10.10.10.10
+localhost
 
 [service-server]
-10.10.10.10
+localhost
 
 [update-server]
-10.10.10.10
+localhost

@@ -32,6 +32,7 @@ public class KoulutustarjontaServiceApplication extends Application<Koulutustarj
 
     @Override
     public void run(KoulutustarjontaServiceConfig configuration, Environment environment) throws Exception {
+        System.out.println("ALOITETAAN");
         final DBIFactory factory = new DBIFactory();
         final DBI dbi = factory.build(environment, configuration.getDatabase(), "oracle");
 

@@ -26,7 +26,9 @@ public class LearningOpportunityDAO {
         this.jdbi = jdbi;
         this.contactJDBI = loContactJDBI;
     }
-
+    public void delete(String learningOpportunityOid) {
+        jdbi.delete(learningOpportunityOid);
+    }
     public void save(LearningOpportunity learningOpportunity) {
         LOG.debug(String.format("Saving learning opportunity %s", learningOpportunity.getOid()));
         jdbi.begin();
@@ -106,4 +108,5 @@ public class LearningOpportunityDAO {
             return learningOpportunity;
         }
     }
+
 }
