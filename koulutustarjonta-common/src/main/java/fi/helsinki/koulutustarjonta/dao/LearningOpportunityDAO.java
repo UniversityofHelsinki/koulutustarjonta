@@ -61,6 +61,8 @@ public class LearningOpportunityDAO {
                 jdbi.addChildren(learningOpportunity.getOid(), learningOpportunity.getChildren());
             }
             if (learningOpportunity.getProvider() != null) {
+                //First, remove current providers and then add the new ones
+                jdbi.removeProviders(learningOpportunity.getOid());
                 jdbi.addProviders(learningOpportunity.getOid(), learningOpportunity.getProvider());
             }
 

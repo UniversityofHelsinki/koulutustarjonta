@@ -268,4 +268,10 @@ addProviders(learningOpportunityOid, providerOid) ::= <<
 
 >>
 
+removeProviders(learningOpportunityOid) ::= <<
+
+    DELETE FROM koulutus_tarjoajat
+    WHERE id_koulutus = :id_koulutus
+>>
+
 
