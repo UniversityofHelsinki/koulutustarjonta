@@ -101,13 +101,18 @@ public class Updater {
         List<String> toBeDeleted = new ArrayList<String>();
         //Convert to set for faster search
         Set<String> learningOpportunityOidsSet = new java.util.HashSet<String>(learningOpportunityOids);
-        List<LearningOpportunity> allLearningOpportunityOids = this.learningOpportunityDAO.findAll()
-        allLearningOpportunityOids.forEach(loOid -> {
-            if(!learningOpportunityOidsSet.contains(loOid)){
-                toBeDeleted.add(loOid);
+        List<LearningOpportunity> allLearningOpportunities = this.learningOpportunityDAO.findAll();
+        allLearningOpportunities.forEach(lo -> {
+            if(!learningOpportunityOidsSet.contains(lo.getOid())){
+                toBeDeleted.add(lo.getOid());
             }
         });
-        delete_all_TODO(toBeDeleted);
+        //Also deletes all other tables that refer to the LearningOpportunity
+        LOG.debug("Starting to delete obsolete Learning opportunities");
+        toBeDeleted.forEach(currentOid -> {
+            LOG.debug(String.format("Deleting Learning opportunity with Oid: %s", currentOid));
+            learningOpportunityDAO.delete(currentOid);
+        });
     }
 
     private void saveOrganization(String organizationOid) throws DataUpdateException {

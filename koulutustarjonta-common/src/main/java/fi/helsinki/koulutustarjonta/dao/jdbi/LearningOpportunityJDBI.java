@@ -24,7 +24,8 @@ import java.util.List;
 @RegisterMapper(LearningOpportunityMapper.class)
 public interface LearningOpportunityJDBI extends Transactional<LearningOpportunityJDBI> {
     @SqlUpdate
-    void delete()
+    void delete(@Bind("id_koulutus") String learningOpportunityOid);
+
     @SqlUpdate
     void upsert(@BindLearningOpportunity LearningOpportunity learningOpportunity);
 
