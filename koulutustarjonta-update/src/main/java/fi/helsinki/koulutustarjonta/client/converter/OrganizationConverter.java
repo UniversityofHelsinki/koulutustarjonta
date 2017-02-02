@@ -76,11 +76,11 @@ public class OrganizationConverter extends BaseConverter {
         Address visitingAddress = null;
         Address postalAddress = null;
         for (JsonNode infoNode : contactInfoNodes) {
+            oid = infoNode.get("yhteystietoOid").textValue(); // All contacts should have an ID
             if (infoNode.has("osoiteTyyppi")) {
                 String addressType = infoNode.get("osoiteTyyppi").textValue();
                 if (addressType.equals("kaynti") || addressType.equals("ulkomainen_kaynti")) {
-                    // visiting address oid is the address identifier
-                    oid = infoNode.get("yhteystietoOid").textValue();
+
                     visitingAddress = addressConverter.convertOrganizationAddress(infoNode);
                 }
                 else if (addressType.equals("posti") || addressType.equals("ulkomainen_posti")) {
