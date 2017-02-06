@@ -3,8 +3,12 @@ package fi.helsinki.koulutustarjonta.client.converter;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.collect.Lists;
 import fi.helsinki.koulutustarjonta.client.KoodistoClient;
+import fi.helsinki.koulutustarjonta.core.Updater;
 import fi.helsinki.koulutustarjonta.domain.*;
 import fi.helsinki.koulutustarjonta.exception.DataUpdateException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 import java.util.List;
 
@@ -17,6 +21,7 @@ import static java.util.stream.Collectors.toList;
 public class OrganizationConverter extends BaseConverter {
 
     private final AddressConverter addressConverter;
+    private static final Logger LOG = LoggerFactory.getLogger(Updater.class);
 
     public OrganizationConverter(KoodistoClient koodistoClient) {
         super(koodistoClient);
@@ -76,11 +81,14 @@ public class OrganizationConverter extends BaseConverter {
         Address visitingAddress = null;
         Address postalAddress = null;
         for (JsonNode infoNode : contactInfoNodes) {
-            oid = infoNode.get("yhteystietoOid").textValue(); // All contacts should have an ID
+            if (oid == null) {
+                oid = infoNode.get("yhteystietoOid").textValue(); // All contacts should have an ID, but this can be replaced later by another
+            }
             if (infoNode.has("osoiteTyyppi")) {
                 String addressType = infoNode.get("osoiteTyyppi").textValue();
                 if (addressType.equals("kaynti") || addressType.equals("ulkomainen_kaynti")) {
-
+                    // visiting address oid is the address identifier
+                    oid = infoNode.get("yhteystietoOid").textValue();
                     visitingAddress = addressConverter.convertOrganizationAddress(infoNode);
                 }
                 else if (addressType.equals("posti") || addressType.equals("ulkomainen_posti")) {
@@ -103,6 +111,8 @@ public class OrganizationConverter extends BaseConverter {
                 www = infoNode.get("www").textValue();
             }
         }
+        LOG.debug("CONTACT INFO TIEDOT");
+        LOG.debug("oid: "+oid + " type: "+type + lang + www + phone + email + fax + visitingAddress + postalAddress);
         return new ContactInfo(oid, type, lang, www, phone, email,
                 fax, visitingAddress, postalAddress);
     }
