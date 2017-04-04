@@ -1,0 +1,9 @@
+# servers that run koulutustarjonta applications i.e. service-server and update-server groups combined
+[application-server]
+127.0.0.1 ansible_connection=local ansible_ssh_user=vagrant
+# servers that run koulutustarjonta-service
+[service-server]
+127.0.0.1 ansible_connection=local ansible_ssh_user=vagrant
+# servers that run koulutustarjonta-update, usually just one machine
+[update-server]
+127.0.0.1 ansible_connection=local ansible_ssh_user=vagrant
