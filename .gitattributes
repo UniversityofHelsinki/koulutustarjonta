@@ -1,0 +1,2 @@
+#gradlew didn't work with Windows file endings
+gradlew text eol=lf
