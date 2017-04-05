@@ -22,3 +22,6 @@
       yum: name={{ cache_path }}/{{ jdk_rpm }} state=present
       tags:
         - base
+
+    - user:
+        name: koulutustarjonta-user

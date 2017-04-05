@@ -3,10 +3,11 @@
 # This playbook installs dependencies in local dev environment
 
 - hosts: application-server
-  sudo: true
+  become: true
   vars_files:
     - "common/vars/main.yml"
   roles:
     - base
     - gradle
     - oracle-xe
+    
