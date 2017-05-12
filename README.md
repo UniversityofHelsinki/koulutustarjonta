@@ -39,8 +39,10 @@ Start up the applications
 ```
 
 You can start the update process by making a call in Vagrant to localhost:9090/update
-You can do this by executing "wget localhost:9090/update"
-
+You can do this by executing 
+```
+wget localhost:9090/update
+```
 
 Running tests
 -------------
