@@ -12,7 +12,7 @@ Getting Started
 ---------------
 Install [Vagrant](https://www.vagrantup.com/) and [Ansible](http://www.ansible.com/). 
 
-Download Oracle XE 11g rpm from [here](http://www.oracle.com/technetwork/database/database-technologies/express-edition/downloads/index.html) and place the zip file into the *oracle* folder.
+Download Oracle XE 11g rpm Linux version from [here](http://www.oracle.com/technetwork/database/database-technologies/express-edition/downloads/index.html) and place the zip file into the *oracle* folder. 
 
 Start up Vagrant
 ```
@@ -37,6 +37,10 @@ Start up the applications
 ./gradlew :koulutustarjonta-service:run
 ./gradlew :koulutustarjonta-update:run
 ```
+
+You can start the update process by making a call in Vagrant to localhost:9090/update
+You can do this by executing "wget localhost:9090/update"
+
 
 Running tests
 -------------
