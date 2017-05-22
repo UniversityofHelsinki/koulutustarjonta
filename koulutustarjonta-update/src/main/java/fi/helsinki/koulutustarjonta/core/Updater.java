@@ -11,6 +11,10 @@ import org.apache.commons.lang.exception.ExceptionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.time.Month;
+import java.time.Year;
+import java.time.YearMonth;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -86,6 +90,8 @@ public class Updater {
         if (learningOpportunityOids.size() > 0 || applicationOptionOids.size() > 0) {
             saveOrganization(organizationOid);
             saveApplicationOptions(applicationOptionOids);
+            learningOpportunityDAO.removeOutdatedLearningOpportunities();
+            //TODO: Poista myös haut.
             saveLearningOpportunities(learningOpportunityOids);
         }
     }
@@ -98,7 +104,29 @@ public class Updater {
     private void saveLearningOpportunities(List<String> learningOpportunityOids) {
         learningOpportunityOids.forEach(loOid -> {
             LearningOpportunity learningOpportunity = tryToGetResource(loOid, LearningOpportunity.class);
-            learningOpportunityDAO.save(learningOpportunity);
+            YearMonth currentYearMonth = YearMonth.now();
+            Integer startingYear = learningOpportunity.getStartYear();
+            String startingSeason = learningOpportunity.getStartSeason().getEn();
+            YearMonth startingYearMonth;
+            //Spring season learning opportunities start in January and can be deleted in February
+            //Autumn season learning opportunities start in September and can be deleted in November
+            if(startingSeason.equals("Spring")){
+                startingYearMonth = YearMonth.of(startingYear, 1);
+            }
+            else if(startingSeason.equals("Autumn"))){
+                startingYearMonth = YearMonth.of(startingYear, 10);
+            }
+            else{
+                LOG.war("Missing starting season, defaulting to Autumn. Learning opportunity id: "+loOid);
+                startingYearMonth = YearMonth.of(startingYear, 9);
+            }
+
+            if(currentYearMonth.isAfter(startingYearMonth)) {
+                LOG.info("Ignoring an old learning opportunity: "+loOid);
+            }
+            else{
+                learningOpportunityDAO.save(learningOpportunity);
+            }
         });
     }
 

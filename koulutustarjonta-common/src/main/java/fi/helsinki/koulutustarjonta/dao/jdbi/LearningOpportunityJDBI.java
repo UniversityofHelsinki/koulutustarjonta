@@ -77,4 +77,8 @@ public interface LearningOpportunityJDBI extends Transactional<LearningOpportuni
 
     @SqlUpdate
     void removeProviders(@Bind("id_koulutus") String learningOpportunityOid);
+
+    @SqlUpdate
+    void removeOutdatedLearningOpportunities(@Bind("current_year") Integer currentYear,
+                                             @Bind("current_month") Integer currentMonth);
 }

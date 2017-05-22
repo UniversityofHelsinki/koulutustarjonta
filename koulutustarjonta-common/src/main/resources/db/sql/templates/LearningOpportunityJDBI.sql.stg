@@ -268,4 +268,12 @@ removeProviders(learningOpportunityOid) ::= <<
     WHERE id_koulutus = :id_koulutus
 >>
 
+removeOutdatedLearningOpportunities(currentYear, currentMonth) ::= <<
+
+    DELETE FROM koulutus
+    WHERE alkamisvuosi < :currentYear
+    OR (alkamisvuosi = :currentYear AND alkamiskausi_en = 'Spring' AND :currentMonth > 1)
+    OR (alkamisvuosi = :currentYear AND :currentMonth > 9)
+>>
+
 
