@@ -271,9 +271,9 @@ removeProviders(learningOpportunityOid) ::= <<
 removeOutdatedLearningOpportunities(currentYear, currentMonth) ::= <<
 
     DELETE FROM koulutus
-    WHERE alkamisvuosi < :currentYear
-    OR (alkamisvuosi = :currentYear AND alkamiskausi_en = 'Spring' AND :currentMonth > 1)
-    OR (alkamisvuosi = :currentYear AND :currentMonth > 9)
+    WHERE alkamisvuosi < :current_year
+    OR (alkamisvuosi = :current_year AND alkamiskausi_en = 'Spring' AND :current_month > 1)
+    OR (alkamisvuosi = :current_year AND :current_month > 9)
 >>
 
 

@@ -91,7 +91,7 @@ public class Updater {
             saveOrganization(organizationOid);
             saveApplicationOptions(applicationOptionOids);
             learningOpportunityDAO.removeOutdatedLearningOpportunities();
-            //TODO: Poista myös haut.
+            applicationSystemDAO.removeOutdatedApplicationSystems();
             saveLearningOpportunities(learningOpportunityOids);
         }
     }
@@ -101,25 +101,15 @@ public class Updater {
         organizationDAO.save(organization);
     }
 
+    //Save learning opportunities if they are not outdated. Learning opportunity
+    //corresponds to the 'koulutus' table in the database.
     private void saveLearningOpportunities(List<String> learningOpportunityOids) {
         learningOpportunityOids.forEach(loOid -> {
             LearningOpportunity learningOpportunity = tryToGetResource(loOid, LearningOpportunity.class);
             YearMonth currentYearMonth = YearMonth.now();
             Integer startingYear = learningOpportunity.getStartYear();
             String startingSeason = learningOpportunity.getStartSeason().getEn();
-            YearMonth startingYearMonth;
-            //Spring season learning opportunities start in January and can be deleted in February
-            //Autumn season learning opportunities start in September and can be deleted in November
-            if(startingSeason.equals("Spring")){
-                startingYearMonth = YearMonth.of(startingYear, 1);
-            }
-            else if(startingSeason.equals("Autumn"))){
-                startingYearMonth = YearMonth.of(startingYear, 10);
-            }
-            else{
-                LOG.war("Missing starting season, defaulting to Autumn. Learning opportunity id: "+loOid);
-                startingYearMonth = YearMonth.of(startingYear, 9);
-            }
+            YearMonth startingYearMonth = getStartingYearMonth(startingYear, startingSeason);
 
             if(currentYearMonth.isAfter(startingYearMonth)) {
                 LOG.info("Ignoring an old learning opportunity: "+loOid);
@@ -130,21 +120,51 @@ public class Updater {
         });
     }
 
+    //Save application option and a corresponding application system
+    //if the application system is not outdated.
+    //Application option corresponds to 'hakukohde' table and
+    //Application system corresponds to 'haku' table
     private void saveApplicationOptions(List<String> applicationOptionOids) {
         applicationOptionOids.forEach(aoOid -> {
             ApplicationOption ao = tryToGetResource(aoOid, ApplicationOption.class);
             ApplicationSystem as = tryToGetResource(ao.getApplicationSystem(), ApplicationSystem.class);
 
-            handleAoPeriod(ao, as);
+            YearMonth currentYearMonth = YearMonth.now();
+            Integer startingYear = as.getEducationStartYear();
+            String startingSeason = as.getEducationStartSeason().getValue();
+            YearMonth startingYearMonth = getStartingYearMonth(startingYear, startingSeason);
 
-            applicationSystemDAO.save(as);
-            applicationOptionDAO.save(ao);
+            if(currentYearMonth.isAfter(startingYearMonth)) {
+                LOG.info("Ignoring an old application system: "+as.getOid());
+            }
+            else{
+                handleAoPeriod(ao, as);
+                applicationSystemDAO.save(as);
+                applicationOptionDAO.save(ao);
+            }
+
         });
     }
 
     private void handleAoPeriod(ApplicationOption ao, ApplicationSystem as) {
         if (ao.getApplicationPeriodId() == null) {
             ao.setApplicationPeriodId(as.getApplicationPeriods().get(0).getId());
+        }
+    }
+
+    private YearMonth getStartingYearMonth(Integer startingYear, String startingSeason){
+        if(startingSeason.equals("Spring")){
+            return YearMonth.of(startingYear, 1);
+        }
+        //Autumn courses start in September, but they can be deleted in November.
+        //So I set the starting date to be in October, because of the system that
+        //checks for deletion
+        else if(startingSeason.equals("Autumn")){
+            return YearMonth.of(startingYear, 10);
+        }
+        else{
+            LOG.warn("Missing starting season, defaulting to Autumn.");
+            return YearMonth.of(startingYear, 10);
         }
     }
 

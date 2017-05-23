@@ -47,4 +47,8 @@ public interface ApplicationSystemJDBI extends Transactional<ApplicationSystemJD
             "WHERE id_haku=:id_haku AND id_hakuaika NOT IN (<current>)")
     void clearDeletedApplicationPeriodsFromApplicationOptions(@Bind("id_haku") String applicationSystemOid,
                                          @BindIn("current") List<String> currentPeriodIds);
+
+    @SqlUpdate
+    void removeOutdatedApplicationSystems(@Bind("starting_year") Integer startingYear,
+                                          @Bind("starting_month") Integer startingMonth);
 }
