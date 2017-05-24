@@ -82,7 +82,7 @@ clearDeletedApplicationPeriodsFromApplicationOptions(applicationSystemOid, curre
 removeOutdatedApplicationSystems(currentYear, currentMonth) ::= <<
 
     DELETE FROM haku
-    WHERE koul_alk_vuosi < :current_year
-    OR (koul_alk_vuosi = :current_year AND koul_alk_kausi_en = 'Spring' AND :current_month > 1)
-    OR (koul_alk_vuosi = :current_year AND :current_month > 9)
+    WHERE koul_alk_vuosi \< :current_year
+    OR (koul_alk_vuosi = :current_year AND koul_alk_kausi_en = 'Spring' AND :current_month \> 1)
+    OR (koul_alk_vuosi = :current_year AND :current_month \> 9)
 >>

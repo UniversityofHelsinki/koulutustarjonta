@@ -89,6 +89,11 @@ public class ApplicationSystemDAOTest extends BaseDAOTest {
         applicationSystemsEqual(fixture2, as);
     }
 
+    @Test
+    public void testRemoveOutdatedApplicationSystems() throws ResourceNotFound {
+        dao.removeOutdatedApplicationSystems();
+    }
+
     private void applicationSystemsEqual(ApplicationSystem expected, ApplicationSystem actual) {
         assertNotNull(actual);
         assertEquals(expected.getOid(), actual.getOid());

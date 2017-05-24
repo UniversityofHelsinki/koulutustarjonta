@@ -173,6 +173,13 @@ public class LearningOpportunityDAOTest extends BaseDAOTest {
         learningOpportunitiesEqual(lo, fetched);
     }
 
+    @Test
+    public void testRemoveOutdatedLearningOpportunities() throws Exception {
+        LearningOpportunity lo = Fixture.learningOpportunity(populatedOid1);
+        dao.save(lo);
+        dao.removeOutdatedLearningOpportunities();
+    }
+
     private void learningOpportunitiesEqual(LearningOpportunity expected, LearningOpportunity actual) {
 
         assertEquals(expected.getOid(), actual.getOid());

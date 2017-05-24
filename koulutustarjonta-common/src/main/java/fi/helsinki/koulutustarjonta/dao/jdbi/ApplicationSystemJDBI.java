@@ -49,6 +49,6 @@ public interface ApplicationSystemJDBI extends Transactional<ApplicationSystemJD
                                          @BindIn("current") List<String> currentPeriodIds);
 
     @SqlUpdate
-    void removeOutdatedApplicationSystems(@Bind("starting_year") Integer startingYear,
-                                          @Bind("starting_month") Integer startingMonth);
+    void removeOutdatedApplicationSystems(@Bind("current_year") Integer currentYear,
+                                          @Bind("current_month") Integer currentMonth);
 }
