@@ -110,11 +110,12 @@ public class Updater {
             Integer startingYear = learningOpportunity.getStartYear();
             String startingSeason = learningOpportunity.getStartSeason().getEn();
             YearMonth startingYearMonth = getStartingYearMonth(startingYear, startingSeason);
-
+            LOG.info("StartingYearMonth: "+startingYearMonth.toString());
             if(currentYearMonth.isAfter(startingYearMonth)) {
                 LOG.info("Ignoring an old learning opportunity: "+loOid);
             }
             else{
+                LOG.info("Saving learning opportunity: "+loOid);
                 learningOpportunityDAO.save(learningOpportunity);
             }
         });
