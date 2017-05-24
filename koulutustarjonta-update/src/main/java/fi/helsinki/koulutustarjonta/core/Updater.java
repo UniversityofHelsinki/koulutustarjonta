@@ -153,13 +153,13 @@ public class Updater {
     }
 
     private YearMonth getStartingYearMonth(Integer startingYear, String startingSeason){
-        if(startingSeason.equals("Spring")){
+        if("Spring".equals(startingSeason)){
             return YearMonth.of(startingYear, 1);
         }
         //Autumn courses start in September, but they can be deleted in November.
         //So I set the starting date to be in October, because of the system that
         //checks for deletion
-        else if(startingSeason.equals("Autumn")){
+        else if("Autumn".equals(startingSeason)){
             return YearMonth.of(startingYear, 10);
         }
         else{
