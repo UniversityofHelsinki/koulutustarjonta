@@ -8,6 +8,9 @@ import fi.helsinki.koulutustarjonta.domain.Code;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author Hannu Lyytikainen
  */
@@ -19,6 +22,7 @@ public class KoodistoClient {
 
     private final WebResource codeResource;
     private final CodeConverter codeConverter;
+    private Map<String, JsonNode> jsonNodeCache = new HashMap<>();
 
     public KoodistoClient(WebResource codeResource) {
         this.codeResource = codeResource;
@@ -26,17 +30,25 @@ public class KoodistoClient {
     }
 
     public Code getCode(String codeUriAndVersion) {
-        String codeUri = parseCodeUri(codeUriAndVersion);
-        String version = parseVersion(codeUriAndVersion);
-        String path = String.format("%s/%s/%s",
-                parseCodeGroup(codeUri), CODE_PATH, codeUri);
-        WebResource resource = codeResource.path(path);
+        JsonNode cachedJsonNode = jsonNodeCache.get(codeUriAndVersion);
+        if (cachedJsonNode == null) {
 
-        if (version != null) {
-            resource = resource.queryParam("koodistoVersio", version);
+            String codeUri = parseCodeUri(codeUriAndVersion);
+            String version = parseVersion(codeUriAndVersion);
+            String path = String.format("%s/%s/%s",
+                    parseCodeGroup(codeUri), CODE_PATH, codeUri);
+            WebResource resource = codeResource.path(path);
+
+            if (version != null) {
+                resource = resource.queryParam("koodistoVersio", version);
+            }
+            JsonNode json = resource.get(new GenericType<JsonNode>() {
+            });
+            jsonNodeCache.put(codeUriAndVersion, json);
+            return codeConverter.convert(json);
+        } else {
+            return codeConverter.convert(cachedJsonNode);
         }
-        JsonNode json = resource.get(new GenericType<JsonNode>() {});
-        return codeConverter.convert(json);
     }
 
     /**
