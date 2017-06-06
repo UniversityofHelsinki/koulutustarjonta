@@ -22,7 +22,10 @@ public class KoodistoClient {
 
     private final WebResource codeResource;
     private final CodeConverter codeConverter;
+
     private Map<String, JsonNode> jsonNodeCache = new HashMap<>();
+    private long cacheCreatedAt = System.currentTimeMillis();
+    private final long MAX_CACHE_AGE = oneHour();
 
     public KoodistoClient(WebResource codeResource) {
         this.codeResource = codeResource;
@@ -30,6 +33,8 @@ public class KoodistoClient {
     }
 
     public Code getCode(String codeUriAndVersion) {
+
+        disposeOldCache();
         JsonNode cachedJsonNode = jsonNodeCache.get(codeUriAndVersion);
         if (cachedJsonNode == null) {
 
@@ -48,6 +53,17 @@ public class KoodistoClient {
             return codeConverter.convert(json);
         } else {
             return codeConverter.convert(cachedJsonNode);
+        }
+    }
+
+    /**
+     * Remove cached jsonNodes if they are old
+     *
+     */
+    void disposeOldCache() {
+        if (System.currentTimeMillis() - cacheCreatedAt > MAX_CACHE_AGE) {
+            jsonNodeCache.clear();
+            cacheCreatedAt = System.currentTimeMillis();
         }
     }
 
@@ -88,4 +104,7 @@ public class KoodistoClient {
         return codeUri.split("_")[0];
     }
 
+    private long oneHour() {
+        return 1000 * 60 * 60;
+    }
 }

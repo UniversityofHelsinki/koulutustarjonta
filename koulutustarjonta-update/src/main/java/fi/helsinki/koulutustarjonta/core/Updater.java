@@ -131,9 +131,15 @@ public class Updater {
             ApplicationSystem as = tryToGetResource(ao.getApplicationSystem(), ApplicationSystem.class);
 
             YearMonth currentYearMonth = YearMonth.now();
+
             Integer startingYear = as.getEducationStartYear();
-            String startingSeason = as.getEducationStartSeason().getValue();
-            YearMonth startingYearMonth = getStartingYearMonth(startingYear, startingSeason);
+
+            Season educationStartSeason = as.getEducationStartSeason();
+            String startSeason = null;
+            if (educationStartSeason != null) {
+                startSeason = educationStartSeason.getValue();
+            }
+            YearMonth startingYearMonth = getStartingYearMonth(startingYear, startSeason);
 
             if(currentYearMonth.isAfter(startingYearMonth)) {
                 LOG.info("Ignoring an old application system: "+as.getOid());
