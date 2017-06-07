@@ -192,7 +192,8 @@ INSERT INTO KOULUTUS
             sijtyo_fi, sijtyo_sv, sijtyo_en,
             sisalto_fi, sisalto_sv, sisalto_en,
             tutkpaino_fi, tutkpaino_sv, tutkpaino_en,
-            opinnaytetyo_fi, opinnaytetyo_sv, opinnaytetyo_en, id_organisaatio)
+            opinnaytetyo_fi, opinnaytetyo_sv, opinnaytetyo_en, id_organisaatio,
+            maksullisuus_fi, maksullisuus_sv, maksullisuus_en)
 VALUES ('1.2.3', 'tutkintonimike fi', 'tutkintonimike sv', 'tutkintonimike en',
 'opintoala fi', 'opintoala sv', 'opintoala en',
 'tutkintoohjelma fi', 'tutkintoohjelma sv', 'tutkintoohjelma en',
@@ -210,7 +211,8 @@ VALUES ('1.2.3', 'tutkintonimike fi', 'tutkintonimike sv', 'tutkintonimike en',
 'sijoittuminen tyoelamaan fi', 'sijoittuminen tyoelamaan sv', 'sijoittuminen tyoelamaan en',
 'sisalto fi', 'sisalto sv', 'sisalto en',
 'tutkimuksen painotus fi', 'tutkimuksen painotus sv', 'tutkimuksen painotus en',
-'opinnaytetyo fi', 'opinnaytetyo sv', 'opinnaytetyo en', 'organisaatio_id1');
+'opinnaytetyo fi', 'opinnaytetyo sv', 'opinnaytetyo en', 'organisaatio_id1',
+'maksullisuus fi','maksullisuus sv','maksullisuus en');
 
 INSERT INTO KOULUTUS
             (id,  tutkintonimike_fi, tutkintonimike_sv, tutkintonimike_en)

@@ -67,6 +67,7 @@ public class LearningOpportunityConverter extends BaseConverter {
         lo.setContents(convertMetaTextsToI18N(komotoInfo.get("SISALTO")));
         lo.setResearch(convertMetaTextsToI18N(komotoInfo.get("TUTKIMUKSEN_PAINOPISTEET")));
         lo.setThesis(convertMetaTextsToI18N(komotoInfo.get("LOPPUKOEVAATIMUKSET")));
+        lo.setChargeable(convertMetaTextsToI18N(komotoInfo.get("MAKSULLISUUS")));
 
         lo.setKeywords(resolveKeywords(content.get("aihees")));
 

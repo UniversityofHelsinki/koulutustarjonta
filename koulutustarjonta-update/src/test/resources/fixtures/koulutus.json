@@ -533,6 +533,33 @@
           "kieli_en" : "<p>The chemical industry is one of the biggest em",
           "kieli_fi" : "<p>Kemianteollisuus on yksi Suomen suurimmista ty"
         }
+      },       "MAKSULLISUUS": {
+        "versio": 1,
+        "meta": {
+          "kieli_sv": {
+            "kieliUri": "kieli_sv",
+            "kieliVersio": 1,
+            "kieliArvo": "SV",
+            "versio": 1
+          },
+          "kieli_fi": {
+            "kieliUri": "kieli_fi",
+            "kieliVersio": 1,
+            "kieliArvo": "FI",
+            "versio": 1
+          },
+          "kieli_en": {
+            "kieliUri": "kieli_en",
+            "kieliVersio": 1,
+            "kieliArvo": "EN",
+            "versio": 1
+          }
+        },
+        "tekstis": {
+          "kieli_sv": "<p><span lang=\"SV\">Helsingfors universitet tar i bruk läsårsavgifter för engelsk- och flerspråkiga magisterprogram som börjar 1.8.2017 eller senare. Sökande utanför EU/EES -området som inte har ett permanent uppehållstillstånd i området är skyldiga att betala läsårsavgift. Kontrollera om betalningsskyldigheten gäller dig på </span><a href=\"https://studyinfo.fi/wp2/en/higher-education/higher-education-institutions-will-introduce-tuition-fees-in-autumn-2017/am-i-required-to-pay-tuition-fees/\"><span lang=\"SV\">Studieinfos sida för ofta ställda frågor</span></a><span lang=\"SV\"> (på engelska).</span></p>",
+          "kieli_fi": "<p>Helsingin yliopistossa otetaan käyttöön lukuvuosimaksut 1.8.2017 tai sen jälkeen alkavissa englanninkielisissä ja monikielisissä maisteriohjelmissa. EU/ETA – alueen ulkopuolelta tulevat hakijat, joilla ei ole pysyvää oleskelulupaa alueella, ovat velvoitettuja maksamaan lukuvuosimaksun. <span lang=\"SV\">Tarkista </span><a href=\"https://studyinfo.fi/wp2/en/higher-education/higher-education-institutions-will-introduce-tuition-fees-in-autumn-2017/am-i-required-to-pay-tuition-fees/\"><span lang=\"SV\">Opintopolun Usein kysyttyä –sivulta</span></a><span lang=\"SV\"> (englanniksi), oletko maksuvelvollinen.</span></p>",
+          "kieli_en": "<p>The University of Helsinki will introduce annual tuition fees to foreign-language Master’s programmes starting on August 1, 2017 or later.Citizens of non-EU/EEA countries, who do not have a permanent residence status in the area, are liable to these fees. You can check this <a href=\"https://studyinfo.fi/wp2/en/higher-education/higher-education-institutions-will-introduce-tuition-fees-in-autumn-2017/am-i-required-to-pay-tuition-fees/\">FAQ at the Studyinfo website </a>whether or not you are required to pay tuition fees.</p>"
+        }
       },
       "TUTKIMUKSEN_PAINOPISTEET" : {
         "meta" : {
