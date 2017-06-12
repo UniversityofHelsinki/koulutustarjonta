@@ -533,7 +533,8 @@
           "kieli_en" : "<p>The chemical industry is one of the biggest em",
           "kieli_fi" : "<p>Kemianteollisuus on yksi Suomen suurimmista ty"
         }
-      },       "MAKSULLISUUS": {
+      },
+      "MAKSULLISUUS": {
         "versio": 1,
         "meta": {
           "kieli_sv": {
