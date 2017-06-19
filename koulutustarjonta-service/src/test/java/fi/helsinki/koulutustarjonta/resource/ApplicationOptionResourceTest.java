@@ -94,6 +94,7 @@ public class ApplicationOptionResourceTest {
         assertEquals(expected.getDescription(), actual.getDescription());
         assertEquals(expected.getDue(), actual.getDue());
         addressDTOsEqual(expected.getAddress(), actual.getAddress());
+        assertEquals(expected.getReceiver(), actual.getReceiver());
     }
 
     private void examDTOsEqual(ExamDTO expected, ExamDTO actual) {

@@ -28,4 +28,6 @@ public class AttachmentDTO {
     private Date due;
     @JsonProperty("toimitusosoite")
     private AddressDTO address;
+    @JsonProperty("vastaanottaja")
+    private String receiver;
 }

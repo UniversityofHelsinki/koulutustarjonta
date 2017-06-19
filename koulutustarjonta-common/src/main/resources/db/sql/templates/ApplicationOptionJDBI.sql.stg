@@ -33,7 +33,7 @@ findJoinRowsById(id) ::= <<
     ak.kuvaus as ak_kuvaus, ak.osoite as ak_osoite, ak.postinumero as ak_postinumero,
     ak.ptoimipaikka as ak_ptoimipaikka,
     l.id as l_id, l.kieli as l_kieli, l.nimi as l_nimi, l.erapaiva as l_erapaiva,
-    l.kuvaus as l_kuvaus, l.osoite as l_osoite, l.postinumero as l_postinumero,
+    l.kuvaus as l_kuvaus, l.osoite as l_osoite, l.postinumero as l_postinumero, l.vastaanottaja as l_vastaanottaja,
     l.ptoimipaikka as l_ptoimipaikka,
     hk.id as hk_id, hk.kuvaus_fi as hk_kuvaus_fi,
     hk.kuvaus_sv as hk_kuvaus_sv, hk.kuvaus_en as hk_kuvaus_en,
@@ -68,7 +68,7 @@ findJoinRows() ::= <<
     ak.ptoimipaikka as ak_ptoimipaikka,
     l.id as l_id, l.kieli as l_kieli, l.nimi as l_nimi, l.erapaiva as l_erapaiva,
     l.kuvaus as l_kuvaus, l.osoite as l_osoite, l.postinumero as l_postinumero,
-    l.ptoimipaikka as l_ptoimipaikka,
+    l.ptoimipaikka as l_ptoimipaikka, l.vastaanottaja as l_vastaanottaja,
     hk.id as hk_id, hk.kuvaus_fi as hk_kuvaus_fi,
     hk.kuvaus_sv as hk_kuvaus_sv, hk.kuvaus_en as hk_kuvaus_en,
     ha.id as ha_id, ha.nimi_fi as ha_nimi_fi, ha.nimi_sv as ha_nimi_sv, ha.nimi_en as ha_nimi_en,
@@ -142,8 +142,8 @@ removeAttachments(applicationOptionOid) ::= <<
 insertAttachments(attachments, applicationOptionOid) ::= <<
 
   INSERT INTO liite
-    (id, kieli, nimi, kuvaus, erapaiva, osoite, postinumero, ptoimipaikka, id_hakukohde)
-    VALUES (:id, :kieli, :nimi, :kuvaus, :erapaiva, :osoite, :postinumero, :ptoimipaikka, :id_hakukohde)
+    (id, kieli, nimi, kuvaus, erapaiva, osoite, postinumero, ptoimipaikka, id_hakukohde, vastaanottaja)
+    VALUES (:id, :kieli, :nimi, :kuvaus, :erapaiva, :osoite, :postinumero, :ptoimipaikka, :id_hakukohde, :vastaanottaja)
 
 >>
 
