@@ -1,4 +1,6 @@
--- adding "maksullisuus" (chargeable) text column in "koulutus" (learning opportunity)
+--liquibase formatted sql
+
+--changeset pasi.viertola:25
 ALTER TABLE KOULUTUS
   ADD (
   MAKSULLISUUS_FI CLOB,
