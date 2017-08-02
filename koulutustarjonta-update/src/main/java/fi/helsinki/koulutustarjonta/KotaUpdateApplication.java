@@ -13,6 +13,7 @@ import fi.helsinki.koulutustarjonta.manager.SundialManager;
 import fi.helsinki.koulutustarjonta.resource.UpdateResource;
 import fi.helsinki.koulutustarjonta.task.UpdateTask;
 import io.dropwizard.Application;
+import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.jdbi.DBIFactory;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
@@ -38,7 +39,14 @@ public class KotaUpdateApplication extends Application<KotaUpdateConfiguration> 
         TimeZone tz = TimeZone.getTimeZone("EET");
         TimeZone.setDefault(tz);
         final DBIFactory factory = new DBIFactory();
-        final DBI dbi = factory.build(environment, configuration.getDataSourceFactory(), "oracle");
+
+        DataSourceFactory database = configuration.getDataSourceFactory();
+
+        // setCheckConnectionOnBorrow will make the reconnection possible when the database has been restarted
+        // otherwise the database connection will fail
+        database.setCheckConnectionOnBorrow(true);
+
+        final DBI dbi = factory.build(environment, database, "oracle");
         dbi.setStatementBuilderFactory(new OracleStatementBuilderFactory());
         final LearningOpportunityJDBI jdbi = dbi.onDemand(LearningOpportunityJDBI.class);
         final LOContactJDBI loContactJDBI = dbi.onDemand(LOContactJDBI.class);

@@ -1,10 +1,12 @@
 package fi.helsinki.koulutustarjonta;
 
+import com.codahale.metrics.health.HealthCheck;
 import fi.helsinki.koulutustarjonta.config.KoulutustarjontaServiceConfig;
 import fi.helsinki.koulutustarjonta.dao.*;
 import fi.helsinki.koulutustarjonta.dao.jdbi.*;
 import fi.helsinki.koulutustarjonta.resource.*;
 import io.dropwizard.Application;
+import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.jdbi.DBIFactory;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
@@ -32,8 +34,18 @@ public class KoulutustarjontaServiceApplication extends Application<Koulutustarj
 
     @Override
     public void run(KoulutustarjontaServiceConfig configuration, Environment environment) throws Exception {
+        System.out.println( "---");
+        System.out.println( "--- RUN SERVICE ---");
+        System.out.println( "---");
+
         final DBIFactory factory = new DBIFactory();
-        final DBI dbi = factory.build(environment, configuration.getDatabase(), "oracle");
+        DataSourceFactory database = configuration.getDatabase();
+
+        // setCheckConnectionOnBorrow will make the reconnection possible when the database has been restarted
+        // otherwise the database connection will fail
+        database.setCheckConnectionOnBorrow(true);
+
+        final DBI dbi = factory.build(environment, database, "oracle");
 
         final LearningOpportunityJDBI learningOpportunityJDBI = dbi.onDemand(LearningOpportunityJDBI.class);
         final LOContactJDBI loContactJDBI = dbi.onDemand(LOContactJDBI.class);
