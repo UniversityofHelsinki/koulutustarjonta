@@ -34,9 +34,6 @@ public class KoulutustarjontaServiceApplication extends Application<Koulutustarj
 
     @Override
     public void run(KoulutustarjontaServiceConfig configuration, Environment environment) throws Exception {
-        System.out.println( "---");
-        System.out.println( "--- RUN SERVICE ---");
-        System.out.println( "---");
 
         final DBIFactory factory = new DBIFactory();
         DataSourceFactory database = configuration.getDatabase();
