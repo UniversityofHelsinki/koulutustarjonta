@@ -1,6 +1,5 @@
 package fi.helsinki.koulutustarjonta;
 
-import com.codahale.metrics.health.HealthCheck;
 import fi.helsinki.koulutustarjonta.config.KoulutustarjontaServiceConfig;
 import fi.helsinki.koulutustarjonta.dao.*;
 import fi.helsinki.koulutustarjonta.dao.jdbi.*;
