@@ -108,6 +108,7 @@ public class LearningOpportunityDAO {
             throw new ResourceNotFound(LearningOpportunity.class, id);
         else{
             LearningOpportunity learningOpportunity = rows.get(0);
+
             List<LOContact> byLOId = contactJDBI.findByLOId(learningOpportunity.getOid());
             LOG.debug(byLOId.toString());
             learningOpportunity.setContactInfos(byLOId);

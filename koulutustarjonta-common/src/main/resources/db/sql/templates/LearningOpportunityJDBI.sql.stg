@@ -22,7 +22,8 @@ upsert(learningOpportunity) ::= <<
     sisalto_fi = :sisalto_fi, sisalto_sv = :sisalto_sv, sisalto_en = :sisalto_en,
     tutkpaino_fi = :tutkpaino_fi, tutkpaino_sv = :tutkpaino_sv, tutkpaino_en = :tutkpaino_en,
     opinnaytetyo_fi = :opinnaytetyo_fi, opinnaytetyo_sv = :opinnaytetyo_sv, opinnaytetyo_en = :opinnaytetyo_en,
-    koulutusaste_fi = :koulutusaste_fi, koulutusaste_sv = :koulutusaste_sv, koulutusaste_en = :koulutusaste_en, hinta = :hinta
+    koulutusaste_fi = :koulutusaste_fi, koulutusaste_sv = :koulutusaste_sv, koulutusaste_en = :koulutusaste_en, hinta = :hinta,
+    maksullisuus_fi = :maksullisuus_fi, maksullisuus_sv = :maksullisuus_sv, maksullisuus_en = :maksullisuus_en
     WHEN NOT MATCHED THEN INSERT
     (id,  tutkintonimike_fi, tutkintonimike_sv, tutkintonimike_en, opintoala_fi, opintoala_sv, opintoala_en,
     tutkintoohjelma_fi, tutkintoohjelma_sv, tutkintoohjelma_en, alkamisvuosi, alkamiskausi_fi, alkamiskausi_sv, alkamiskausi_en,
@@ -33,7 +34,8 @@ upsert(learningOpportunity) ::= <<
     paaaineval_fi, paaaineval_sv, paaaineval_en, kansval_fi, kansval_sv, kansval_en,
     sijtyo_fi, sijtyo_sv, sijtyo_en, sisalto_fi, sisalto_sv, sisalto_en,
     tutkpaino_fi, tutkpaino_sv, tutkpaino_en, opinnaytetyo_fi, opinnaytetyo_sv, opinnaytetyo_en,
-    koulutusaste_fi, koulutusaste_sv, koulutusaste_en, hinta)
+    koulutusaste_fi, koulutusaste_sv, koulutusaste_en, hinta,
+    maksullisuus_fi, maksullisuus_sv, maksullisuus_en)
     VALUES (:id,  :tutkintonimike_fi, :tutkintonimike_sv, :tutkintonimike_en,
     :opintoala_fi, :opintoala_sv, :opintoala_en, :tutkintoohjelma_fi, :tutkintoohjelma_sv, :tutkintoohjelma_en,
     :alkamisvuosi, :alkamiskausi_fi, :alkamiskausi_sv, :alkamiskausi_en, :suunni_kesto, :suunni_tyyppi_fi, :suunni_tyyppi_sv, :suunni_tyyppi_en,
@@ -44,7 +46,8 @@ upsert(learningOpportunity) ::= <<
     :kansval_fi, :kansval_sv, :kansval_en, :sijtyo_fi, :sijtyo_sv, :sijtyo_en,
     :sisalto_fi, :sisalto_sv, :sisalto_en, :tutkpaino_fi, :tutkpaino_sv, :tutkpaino_en,
     :opinnaytetyo_fi, :opinnaytetyo_sv, :opinnaytetyo_en,
-    :koulutusaste_fi, :koulutusaste_sv, :koulutusaste_en, :hinta)
+    :koulutusaste_fi, :koulutusaste_sv, :koulutusaste_en, :hinta,
+    :maksullisuus_fi, :maksullisuus_sv, :maksullisuus_en)
 
 >>
 

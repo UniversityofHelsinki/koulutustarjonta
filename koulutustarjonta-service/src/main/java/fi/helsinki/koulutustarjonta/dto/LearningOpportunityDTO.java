@@ -58,6 +58,8 @@ public class LearningOpportunityDTO {
     private I18NDTO competency;
     @JsonProperty("jatkoopintomahdollisuudet")
     private I18NDTO postgraduateStudies;
+    @JsonProperty("maksullisuus")
+    private I18NDTO chargeable;
     @JsonProperty("sisalto")
     private I18NDTO contents;
     @JsonProperty("koulutuksen_rakenne")
@@ -84,5 +86,4 @@ public class LearningOpportunityDTO {
     private BigDecimal price;
     @JsonProperty("yhteyshenkilot")
     private List<LOContactDTO> loContacts;
-
 }

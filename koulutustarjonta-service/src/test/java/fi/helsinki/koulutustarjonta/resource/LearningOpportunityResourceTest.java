@@ -89,8 +89,10 @@ public class LearningOpportunityResourceTest {
         DTOTestUtil.i18NDTOsEqual(expected.getResearch(), actual.getResearch());
         DTOTestUtil.i18NDTOsEqual(expected.getThesis(), actual.getThesis());
         DTOTestUtil.i18NDTOsEqual(expected.getEducationLevel(), actual.getEducationLevel());
+        DTOTestUtil.i18NDTOsEqual(expected.getChargeable(), actual.getChargeable());
         assertEquals(expected.getTeachingLanguages().size(), actual.getTeachingLanguages().size());
         assertEquals(expected.getTranslations().size(), actual.getTranslations().size());
+
 
         for (TeachingLanguageDTO expectedLang : expected.getTeachingLanguages()) {
             TeachingLanguageDTO actualLang = actual.getTeachingLanguages().stream()

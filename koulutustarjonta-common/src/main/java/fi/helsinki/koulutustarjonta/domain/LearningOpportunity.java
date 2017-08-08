@@ -41,6 +41,7 @@ public class LearningOpportunity {
     private I18N contents;//sisalto
     private I18N research;//tutkimuksen painopisteet
     private I18N thesis;//opinnaytetyo
+    private I18N chargeable; //maksullisuus
     private List<String> applicationOptions;//hakukohteet
     private List<String> provider;//tarjoaja
     private List<String> parents;

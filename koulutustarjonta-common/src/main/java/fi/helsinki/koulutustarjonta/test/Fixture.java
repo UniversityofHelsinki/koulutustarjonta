@@ -45,7 +45,7 @@ public class Fixture {
         lo.setParents(Lists.newArrayList("1.2.3"));
         lo.setEducationLevel(new I18N("education level fi", "education level sv", "education level en"));
         lo.setKeywords(Lists.newArrayList(new I18N("aihe fi", "aihe sv", "aihe en")));
-
+        lo.setChargeable(new I18N("lukukausimaksu", "läsårsavgift", "tuition fee"));
 
         lo.setContactInfos(Arrays.asList(getLoContact()));
         return lo;

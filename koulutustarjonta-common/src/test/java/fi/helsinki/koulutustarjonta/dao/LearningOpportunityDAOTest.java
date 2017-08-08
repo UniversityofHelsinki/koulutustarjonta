@@ -147,6 +147,10 @@ public class LearningOpportunityDAOTest extends BaseDAOTest {
         assertEquals(0, lo.getParents().size());
         assertNotNull(lo.getChildren());
         assertEquals(1, lo.getChildren().size());
+
+        assertEquals("läsårsavgift", lo.getChargeable().getSv());
+        assertEquals("lukukausimaksu", lo.getChargeable().getFi());
+        assertEquals("tuition fee", lo.getChargeable().getEn());
     }
 
     @Test(expected = ResourceNotFound.class)
@@ -204,6 +208,7 @@ public class LearningOpportunityDAOTest extends BaseDAOTest {
         i18NEquals(expected.getContents(), actual.getContents());
         i18NEquals(expected.getResearch(), actual.getResearch());
         i18NEquals(expected.getThesis(), actual.getThesis());
+        i18NEquals(expected.getChargeable(), actual.getChargeable());
         assertEquals(expected.getTeachingLanguages().size(), actual.getTeachingLanguages().size());
 
         for (TeachingLanguage expectedLang : expected.getTeachingLanguages()) {
