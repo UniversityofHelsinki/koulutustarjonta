@@ -99,9 +99,6 @@ public class OrganizationResourceTest {
         assertEquals(expected.getPhone(), actual.getPhone());
         assertEquals(expected.getEmail(), actual.getEmail());
         assertEquals(expected.getFax(), actual.getFax());
-        assertEquals(expected.getVisitingAddress().getStreet(), actual.getVisitingAddress().getStreet());
-        assertEquals(expected.getVisitingAddress().getPostalCode(), actual.getVisitingAddress().getPostalCode());
-        assertEquals(expected.getVisitingAddress().getPostOffice(), actual.getVisitingAddress().getPostOffice());
         assertEquals(expected.getPostalAddress().getStreet(), actual.getPostalAddress().getStreet());
         assertEquals(expected.getPostalAddress().getPostalCode(), actual.getPostalAddress().getPostalCode());
         assertEquals(expected.getPostalAddress().getPostOffice(), actual.getPostalAddress().getPostOffice());

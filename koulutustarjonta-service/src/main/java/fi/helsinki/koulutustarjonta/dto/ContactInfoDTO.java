@@ -26,8 +26,6 @@ public class ContactInfoDTO {
     private String phone;
     @JsonProperty("fax")
     private String fax;
-    @JsonProperty("kayntiosoite")
-    private AddressDTO visitingAddress;
     @JsonProperty("postiosoite")
     private AddressDTO postalAddress;
 }
