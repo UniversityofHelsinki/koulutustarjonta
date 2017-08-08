@@ -24,6 +24,7 @@ public class AttachmentMapper implements ResultSetMapper<Attachment> {
             attachment.setName(r.getString("l_nimi"));
             attachment.setDue(r.getTimestamp("l_erapaiva"));
             attachment.setDescription(r.getString("l_kuvaus"));
+            attachment.setReceiver(r.getString("l_vastaanottaja"));
             Address address = new Address();
             address.setStreet(r.getString("l_osoite"));
             address.setPostalCode(r.getString("l_postinumero"));

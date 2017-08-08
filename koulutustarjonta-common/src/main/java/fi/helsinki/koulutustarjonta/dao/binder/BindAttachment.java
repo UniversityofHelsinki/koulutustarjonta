@@ -31,6 +31,7 @@ public @interface BindAttachment {
                     q.bind("osoite", attachment.getAddress().getStreet());
                     q.bind("postinumero", attachment.getAddress().getPostalCode());
                     q.bind("ptoimipaikka", attachment.getAddress().getPostOffice());
+                    q.bind("vastaanottaja", attachment.getReceiver());
                 }
             };
         }

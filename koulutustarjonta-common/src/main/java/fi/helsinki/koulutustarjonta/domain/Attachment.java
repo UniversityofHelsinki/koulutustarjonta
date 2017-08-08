@@ -18,5 +18,6 @@ public class Attachment {
     private String description;
     private Date due;
     private Address address;
+    private String receiver; // liitteenVastaanottaja
 }
 

@@ -127,6 +127,7 @@ public class ApplicationOptionDAOTest extends BaseDAOTest {
         assertEquals("liite katuosoite", attachmentAddress.getStreet());
         assertEquals("liite postinumero", attachmentAddress.getPostalCode());
         assertEquals("liite ptoimipaikka", attachmentAddress.getPostOffice());
+        assertEquals("liite vastaanottaja", attachment.getReceiver());
         assertNotNull(ao.getRequirements());
         Requirement requirement = ao.getRequirements().get(0);
         assertEquals(999999L, requirement.getId());

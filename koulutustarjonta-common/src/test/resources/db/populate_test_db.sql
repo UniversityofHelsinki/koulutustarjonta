@@ -162,11 +162,11 @@ TO_DATE('2015/01/03 18:00:00', 'yyyy/mm/dd hh24:mi:ss'),
 'postitoimipaikka');
 
 INSERT INTO liite
-(id, id_hakukohde, kieli, nimi, erapaiva, kuvaus, osoite, postinumero, ptoimipaikka)
+(id, id_hakukohde, kieli, nimi, erapaiva, kuvaus, osoite, postinumero, ptoimipaikka, vastaanottaja)
 VALUES
 ('liite_id1', 'hakukohde_id1', 'fi', 'liite nimi',
 TO_DATE('2015/02/01 12:00:00', 'yyyy/mm/dd hh24:mi:ss'),
-'liite kuvaus', 'liite katuosoite', 'liite postinumero', 'liite ptoimipaikka');
+'liite kuvaus', 'liite katuosoite', 'liite postinumero', 'liite ptoimipaikka', 'liite vastaanottaja');
 
 INSERT INTO hakukelp
 (id, id_hakukohde, kuvaus_fi, kuvaus_sv, kuvaus_en)

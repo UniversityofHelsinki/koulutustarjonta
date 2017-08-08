@@ -28,6 +28,10 @@ public class AttachmentConverter extends BaseConverter {
         }
         attachment.setDue(new Date(attachmentNode.get("toimitettavaMennessa").longValue()));
         attachment.setAddress(addressConverter.convert(attachmentNode.get("liitteenToimitusOsoite")));
+        JsonNode liitteenVastaanottaja = attachmentNode.get("liitteenVastaanottaja");
+        if ( liitteenVastaanottaja != null) {
+            attachment.setReceiver(liitteenVastaanottaja.textValue());
+        }
         return attachment;
     }
 
