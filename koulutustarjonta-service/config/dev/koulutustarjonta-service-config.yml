@@ -12,6 +12,7 @@ logging:
     - type: console
       threshold: ALL
       target: stdout
+      timeZone: EET
 
 database:
   # the name of your JDBC driver

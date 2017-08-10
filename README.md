@@ -76,5 +76,5 @@ Test environment
 ----------------
 Test environment doesn't update database automatically, it instead has to be updated by hand using command
 ```
-./gradlew update -Pdb.url=jdbc:oracle:thin:@laukku.it.helsinki.fi:1521:tikeuni -Pdb.user=<db user> -Pdb.passwd=<db password>
+./gradlew update -Pdb.url=jdbc:oracle:thin:@torsu.it.helsinki.fi:1521:uhora -Pdb.user=<db user> -Pdb.passwd=<db password>
 ```

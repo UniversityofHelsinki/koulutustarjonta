@@ -13,7 +13,7 @@ logging:
       currentLogFilename: /opt/koulutustarjonta-service/log/koulutustarjonta-service.log
       archivedLogFilenamePattern: /opt/koulutustarjonta-service/log/archive/koulutustarjonta-service-%d.log.gz
       archivedFileCount: 15
-      timeZone: UTC
+      timeZone: EET
 
 database:
   # the name of your JDBC driver
