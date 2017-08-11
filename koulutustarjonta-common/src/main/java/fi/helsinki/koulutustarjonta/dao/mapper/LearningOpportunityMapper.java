@@ -1,9 +1,7 @@
 package fi.helsinki.koulutustarjonta.dao.mapper;
 
-import fi.helsinki.koulutustarjonta.domain.I18N;
 import fi.helsinki.koulutustarjonta.domain.LOContact;
 import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
-import fi.helsinki.koulutustarjonta.domain.TeachingLanguage;
 import org.skife.jdbi.v2.StatementContext;
 import org.skife.jdbi.v2.tweak.ResultSetMapper;
 
@@ -11,9 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import static fi.helsinki.koulutustarjonta.dao.mapper.MapperUtil.resolveI18N;
-import static fi.helsinki.koulutustarjonta.dao.mapper.MapperUtil.resolveI18NList;
-import static fi.helsinki.koulutustarjonta.dao.mapper.MapperUtil.resolveStringList;
+import static fi.helsinki.koulutustarjonta.dao.mapper.MapperUtil.*;
 
 /**
  * @author Hannu Lyytikainen

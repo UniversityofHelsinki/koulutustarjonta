@@ -3,7 +3,6 @@ package fi.helsinki.koulutustarjonta.dao.mapper;
 import fi.helsinki.koulutustarjonta.dao.util.ApplicationSystemJoinRow;
 import fi.helsinki.koulutustarjonta.domain.ApplicationPeriod;
 import fi.helsinki.koulutustarjonta.domain.ApplicationSystem;
-import fi.helsinki.koulutustarjonta.domain.I18N;
 import fi.helsinki.koulutustarjonta.domain.Season;
 import org.skife.jdbi.v2.StatementContext;
 import org.skife.jdbi.v2.tweak.ResultSetMapper;

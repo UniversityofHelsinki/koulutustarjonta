@@ -1,6 +1,5 @@
 package fi.helsinki.koulutustarjonta.dao;
 
-import com.google.common.collect.Lists;
 import fi.helsinki.koulutustarjonta.dao.exception.ResourceNotFound;
 import fi.helsinki.koulutustarjonta.dao.jdbi.OrganizationJDBI;
 import fi.helsinki.koulutustarjonta.domain.ContactInfo;

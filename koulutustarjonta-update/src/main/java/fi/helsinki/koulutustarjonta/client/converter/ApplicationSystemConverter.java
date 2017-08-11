@@ -4,7 +4,10 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.collect.Lists;
 import fi.helsinki.koulutustarjonta.client.KoodistoClient;
 import fi.helsinki.koulutustarjonta.config.OpintopolkuConfiguration;
-import fi.helsinki.koulutustarjonta.domain.*;
+import fi.helsinki.koulutustarjonta.domain.ApplicationPeriod;
+import fi.helsinki.koulutustarjonta.domain.ApplicationSystem;
+import fi.helsinki.koulutustarjonta.domain.Code;
+import fi.helsinki.koulutustarjonta.domain.Season;
 
 import java.util.Date;
 import java.util.List;

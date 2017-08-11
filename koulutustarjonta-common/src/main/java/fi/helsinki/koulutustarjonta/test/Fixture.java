@@ -6,7 +6,6 @@ import fi.helsinki.koulutustarjonta.domain.*;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 /**
  * @author Hannu Lyytikainen

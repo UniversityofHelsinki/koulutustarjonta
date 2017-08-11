@@ -6,8 +6,6 @@ import org.skife.jdbi.v2.tweak.ResultSetMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Calendar;
-import java.util.Date;
 
 import static fi.helsinki.koulutustarjonta.domain.UpdateResult.State;
 

@@ -1,11 +1,11 @@
 package fi.helsinki.koulutustarjonta.dao.mapper;
 
+import com.google.common.collect.Lists;
 import fi.helsinki.koulutustarjonta.domain.I18N;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import com.google.common.collect.Lists;
 
 /**
  * @author Hannu Lyytikainen

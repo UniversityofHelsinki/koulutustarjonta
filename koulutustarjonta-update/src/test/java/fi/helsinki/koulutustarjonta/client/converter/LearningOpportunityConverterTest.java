@@ -3,8 +3,10 @@ package fi.helsinki.koulutustarjonta.client.converter;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.collect.Lists;
 import fi.helsinki.koulutustarjonta.client.KoodistoClient;
-import fi.helsinki.koulutustarjonta.domain.*;
-import oracle.jdbc.pool.OraclePooledConnection;
+import fi.helsinki.koulutustarjonta.domain.I18N;
+import fi.helsinki.koulutustarjonta.domain.LOContact;
+import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
+import fi.helsinki.koulutustarjonta.domain.TeachingLanguage;
 import org.junit.Before;
 import org.junit.Test;
 

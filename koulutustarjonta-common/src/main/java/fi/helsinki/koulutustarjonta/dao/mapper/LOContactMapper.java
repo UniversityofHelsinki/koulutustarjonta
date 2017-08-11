@@ -8,7 +8,6 @@ import org.skife.jdbi.v2.tweak.ResultSetMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static fi.helsinki.koulutustarjonta.dao.mapper.MapperUtil.resolveStringList;
 

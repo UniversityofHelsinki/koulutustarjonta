@@ -1,7 +1,6 @@
 package fi.helsinki.koulutustarjonta.dao.binder;
 
 import fi.helsinki.koulutustarjonta.domain.Organization;
-import fi.helsinki.koulutustarjonta.domain.Some;
 import org.apache.log4j.Logger;
 import org.skife.jdbi.v2.SQLStatement;
 import org.skife.jdbi.v2.sqlobject.Binder;

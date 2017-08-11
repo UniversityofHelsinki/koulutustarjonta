@@ -9,7 +9,6 @@ import org.skife.jdbi.v2.sqlobject.BinderFactory;
 import org.skife.jdbi.v2.sqlobject.BindingAnnotation;
 
 import java.lang.annotation.*;
-import java.util.List;
 
 @BindingAnnotation(BindLOContact.LOContactBinderFactory.class)
 @Retention(RetentionPolicy.RUNTIME)

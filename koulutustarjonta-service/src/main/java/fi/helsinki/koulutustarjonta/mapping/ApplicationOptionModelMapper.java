@@ -4,7 +4,6 @@ import fi.helsinki.koulutustarjonta.domain.ApplicationOption;
 import fi.helsinki.koulutustarjonta.domain.Requirement;
 import fi.helsinki.koulutustarjonta.dto.ApplicationOptionDTO;
 import fi.helsinki.koulutustarjonta.dto.I18NDTO;
-import javafx.application.Application;
 import org.modelmapper.AbstractConverter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
