@@ -50,5 +50,6 @@ public interface ApplicationSystemJDBI extends Transactional<ApplicationSystemJD
 
     @SqlUpdate
     void removeOutdatedApplicationSystems(@Bind("current_year") Integer currentYear,
-                                          @Bind("current_month") Integer currentMonth);
+                                          @Bind("current_month") Integer currentMonth,
+                                          @Bind("current_day") Integer currentDay);
 }

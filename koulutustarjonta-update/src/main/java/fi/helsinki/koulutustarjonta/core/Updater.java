@@ -11,7 +11,7 @@ import org.apache.commons.lang.exception.ExceptionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.time.YearMonth;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -102,12 +102,15 @@ public class Updater {
     private void saveLearningOpportunities(List<String> learningOpportunityOids) {
         learningOpportunityOids.forEach(loOid -> {
             LearningOpportunity learningOpportunity = tryToGetResource(loOid, LearningOpportunity.class);
-            YearMonth currentYearMonth = YearMonth.now();
+
+            //Check that learning opportunity is not expired
+            LocalDate currentDate = LocalDate.now();
             Integer startingYear = learningOpportunity.getStartYear();
             String startingSeason = learningOpportunity.getStartSeason().getEn();
-            YearMonth startingYearMonth = getStartingYearMonth(startingYear, startingSeason);
-            LOG.info("StartingYearMonth: "+startingYearMonth.toString());
-            if(currentYearMonth.isAfter(startingYearMonth)) {
+            //Learning opportunity should not be shown after this date
+            LocalDate expiryDate = getExpiryDate(startingYear, startingSeason);
+            LOG.info("expiryDate: "+expiryDate.toString());
+            if(currentDate.isAfter(expiryDate)) {
                 LOG.info("Ignoring an old learning opportunity: "+loOid);
             }
             else{
@@ -126,18 +129,18 @@ public class Updater {
             ApplicationOption ao = tryToGetResource(aoOid, ApplicationOption.class);
             ApplicationSystem as = tryToGetResource(ao.getApplicationSystem(), ApplicationSystem.class);
 
-            YearMonth currentYearMonth = YearMonth.now();
-
+            //Check that application option is not expired
+            LocalDate currentDate = LocalDate.now();
             Integer startingYear = as.getEducationStartYear();
-
             Season educationStartSeason = as.getEducationStartSeason();
             String startSeason = null;
             if (educationStartSeason != null) {
                 startSeason = educationStartSeason.getValue();
             }
-            YearMonth startingYearMonth = getStartingYearMonth(startingYear, startSeason);
+            //application option should not be shown after this date
+            LocalDate expiryDate = getExpiryDate(startingYear, startSeason);
 
-            if(currentYearMonth.isAfter(startingYearMonth)) {
+            if(currentDate.isAfter(expiryDate)) {
                 LOG.info("Ignoring an old application system: "+as.getOid());
             }
             else{
@@ -155,19 +158,21 @@ public class Updater {
         }
     }
 
-    private YearMonth getStartingYearMonth(Integer startingYear, String startingSeason){
+    private LocalDate getExpiryDate(int startingYear, String startingSeason){
+        //NOTE: If you change the dates here, remember to change them also in
+        //.sql.stg files both for application system and learning opportunity
+        //TODO: change it so that the value is read from configuration file
         if("Spring".equals(startingSeason)){
-            return YearMonth.of(startingYear, 1);
+            //Spring learning opportunities and application options expire in February
+            return LocalDate.of(startingYear, 2, 1);
         }
-        //Autumn courses start in September, but they can be deleted in November.
-        //So I set the starting date to be in October, because of the system that
-        //checks for deletion
+        //Expiry date for autumn educations
         else if("Autumn".equals(startingSeason)){
-            return YearMonth.of(startingYear, 10);
+            return LocalDate.of(startingYear, 10, 28);
         }
         else{
             LOG.warn("Missing starting season, defaulting to Autumn.");
-            return YearMonth.of(startingYear, 10);
+            return LocalDate.of(startingYear, 10, 28);
         }
     }
 

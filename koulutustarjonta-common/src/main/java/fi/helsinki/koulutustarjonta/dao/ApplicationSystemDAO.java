@@ -8,6 +8,7 @@ import fi.helsinki.koulutustarjonta.domain.ApplicationSystem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -63,6 +64,7 @@ public class ApplicationSystemDAO {
     }
 
     public void removeOutdatedApplicationSystems() {
-        jdbi.removeOutdatedApplicationSystems(YearMonth.now().getYear(), YearMonth.now().getMonthValue());
+        LocalDate currentDate = LocalDate.now();
+        jdbi.removeOutdatedApplicationSystems(currentDate.getYear(), currentDate.getMonthValue(), currentDate.getDayOfMonth());
     }
 }

@@ -80,5 +80,6 @@ public interface LearningOpportunityJDBI extends Transactional<LearningOpportuni
 
     @SqlUpdate
     void removeOutdatedLearningOpportunities(@Bind("current_year") Integer currentYear,
-                                             @Bind("current_month") Integer currentMonth);
+                                             @Bind("current_month") Integer currentMonth,
+                                             @Bind("current_day") Integer currentDay);
 }

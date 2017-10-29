@@ -9,6 +9,7 @@ import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -93,7 +94,8 @@ public class LearningOpportunityDAO {
     }
 
     public void removeOutdatedLearningOpportunities() {
-        jdbi.removeOutdatedLearningOpportunities(YearMonth.now().getYear(), YearMonth.now().getMonthValue());
+        LocalDate currentDate = LocalDate.now();
+        jdbi.removeOutdatedLearningOpportunities(currentDate.getYear(), currentDate.getMonthValue(), currentDate.getDayOfMonth());
     }
 
     public List<LearningOpportunity> findAll() {
