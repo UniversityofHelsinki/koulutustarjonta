@@ -73,21 +73,21 @@ database:
 tarjontaClient:
   timeout: 10000ms
   connectionTimeout: 10s
-  baseUrl: https://od.helsinki.fi/dev/tarjonta-service/rest/v1/
+  baseUrl: https://virkailija.testiopintopolku.fi/tarjonta-service/rest/v1/
   opintopolku:
     baseUrl: https://koulutus.opintopolku.fi
 
 organisaatioClient:
   timeout: 10000ms
   connectionTimeout: 10s
-  baseUrl: https://od.helsinki.fi/dev/organisaatio-service/rest/
+  baseUrl: https://virkailija.testiopintopolku.fi/organisaatio-service/rest/
   organisaatioOidIgnore:
         - 1.2.246.562.10.74168867104
 
 koodistoClient:
   timeout: 10000ms
   connectionTimeout: 10s
-  baseUrl: https://od.helsinki.fi/dev/koodisto-service/rest/json/
+  baseUrl: https://virkailija.testiopintopolku.fi/koodisto-service/rest/json/
 
 sundial:
   thread-pool-size: 5
