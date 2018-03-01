@@ -63,6 +63,8 @@ public class Updater {
     }
 
     private void handleAllOrganizations(Result result) {
+        //Get all organizations under the defined parentOid, there are also other organizations that are not
+        //under this organization
         List<String> organizationOids = organisaatioClient.resolveFacultyOids("1.2.246.562.10.39218317368");
         organizationOids.forEach(organizationOid -> {
             try {
@@ -79,8 +81,10 @@ public class Updater {
     }
 
     private void handleOrganization(String organizationOid) throws DataUpdateException {
+        // Get learning opportunities (koulutus) by organization
         List<String> learningOpportunityOids = tarjontaClient.getLearningOpportunityOidsByProvider(organizationOid);
         LOG.debug(String.format("Found %d learning opportunities for organization %s", learningOpportunityOids.size(), organizationOid));
+        // Get application options (hakukohde) by organization
         List<String> applicationOptionOids = tarjontaClient.getApplicationOptionOidsByProvider(organizationOid);
         LOG.debug(String.format("Found %d application options for organization %s", applicationOptionOids.size(), organizationOid));
         if (learningOpportunityOids.size() > 0 || applicationOptionOids.size() > 0) {

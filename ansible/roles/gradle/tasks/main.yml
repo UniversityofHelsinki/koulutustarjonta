@@ -10,6 +10,11 @@
       tags:
         - gradle
 
+    - name: Install selinux python binding
+      yum: name="libselinux-python" state=latest
+      tags:
+        - gradle
+        
     - name: Download Gradle {{ gradle_version }}
       get_url: url="{{ gradle_url }}" dest="{{ cache_path }}/{{ gradle_zip }}"
       tags:
