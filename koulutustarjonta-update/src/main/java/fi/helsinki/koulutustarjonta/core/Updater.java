@@ -14,13 +14,14 @@ import org.slf4j.LoggerFactory;
 import java.time.LocalDate;
 import java.util.List;
 
+
 /**
  * @author Hannu Lyytikainen
  */
 public class Updater {
 
     private static final Logger LOG = LoggerFactory.getLogger(Updater.class);
-
+    private int retryCount = 0;
     final TarjontaClient tarjontaClient;
     final OrganisaatioClient organisaatioClient;
     final LearningOpportunityDAO learningOpportunityDAO;
@@ -51,10 +52,24 @@ public class Updater {
         try {
             handleAllOrganizations(result);
         } catch (Exception exception) {
+            //It was noticed that the Update phase failed seemingly randomly at fetching data from the OPH API
+            //Since a new try often was succesful, this retrying phase has been added here
+            this.retryCount++;
+            if(this.retryCount < 5){
+                LOG.error("Error handling all organizations", exception);
+                LOG.error("Trying again, current retryCount: "+ retryCount);
+                try {
+                    Thread.sleep(30000); //30 seconds wait
+                }
+                catch (Exception sleepException){
+                    LOG.error("Thread sleep failed with exception: " + sleepException);
+                }
+                this.update();
+            }
             result.addError(ExceptionUtils.getStackTrace(exception));
             LOG.error("Error handling all organizations", exception);
         }
-
+        this.retryCount = 0; //Update was succesful so the value is set to zero again
         UpdateResult updateResult = updateResultConverter.toUpdateResult(result);
         LOG.info(updateResult.toString());
         updateResultDAO.save(updateResult);
