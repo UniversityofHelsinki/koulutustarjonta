@@ -47,7 +47,7 @@ wget localhost:9090/update
 Running tests
 -------------
 Run all tests
-````
+```
 ./gradlew test
 ```
 or for a single module eg.
