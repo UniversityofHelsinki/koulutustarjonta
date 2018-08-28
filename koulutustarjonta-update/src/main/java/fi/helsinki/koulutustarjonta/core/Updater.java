@@ -21,7 +21,6 @@ import java.util.List;
 public class Updater {
 
     private static final Logger LOG = LoggerFactory.getLogger(Updater.class);
-    private int retryCount = 0;
     final TarjontaClient tarjontaClient;
     final OrganisaatioClient organisaatioClient;
     final LearningOpportunityDAO learningOpportunityDAO;
@@ -52,24 +51,9 @@ public class Updater {
         try {
             handleAllOrganizations(result);
         } catch (Exception exception) {
-            //It was noticed that the Update phase failed seemingly randomly at fetching data from the OPH API
-            //Since a new try often was succesful, this retrying phase has been added here
-            this.retryCount++;
-            if(this.retryCount < 5){
-                LOG.error("Error handling all organizations", exception);
-                LOG.error("Trying again, current retryCount: "+ retryCount);
-                try {
-                    Thread.sleep(30000); //30 seconds wait
-                }
-                catch (Exception sleepException){
-                    LOG.error("Thread sleep failed with exception: " + sleepException);
-                }
-                this.update();
-            }
             result.addError(ExceptionUtils.getStackTrace(exception));
             LOG.error("Error handling all organizations", exception);
         }
-        this.retryCount = 0; //Update was succesful so the value is set to zero again
         UpdateResult updateResult = updateResultConverter.toUpdateResult(result);
         LOG.info(updateResult.toString());
         updateResultDAO.save(updateResult);
@@ -77,20 +61,56 @@ public class Updater {
         LOG.debug(String.format("Data update completed, update took %d seconds", (System.currentTimeMillis() - started) / 1000));
     }
 
+
     private void handleAllOrganizations(Result result) {
         //Get all organizations under the defined parentOid, there are also other organizations that are not
         //under this organization
         List<String> organizationOids = organisaatioClient.resolveFacultyOids("1.2.246.562.10.39218317368");
         organizationOids.forEach(organizationOid -> {
-            try {
-                handleOrganization(organizationOid);
-            } catch (ResourceException resourceException) {
-                LOG.error("Error handling organization " + organizationOid, resourceException);
-                result.addError(String.format("Failed to get resource %s with oid %s", resourceException.getClazz(),
-                        resourceException.getOid()));
-            } catch (Exception exception) {
-                LOG.error("Error handling organization " + organizationOid, exception);
-                result.addError(ExceptionUtils.getFullStackTrace(exception));
+            int maxTries = 3;
+            int tries = 1;
+            // We try to handle each organization again in case of failures. This was implemented, because of
+            // seemingly random errors possiibly related to network connection issues. There is a 30 second pause
+            // between each try
+            while (tries <= maxTries) {
+                try {
+                    handleOrganization(organizationOid);
+                    break; // No retries if the call is succesful
+                } catch (ResourceException resourceException) {
+                    tries++;
+                    if (tries > maxTries) {
+                        LOG.error("Error handling organization " + organizationOid, resourceException);
+                        result.addError(String.format("Failed to get resource %s with oid %s", resourceException.getClazz(),
+                                resourceException.getOid()));
+                        try{
+                            Thread.sleep(30000);
+                        }
+                        catch (InterruptedException e){
+                            LOG.error(e.getMessage());
+                        }
+                    }
+                    else {
+                        LOG.warn("Handling organization failed, trying again. Organization oid: " + organizationOid +
+                                " Exception was: " + resourceException);
+                    }
+
+                } catch (Exception exception) {
+                    tries++;
+                    if (tries > maxTries) {
+                        LOG.error("Error handling organization " + organizationOid, exception);
+                        result.addError(ExceptionUtils.getFullStackTrace(exception));
+                        try{
+                            Thread.sleep(30000);
+                        }
+                        catch (InterruptedException e){
+                            LOG.error(e.getMessage());
+                        }
+                    }
+                    else {
+                        LOG.warn("Handling organization failed, trying again. Organization oid: " + organizationOid +
+                        " Exception was: " + exception);
+                    }
+                }
             }
         });
     }
