@@ -82,16 +82,16 @@ public class Updater {
                         LOG.error("Error handling organization " + organizationOid, resourceException);
                         result.addError(String.format("Failed to get resource %s with oid %s", resourceException.getClazz(),
                                 resourceException.getOid()));
+                    }
+                    else {
+                        LOG.warn("Handling organization failed, trying again after 30 second wait. Organization oid: " + organizationOid +
+                                " Exception was: " + resourceException);
                         try{
                             Thread.sleep(30000);
                         }
                         catch (InterruptedException e){
                             LOG.error(e.getMessage());
                         }
-                    }
-                    else {
-                        LOG.warn("Handling organization failed, trying again. Organization oid: " + organizationOid +
-                                " Exception was: " + resourceException);
                     }
 
                 } catch (Exception exception) {
@@ -99,16 +99,16 @@ public class Updater {
                     if (tries > maxTries) {
                         LOG.error("Error handling organization " + organizationOid, exception);
                         result.addError(ExceptionUtils.getFullStackTrace(exception));
+                    }
+                    else {
+                        LOG.warn("Handling organization failed, trying again after 30 second wait. Organization oid: " + organizationOid +
+                        " Exception was: " + exception);
                         try{
                             Thread.sleep(30000);
                         }
                         catch (InterruptedException e){
                             LOG.error(e.getMessage());
                         }
-                    }
-                    else {
-                        LOG.warn("Handling organization failed, trying again. Organization oid: " + organizationOid +
-                        " Exception was: " + exception);
                     }
                 }
             }
