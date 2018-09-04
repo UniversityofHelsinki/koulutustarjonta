@@ -75,7 +75,8 @@ public class Updater {
                         resourceException.getOid()));
             } catch (Exception exception) {
                 LOG.error("Error handling organization " + organizationOid, exception);
-                result.addError(String.format("Error handling organization with oid %s, exception: %s", organizationOid, exception));
+                result.addError(String.format("Failed to get resource organization with oid %s. Exception was: %s",
+                        organizationOid, exception));
             }
         });
     }

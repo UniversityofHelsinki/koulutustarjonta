@@ -69,9 +69,8 @@ public class UpdaterTest {
         when(tarjontaClient.getLearningOpportunityOidsByProvider("1.2.3")).thenThrow(new ClientHandlerException());
 
         updater.update();
-
         verify(updateResultDAO, times(1)).save(argThat(allOf(errorsContain(
-                "[\"com.sun.jersey.api.client.ClientHandlerException"), stateEquals(UpdateResult.State.ERROR))));
+                "com.sun.jersey.api.client.ClientHandlerException"), stateEquals(UpdateResult.State.ERROR))));
     }
 
     @Test
@@ -81,7 +80,6 @@ public class UpdaterTest {
         when(organisaatioClient.getOrganization("1.2.3")).thenThrow(new ClientHandlerException());
 
         updater.update();
-
         verify(updateResultDAO, times(1)).save(argThat(allOf(errorsEqual(
                         "[\"Failed to get resource class fi.helsinki.koulutustarjonta.domain.Organization with oid 1.2.3\"]"),
                 stateEquals(UpdateResult.State.ERROR))));
