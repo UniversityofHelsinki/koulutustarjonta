@@ -67,50 +67,15 @@ public class Updater {
         //under this organization
         List<String> organizationOids = organisaatioClient.resolveFacultyOids("1.2.246.562.10.39218317368");
         organizationOids.forEach(organizationOid -> {
-            int maxTries = 3;
-            int tries = 1;
-            // We try to handle each organization again in case of failures. This was implemented, because of
-            // seemingly random errors possiibly related to network connection issues. There is a 30 second pause
-            // between each try
-            while (tries <= maxTries) {
-                try {
-                    handleOrganization(organizationOid);
-                    break; // No retries if the call is succesful
-                } catch (ResourceException resourceException) {
-                    tries++;
-                    if (tries > maxTries) {
-                        LOG.error("Error handling organization " + organizationOid, resourceException);
-                        result.addError(String.format("Failed to get resource %s with oid %s", resourceException.getClazz(),
-                                resourceException.getOid()));
-                    }
-                    else {
-                        LOG.warn("Handling organization failed, trying again after 30 second wait. Organization oid: " + organizationOid +
-                                " Exception was: " + resourceException);
-                        try{
-                            Thread.sleep(30000);
-                        }
-                        catch (InterruptedException e){
-                            LOG.error(e.getMessage());
-                        }
-                    }
-
-                } catch (Exception exception) {
-                    tries++;
-                    if (tries > maxTries) {
-                        LOG.error("Error handling organization " + organizationOid, exception);
-                        result.addError(ExceptionUtils.getFullStackTrace(exception));
-                    }
-                    else {
-                        LOG.warn("Handling organization failed, trying again after 30 second wait. Organization oid: " + organizationOid +
-                        " Exception was: " + exception);
-                        try{
-                            Thread.sleep(30000);
-                        }
-                        catch (InterruptedException e){
-                            LOG.error(e.getMessage());
-                        }
-                    }
-                }
+            try {
+                handleOrganization(organizationOid);
+            } catch (ResourceException resourceException) {
+                LOG.error("Error handling organization " + organizationOid, resourceException);
+                result.addError(String.format("Failed to get resource %s with oid %s", resourceException.getClazz(),
+                        resourceException.getOid()));
+            } catch (Exception exception) {
+                LOG.error("Error handling organization " + organizationOid, exception);
+                result.addError(String.format("Error handling organization with oid %s, exception: %s", organizationOid, exception));
             }
         });
     }
@@ -216,19 +181,42 @@ public class Updater {
     }
 
     private <T> T tryToGetResource(String oid, Class<T> clazz) {
-        try {
-            if (clazz.equals(ApplicationOption.class)) {
-                return clazz.cast(tarjontaClient.getApplicationOption(oid));
-            } else if (clazz.equals(ApplicationSystem.class)) {
-                return clazz.cast(tarjontaClient.getApplicationSystem(oid));
-            } else if (clazz.equals(LearningOpportunity.class)) {
-                return clazz.cast(tarjontaClient.getLearningOpportunity(oid));
-            } else {
-                return clazz.cast(organisaatioClient.getOrganization(oid));
+        int maxTries = 3;
+        int tries = 1;
+        // We try to handle each organization again in case of failures. This was implemented, because of
+        // seemingly random errors possiibly related to network connection issues. There is a 30 second pause
+        // between each try
+        while (tries <= maxTries) {
+            try {
+                if (clazz.equals(ApplicationOption.class)) {
+                    return clazz.cast(tarjontaClient.getApplicationOption(oid));
+                } else if (clazz.equals(ApplicationSystem.class)) {
+                    return clazz.cast(tarjontaClient.getApplicationSystem(oid));
+                } else if (clazz.equals(LearningOpportunity.class)) {
+                    return clazz.cast(tarjontaClient.getLearningOpportunity(oid));
+                } else {
+                    return clazz.cast(organisaatioClient.getOrganization(oid));
+                }
+            } catch (Exception exception) {
+                tries++;
+                if (tries > maxTries) {
+                    LOG.error("Error getting resource of type " +clazz.getName() + "with oid: " + oid, exception);
+                    throw new ResourceException(oid, clazz);
+                }
+                else {
+                    LOG.warn("Handling resource of type "  + clazz.getName() + ". Trying again after 30 second wait. Resource oid: " + oid +
+                            " Exception was: " + exception);
+                    try{
+                        Thread.sleep(30000);
+                    }
+                    catch (InterruptedException e){
+                        LOG.error(e.getMessage());
+                    }
+                }
             }
-        } catch (Exception exception) {
-            LOG.error(String.format("Error getting resource %s with OID %s",clazz.toString(), oid), exception);
-            throw new ResourceException(oid, clazz);
         }
+        //This error should usually be thrown already earlier, but was required to ensure a return value
+        LOG.error("Error getting resource of type " +clazz.getName() + "with oid: " + oid);
+        throw new ResourceException(oid, clazz);
     }
 }
