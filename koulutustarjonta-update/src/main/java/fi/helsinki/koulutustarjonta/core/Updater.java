@@ -67,8 +67,6 @@ public class Updater {
         //Get all organizations under the defined parentOid, there are also other organizations that are not
         //under this organization
         List<String> organizationOids = organisaatioClient.resolveFacultyOids("1.2.246.562.10.39218317368");
-        //List<String> organizationOids = new ArrayList<>();
-        //organizationOids.add("1.2.246.562.10.37753840224");
         organizationOids.forEach(organizationOid -> {
             try {
                 handleOrganization(organizationOid);
