@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.ArrayList;
 
 
 /**
@@ -66,6 +67,8 @@ public class Updater {
         //Get all organizations under the defined parentOid, there are also other organizations that are not
         //under this organization
         List<String> organizationOids = organisaatioClient.resolveFacultyOids("1.2.246.562.10.39218317368");
+        //List<String> organizationOids = new ArrayList<>();
+        //organizationOids.add("1.2.246.562.10.37753840224");
         organizationOids.forEach(organizationOid -> {
             try {
                 handleOrganization(organizationOid);
@@ -84,10 +87,22 @@ public class Updater {
     private void handleOrganization(String organizationOid) throws DataUpdateException {
         // Get learning opportunities (koulutus) by organization
         List<String> learningOpportunityOids = tarjontaClient.getLearningOpportunityOidsByProvider(organizationOid);
+
+        //Get learning opportunities with wrong education level and remove them from the list
+        List<String> learningOpportunityOidsWithWrongEducationLevel = tarjontaClient.getLearningOpportunityOidsWithWrongEducationLevel(learningOpportunityOids);
+        LOG.info("Learning opportunities with wrong education level: " + learningOpportunityOidsWithWrongEducationLevel);
+        learningOpportunityOids.removeIf(oid -> learningOpportunityOidsWithWrongEducationLevel.contains(oid));
+
         LOG.debug(String.format("Found %d learning opportunities for organization %s", learningOpportunityOids.size(), organizationOid));
-        // Get application options (hakukohde) by organization
+
+        // Get application options (hakukohde) by organization and remove those related to removed learning opportunities
         List<String> applicationOptionOids = tarjontaClient.getApplicationOptionOidsByProvider(organizationOid);
+        applicationOptionOids = tarjontaClient.removeApplicationOptionOidsRelatedToLearningOpportunitiesWithWrongEducationLevel(applicationOptionOids, learningOpportunityOidsWithWrongEducationLevel);
+
         LOG.debug(String.format("Found %d application options for organization %s", applicationOptionOids.size(), organizationOid));
+
+        // Below, data is saved to the database. The order matters, because of the dependencies
+        // in the SQL data model
         if (learningOpportunityOids.size() > 0 || applicationOptionOids.size() > 0) {
             saveOrganization(organizationOid);
             saveApplicationOptions(applicationOptionOids);
