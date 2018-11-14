@@ -15,6 +15,8 @@ import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -197,8 +199,34 @@ public class TarjontaClient {
     }
 
     private JsonNode getApplicationOptionJson(String oid) {
+        LOG.debug("Get application option JSON with oid:" + oid);
         return applicationOptionResource.path(oid)
                 .get(new GenericType<JsonNode>() {});
+    }
+
+    public List<String> getLearningOpportunityOidsWithWrongEducationLevel(List<String> allLearningOpportunityOids) {
+        List<String> acceptedEducationLevels = Arrays.asList("Tohtorin tutkinto", "Alempi korkeakoulututkinto", "Ylempi korkeakoulututkinto");
+        List<String> oidReturnList = new ArrayList<>();
+        allLearningOpportunityOids.forEach(oid -> {
+            JsonNode apiCallResult = learningOpportunitResource.path(oid).get(new GenericType<JsonNode>() {});
+            JsonNode content = apiCallResult.get("result");
+            String educationLevel = content.get("koulutusaste").get("nimi").textValue();
+            if( educationLevel == null || !acceptedEducationLevels.contains(educationLevel)) {
+                oidReturnList.add(oid);
+            }
+        });
+        return oidReturnList;
+    }
+
+    public List<String> removeApplicationOptionOidsRelatedToLearningOpportunitiesWithWrongEducationLevel(List<String> applicationOptionOidList, List<String> learningOpportunityOidsToRemove) {
+        List<String> applicationOptionRemoveList = new ArrayList<>();
+        learningOpportunityOidsToRemove.forEach( learningOpportunityOid -> {
+            List<String> relatedApplicationOptionOids = this.getApplicationOptionOidsByLearningOpportunity(learningOpportunityOid);
+            applicationOptionRemoveList.addAll(relatedApplicationOptionOids);
+        });
+        LOG.info("Removing application options opportunities: ", applicationOptionRemoveList);
+        applicationOptionOidList.removeAll(applicationOptionRemoveList);
+        return applicationOptionOidList;
     }
 
     private boolean statusOk(JsonNode apiResult) {
