@@ -32,4 +32,5 @@ public class ApplicationOption {
     private String aoFormUrl;
     private String asFormUrl;
     private boolean asSystemApplicationForm;
+    private boolean AtaruTypeFormUrl;
 }

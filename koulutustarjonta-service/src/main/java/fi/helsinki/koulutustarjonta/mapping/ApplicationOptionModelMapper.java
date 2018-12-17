@@ -59,7 +59,9 @@ public class ApplicationOptionModelMapper extends ModelMapper {
         @Override
         protected I18NDTO convert(ApplicationOption source) {
             boolean systemApplicationForm = source.isAsSystemApplicationForm();
-            if (!systemApplicationForm && source.getAsFormUrl() != null) {
+            if(source.isAtaruTypeFormUrl()){
+                return ataruTypeUrl(source.getOid());
+            } else if (!systemApplicationForm && source.getAsFormUrl() != null) {
                 return hakuperusteetUrl(source.getOid());
             } else if (source.getAsFormUrl() != null && systemApplicationForm) {
                 return opintopolkuUrl(source.getApplicationSystem());
@@ -83,6 +85,15 @@ public class ApplicationOptionModelMapper extends ModelMapper {
                     String.format("%s/hakuperusteet/ao/%s", "https://studyinfo.fi", oid)
             );
         }
+
+        private I18NDTO ataruTypeUrl(String oid) {
+            return new I18NDTO(
+                    String.format("https://opintopolku.fi/hakemus/hakukohde/%s?lang=fi ", oid),
+                    String.format("https://opintopolku.fi/hakemus/hakukohde/%s?lang=sv ", oid),
+                    String.format("https://opintopolku.fi/hakemus/hakukohde/%s?lang=en ", oid)
+            );
+        }
+
     }
 
 

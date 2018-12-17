@@ -56,6 +56,13 @@ public class ApplicationOptionConverter extends BaseConverter {
             ao.setFirstTimePositions(content.get("ensikertalaistenAloituspaikat").intValue());
         }
 
+        if (content.has("ataruLomakeAvain")) {
+            ao.setAtaruTypeFormUrl(true);
+        }
+        else {
+            ao.setAtaruTypeFormUrl(false);
+        }
+
         return ao;
     }
 
