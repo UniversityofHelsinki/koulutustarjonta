@@ -4,15 +4,19 @@ import fi.helsinki.koulutustarjonta.domain.ApplicationOption;
 import fi.helsinki.koulutustarjonta.domain.Requirement;
 import fi.helsinki.koulutustarjonta.dto.ApplicationOptionDTO;
 import fi.helsinki.koulutustarjonta.dto.I18NDTO;
+import javafx.application.Application;
 import org.modelmapper.AbstractConverter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
 import org.modelmapper.convention.MatchingStrategies;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author Hannu Lyytikainen
  */
 public class ApplicationOptionModelMapper extends ModelMapper {
+    static final Logger LOG = LoggerFactory.getLogger(ApplicationOptionModelMapper.class);
     public ApplicationOptionModelMapper(String apiEndpoint) {
         super();
         this.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
@@ -59,7 +63,7 @@ public class ApplicationOptionModelMapper extends ModelMapper {
         @Override
         protected I18NDTO convert(ApplicationOption source) {
             boolean systemApplicationForm = source.isAsSystemApplicationForm();
-            if(source.isAtaruTypeFormUrl()){
+            if(source.getAoFormUrl() != null && source.getAoFormUrl().equals("ataruFormUrl")){
                 return ataruTypeUrl(source.getOid());
             } else if (!systemApplicationForm && source.getAsFormUrl() != null) {
                 return hakuperusteetUrl(source.getOid());
