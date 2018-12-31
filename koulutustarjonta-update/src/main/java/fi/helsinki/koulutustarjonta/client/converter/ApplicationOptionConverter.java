@@ -5,6 +5,7 @@ import com.google.common.collect.Lists;
 import fi.helsinki.koulutustarjonta.client.KoodistoClient;
 import fi.helsinki.koulutustarjonta.domain.ApplicationOption;
 import fi.helsinki.koulutustarjonta.domain.Requirement;
+import org.apache.log4j.Logger;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,6 +17,7 @@ public class ApplicationOptionConverter extends BaseConverter {
 
     private final ExamConverter examConverter;
     private final AttachmentConverter attachmentConverter;
+    static final Logger LOG = Logger.getLogger(ApplicationOptionConverter.class);
 
     public ApplicationOptionConverter(KoodistoClient koodistoClient) {
         super(koodistoClient);
@@ -56,11 +58,14 @@ public class ApplicationOptionConverter extends BaseConverter {
             ao.setFirstTimePositions(content.get("ensikertalaistenAloituspaikat").intValue());
         }
 
+        // This string is checked for in class ApplicationOptionModelMapper. And if AoFormUrl equals 'ataruFormUrl',
+        // then a correct URL is set, otherwise another kind of URL is set. This kind of a workaround is used, because
+        // for some reason, the URL is not saved in the database and is only defined after a query to the API is made.
+        // It would probably make more sense to save the correct URL in the database, but the process of defining it was
+        // using several different classes and refactoring the logic to be included here might have introduced some errors.
+        // As a result, I implemented this quick workaround, because the planned lifetime of this application is near its end.
         if (content.has("ataruLomakeAvain")) {
-            ao.setAtaruTypeFormUrl(true);
-        }
-        else {
-            ao.setAtaruTypeFormUrl(false);
+            ao.setAoFormUrl("ataruFormUrl");
         }
 
         return ao;
