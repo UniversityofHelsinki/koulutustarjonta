@@ -92,9 +92,9 @@ public class ApplicationOptionModelMapper extends ModelMapper {
 
         private I18NDTO ataruTypeUrl(String oid) {
             return new I18NDTO(
-                    String.format("https://opintopolku.fi/hakemus/hakukohde/%s?lang=fi ", oid),
-                    String.format("https://opintopolku.fi/hakemus/hakukohde/%s?lang=sv ", oid),
-                    String.format("https://opintopolku.fi/hakemus/hakukohde/%s?lang=en ", oid)
+                    String.format("https://opintopolku.fi/hakemus/hakukohde/%s?lang=fi", oid),
+                    String.format("https://opintopolku.fi/hakemus/hakukohde/%s?lang=sv", oid),
+                    String.format("https://opintopolku.fi/hakemus/hakukohde/%s?lang=en", oid)
             );
         }
 
