@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.ArrayList;
+import java.util.function.Function;
 
 
 /**
@@ -66,7 +66,7 @@ public class Updater {
     private void handleAllOrganizations(Result result) {
         //Get all organizations under the defined parentOid, there are also other organizations that are not
         //under this organization
-        List<String> organizationOids = organisaatioClient.resolveFacultyOids("1.2.246.562.10.39218317368");
+        List<String> organizationOids = tryToGetResource("1.2.246.562.10.39218317368", organisaatioClient :: resolveFacultyOids);
         organizationOids.forEach(organizationOid -> {
             try {
                 handleOrganization(organizationOid);
@@ -82,19 +82,19 @@ public class Updater {
         });
     }
 
-    private void handleOrganization(String organizationOid) throws DataUpdateException {
+    private void handleOrganization(String organizationOid) {
         // Get learning opportunities (koulutus) by organization
-        List<String> learningOpportunityOids = tarjontaClient.getLearningOpportunityOidsByProvider(organizationOid);
+        List<String> learningOpportunityOids = tryToGetResource(organizationOid, tarjontaClient :: getLearningOpportunityOidsByProvider);
 
         //Get learning opportunities with wrong education level and remove them from the list
-        List<String> learningOpportunityOidsWithWrongEducationLevel = tarjontaClient.getLearningOpportunityOidsWithWrongEducationLevel(learningOpportunityOids);
+        List<String> learningOpportunityOidsWithWrongEducationLevel = tryToGetResource(learningOpportunityOids, tarjontaClient :: getLearningOpportunityOidsWithWrongEducationLevel);
         LOG.info("Learning opportunities with wrong education level: " + learningOpportunityOidsWithWrongEducationLevel);
         learningOpportunityOids.removeIf(oid -> learningOpportunityOidsWithWrongEducationLevel.contains(oid));
 
         LOG.debug(String.format("Found %d learning opportunities for organization %s", learningOpportunityOids.size(), organizationOid));
 
         // Get application options (hakukohde) by organization and remove those related to removed learning opportunities
-        List<String> applicationOptionOids = tarjontaClient.getApplicationOptionOidsByProvider(organizationOid);
+        List<String> applicationOptionOids = tryToGetResource(organizationOid, tarjontaClient :: getApplicationOptionOidsByProvider);
         applicationOptionOids = tarjontaClient.removeApplicationOptionOidsRelatedToLearningOpportunitiesWithWrongEducationLevel(applicationOptionOids, learningOpportunityOidsWithWrongEducationLevel);
 
         LOG.debug(String.format("Found %d application options for organization %s", applicationOptionOids.size(), organizationOid));
@@ -110,16 +110,16 @@ public class Updater {
         }
     }
 
-    private void saveOrganization(String organizationOid) throws DataUpdateException {
-        Organization organization = tryToGetResource(organizationOid, Organization.class);
-        organizationDAO.save(organization);
+    private void saveOrganization(String organizationOid) {
+            Organization organization = tryToGetResource(organizationOid, organisaatioClient :: getOrganization);
+            organizationDAO.save(organization);
     }
 
     //Save learning opportunities if they are not outdated. Learning opportunity
     //corresponds to the 'koulutus' table in the database.
     private void saveLearningOpportunities(List<String> learningOpportunityOids) {
         learningOpportunityOids.forEach(loOid -> {
-            LearningOpportunity learningOpportunity = tryToGetResource(loOid, LearningOpportunity.class);
+            LearningOpportunity learningOpportunity = tryToGetResource(loOid, tarjontaClient :: getLearningOpportunity);
 
             //Check that learning opportunity is not expired
             LocalDate currentDate = LocalDate.now();
@@ -144,8 +144,8 @@ public class Updater {
     //Application system corresponds to 'haku' table
     private void saveApplicationOptions(List<String> applicationOptionOids) {
         applicationOptionOids.forEach(aoOid -> {
-            ApplicationOption ao = tryToGetResource(aoOid, ApplicationOption.class);
-            ApplicationSystem as = tryToGetResource(ao.getApplicationSystem(), ApplicationSystem.class);
+            ApplicationOption ao = tryToGetResource(aoOid, tarjontaClient :: getApplicationOption);
+            ApplicationSystem as = tryToGetResource(ao.getApplicationSystem(), tarjontaClient :: getApplicationSystem);
 
             //Check that application option is not expired
             LocalDate currentDate = LocalDate.now();
@@ -194,7 +194,9 @@ public class Updater {
         }
     }
 
-    private <T> T tryToGetResource(String oid, Class<T> clazz) {
+    // Tries to get a resource of type T using the function specified as a parameter.
+    // The functionParam is in most cases the oid  
+    public static <T, P> T tryToGetResource(P functionParam, Function<P, T> function) {
         int maxTries = 3;
         int tries = 1;
         // We try to handle each organization again in case of failures. This was implemented, because of
@@ -202,26 +204,25 @@ public class Updater {
         // between each try
         while (tries <= maxTries) {
             try {
-                if (clazz.equals(ApplicationOption.class)) {
-                    return clazz.cast(tarjontaClient.getApplicationOption(oid));
-                } else if (clazz.equals(ApplicationSystem.class)) {
-                    return clazz.cast(tarjontaClient.getApplicationSystem(oid));
-                } else if (clazz.equals(LearningOpportunity.class)) {
-                    return clazz.cast(tarjontaClient.getLearningOpportunity(oid));
+                T returnedResource = function.apply(functionParam);
+                if (returnedResource != null) {
+                    return returnedResource;
                 } else {
-                    return clazz.cast(organisaatioClient.getOrganization(oid));
+                    LOG.error("Getting resource returned null. Oid: " + functionParam);
+                    throw new NullPointerException("Resource returned a null value");
                 }
-            } catch (Exception exception) {
+            }
+            catch (Exception exception) {
                 tries++;
                 if (tries > maxTries) {
-                    LOG.error("Error getting resource of type " +clazz.getName() + "with oid: " + oid, exception);
-                    throw new ResourceException(oid, clazz);
+                    LOG.error("Error getting resource with oid: " + functionParam, exception);
+                    throw exception;
                 }
                 else {
-                    LOG.warn("Handling resource of type "  + clazz.getName() + ". Trying again after 30 second wait. Resource oid: " + oid +
+                    LOG.warn("Trying again after waiting. Error getting resource oid: " + functionParam +
                             " Exception was: " + exception);
                     try{
-                        Thread.sleep(30000);
+                        Thread.sleep(tries*10000); // 10 seconds * number of tries
                     }
                     catch (InterruptedException e){
                         LOG.error(e.getMessage());
@@ -229,8 +230,8 @@ public class Updater {
                 }
             }
         }
-        //This error should usually be thrown already earlier, but was required to ensure a return value
-        LOG.error("Error getting resource of type " +clazz.getName() + "with oid: " + oid);
-        throw new ResourceException(oid, clazz);
+        //This situation should not happen, because the while loop should cover all situations
+        LOG.error("Error getting resource with oid: " + functionParam);
+        return null;
     }
 }
