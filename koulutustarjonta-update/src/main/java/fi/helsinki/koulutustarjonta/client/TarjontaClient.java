@@ -12,6 +12,7 @@ import fi.helsinki.koulutustarjonta.config.OpintopolkuConfiguration;
 import fi.helsinki.koulutustarjonta.domain.ApplicationOption;
 import fi.helsinki.koulutustarjonta.domain.ApplicationSystem;
 import fi.helsinki.koulutustarjonta.domain.LearningOpportunity;
+import fi.helsinki.koulutustarjonta.core.Updater;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -221,7 +222,7 @@ public class TarjontaClient {
     public List<String> removeApplicationOptionOidsRelatedToLearningOpportunitiesWithWrongEducationLevel(List<String> applicationOptionOidList, List<String> learningOpportunityOidsToRemove) {
         List<String> applicationOptionRemoveList = new ArrayList<>();
         learningOpportunityOidsToRemove.forEach( learningOpportunityOid -> {
-            List<String> relatedApplicationOptionOids = this.getApplicationOptionOidsByLearningOpportunity(learningOpportunityOid);
+            List<String> relatedApplicationOptionOids = Updater.tryToGetResource(learningOpportunityOid, this :: getApplicationOptionOidsByLearningOpportunity);
             applicationOptionRemoveList.addAll(relatedApplicationOptionOids);
         });
         LOG.info("Removing application options opportunities: ", applicationOptionRemoveList);

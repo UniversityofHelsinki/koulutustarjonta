@@ -74,14 +74,14 @@ public class UpdaterTest {
     }
 
     @Test
-    public void thatResourceExceptionErrorsAreSaved() throws DataUpdateException {
+    public void thatResourceExceptionErrorsAreSaved() {
         when(organisaatioClient.resolveFacultyOids("1.2.246.562.10.39218317368")).thenReturn(Arrays.asList("1.2.3"));
         when(tarjontaClient.getLearningOpportunityOidsByProvider("1.2.3")).thenReturn(Arrays.asList("4.5.6"));
         when(organisaatioClient.getOrganization("1.2.3")).thenThrow(new ClientHandlerException());
 
         updater.update();
-        verify(updateResultDAO, times(1)).save(argThat(allOf(errorsEqual(
-                        "[\"Failed to get resource class fi.helsinki.koulutustarjonta.domain.Organization with oid 1.2.3\"]"),
+        verify(updateResultDAO, times(1)).save(argThat(allOf(errorsContain(
+                        "Failed to get resource organization with oid 1.2.3"),
                 stateEquals(UpdateResult.State.ERROR))));
     }
 

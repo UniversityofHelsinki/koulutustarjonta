@@ -31,12 +31,19 @@ public class OrganisaatioClient {
         this.organizationOidIgnore = organizationOidIgnore;
     }
 
-    public Organization getOrganization(String oid) throws DataUpdateException{
-        LOG.debug(String.format("Fetching organization with oid %s", oid));
-        JsonNode node = organizationResource.path(oid)
-                .get(new GenericType<JsonNode>() {});
+    public Organization getOrganization(String oid) {
+        try {
+            LOG.debug(String.format("Fetching organization with oid %s", oid));
+            JsonNode node = organizationResource.path(oid)
+                    .get(new GenericType<JsonNode>() {
+                    });
 
-        return organizationConverter.convert(node);
+            return organizationConverter.convert(node);
+        } catch (DataUpdateException ex) {
+            // Error is not thrown to avoid problems with refering functions in updater.java
+            LOG.error("Error handling organization, with oid: " + oid);
+            return null;
+        }
     }
 
     public List<String> resolveFacultyOids(String parentOid) {
